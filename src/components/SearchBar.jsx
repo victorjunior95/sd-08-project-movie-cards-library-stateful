@@ -11,7 +11,6 @@ export default class SearchBar extends React.Component {
       selectedGenre,
       onSelectedGenreChange,
     } = this.props;
-    
     return (
       <form data-testid="search-bar-form">
         <label data-testid="text-input-label" htmlFor="text-input">
@@ -69,5 +68,5 @@ SearchBar.propTypes = {
   onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
-//consultei o repositório de Arnaelcio para implementação das funções.
+// consultei o repositório de Arnaelcio para implementação das funções.
 // https://github.com/tryber/sd-07-project-movie-card-library-stateful/pull/137
