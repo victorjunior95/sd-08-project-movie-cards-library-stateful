@@ -68,5 +68,12 @@ SearchBar.propTypes = {
   onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
+// "Na medida em que sua aplicação cresce, você pode capturar muitos bugs com checagem de tipos.
+// Em algumas aplicações, você pode usar extensões do JavaScript como Flow ou TypeScript para
+// checar os tipos de toda a sua aplicação. Porém, mesmo se você não usá-las, React possui 
+// algumas habilidades de checagem de tipos nativas. Para executar a checagem de tipos 
+// nas props para um componente, você pode atribuir à propriedade em especial propTypes"
+// https://pt-br.reactjs.org/docs/typechecking-with-proptypes.html
+
 // consultei o repositório de Arnaelcio para implementação das funções.
 // https://github.com/tryber/sd-07-project-movie-card-library-stateful/pull/137
