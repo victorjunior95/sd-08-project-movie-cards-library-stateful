@@ -16,48 +16,40 @@ export default class AddMovie extends React.Component {
     };
   }
 
-  handleChange(event) {
-    this.setState({
-      estadoFavorito: event.target.value,
-    });
+  handleChange({ name, value }) {
+    this.setState( { [name]: value });
   }
+
   render() {
     return (
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label" htmlFor="title-input">
           Título
-          <textarea name="estadoFavorito" value={this.state.title} onChange={this.handleChange} />
         </label>
-        <input data-testid="title-input" id="title-input" />
+        <input data-testid="title-input" id="title-input"  value={this.state.title} onChange={this.handleChange}
+/>
 
         <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
-          <textarea name="subtitle" value={this.state.subtitle} onChange={this.handleChange} />
-
+        Subitítulo
         </label>
-        <input data-testid="subtitle-input" id="subtitle-input" />
+        <input data-testid="subtitle-input" id="subtitle-input"  value={this.state.subtitle} onChange={this.handleChange} />
 
         <label data-testid="image-input-label" htmlFor="image-input">
           Imagem
         </label>
-        <input data-testid="image-input" id="image-input" />
+        <input data-testid="image-input" id="image-input" value={this.state.imagePath} onChange={this.handleChange} />
 
-        <label data-testid="storyline-input-label" htmlFor="storyline-input">
+        <label data-testid="storyline-input-label" htmlFor="storyline-input" value={this.state.storyline} onChange={this.handleChange}>
           Sinopse
-          <textarea name="storyline" value={this.state.storyline} onChange={this.handleChange} />
         </label>
-        <input data-testid="storyline-input" id="storyline-input" />
+        <input data-testid="storyline-input" id="storyline-input" value={this.state.storyline} onChange={this.handleChange}/>
 
-        <label data-testid="rating-input-label" htmlFor="rating-input">
+        <label data-testid="rating-input-label" htmlFor="rating-input" >
           Avaliação
-          <textarea name="rating" value={this.state.rating} onChange={this.handleChange} />
 
         </label>
         <input
-          data-testid="rating-input"
-          id="rating-input"
-          value={this.state.rating}
-          type="number"
-        />
+          data-testid="rating-input" id="rating-input" type="number" value={this.state.rating} onChange={this.handleChange} />
 
         <label data-testid="genre-input-label" htmlFor="selected-genre-input">
           Gênero
