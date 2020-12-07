@@ -3,7 +3,9 @@ import React from 'react';
 export default class AddMovie extends React.Component {
   constructor(props) {
     super(props);
-    
+
+    this.handleChange = this.handleChange.bind(this);
+
     this.state = {
       subtitle: '',
       title: '',
@@ -14,16 +16,23 @@ export default class AddMovie extends React.Component {
     };
   }
 
+  handleChange(event) {
+    this.setState({
+      estadoFavorito: event.target.value,
+    });
+  }
   render() {
     return (
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label" htmlFor="title-input">
           Título
+          <textarea name="estadoFavorito" value={this.state.title} onChange={this.handleChange} />
         </label>
         <input data-testid="title-input" id="title-input" />
 
         <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
-          Subtítulo
+          <textarea name="subtitle" value={this.state.subtitle} onChange={this.handleChange} />
+
         </label>
         <input data-testid="subtitle-input" id="subtitle-input" />
 
@@ -34,11 +43,14 @@ export default class AddMovie extends React.Component {
 
         <label data-testid="storyline-input-label" htmlFor="storyline-input">
           Sinopse
+          <textarea name="storyline" value={this.state.storyline} onChange={this.handleChange} />
         </label>
         <input data-testid="storyline-input" id="storyline-input" />
 
         <label data-testid="rating-input-label" htmlFor="rating-input">
           Avaliação
+          <textarea name="rating" value={this.state.rating} onChange={this.handleChange} />
+
         </label>
         <input
           data-testid="rating-input"
