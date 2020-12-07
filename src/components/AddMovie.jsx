@@ -33,27 +33,53 @@ export default class AddMovie extends React.Component {
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label" htmlFor="title-input">
           Título
-          <input data-testid="title-input" id="title-input" value={title} onChange={this.handleChange} />
+          <input
+            data-testid="title-input"
+            id="title-input"
+            value={title}
+            onChange={this.handleChange}
+          />
         </label>
 
         <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
         Subitítulo
-          <input data-testid="subtitle-input" id="subtitle-input" value={subtitle} onChange={this.handleChange} />
+          <input
+            data-testid="subtitle-input"
+            id="subtitle-input"
+            value={subtitle}
+            onChange={this.handleChange}
+          />
         </label>
 
         <label data-testid="image-input-label" htmlFor="image-input">
           Imagem
-          <input data-testid="image-input" id="image-input" value={imagePath} onChange={this.handleChange} />
+          <input
+            data-testid="image-input"
+            id="image-input"
+            value={imagePath}
+            onChange={this.handleChange}
+          />
         </label>
 
         <label data-testid="storyline-input-label" htmlFor="storyline-input" value={storyline} onChange={this.handleChange}>
           Sinopse
-          <input data-testid="storyline-input" id="storyline-input" value={storyline} onChange={this.handleChange} />
+          <input
+            data-testid="storyline-input"
+            id="storyline-input"
+            value={storyline}
+            onChange={this.handleChange}
+          />
         </label>
 
         <label data-testid="rating-input-label" htmlFor="rating-input">
           Avaliação
-          <input data-testid="rating-input" id="rating-input" type="number" value={rating} onChange={this.handleChange} />
+          <input
+            data-testid="rating-input"
+            id="rating-input"
+            type="number"
+            value={rating}
+            onChange={this.handleChange}
+          />
         </label>
 
         <label data-testid="genre-input-label" htmlFor="selected-genre-input">
