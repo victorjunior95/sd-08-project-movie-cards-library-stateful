@@ -14,6 +14,10 @@ export default class AddMovie extends React.Component {
     };
   }
 
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState({ [name]: value });
+  }
 
   render() {
     const {
