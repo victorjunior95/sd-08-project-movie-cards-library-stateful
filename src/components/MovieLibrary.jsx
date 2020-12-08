@@ -16,6 +16,7 @@ export default class MovieLibrary extends Component {
     };
     this.searchBarChange = this.searchBarChange.bind(this);
     this.updateDisplayMovies = this.updateDisplayMovies.bind(this);
+    this.addMovie = this.addMovie.bind(this);
   }
 
   searchBarChange({ target }) {
@@ -48,6 +49,15 @@ export default class MovieLibrary extends Component {
       (bookmarkedOnly ? movie.bookmarked === true : true) &&
       (selectedGenre ? movie.genre === selectedGenre : true)
     );
+  }
+  
+  addMovie(newEntieOfMovie) {
+    this.setState(
+      (beforeState) => ({
+        ...beforeState,
+        Movies: beforeState.Movies.concat(newEntieOfMovie),
+      }),
+      this.updateDisplayMovies);
   }
 
 
