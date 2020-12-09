@@ -50,7 +50,7 @@ export default class MovieLibrary extends Component {
       (selectedGenre ? movie.genre === selectedGenre : true)
     );
   }
-  
+
   addMovie(newEntieOfMovie) {
     this.setState(
       (beforeState) => ({

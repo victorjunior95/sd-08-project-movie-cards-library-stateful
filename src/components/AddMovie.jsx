@@ -80,7 +80,7 @@ export default class AddMovie extends Component {
           <input
             id="image-input"
             data-testid="image-input"
-            type="imagem"
+            type="text"
             name="imagePath"
             value={this.state.imagePath}
             onChange={this.handleChange}
