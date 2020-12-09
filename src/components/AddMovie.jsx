@@ -42,7 +42,14 @@ export default class AddMovie extends Component {
       genre: 'action',
     });
   }
-
+  addMovie(newEntieOfMovie) {
+    this.setState(
+      (beforeState) => ({
+        ...beforeState,
+        Movies: beforeState.Movies.concat(newEntieOfMovie),
+      }),
+      this.updateDisplayMovies);
+  }
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -73,7 +80,7 @@ export default class AddMovie extends Component {
           <input
             id="image-input"
             data-testid="image-input"
-            type="text"
+            type="imagem"
             name="imagePath"
             value={this.state.imagePath}
             onChange={this.handleChange}
@@ -98,6 +105,7 @@ export default class AddMovie extends Component {
             name="rating"
             value={this.state.rating}
             onChange={this.handleChange}
+            min="0" max="5"
           />
         </label>
         <label htmlFor="genre-input" data-testid="genre-input-label">
