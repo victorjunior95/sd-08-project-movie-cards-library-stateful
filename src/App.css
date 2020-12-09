@@ -6,7 +6,7 @@ body {
 
 .movie-card-header {
   align-items: center;
-  background-color:rgba(226, 225, 225, 0.125);
+  background-color: rgba(226, 225, 225, 0.125);
   display: flex;
   height: 100px;
   justify-content: center;
@@ -81,6 +81,6 @@ body {
 }
 
 
-label{
+label {
   color: whitesmoke;
 }
