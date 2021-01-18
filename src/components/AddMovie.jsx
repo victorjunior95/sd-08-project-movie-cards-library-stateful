@@ -13,6 +13,8 @@ class AddMovie extends React.Component {
       genre: 'action',
     };
     this.onChange = this.onChange.bind(this);
+    this.textInput = this.textInput.bind(this);
+    this.textAreaInput = this.textAreaInput.bind(this);
   }
 
   onChange({ target }) {
@@ -39,12 +41,29 @@ class AddMovie extends React.Component {
     );
   }
 
+  textAreaInput() {
+    const { storyline } = this.state;
+    return (
+      <label data-testid="storyline-input-label" htmlFor="storyline-input">
+        Sinopse
+        <textarea
+          name="storyline"
+          value={ storyline }
+          data-testid="storyline-input"
+          id="storyline-input"
+          onChange={ this.onChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
         {this.textInput('title', 'Título')}
         {this.textInput('subtitle', 'Subtítulo')}
         {this.textInput('image', 'Imagem')}
+        {this.textAreaInput()}
       </form>
     );
   }
