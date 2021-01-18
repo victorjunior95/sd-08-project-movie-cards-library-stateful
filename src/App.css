@@ -23,6 +23,7 @@ body {
   display: flex;
   flex-flow: row wrap;
   padding: 48px 30px;
+  justify-content: space-around;
 }
 
 .movie-card {
@@ -80,4 +81,22 @@ body {
   display: flex;
   justify-content: flex-end;
   padding: 12px 20px;
+}
+
+.library {
+  width: 100%;
+  text-align: center;
+}
+
+.library h2{
+  width: 100%;
+}
+
+.search-bar {
+  width: 100%;
+}
+
+.search-bar input{
+  border: 2px ridge rgba(0, 0, 0);
+  border-radius: 5px;
 }
