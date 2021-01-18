@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
             <form data-testid="search-bar-form">
                 <label data-testid="text-input-label">
                     Inclui o texto:
-                    <input onChange={onSearchTextChange} value={searchText} type="text" data-testid="text-input" />
+                    <input onChange={onSearchTextChange} name="searchText" value={searchText} type="text" data-testid="text-input" />
                 </label>
                 <label data-testid="checkbox-input-label">
                     Mostrar somente favoritos
