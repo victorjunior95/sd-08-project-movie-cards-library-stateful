@@ -5,9 +5,11 @@ class AddMovie extends Component {
     super();
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSubtitle = this.handleSubtitle.bind(this);
+    this.handleImg = this.handleImg.bind(this);
     this.state = {
       title: '',
       subtitle: '',
+      imagePath: '',
     };
   }
 
@@ -22,6 +24,13 @@ class AddMovie extends Component {
     const newValueSub = e.target.value;
     this.setState({
       subtitle: newValueSub,
+    });
+  }
+
+  handleImg(e) {
+    const newValueImg = e.target.value;
+    this.setState({
+      imagePath: newValueImg,
     });
   }
 
@@ -55,11 +64,28 @@ class AddMovie extends Component {
     );
   }
 
+  addMovieImg() {
+    const { imagePath } = this.state;
+    return (
+      <label data-testid="image-input-label" htmlFor="image-input">
+        Imagem
+        <input
+          id="image-input"
+          imagePath={ imagePath }
+          data-testid="image-input"
+          value={ imagePath }
+          onChange={ this.handleImg }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
         { this.addMovieTitle() }
         { this.addMovieSubtitle() }
+        { this.addMovieImg() }
       </form>
     );
   }
