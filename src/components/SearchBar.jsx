@@ -1,27 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InputTextSearch from './InputTextSearch';
+import InputCheckbox from './InputCheckbox';
 
 class SearchBar extends React.Component {
+  constructor() {
+    super();
+    this.renderInputText = this.renderInputText.bind(this);
+    this.renderCheckbox = this.renderCheckbox.bind(this);
+  }
+
+  renderInputText() {
+    const { searchText, onSearchTextChange } = this.props;
+    return (
+      <InputTextSearch
+        searchText={ searchText }
+        onSearchTextChange={ onSearchTextChange }
+      />
+    );
+  }
+
+  renderCheckbox() {
+    const { bookmarkedOnly, onBookmarkedChange } = this.props;
+    return (
+      <InputCheckbox
+        bookmarkedOnly={ bookmarkedOnly }
+        onBookmarkedChange={ onBookmarkedChange }
+      />
+    );
+  }
+
   render() {
-    const { searchText,
-      onSearchTextChange, bookmarkedOnly,
-      onBookmarkedChange, selectedGenre,
-      onSelectedGenreChange
-    } = this.props;
     return (
       <form data-testid="search-bar-form">
-        <label htmlFor="searchInput" data-testid="text-input-label">
-          Inclui o texto:
-          <input
-            value={ searchText }
-            onChange={ onSearchTextChange }
-            id="searchInput"
-            data-testid="text-input"
-          />
-        </label>
+        {this.renderInputText()}
+        {this.renderCheckbox()}
       </form>
     );
   }
 }
+
+SearchBar.propTypes = {
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  onBookmarkedChange: PropTypes.func.isRequired,
+  // selectedGenre: PropTypes.string.isRequired,
+  // onSelectedGenreChange: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
