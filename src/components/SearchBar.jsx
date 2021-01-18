@@ -27,7 +27,7 @@ class SearchBar extends Component {
           </label>
         </div>
         <div>
-          <label htmlFor="select-input-label" data-testid="select-input-label">
+          <label htmlFor="select-input" data-testid="select-input-label">
             Filtrar por gênero:
             <select name="select-input" id="select-input" value={ selectedGenre } onChange={ onSelectedGenreChange } data-testid="select-input">
               <option value="" data-testid="select-option">Todos</option>
