@@ -6,7 +6,7 @@ class SearchBar extends React.Component {
     const { searchText, onSearchTextChange, bookMarkedOnly, onBookMarkedChang, selectedGenre, onSelectedGenreChange } = this.props;
 
     return(
-      <form />
+      <form data-testid="search-bar-form" />
     );
   }
 }
