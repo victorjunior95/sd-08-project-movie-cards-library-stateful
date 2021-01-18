@@ -21,13 +21,13 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.propTypes = {
-  searchText: PropTypes.string,
-  onSearchTextChange: PropTypes.function,
-};
+// SearchBar.propTypes = {
+//   searchText: PropTypes.string,
+//   onSearchTextChange: PropTypes.function,
+// };
 
-SearchBar.defaultProps = {
-  searchText: '',
-};
+// SearchBar.defaultProps = {
+//   searchText: '',
+// };
 
 export default SearchBar;
