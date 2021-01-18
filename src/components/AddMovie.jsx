@@ -153,6 +153,21 @@ class AddMovie extends Component {
     );
   }
 
+  addMovieSubmit(e) {
+    const { onClick } = this.props;
+    // const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
+    onClick(this.state);
+    this.setState({
+      title: '',
+      subtitle: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: '',
+    });
+    e.preventDefault();
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -162,6 +177,13 @@ class AddMovie extends Component {
         { this.addMovieSinopse() }
         { this.addMovieRating() }
         { this.addMovieGenre() }
+        <button
+          data-testid="send-button"
+          onClick={ this.addMovieSubmit.bind(this) }
+          type="submit"
+        >
+          Adicionar filme
+        </button>
       </form>
     );
   }
