@@ -15,6 +15,7 @@ class AddMovie extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.textInput = this.textInput.bind(this);
     this.textAreaInput = this.textAreaInput.bind(this);
+    this.numberInput = this.numberInput.bind(this);
   }
 
   onChange({ target }) {
@@ -57,6 +58,23 @@ class AddMovie extends React.Component {
     );
   }
 
+  numberInput() {
+    const { rating } = this.state;
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating-input">
+        Avaliação
+        <input
+          type="number"
+          id="rating-input"
+          name="rating"
+          data-testid="rating-input"
+          value={ rating }
+          onChange={ this.onChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -64,6 +82,7 @@ class AddMovie extends React.Component {
         {this.textInput('subtitle', 'Subtítulo')}
         {this.textInput('image', 'Imagem')}
         {this.textAreaInput()}
+        {this.numberInput()}
       </form>
     );
   }
