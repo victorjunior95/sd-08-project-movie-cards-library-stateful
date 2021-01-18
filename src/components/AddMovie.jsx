@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 class AddMovie extends Component {
   constructor() {
     super();
+    this.handleTitle = this.handleTitle.bind(this);
+    this.handleSubtitle = this.handleSubtitle.bind(this);
     this.state = {
       title: '',
       subtitle: '',
@@ -17,9 +19,9 @@ class AddMovie extends Component {
   }
 
   handleSubtitle(e) {
-    const newValue = e.target.value;
+    const newValueSub = e.target.value;
     this.setState({
-      subtitle: newValue,
+      subtitle: newValueSub,
     });
   }
 
