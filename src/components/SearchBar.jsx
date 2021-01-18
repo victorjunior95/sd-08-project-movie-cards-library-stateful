@@ -1,35 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import InputField from './InputField';
 
 class SearchBar extends React.Component {
   render() {
-    const {
-      searchText,
-      onSearchTextChange,
-      bookmarkedOnly,
-      onBookmarkedChange,
-      selectedGenre,
-      onSelectedGenreChange,
-    } = this.props;
-
-    console.log(searchText, onSearchTextChange, bookmarkedOnly,
-      onBookmarkedChange, selectedGenre, onSelectedGenreChange);
-
+    const objProps = this.props;
     return (
       <form data-testid="search-bar-form">
-        <textarea />
+        <InputField objProps={ objProps } />
       </form>
     );
   }
 }
 
 export default SearchBar;
-
-SearchBar.propTypes = {
-  searchText: PropTypes.string.isRequired,
-  onSearchTextChange: PropTypes.func.isRequired,
-  bookmarkedOnly: PropTypes.bool.isRequired,
-  onBookmarkedChange: PropTypes.func.isRequired,
-  selectedGenre: PropTypes.string.isRequired,
-  onSelectedGenreChange: PropTypes.func.isRequired,
-};
