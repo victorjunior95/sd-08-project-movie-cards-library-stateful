@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TitleAddMovie from './TitleAddMovie';
-import SubtitleAddMovie from './SubtitleAddMovie';
+import TitleAddMovie from './AddMovie/TitleAddMovie';
+import SubtitleAddMovie from './AddMovie/SubtitleAddMovie';
 
 class AddMovie extends React.Component {
   constructor() {
