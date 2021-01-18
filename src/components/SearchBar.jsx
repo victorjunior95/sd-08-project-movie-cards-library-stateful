@@ -27,7 +27,27 @@ class SeachBar extends React.Component {
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
+          id="checkboxFilter"
         />
+      </label>
+    );
+  }
+
+  renderSelect(selectedGenre, onSelectedGenreChange) {
+    return (
+      <label data-testid="select-input-label" htmlFor="filterSelect">
+        Filtrar por gênero
+        <select
+          onChange={ onSelectedGenreChange }
+          id="filterSelect"
+          value={ selectedGenre }
+          data-testid="select-input"
+        >
+          <option value="" data-testid="select-option">Todos</option>
+          <option value="action" data-testid="select-option">Ação</option>
+          <option value="comedy" data-testid="select-option"> Comédia</option>
+          <option value="thriller" data-testid="select-option">Suspense</option>
+        </select>
       </label>
     );
   }
@@ -46,6 +66,7 @@ class SeachBar extends React.Component {
       >
         {this.renderInput(searchText, onSearchTextChange)}
         {this.renderCheckBox(bookmarkedOnly, onBookmarkedChange)}
+        {this.renderSelect(selectedGenre, onSelectedGenreChange)}
       </form>
     );
   }
