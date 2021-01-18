@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
   functionRenderSelect() {
+    const { onSelectedGenreChange, selectedGenre } = this.props;
     return (
       <label data-testid="select-input-label" htmlFor="select-input-label">
         Filtrar por gênero
@@ -20,20 +21,26 @@ class SearchBar extends Component {
     );
   }
 
+  functionRenderBook() {
+    const { bookmarkedOnly, onBookmarkedChange } = this.props;
+    return (
+      <input
+        data-testid="checkbox-input"
+        type="checkbox"
+        onChange={ onBookmarkedChange }
+        checked={ bookmarkedOnly }
+      />
+    );
+  }
+
   renderInputText() {
-    const { searchText, onSearchTextChange,
-      bookmarkedOnly, onBookmarkedChange,
-      selectedGenre, onSelectedGenreChange } = this.props;
+    const { searchText, onSearchTextChange } = this.props;
     return (
       <input
         id="text-input-label"
         type="text"
         value={ searchText }
         onChange={ onSearchTextChange }
-        bookmarkedOnly={ bookmarkedOnly }
-        onBookmarkedChange={ onBookmarkedChange }
-        selectedGenre={ selectedGenre }
-        onSelectedGenreChange={ onSelectedGenreChange }
         data-testid="text-input"
       />
     );
@@ -48,12 +55,7 @@ class SearchBar extends Component {
         </label>
         <label data-testid="checkbox-input-label" htmlFor="checkbox-input-label">
           Mostrar somente favoritos
-          <input
-            data-testid="checkbox-input"
-            type="checkbox"
-            onChange={ onBookmarkedChange }
-            checked={ bookmarkedOnly }
-          />
+          { this.functionRenderBook() }
         </label>
         {this.functionRenderSelect()}
       </form>
