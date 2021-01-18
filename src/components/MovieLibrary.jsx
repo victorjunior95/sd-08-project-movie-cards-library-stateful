@@ -1,36 +1,78 @@
 // implement MovieLibrary component here
 import React, { Component } from 'react';
-import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
+import SearchBar from './SearchBar';
+import MovieList from './MovieList';
 
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      movies: {},
+      movies: this.props,
     };
+
+    this.handleAddMovie = this.handleAddMovie.bind(this);
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
   }
 
-  handleAddedState(state) {
-    this.setState({
-      movies: state,
-    });
+  onSearchTextChange({ target }) {
+    const { value } = target;
+    this.setState({ searchText: value });
+  }
+
+  onBookmarkedChange({ target }) {
+    const { checked } = target;
+    this.setState({ bookmarkedOnly: checked });
+  }
+
+  onSelectedGenreChange({ target }) {
+    const { value } = target;
+    this.setState({ selectedGenre: value });
+  }
+
+  handleAddMovie(movie) {
+    this.setState((stateBefore) => ({ movies: { movies: [...stateBefore.movies.movies, movie] } }));
+  }
+
+  filterMoviesState() {
+    const { movies: { movies }, searchText, selectedGenre, bookmarkedOnly } = this.state;
+    if (selectedGenre !== '') return movies.filter(({ genre }) => genre === selectedGenre);
+    if (bookmarkedOnly) return movies.filter((book) => book.bookmarked === true);
+    return movies.filter(({ title, subtitle, storyline }) => title
+      .toLowerCase()
+      .includes(searchText.toLowerCase())
+    || subtitle
+      .toLowerCase()
+      .includes(searchText.toLowerCase())
+    || storyline
+      .toLowerCase()
+      .includes(searchText.toLowerCase()));
   }
 
   render() {
-    const { bookmarkedOnly, searchText, selectedGenre } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+
+    const movies = this.filterMoviesState();
     return (
-      <div>
+      <section>
+        <h2> My awesome movie library </h2>
         <SearchBar
-          bookmarkedOnly={ bookmarkedOnly }
+          onSearchTextChange={ this.onSearchTextChange }
+          onBookmarkedChange={ this.onBookmarkedChange }
+          onSelectedGenreChange={ this.onSelectedGenreChange }
           searchText={ searchText }
+          bookmarkedOnly={ bookmarkedOnly }
           selectedGenre={ selectedGenre }
         />
-        <AddMovie onClick={ this.handleAddedState } />
-      </div>
+        <MovieList movies={ movies } />
+        <AddMovie onClick={ this.handleAddMovie } />
+      </section>
     );
   }
 }
