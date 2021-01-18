@@ -6,10 +6,12 @@ class AddMovie extends Component {
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSubtitle = this.handleSubtitle.bind(this);
     this.handleImg = this.handleImg.bind(this);
+    this.handleSinopse = this.handleSinopse.bind(this);
     this.state = {
       title: '',
       subtitle: '',
       imagePath: '',
+      storyline: '',
     };
   }
 
@@ -31,6 +33,13 @@ class AddMovie extends Component {
     const newValueImg = e.target.value;
     this.setState({
       imagePath: newValueImg,
+    });
+  }
+
+  handleSinopse(e) {
+    const newValueSinopse = e.target.value;
+    this.setState({
+      storyline: newValueSinopse,
     });
   }
 
@@ -80,12 +89,29 @@ class AddMovie extends Component {
     );
   }
 
+  addMovieSinopse() {
+    const { storyline } = this.state;
+    return (
+      <label data-testid="storyline-input-label" htmlFor="storyline-input">
+        Sinopse
+        <textarea
+          id="storyline-input"
+          storyline={ storyline }
+          data-testid="storyline-input"
+          value={ storyline }
+          onChange={ this.handleSinopse }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
         { this.addMovieTitle() }
         { this.addMovieSubtitle() }
         { this.addMovieImg() }
+        { this.addMovieSinopse() }
       </form>
     );
   }
