@@ -4,21 +4,22 @@ import PropTypes from 'prop-types';
 class SearchBar extends React.Component {
   // eslint-disable-next-line max-lines-per-function
   render() {
-    const { searchText, onSearchTextChange, bookMarkedOnly } = this.props;
-    const { onBookMarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
+    const { searchText, onSearchTextChange, bookmarkedOnly } = this.props;
+    const { onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
 
     return (
       <form data-testid="search-bar-form">
         <label
           htmlFor="search"
           data-testid="text-input-label"
-          value={ searchText }
-          onChange={ onSearchTextChange }
         >
+          Inclui o texto:
           <input
             id="search"
             type="text"
             data-testid="text-input"
+            value={ searchText }
+            onChange={ onSearchTextChange }
           />
         </label>
         <label
@@ -28,8 +29,9 @@ class SearchBar extends React.Component {
           <input
             id="bookmarked"
             type="checkbox"
-            checked={ bookMarkedOnly }
-            onChange={ onBookMarkedChange }
+            checked={ bookmarkedOnly }
+            onChange={ onBookmarkedChange }
+            data-testid="checkbox-input"
           />
           Mostrar somente favoritos
         </label>
