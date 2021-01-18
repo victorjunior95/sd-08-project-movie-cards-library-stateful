@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
   // constructor() {
@@ -46,48 +46,61 @@ class SearchBar extends Component {
   // }
 
   render() {
-    // const searchText = this.props;
-    // const onSearchTextChange = this.props;
-    // const bookmarkedOnly = this.props;
-    // const onBookmarkedChange = this.props;
-    // const selectedGenre = this.props;
-    // const onSelectedGenreChange = this.props;
+    const searchText = this.props;
+    const onSearchTextChange = this.props;
+    const bookmarkedOnly = this.props;
+    const onBookmarkedChange = this.props;
+    const selectedGenre = this.props;
+    const onSelectedGenreChange = this.props;
 
     return (
-      <form>
-        <label>
+      <form data-testid="search-bar-form">
+        <label data-testid="text-input-label">
           Inclui o texto
-          <input type="text"/>
+          <input
+            type="text"
+            value={ searchText }
+            onChange={ onSearchTextChange }
+            data-testid="text-input"
+          />
         </label>
         <br />
-        <label>
-          <input type="checkbox"/>
+        <label data-testid="checkbox-input-label">
+          <input
+            type="checkbox"
+            checked={ bookmarkedOnly }
+            onChange={ onBookmarkedChange }
+            data-testid="checkbox-input"
+          />
           Mostrar somente favoritos
         </label>
         <br />
-        <label>
+        <label data-testid="select-input-label">
           Filtrar por gênero
-          <select type="text">
-            <option value="">Todos</option>
-            <option value="action">Ação</option>
-            <option value="comedy">Comédia</option>
-            <option value="thriller">Suspense</option>
+          <select
+            type="text"
+            value={ selectedGenre }
+            onChange={ onSelectedGenreChange }
+            data-testid="select-input"
+          >
+              <option value="">Todos</option>
+              <option value="action">Ação</option>
+              <option value="comedy">Comédia</option>
+              <option value="thriller">Suspense</option>
           </select>
         </label>
-
       </form>
     )
   }
 }
 
-// SearchBar.propTypes = {
-
-// }
+SearchBar.propTypes = {
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.string.isRequired,
+  onBookmarkedChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired
+}
 
 export default SearchBar;
-// 1 - Crie um componente chamado <SearchBar />
-// Esse componente renderizará uma barra com filtros acima da listagem de cartões. Quais cartões serão mostrados no componente <MovieList /> dependerá dos filtros escolhidos. <SearchBar /> deve receber como props:
-
-// O que será verificado:
-
-// Será validado se o componente <SearchBar />, recebendo as devidas props, renderiza com sucesso
