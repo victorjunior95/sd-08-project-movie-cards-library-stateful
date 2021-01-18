@@ -8,6 +8,7 @@ class InputCheckBox extends React.Component {
       <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
         Mostrar somente favoritos
         <input
+          id="checkbox-input"
           data-testid="checkbox-input"
           type="checkbox"
           checked={ checked }
