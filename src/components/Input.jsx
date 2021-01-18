@@ -24,7 +24,7 @@ class Input extends React.Component {
 Input.propTypes = {
   type: PropTypes.string,
   value: PropTypes.string,
-  onChangeFunction: PropTypes.func,
+  onChangeFunction: PropTypes.func.isRequired,
   datadoinput: PropTypes.string,
   datadolabel: PropTypes.string,
   name: PropTypes.string,
@@ -34,7 +34,7 @@ Input.propTypes = {
 Input.defaultProps = {
   type: 'sem nome',
   value: 'sem nome',
-  onChangeFunction: 'sem nome',
+  // onChangeFunction: 'sem nome',
   datadoinput: 'sem nome',
   datadolabel: 'sem nome',
   name: 'sem nome',
