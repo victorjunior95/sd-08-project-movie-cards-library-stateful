@@ -49,7 +49,7 @@ class SearchBar extends Component {
   render() {
     return (
       <form data-testid="search-bar-form">
-        <label htmlFor="text-input-label">
+        <label htmlFor="text-input-label" data-testid="text-input-label">
           Inclui o texto:
           { this.renderInputText() }
         </label>
