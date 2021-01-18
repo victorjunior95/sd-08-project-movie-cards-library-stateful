@@ -432,7 +432,7 @@ Dentro desse formulário haverá campos usados na filtragem de cartões.
 
 - A propriedade `value` do select deve receber o valor da prop `selectedGenre`;
 
-- A propriedade `onChange` do input deve receber o valor da prop `onSelectedGenreChange`;
+- A propriedade `onChange` do select deve receber o valor da prop `onSelectedGenreChange`;
 
 - O `select` deve renderizar quatro tags `option`, com as opções de filtragem por gênero, na seguinte ordem:
    - `Todos`, com o valor `""`;
