@@ -36,10 +36,3 @@ class MovieLibrary extends Component {
 // }
 
 export default MovieLibrary;
-
-// searchText, uma string
-// onSearchTextChange, uma callback
-// bookmarkedOnly, um boolean
-// onBookmarkedChange, uma callback
-// selectedGenre, uma string
-// onSelectedGenreChange, uma callback
