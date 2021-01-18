@@ -4,7 +4,7 @@ body {
   font-size: 16px;
 }
 
-.search-bar, .add-movie{
+.search-bar, .add-movie {
   display: flex;
   flex-flow: column nowrap;
   padding: 30px;
@@ -88,7 +88,7 @@ body {
   padding: 12px 20px;
 }
 
-.add-movie button{
-  width: 200px;
+.add-movie button {
   height: 40px;
+  width: 200px;
 }
