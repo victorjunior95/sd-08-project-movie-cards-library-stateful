@@ -4,22 +4,23 @@ import Proptypes from 'prop-types';
 
 class SeachBar extends React.Component {
   render() {
-    const { searchText,
-      onSearchTextChange,
-      bookmarkedOnly,
-      onBookmarkedChange,
+    const { searchText, onSearchTextChange, bookmarkedOnly, onBookmarkedChange,
       selectedGenre,
-      onSelectedGenreChange, } = this.props;
+      onSelectedGenreChange } = this.props;
     return (
       <div
         searchText={ searchText }
-        onSearchTextChange={ onSearchTextChange }
         bookmarkedOnly={ bookmarkedOnly }
         onBookmarkedChange={ onBookmarkedChange }
         selectedGenre={ selectedGenre }
         onSelectedGenreChange={ onSelectedGenreChange }
       >
-        <form data-testid="search-bar-form" />
+        <form data-testid="search-bar-form">
+          <label data-testid="text-input-label">
+            Inclui o texto:
+            <input data-testid="text-input" type="text" value={ searchText } onChange={ onSearchTextChange } />
+          </label>
+        </form>
       </div>
     );
   }
