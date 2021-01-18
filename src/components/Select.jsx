@@ -1,25 +1,40 @@
 import React from 'react';
 
 class Select extends React.Component {
-  render() {
+
+  renderSelect() {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <label data-testid="select-input-label">
+      <select
+        name=""
+        data-testid="select-input"
+        value={ selectedGenre }
+        onChange={ onSelectedGenreChange }
+      >
+        <option value="" data-testid="select-option">Todos</option>
+        <option value="action" data-testid="select-option">Ação</option>
+        <option value="comedy" data-testid="select-option">Comédia</option>
+        <option value="thriller" data-testid="select-option">Suspense</option>
+      </select>
+    );
+  }
+
+  render() {
+    return (
+      <label
+        htmlFor="select"
+        data-testid="select-input-label"
+      >
         Filtrar por gênero:
-        <select
-          name=""
-          data-testid="select-input"
-          value={ selectedGenre }
-          onChange={ onSelectedGenreChange }
-        >
-          <option value="" data-testid="select-option">Todos</option>
-          <option value="action" data-testid="select-option">Ação</option>
-          <option value="comedy" data-testid="select-option">Comédia</option>
-          <option value="thriller" data-testid="select-option">Suspense</option>
-        </select>
+        { this.renderSelect() }
       </label>
     );
   }
 }
 
 export default Select;
+
+Select.propTypes = {
+  selectedGenre: Proptypes.string.isRequired,
+  onSelectedGenreChange: Proptypes.func.isRequired,
+};

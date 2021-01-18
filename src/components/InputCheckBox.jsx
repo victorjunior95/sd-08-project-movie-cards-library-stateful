@@ -4,9 +4,13 @@ class InputCheckBox extends React.Component {
   render() {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
-      <label data-testid="checkbox-input-label">
+      <label
+        htmlFor="input-check"
+        data-testid="checkbox-input-label"
+      >
         Mostrar somente favoritos
         <input
+          id="input-check"
           type="checkbox"
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
@@ -18,3 +22,8 @@ class InputCheckBox extends React.Component {
 }
 
 export default InputCheckBox;
+
+InputCheckBox.propTypes = {
+  bookmarkedOnly: Proptypes.bool.isRequired,
+  onBookmarkedChange: Proptypes.func.isRequired,
+};
