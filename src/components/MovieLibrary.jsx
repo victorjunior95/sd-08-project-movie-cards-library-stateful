@@ -1,9 +1,22 @@
 import React from 'react';
+import AddMovie from './AddMovie';
 import SearchBar from './SearchBar';
 
 class MovieLibrary extends React.Component {
   onSearchTextChange() {
     console.log('oi');
+  }
+
+  onBookmarkedChange() {
+    console.log('eae');
+  }
+
+  onSelectedGenreChange() {
+    console.log('q');
+  }
+
+  callbackParaAddmovie() {
+    console.log('ai');
   }
 
   render() {
@@ -12,11 +25,12 @@ class MovieLibrary extends React.Component {
         <SearchBar
           searchText="oi"
           onSearchTextChange={ this.onSearchTextChange }
-          bookmarkedOnly
-          onBookmarkedChange
+          bookmarkedOnly={ false }
+          onBookmarkedChange={ this.onBookmarkedChange }
           selectedGenre
-          onSelectedGenreChange
+          onSelectedGenreChange={ this.onSelectedGenreChange }
         />
+        <AddMovie OnClick={ this.callbackParaAddmovie } />
       </div>
     );
   }
