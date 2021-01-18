@@ -12,7 +12,13 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     };
+    this.baseState = this.state;
     this.changeHandler = this.changeHandler.bind(this);
+    this.resetForm = this.resetForm.bind(this);
+  }
+
+  resetForm() {
+    this.setState(this.baseState);
   }
 
   changeHandler(event) {
@@ -122,7 +128,11 @@ class AddMovie extends React.Component {
 
   addMovieForm() {
     return (
-      <button type="submit">
+      <button
+        type="submit"
+        data-testid="send-button"
+        onClick={ () => this.resetForm() }
+      >
         Adicionar filme
       </button>
     );
