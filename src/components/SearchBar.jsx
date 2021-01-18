@@ -2,7 +2,11 @@ import React from 'react';
 
 class SearchBar extends React.Component {
   render() {
-    return ('Iniciando');
+    return (
+      <section>
+        <p>SearchBar</p>
+      </section>
+    );
   }
 }
 
