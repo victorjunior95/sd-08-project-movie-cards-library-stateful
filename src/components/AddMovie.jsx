@@ -2,7 +2,11 @@ import React from 'react';
 
 class AddMovie extends React.Component {
   render() {
-    return ('Iniciando');
+    return (
+      <form data-testid="add-movie-form">
+        <p>Form</p>
+      </form>
+    );
   }
 }
 
