@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputTextSearch from './InputTextSearch';
 import InputCheckbox from './InputCheckbox';
+import InputSelect from './InputSelect';
 
 class SearchBar extends React.Component {
   constructor() {
@@ -30,11 +31,22 @@ class SearchBar extends React.Component {
     );
   }
 
+  renderSelect() {
+    const { selectedGenre, onSelectedGenreChange } = this.props;
+    return (
+      <InputSelect
+        selectedGenre={ selectedGenre }
+        onSelectedGenreChange={ onSelectedGenreChange }
+      />
+    );
+  }
+
   render() {
     return (
       <form data-testid="search-bar-form">
         {this.renderInputText()}
         {this.renderCheckbox()}
+        {this.renderSelect()}
       </form>
     );
   }
@@ -45,8 +57,8 @@ SearchBar.propTypes = {
   onSearchTextChange: PropTypes.func.isRequired,
   bookmarkedOnly: PropTypes.bool.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
-  // selectedGenre: PropTypes.string.isRequired,
-  // onSelectedGenreChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
