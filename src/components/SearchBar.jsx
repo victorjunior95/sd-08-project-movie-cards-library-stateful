@@ -12,11 +12,11 @@ class SearchBar extends Component {
 
     return (
 
-      <div>
+      <form data-testid="search-bar-form">
         <div>
           <input type="text" name="searchText" id="searchText" />
         </div>
-      </div>
+      </form>
     );
   }
 }
