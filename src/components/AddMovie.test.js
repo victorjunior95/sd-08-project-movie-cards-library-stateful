@@ -235,7 +235,7 @@ describe('14 - Renderize um botão do formulário em `<AddMovie />` para fazer u
 
     event.click(sendButton);
 
-    expect(titleInput).toHaveValue('');
+    expect(titleInput).toHaveValue(''); //Voltou Harry Potter I
     expect(subtitleInput).toHaveValue('');
     expect(storylineInput).toHaveValue('');
     expect(ratingInput).toHaveValue(0);
