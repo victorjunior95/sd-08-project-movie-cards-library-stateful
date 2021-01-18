@@ -2,30 +2,49 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
+  // eslint-disable-next-line max-lines-per-function
   render() {
     const { searchText, onSearchTextChange, bookMarkedOnly } = this.props;
-    const {onBookMarkedChang, selectedGenre, onSelectedGenreChange } = this.props;
+    const { onBookMarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
 
-    return(
+    return (
       <form data-testid="search-bar-form">
         <label
+          htmlFor="search"
           data-testid="text-input-label"
           value={ searchText }
-          onChange={ onSearchTextChange }>
-          <input type="text" data-testid="text-input" />
+          onChange={ onSearchTextChange }
+        >
+          <input
+            id="search"
+            type="text"
+            data-testid="text-input"
+          />
+        </label>
+        <label
+          htmlFor="bookmarked"
+          data-testid="checkbox-input-label"
+        >
+          <input
+            id="bookmarked"
+            type="checkbox"
+            checked={ bookMarkedOnly }
+            onChange={ onBookMarkedChange }
+          />
+          Mostrar somente favoritos
         </label>
       </form>
     );
   }
 }
 
-SearchBar.proptypes = {
+SearchBar.propTypes = {
   searchText: PropTypes.string.isRequired,
-  onSearchTextChange: PropTypes.func,
-  bookMarkedOnly: PropTypes.bool,
-  onBookMarkedChang: PropTypes.func,
-  selectedGenre: PropTypes.string,
-  onSelectedGenreChange: PropTypes.func
-}
+  onSearchTextChange: PropTypes.func.isRequired,
+  bookMarkedOnly: PropTypes.bool.isRequired,
+  onBookMarkedChange: PropTypes.func.isRequired.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
