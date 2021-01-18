@@ -1,11 +1,10 @@
-import React from 'React';
+import React from 'react';
 
 class SearchBar extends React.Component {
   render() {
+    const { searchText, onSearchTextChange, bookmarkedOnly, onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <section>
-
-      </section>
+      <form></form>
     );
   }
 }
