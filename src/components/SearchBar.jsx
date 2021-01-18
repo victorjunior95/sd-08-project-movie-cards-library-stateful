@@ -1,9 +1,11 @@
 import React from 'react';
-/* eslint-disable */
+
 class SearchBar extends React.Component {
+  // eslint-disable-next-line max-lines-per-function
   render() {
     const { searchText, onSearchTextChange, bookmarkedOnly,
       onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
+
     return (
       <form data-testid="search-bar-form">
         <label htmlFor="search" data-testid="text-input-label">
@@ -27,6 +29,5 @@ class SearchBar extends React.Component {
     );
   }
 }
-/* eslint-enable */
 
 export default SearchBar;
