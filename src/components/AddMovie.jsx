@@ -7,11 +7,13 @@ class AddMovie extends Component {
     this.handleSubtitle = this.handleSubtitle.bind(this);
     this.handleImg = this.handleImg.bind(this);
     this.handleSinopse = this.handleSinopse.bind(this);
+    this.handleRating = this.handleRating.bind(this);
     this.state = {
       title: '',
       subtitle: '',
       imagePath: '',
       storyline: '',
+      rating: 0,
     };
   }
 
@@ -23,23 +25,26 @@ class AddMovie extends Component {
   }
 
   handleSubtitle(e) {
-    const newValueSub = e.target.value;
     this.setState({
-      subtitle: newValueSub,
+      subtitle: e.target.value,
     });
   }
 
   handleImg(e) {
-    const newValueImg = e.target.value;
     this.setState({
-      imagePath: newValueImg,
+      imagePath: e.target.value,
     });
   }
 
   handleSinopse(e) {
-    const newValueSinopse = e.target.value;
     this.setState({
-      storyline: newValueSinopse,
+      storyline: e.target.value,
+    });
+  }
+
+  handleRating(e) {
+    this.setState({
+      rating: e.target.value,
     });
   }
 
@@ -105,6 +110,22 @@ class AddMovie extends Component {
     );
   }
 
+  addMovieRating() {
+    const { rating } = this.state;
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating-input">
+        Avaliação
+        <input
+          id="rating-input"
+          type="number"
+          data-testid="rating-input"
+          value={ rating }
+          onChange={ this.handleRating }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -112,6 +133,7 @@ class AddMovie extends Component {
         { this.addMovieSubtitle() }
         { this.addMovieImg() }
         { this.addMovieSinopse() }
+        { this.addMovieRating() }
       </form>
     );
   }
