@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 
 class InputCheckBox extends React.Component {
   render() {

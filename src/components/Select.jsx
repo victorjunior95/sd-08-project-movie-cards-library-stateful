@@ -1,7 +1,7 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 
 class Select extends React.Component {
-
   renderSelect() {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (

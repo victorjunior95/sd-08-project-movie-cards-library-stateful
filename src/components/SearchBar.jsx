@@ -1,13 +1,15 @@
 /* eslint-disable max-lines-per-function */
 // implement SearchBar component here
 import React from 'react';
+import Proptypes from 'prop-types';
 
 import Select from './Select';
 import InputText from './InputText';
 import InputCheckBox from './InputCheckBox';
 
 class SearchBar extends React.Component {
-  render() {
+
+  renderContent() {
     const { searchText, onSearchTextChange,
       bookmarkedOnly, onBookmarkedChange, selectedGenre,
       onSelectedGenreChange } = this.props;
@@ -27,6 +29,10 @@ class SearchBar extends React.Component {
         />
       </form>
     );
+  }
+
+  render() {
+    return this.renderContent();
   }
 }
 

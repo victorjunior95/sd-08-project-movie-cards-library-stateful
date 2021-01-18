@@ -1,4 +1,5 @@
 import React from 'react';
+import Proptypes from 'prop-types';
 
 class InputText extends React.Component {
   render() {
