@@ -8,7 +8,6 @@ import InputText from './InputText';
 import InputCheckBox from './InputCheckBox';
 
 class SearchBar extends React.Component {
-
   renderContent() {
     const { searchText, onSearchTextChange,
       bookmarkedOnly, onBookmarkedChange, selectedGenre,
@@ -27,8 +26,7 @@ class SearchBar extends React.Component {
           selectedGenre={ selectedGenre }
           onSelectedGenreChange={ onSelectedGenreChange }
         />
-      </form>
-    );
+      </form>);
   }
 
   render() {
