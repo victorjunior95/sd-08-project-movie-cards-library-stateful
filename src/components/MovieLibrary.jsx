@@ -2,16 +2,20 @@ import React from 'react';
 import SearchBar from './SearchBar';
 
 class MovieLibrary extends React.Component {
+  onSearchTextChange() {
+    console.log('oi');
+  }
+
   render() {
     return (
       <div>
         <SearchBar
-          searchText=""
-          onSearchTextChange={ AS }
+          searchText="oi"
+          onSearchTextChange={ this.onSearchTextChange }
           bookmarkedOnly
-          onBookmarkedChange={ AS }
-          selectedGenre="oi"
-          onSelectedGenreChange={ W }
+          onBookmarkedChange
+          selectedGenre
+          onSelectedGenreChange
         />
       </div>
     );
