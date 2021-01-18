@@ -155,7 +155,6 @@ class AddMovie extends Component {
 
   addMovieSubmit(e) {
     const { onClick } = this.props;
-    // const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     onClick(this.state);
     this.setState({
       title: '',
@@ -188,5 +187,9 @@ class AddMovie extends Component {
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: propTypes.func.isRequired,
+};
 
 export default AddMovie;
