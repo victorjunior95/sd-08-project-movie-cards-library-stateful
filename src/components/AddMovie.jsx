@@ -22,21 +22,29 @@ class AddMovie extends React.Component {
     });
   }
 
+  textInput(name, label) {
+    const value = this.state;
+    return (
+      <label htmlFor={ `${name}-input` } data-testid={ `${name}-input-label` }>
+        {label}
+        <input
+          type="text"
+          value={ value[name] || value[`${name}Path`] }
+          id={ `${name}-input` }
+          data-testid={ `${name}-input` }
+          name={ name }
+          onChange={ this.onChange }
+        />
+      </label>
+    );
+  }
+
   render() {
-    const { title } = this.state;
     return (
       <form data-testid="add-movie-form">
-        <label htmlFor="title-input" data-testid="title-input-label">
-          Título
-          <input
-            type="text"
-            value={ title }
-            id="title-input"
-            data-testid="title-input"
-            name="title"
-            onChange={ this.onChange }
-          />
-        </label>
+        {this.textInput('title', 'Título')}
+        {this.textInput('subtitle', 'Subtítulo')}
+        {this.textInput('image', 'Imagem')}
       </form>
     );
   }
