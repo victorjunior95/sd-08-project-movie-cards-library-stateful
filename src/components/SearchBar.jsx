@@ -29,6 +29,18 @@ class SearchBar extends React.Component {
     );
   }
 
+  // renderSelect() {
+  //   const { selectedGenre, onSelectedGenreChange } = this.props;
+  //   return (
+  //     <select
+  //       name=""
+  //       id="">
+  //       value={ selectedGenre}
+  //       onChange={ onSelectedGenreChange }
+  //       </select>
+  //   );
+  // }
+
   render() {
     return (
       <form className="search-bar" data-testid="search-bar-form">
@@ -36,10 +48,14 @@ class SearchBar extends React.Component {
           Inclui o texto:
           { this.renderInput() }
         </label>
-        <label data-testid="checkbox-input-label" for="checkbox-input">
+        <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
           { this.renderCheckBox() }
-        Mostrar somente favoritos
+          Mostrar somente favoritos
         </label>
+        {/* <label>
+          Filtrar por gênero
+           { this.renderSelect }
+        </label> */}
       </form>
     );
   }
@@ -48,6 +64,8 @@ class SearchBar extends React.Component {
 SearchBar.propTypes = {
   searchText: PropTypes.string.isRequired,
   onSearchTextChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  onBookmarkedChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
