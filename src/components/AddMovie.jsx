@@ -1,15 +1,22 @@
 // implement AddMovie component here
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+const initialState = {
+  'title-input': '',
+  'subtitle-input': '',
+  'storyline-input': '',
+  'rating-input': '0',
+  'genre-input': 'action',
+  'image-input': '',
+};
 
 class AddMovie extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      'subtitle-input': '',
-      'image-input': '',
-      'storyline-input': '',
-      'rating-input': '0',
+      ...initialState,
       genres: [
         { value: 'action', text: 'Ação' },
         { value: 'comedy', text: 'Comédia' },
@@ -18,12 +25,20 @@ class AddMovie extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange({ target: { name, value } }) {
     this.setState({
       [name]: value,
     });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState(initialState);
+    const { onClick } = this.props;
+    onClick(event);
   }
 
   renderTitleInput() {
@@ -142,6 +157,18 @@ class AddMovie extends Component {
     );
   }
 
+  renderFormButton() {
+    return (
+      <button
+        type="submit"
+        data-testid="send-button"
+        onClick={ this.handleSubmit }
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -151,9 +178,14 @@ class AddMovie extends Component {
         { this.renderStoryLineInput() }
         { this.renderRatingInput() }
         { this.renderGenreInput() }
+        { this.renderFormButton() }
       </form>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
