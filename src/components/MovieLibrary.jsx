@@ -3,18 +3,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SearchBar from './SearchBar';
 import MovieList from './MovieList';
+import AddMovie from './AddMovie';
 
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
 
+    const { movies } = this.props;
     this.state = {
+      movies,
       'text-input': '',
       'check-box': false,
       'select-input': '',
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleAddMovie = this.handleAddMovie.bind(this);
   }
 
   handleChange({ target }) {
@@ -23,8 +27,15 @@ class MovieLibrary extends Component {
     this.setState({ [name]: newValue });
   }
 
+  handleAddMovie(movie) {
+    this.setState(({ movies }) => {
+      console.log(movies, movie);
+      return { movies: [...movies, movie] };
+    });
+  }
+
   getFilteredMovies() {
-    const { movies } = this.props;
+    const { movies } = this.state;
     const { 'text-input': textInput, 'check-box': checkBox,
       'select-input': selectInput } = this.state;
     let result = [...movies];
@@ -63,15 +74,12 @@ class MovieLibrary extends Component {
     );
   }
 
-  renderMovieList() {
-    return <MovieList movies={ this.getFilteredMovies() } />;
-  }
-
   render() {
     return (
       <div>
         { this.renderSearchBar() }
-        { this.renderMovieList() }
+        <MovieList movies={ this.getFilteredMovies() } />
+        <AddMovie onClick={ this.handleAddMovie } />
       </div>
     );
   }

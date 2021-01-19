@@ -6,9 +6,10 @@ const initialState = {
   'title-input': '',
   'subtitle-input': '',
   'storyline-input': '',
-  'rating-input': '0',
+  'rating-input': 0,
   'genre-input': 'action',
   'image-input': '',
+  bookmarked: false,
 };
 
 class AddMovie extends Component {
@@ -28,17 +29,32 @@ class AddMovie extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange({ target: { name, value } }) {
+  handleChange({ target }) {
+    const { name, type, value } = target;
+    const newValue = type === 'number' ? +value : value;
     this.setState({
-      [name]: value,
+      [name]: newValue,
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState(initialState);
     const { onClick } = this.props;
-    onClick(event);
+    const {
+      'title-input': title, 'subtitle-input': subtitle,
+      'storyline-input': storyline, 'rating-input': rating,
+      'genre-input': genre, 'image-input': imagePath, bookmarked,
+    } = this.state;
+    onClick({
+      bookmarked,
+      genre,
+      imagePath,
+      rating,
+      storyline,
+      subtitle,
+      title,
+    });
+    this.setState(initialState);
   }
 
   renderTitleInput() {
