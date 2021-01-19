@@ -60,18 +60,22 @@ class AddMovie extends React.Component {
     );
   }
 
-  renderTextarea(name, handleChange) {
+  renderTextarea(value, handleChange) {
+    const maxLength = 190;
+    const error = value.length >= maxLength ? 'Sinopse maior que 190 caracteres!' : '';
     return (
       <label htmlFor="storyline" data-testid="storyline-input-label" className="label">
         Sinopse
         <textarea
           name="storyline"
           id="storyline"
-          value={ name }
+          value={ value }
           onChange={ handleChange }
           data-testid="storyline-input"
+          maxLength={ 190 }
           className="textarea"
         />
+        <span style={ { color: 'red' } }>{error}</span>
       </label>
     );
   }
