@@ -14,17 +14,12 @@ class AddMovie extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.renderButton = this.renderButton.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
-  handleChange({ target }) {
-    const { name, value } = target;
-    this.setState({ [name]: value });
-  }
-
-  handleClick() {
-    const { onClick } = this.props;
-    onClick(this.state);
+  handleChange(callback) {
+    callback(this.state);
     this.setState({
       subtitle: '',
       title: '',
@@ -32,6 +27,12 @@ class AddMovie extends React.Component {
       storyline: '',
       rating: 0,
       genre: 'action',
+    });
+  }
+
+  onChangeHandler(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -43,8 +44,9 @@ class AddMovie extends React.Component {
         <input
           data-testid="title-input"
           name="title"
+          type="text"
           value={ title }
-          onChange={ this.handleChange }
+          onChange={ this.onChangeHandler }
         />
       </label>
     );
@@ -58,8 +60,9 @@ class AddMovie extends React.Component {
         <input
           data-testid="subtitle-input"
           name="subtitle"
+          type="text"
           value={ subtitle }
-          onChange={ this.handleChange }
+          onChange={ this.onChangeHandler }
         />
       </label>
     );
@@ -73,8 +76,9 @@ class AddMovie extends React.Component {
         <input
           data-testid="image-input"
           name="imagePath"
+          type="text"
           value={ imagePath }
-          onChange={ this.handleChange }
+          onChange={ this.onChangeHandler }
         />
       </label>
     );
@@ -88,8 +92,9 @@ class AddMovie extends React.Component {
         <textarea
           data-testid="storyline-input"
           name="storyline"
+          type="text"
           value={ storyline }
-          onChange={ this.handleChange }
+          onChange={ this.onChangeHandler }
         />
       </label>
     );
@@ -105,7 +110,7 @@ class AddMovie extends React.Component {
           name="rating"
           type="number"
           value={ rating }
-          onChange={ this.handleChange }
+          onChange={ this.onChangeHandler }
         />
       </label>
     );
@@ -120,7 +125,7 @@ class AddMovie extends React.Component {
           data-testid="genre-input"
           name="genre"
           value={ genre }
-          onChange={ this.handleChange }
+          onChange={ this.onChangeHandler }
         >
           <option data-testid="genre-option" value="action">Ação</option>
           <option data-testid="genre-option" value="comedy">Comédia</option>
@@ -130,22 +135,30 @@ class AddMovie extends React.Component {
     );
   }
 
-  renderButton() {
+  renderButton(onClick) {
     return (
       <button
         data-testid="send-button"
-        type="button"
-        onClick={ this.handleClick }
+        type="submit"
+        onClick={ (event) => { event.preventDefault(); this.handleChange(onClick); } }
       >
         Adicionar filme
       </button>
     );
   }
 
-  renderForm() {
+  render() {
+    const { genre, imagePath, rating, storyline, subtitle, title } = this.state;
+    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
-        {this.render()}
+        {this.renderTitle(title, this.onChangeHandler)}
+        {this.renderSubTitle(subtitle, this.onChangeHandler)}
+        {this.renderImage(imagePath, this.onChangeHandler)}
+        {this.renderStory(storyline, this.onChangeHandler)}
+        {this.renderRating(rating, this.onChangeHandler)}
+        {this.renderGenre(genre, this.onChangeHandler)}
+        {this.renderButton(onClick)}
       </form>
     );
   }
