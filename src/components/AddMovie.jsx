@@ -9,6 +9,7 @@ class AddMovie extends React.Component {
       inputTextSubTitle: '',
       inputUrl: '',
       inputTextStoryline: '',
+      rating: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,6 +48,23 @@ class AddMovie extends React.Component {
           data-testid="storyline-input"
           id="storyline-input"
           value={ inputTextStoryline }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
+  renderRating() {
+    const { rating } = this.state;
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating-input">
+        Avaliação
+        <input
+          name="rating"
+          type="number"
+          data-testid="rating-input"
+          id="rating-input"
+          value={ rating }
           onChange={ this.handleChange }
         />
       </label>
@@ -93,7 +111,8 @@ class AddMovie extends React.Component {
         { this.renderInputTitle() }
         { this.renderInputSubTitle() }
         { this.renderInputImagePath() }
-        { this.renderInputStoryline() }
+        { this.renderInputStoryline()}
+        { this.renderRating() }
       </form>
     );
   }
