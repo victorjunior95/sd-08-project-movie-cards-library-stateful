@@ -7,6 +7,7 @@ import InputSelect from './InputSelect';
 class SearchBar extends React.Component {
   constructor() {
     super();
+
     this.renderInputText = this.renderInputText.bind(this);
     this.renderCheckbox = this.renderCheckbox.bind(this);
   }
