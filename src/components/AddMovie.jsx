@@ -5,24 +5,42 @@ class AddMovie extends React.Component {
     super();
 
     this.state = {
-      inputTextValue: '',
+      inputTextTitle: '',
+      inputTextSubTitle: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ inputTextValue: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
-  renderInput() {
-    const { inputTextValue } = this.state;
+  renderInputTitle() {
+    const { inputTextTitle } = this.state;
     return (
       <input
+        name="inputTextTitle"
         type="text"
         data-testid="title-input"
         id="title-input"
-        value={ inputTextValue }
+        value={ inputTextTitle }
+        onChange={ this.handleChange }
+      />
+    );
+  }
+
+  renderInputSubTitle() {
+    const { inputTextSubTitle } = this.state;
+    return (
+      <input
+        name="inputTextSubTitle"
+        type="text"
+        data-testid="subtitle-input"
+        id="subtitle-input"
+        value={ inputTextSubTitle }
         onChange={ this.handleChange }
       />
     );
@@ -33,7 +51,11 @@ class AddMovie extends React.Component {
       <form data-testid="add-movie-form">
         <label data-testid="title-input-label" htmlFor="title-input">
           Título
-          { this.renderInput() }
+          { this.renderInputTitle() }
+        </label>
+        <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
+          Subtítulo
+          { this.renderInputSubTitle() }
         </label>
       </form>
     );
