@@ -10,7 +10,7 @@ class Button extends React.Component {
       >
         Adicionar filme
       </button>
-    )
+    );
   }
 }
 

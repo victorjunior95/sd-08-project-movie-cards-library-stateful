@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import AddMovie from './AddMovie/AddMovie';
+import AddMovie from './AddMovie';
 import MovieList from './MovieList';
 import movies from '../data';
 
