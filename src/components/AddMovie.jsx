@@ -38,10 +38,30 @@ class AddMovie extends Component {
     );
   }
 
+  renderSubtitleInput() {
+    const { subtitle } = this.state;
+    return (
+      <label
+        htmlFor="title-input"
+        data-testid="subtitle-input-label"
+      >
+        Subtítulo
+        <input
+          name="subtitle"
+          type="text"
+          data-testid="subtitle-input"
+          value={ subtitle }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form>
         {this.renderTitleInput()}
+        {this.renderSubtitleInput()}
       </form>
     );
   }
