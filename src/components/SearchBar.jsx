@@ -3,6 +3,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import styles from './SearchBar.module.css';
+
+const genreOptions = [
+  { text: 'Todos', value: '' },
+  { text: 'Ação', value: 'action' },
+  { text: 'Comédia', value: 'comedy' },
+  { text: 'Suspense', value: 'thriller' },
+];
+
 class SearchBar extends Component {
   renderTextInput() {
     const { searchText, onSearchTextChange } = this.props;
@@ -38,10 +47,25 @@ class SearchBar extends Component {
     );
   }
 
+  renderSelectOptions() {
+    return genreOptions.map((option, index) => (
+      <option
+        key={ index }
+        value={ option.value }
+        data-testid="select-option"
+      >
+        {option.text}
+      </option>
+    ));
+  }
+
   renderSelect() {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <label htmlFor="select-input" data-testid="select-input-label">
+      <label
+        htmlFor="select-input"
+        data-testid="select-input-label"
+      >
         Filtrar por gênero
         <select
           name="select-input"
@@ -50,10 +74,7 @@ class SearchBar extends Component {
           value={ selectedGenre }
           onChange={ onSelectedGenreChange }
         >
-          <option value="" data-testid="select-option">Todos</option>
-          <option value="action" data-testid="select-option">Ação</option>
-          <option value="comedy" data-testid="select-option">Comédia</option>
-          <option value="thriller" data-testid="select-option">Suspense</option>
+          { this.renderSelectOptions() }
         </select>
       </label>
     );
@@ -61,11 +82,14 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form data-testid="search-bar-form">
-        { this.renderTextInput() }
-        { this.renderCheckBox() }
-        { this.renderSelect() }
-      </form>
+      <section className={ styles['search-bar-wrapper'] }>
+        <h2 style={ { textAlign: 'center' } }>Pesquisa</h2>
+        <form className={ styles['search-bar'] } data-testid="search-bar-form">
+          { this.renderTextInput() }
+          { this.renderCheckBox() }
+          { this.renderSelect() }
+        </form>
+      </section>
     );
   }
 }

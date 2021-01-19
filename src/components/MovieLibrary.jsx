@@ -28,10 +28,9 @@ class MovieLibrary extends Component {
   }
 
   handleAddMovie(movie) {
-    this.setState(({ movies }) => {
-      console.log(movies, movie);
-      return { movies: [...movies, movie] };
-    });
+    this.setState(({ movies }) => (
+      { movies: [...movies, movie] }
+    ));
   }
 
   getFilteredMovies() {
