@@ -44,7 +44,7 @@ class AddMovie extends React.Component {
           data-testid="title-input"
           name="title"
           value={ title }
-          onChange={ this.handleChange } 
+          onChange={ this.handleChange }
         />
       </label>
     );
