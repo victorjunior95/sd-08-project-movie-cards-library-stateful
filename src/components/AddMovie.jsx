@@ -7,6 +7,7 @@ import Sinopse from './Sinopse';
 import Imagem from './Image';
 import Subtitulo from './Subtitulo';
 import Title from './Titulo';
+import AddMovieBttn from './AddMovieBttn';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -53,16 +54,7 @@ class AddMovie extends React.Component {
           <Sinopse onChange={ this.handleState } value={ storyline } />
           <Avaliacao onChange={ this.handleState } value={ rating } />
           <Genero onChange={ this.handleState } value={ genre } />
-          <button
-            type="submit"
-            data-testid="send-button"
-            onClick={ (event) => {
-              event.preventDefault();
-              this.handleClick(onClick);
-            } }
-          >
-            Adicionar filme
-          </button>
+          <AddMovieBttn onClick={ onClick } handleClick={ this.handleClick } />
         </form>
       </div>
     );

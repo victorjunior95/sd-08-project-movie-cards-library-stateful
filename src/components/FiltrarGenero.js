@@ -5,9 +5,14 @@ class FiltrarGenero extends React.Component {
   render() {
     const { onChange, value } = this.props;
     return (
-      <label data-testid="select-input-label">
+      <label data-testid="select-input-label" htmlFor="selectinputlabel">
         Filtrar por gênero
-        <select value={ value } onChange={ onChange } data-testid="select-input" name="selectedGenre">
+        <select
+          value={ value }
+          onChange={ onChange }
+          data-testid="select-input"
+          name="selectedGenre"
+        >
           <option value="" data-testid="select-option">Todos</option>
           <option value="action" data-testid="select-option">Ação</option>
           <option value="comedy" data-testid="select-option">Comédia</option>
@@ -19,7 +24,7 @@ class FiltrarGenero extends React.Component {
 }
 
 FiltrarGenero.propTypes = {
-  selectedGenre: PropTypes.string.isRequired,
-  onSelectedGenreChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 export default FiltrarGenero;
