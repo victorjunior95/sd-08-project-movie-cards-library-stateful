@@ -71,6 +71,22 @@ class AddMovie extends React.Component {
     );
   }
 
+  renderStoryline() {
+    const { storyline } = this.state;
+    return (
+      <label data-testid="storyline-input-label" htmlFor="storylineInput">
+        Sinopse
+        <input
+          id="storylineInput"
+          data-testid="storyline-input"
+          name="storyline"
+          value={ storyline }
+          onChange={ this.handleInputChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     const { onClick } = this.props;
     return (
@@ -78,6 +94,7 @@ class AddMovie extends React.Component {
         { this.renderTitle() }
         { this.renderSubtitle() }
         { this.renderImagePath() }
+        { this.renderStoryline() }
       </form>
     );
   }
