@@ -14,16 +14,16 @@ class MovieLibrary extends Component {
       selectedGenre: '',
       movies: this.props,
     };
-
-    this.handleAddMovie = this.handleAddMovie.bind(this);
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+    this.handleAddMovie = this.handleAddMovie.bind(this);
   }
 
-  onSearchTextChange({ target }) {
-    const { value } = target;
-    this.setState({ searchText: value });
+  handleAddMovie(movie) {
+    this.setState((stateBefore) => ({ movies: {
+      movies: [...stateBefore.movies.movies, movie],
+    } }));
   }
 
   onBookmarkedChange({ target }) {
@@ -36,23 +36,25 @@ class MovieLibrary extends Component {
     this.setState({ selectedGenre: value });
   }
 
-  handleAddMovie(movie) {
-    this.setState((stateBefore) => ({ movies: { movies: [...stateBefore.movies.movies, movie] } }));
+  onSearchTextChange({ target }) {
+    const { value } = target;
+    this.setState({ searchText: value });
+  }
+
+  filterTextMovies(searchText, movies) {
+    return movies.filter(({ title, subtitle, storyline }) => title
+      .toLowerCase().includes(searchText.toLowerCase())
+  || subtitle.toLowerCase().includes(searchText.toLowerCase())
+  || storyline.toLowerCase().includes(searchText.toLowerCase()));
   }
 
   filterMoviesState() {
     const { movies: { movies }, searchText, selectedGenre, bookmarkedOnly } = this.state;
-    if (selectedGenre !== '') return movies.filter(({ genre }) => genre === selectedGenre);
+    if (selectedGenre !== '') {
+      return movies.filter(({ genre }) => genre === selectedGenre);
+    }
     if (bookmarkedOnly) return movies.filter((book) => book.bookmarked === true);
-    return movies.filter(({ title, subtitle, storyline }) => title
-      .toLowerCase()
-      .includes(searchText.toLowerCase())
-    || subtitle
-      .toLowerCase()
-      .includes(searchText.toLowerCase())
-    || storyline
-      .toLowerCase()
-      .includes(searchText.toLowerCase()));
+    return this.filterTextMovies(searchText, movies);
   }
 
   render() {
