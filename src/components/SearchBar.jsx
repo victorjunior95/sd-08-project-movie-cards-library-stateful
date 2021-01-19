@@ -10,6 +10,7 @@ class SearchBar extends Component {
       <label htmlFor="text-input" data-testid="text-input-label">
         Inclui o texto
         <input
+          name="text-input"
           id="text-input"
           data-testid="text-input"
           type="text"
@@ -26,6 +27,7 @@ class SearchBar extends Component {
       <label htmlFor="check-box" data-testid="checkbox-input-label">
         Mostrar somente favoritos
         <input
+          name="check-box"
           id="check-box"
           type="checkbox"
           data-testid="checkbox-input"
