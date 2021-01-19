@@ -10,6 +10,11 @@ class AddMovie extends Component {
       'image-input': '',
       'storyline-input': '',
       'rating-input': '0',
+      genres: [
+        { value: 'action', text: 'Ação' },
+        { value: 'comedy', text: 'Comédia' },
+        { value: 'thriller', text: 'Suspense' },
+      ],
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -106,6 +111,37 @@ class AddMovie extends Component {
     );
   }
 
+  renderGenreOptions(genres) {
+    return genres.map((genre, index) => (
+      <option
+        data-testid="genre-option"
+        value={ genre.value }
+        key={ index }
+      >
+        {genre.text}
+      </option>
+    ));
+  }
+
+  renderGenreInput() {
+    const { 'genre-input': genreInput, genres } = this.state;
+    return (
+      <label htmlFor="genre-input-label" data-testid="genre-input-label">
+        Gênero
+        <select
+          type="number"
+          id="genre-input"
+          name="genre-input"
+          data-testid="genre-input"
+          value={ genreInput }
+          onChange={ this.handleChange }
+        >
+          { this.renderGenreOptions(genres) }
+        </select>
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -114,6 +150,7 @@ class AddMovie extends Component {
         { this.renderImageInput() }
         { this.renderStoryLineInput() }
         { this.renderRatingInput() }
+        { this.renderGenreInput() }
       </form>
     );
   }
