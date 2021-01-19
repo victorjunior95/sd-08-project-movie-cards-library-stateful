@@ -8,39 +8,83 @@ class AddMovie extends React.Component {
     this.state = {
       subtitle: '',
       title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
     };
     this.handleState = this.handleState.bind(this);
   }
 
   handleState(event) {
     const { value, name } = event.target;
-    this.setState(() => ({ [name]: value,
-    }));
+    if (name === 'image') {
+      this.setState(() => ({ imagePath: value,
+      }));
+    } else {
+      this.setState(() => ({ [name]: value,
+      }));
+    }
   }
 
-  insertInput(refState, handleState, testeID, name) {
+  insertInputText(refState, name, content, handleState) {
     return (
-      <label htmlFor="inputInsert" data-testid="title-input-label">
-        Título
+      <label htmlFor={ name } data-testid={ `${name}-input-label` }>
+        { content }
         <input
           onChange={ handleState }
           value={ refState }
           name={ name }
-          id="inputInsert"
-          data-testid={ testeID }
+          id={ name }
+          data-testid={ `${name}-input` }
+        />
+      </label>
+    );
+  }
+
+  insertTextArea(refState, name, content, handleState) {
+    return (
+      <label htmlFor={ name } data-testid={ `${name}-input-label` }>
+        { content }
+        <textarea
+          onChange={ handleState }
+          value={ refState }
+          name={ name }
+          id={ name }
+          data-testid={ `${name}-input` }
+          type="textarea"
+        />
+      </label>
+    );
+  }
+
+  insertInputNumber(refState, name, content, handleState) {
+    return (
+      <label htmlFor={ name } data-testid={ `${name}-input-label` }>
+        { content }
+        <input
+          onChange={ handleState }
+          value={ refState }
+          name={ name }
+          id={ name }
+          data-testid={ `${name}-input` }
+          type="number"
         />
       </label>
     );
   }
 
   render() {
+    const { insertInputText, insertTextArea, handleState, insertInputNumber } = this;
     const { onClick } = this.props;
-    const { title, subtitle } = this.state;
+    const { title, subtitle, imagePath, storyline, rating } = this.state;
     return (
       <form data-testid="add-movie-form">
         <button type="button" onClick={ onClick }>eu aqui</button>
-        {this.insertInput(title, this.handleState, 'title-input', 'title')}
-        {this.insertInput(subtitle, this.handleState, 'title-input', 'subtitle')}
+        {insertInputText(title, 'title', 'Título:', handleState)}
+        {insertInputText(subtitle, 'subtitle', 'Subtítulo', handleState)}
+        {insertInputText(imagePath, 'image', 'Imagem', handleState)}
+        {insertTextArea(storyline, 'storyline', 'Sinopse', handleState)}
+        {insertInputNumber(rating, 'rating', 'Avaliação', handleState)}
       </form>
     );
   }
