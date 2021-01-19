@@ -1,5 +1,6 @@
 // implement MovieLibrary component here
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
@@ -8,11 +9,11 @@ class MovieLibrary extends Component {
   constructor(props) {
     super(props);
 
-    const { movies } = this.props;
+    const { movies: moviesList } = this.props;
 
     this.state = {
-      movies,
-      originalMovies: movies,
+      movies: moviesList,
+      originalMovies: moviesList,
       searchText: '',
       selectedGenre: '',
       bookmarkedOnly: false,
@@ -83,5 +84,9 @@ class MovieLibrary extends Component {
     );
   }
 }
+
+MovieLibrary.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default MovieLibrary;
