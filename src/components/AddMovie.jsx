@@ -12,9 +12,10 @@ class AddMovie extends React.Component {
             rating: 0,
             genre: 'action',
         }
+        this.handleInput = this.handleInput.bind(this);
     }
 
-    handleInput = (event) => {
+    handleInput(event) {
         this.setState({
             [event.target.name]: event.target.value,
         });

@@ -15,9 +15,10 @@ class MovieLibrary extends React.Component {
       selectedGenre: '',
       movies: movies,
     }
+    this.handleMovie = this.handleMovie.bind(this);
   } 
 
-  handleMovie = (event) => {
+  handleMovie(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
