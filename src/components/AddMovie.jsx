@@ -55,12 +55,29 @@ class AddMovie extends React.Component {
     );
   }
 
+  renderImagePath() {
+    const { imagePath } = this.state;
+    return (
+      <label data-testid="image-input-label" htmlFor="imageInput">
+        Imagem
+        <input
+          id="imageInput"
+          data-testid="image-input"
+          name="imagePath"
+          value={ imagePath }
+          onChange={ this.handleInputChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         { this.renderTitle() }
         { this.renderSubtitle() }
+        { this.renderImagePath() }
       </form>
     );
   }
