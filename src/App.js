@@ -3,6 +3,7 @@ import './App.css';
 
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
+import AddMovie from './components/AddMovie';
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class App extends React.Component {
           selectedGenre=""
           onSelectedGenreChange=""
         />
+        <AddMovie />
       </div>
     );
   }
