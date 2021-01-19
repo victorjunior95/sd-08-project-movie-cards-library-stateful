@@ -7,6 +7,7 @@ class AddMovie extends Component {
 
     this.state = {
       'subtitle-input': '',
+      'image-input': '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,11 +53,29 @@ class AddMovie extends Component {
     );
   }
 
+  renderImageInput() {
+    const { 'image-input': imageInput } = this.state;
+    return (
+      <label htmlFor="image-input" data-testid="image-input-label">
+        Imagem
+        <input
+          type="text"
+          id="image-input"
+          name="image-input"
+          data-testid="image-input"
+          value={ imageInput }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
         { this.renderTitleInput() }
         { this.renderSubtitleInput() }
+        { this.renderImageInput() }
       </form>
     );
   }
