@@ -15,8 +15,8 @@ class MovieLibrary extends React.Component {
     console.log('q');
   }
 
-  callbackParaAddmovie() {
-    console.log('ai');
+  callbackParaAddmovie(state) {
+    this.setState(state);
   }
 
   render() {
@@ -30,7 +30,7 @@ class MovieLibrary extends React.Component {
           selectedGenre
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
-        <AddMovie OnClick={ this.callbackParaAddmovie } />
+        <AddMovie onClick={ this.callbackParaAddmovie } />
       </div>
     );
   }

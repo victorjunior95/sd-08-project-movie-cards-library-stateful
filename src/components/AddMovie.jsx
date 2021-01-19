@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Input from './Input';
 
 class AddMovie extends React.Component {
@@ -11,7 +12,7 @@ class AddMovie extends React.Component {
       imagePath: '',
       storyline: '',
       rating: 0,
-    //   genre: 'action',
+      genre: 'action',
     };
   }
 
@@ -19,6 +20,7 @@ class AddMovie extends React.Component {
     this.setState({
       [target.name]: target.value,
     });
+    console.log(target.name, target.value);
   }
 
   title(handler, title) {
@@ -90,8 +92,38 @@ class AddMovie extends React.Component {
     );
   }
 
+  selectGenre(callback, a) {
+    return (
+      <label htmlFor="select" data-testid="genre-input-label">
+        Gênero
+        <select
+          name="genre"
+          data-testid="genre-input"
+          value={ a }
+          onChange={ callback }
+        >
+          <option data-testid="genre-option" value="action">Ação</option>
+          <option data-testid="genre-option" value="comedy">Comédia</option>
+          <option data-testid="genre-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
+  button(callback) {
+    return (
+      <button
+        onClick={ callback }
+        data-testid="send-button"
+        type="submit"
+      >
+        Adicionar filme
+      </button>);
+  }
+
   render() {
-    const { title, subtitle, imagePath, storyline, rating } = this.state;
+    const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
+    const { onClick } = this.props;
     return (
       <form>
         {this.title(this.onChangeHandler, title)}
@@ -99,9 +131,14 @@ class AddMovie extends React.Component {
         {this.image(this.onChangeHandler, imagePath)}
         {this.sinopse(storyline, this.onChangeHandler)}
         {this.number(this.onChangeHandler, rating)}
+        {this.selectGenre(this.onChangeHandler, genre)}
+        {this.button(onClick)}
       </form>
     );
   }
 }
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;

@@ -29,7 +29,7 @@ Input.propTypes = {
   datadolabel: PropTypes.string,
   name: PropTypes.string,
   labelText: PropTypes.string,
-  checked: PropTypes.string,
+  checked: PropTypes.bool,
 };
 Input.defaultProps = {
   type: 'sem nome',
@@ -39,7 +39,7 @@ Input.defaultProps = {
   datadolabel: 'sem nome',
   name: 'sem nome',
   labelText: 'sem nome',
-  checked: 'sem nome',
+  checked: false,
 };
 
 export default Input;
