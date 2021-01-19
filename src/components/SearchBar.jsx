@@ -48,35 +48,30 @@ export default class SearchBar extends Component {
   projectIsFresco3() {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <label htmlFor="select-input" data-testid="select-input-label">
-        Filtrar por gênero:
-        <select
-          value={ selectedGenre }
-          onChange={ onSelectedGenreChange }
-          data-testid="select-input"
-        >
-          <option value="" data-testid="select-option">Todos</option>
-          <option value="action" data-testid="select-option">Ação</option>
-          <option value="comedy" data-testid="select-option">Comédia</option>
-          <option value="thriller" data-testid="select-option">Suspense</option>
-        </select>
-      </label>
-
+      <div>
+        <label htmlFor="select-input" data-testid="select-input-label">
+          Filtrar por gênero:
+          <select
+            value={ selectedGenre }
+            onChange={ onSelectedGenreChange }
+            data-testid="select-input"
+          >
+            <option value="" data-testid="select-option">Todos</option>
+            <option value="action" data-testid="select-option">Ação</option>
+            <option value="comedy" data-testid="select-option">Comédia</option>
+            <option value="thriller" data-testid="select-option">Suspense</option>
+          </select>
+        </label>
+      </div>
     );
   }
 
   render() {
     return (
       <form data-testid="search-bar-form">
-        <div>
-          {this.projectIsFresco1()}
-        </div>
-        <div>
-          {this.projectIsFresco2()}
-        </div>
-        <div>
-          {this.projectIsFresco3()}
-        </div>
+        <fieldset>
+          {[this.projectIsFresco1(), this.projectIsFresco2(), this.projectIsFresco3()] }
+        </fieldset>
       </form>
     );
   }
