@@ -26,7 +26,6 @@ class AddMovie extends Component {
     e.preventDefault();
     const { addMovie } = this.props;
     addMovie(this.state);
-    console.log(this.state);
     this.setState({
       title: '',
       subtitle: '',
@@ -34,8 +33,6 @@ class AddMovie extends Component {
       storyline: '',
       rating: 0,
       genre: 'action',
-    }, () => {
-      console.log(this.state);
     });
   }
 

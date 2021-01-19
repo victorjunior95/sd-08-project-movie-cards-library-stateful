@@ -1,6 +1,5 @@
 // implement MovieLibrary component here
 import React, { Component } from 'react';
-
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
@@ -21,7 +20,6 @@ class MovieLibrary extends Component {
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.addMovie = this.addMovie.bind(this);
-    // this.updateMovies = this.updateMovies.bind(this);
   }
 
   onSearchTextChange(e) {
