@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import AddMovie from './AddMovie';
-import MovieList from './MovieList';
+// import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 
 class MovieLibrary extends React.Component {
@@ -40,7 +40,7 @@ class MovieLibrary extends React.Component {
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
 
     return (
       <div>
@@ -53,13 +53,14 @@ class MovieLibrary extends React.Component {
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <AddMovie onClick={ this.callbackParaAddmovie } />
-        {/* <MovieList movies={ movies.filter((elem) => elem.value.contains(searchText)) } /> */}
+        {/* <MovieList
+        movies={ movies.filter((elem) => elem.value.contains(searchText)) } /> */}
       </div>
     );
   }
 }
-MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf().isRequired,
-};
+// MovieLibrary.propTypes = {
+//   movies: PropTypes.arrayOf().isRequired,
+// };
 
 export default MovieLibrary;
