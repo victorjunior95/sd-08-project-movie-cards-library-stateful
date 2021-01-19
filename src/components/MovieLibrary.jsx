@@ -14,27 +14,57 @@ class MovieLibrary extends React.Component {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      movies: movies,
-    }
-    this.handleMovie = this.handleMovie.bind(this);
-  } 
+      movies,
+    };
 
-  handleMovie(event) {
+    this.handleChange = this.handleChange.bind(this);
+    this.filterMovies = this.filterMovies.bind(this);
+    this.addNewMovie = this.addNewMovie.bind(this);
+  }
+
+  handleChange({ target }) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [target.name]: target.type === 'checkbox' ? target.checked : target.value,
     });
-  };
+  }
 
-  render() {     
+  addNewMovie(movieObject) {
+    this.setState((currentState) => ({
+      movies: [...currentState.movies, movieObject],
+    }));
+  }
+
+  filterMovies(movies) {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-    const { movies } = this.props;
+    let moviesToRender = bookmarkedOnly
+      ? movies.filter((movie) => movie.bookmarked)
+      : movies;
+    moviesToRender = moviesToRender
+      .filter((movie) => movie.genre.includes(selectedGenre))
+      .filter((movie) => movie.title.toLowerCase().includes(searchText)
+        || movie.subtitle.toLowerCase().includes(searchText)
+        || movie.storyline.toLowerCase().includes(searchText));
+
+    return moviesToRender;
+  }
+
+  render() {
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const moviesToRender = this.filterMovies(movies);
     return (
       <div>
-        <SearchBar value={this.handleMovie} searchText={searchText} bookmarkedOnly={bookmarkedOnly} selectedGenre={selectedGenre} />
-        <MovieList movies={movies} />
-        <AddMovie />
+        <SearchBar
+          searchText={ searchText }
+          bookmarkedOnly={ bookmarkedOnly }
+          selectedGenre={ selectedGenre }
+          onSearchTextChange={ this.handleChange }
+          onBookmarkedChange={ this.handleChange }
+          onSelectedGenreChange={ this.handleChange }
+        />
+        <MovieList movies={ moviesToRender } />
+        <AddMovie onClick={ this.addNewMovie } />
       </div>
-    )
+    );
   }
 }
 
