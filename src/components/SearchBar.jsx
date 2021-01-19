@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   insertText() {
-    
     const { searchText, onSearchTextChange } = this.props;
     return (
       <label data-testid="text-input-label" htmlFor="input-text">
@@ -19,6 +18,7 @@ class SearchBar extends React.Component {
       </label>
     );
   }
+
   insertCheckBox() {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
@@ -34,6 +34,7 @@ class SearchBar extends React.Component {
       </label>
     );
   }
+
   insertSelect() {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
@@ -53,6 +54,7 @@ class SearchBar extends React.Component {
       </label>
     );
   }
+
   render() {
     return (
       <form data-testid="search-bar-form">
