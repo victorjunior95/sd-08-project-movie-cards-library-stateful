@@ -17,7 +17,6 @@ class MovieLibrary extends React.Component {
       selectedGenre: '',
       movies: props.movies,
     };
-    console.log(this);
   }
 
   onSearchTextChange({ target }) {
@@ -35,8 +34,8 @@ class MovieLibrary extends React.Component {
     this.setState({ selectedGenre: target.value });
   }
 
-  callbackParaAddmovie(state) {
-    this.setState(state);
+  callbackParaAddmovie() {
+    console.log('a');
   }
 
   filter(array, searchText, selectedGenre, bookmarkedOnly) {
@@ -49,7 +48,8 @@ class MovieLibrary extends React.Component {
         if (selectedGenre === '') {
           return a;
         } return a.genre === selectedGenre;
-      }).filter((name) => (name.title.toUpperCase().includes(searchText.toUpperCase())))
+      }).filter((name) => (name.title.toUpperCase().includes(searchText.toUpperCase()))
+      || name.subtitle.toUpperCase().includes(searchText.toUpperCase()))
     );
   }
 
