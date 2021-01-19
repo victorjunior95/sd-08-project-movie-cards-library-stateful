@@ -6,6 +6,25 @@ class SearchBar extends React.Component {
     super();
     this.renderInputText = this.renderInputText.bind(this);
     this.renderInputCheckbox = this.renderInputCheckbox.bind(this);
+    this.renderInputSelect = this.renderInputSelect.bind(this);
+  }
+
+  renderInputSelect() {
+    const { selectedGenre, onSelectedGenreChange } = this.props;
+    return (
+      <label data-testid="select-input-label" htmlFor="select-input">
+        <select
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+          data-testid="select-input"
+        >
+          <option data-testid="select-option" value="">Todos</option>
+          <option data-testid="select-option" value="action">Ação</option>
+          <option data-testid="select-option" value="comedy">Comédia</option>
+          <option data-testid="select-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
   }
 
   renderInputCheckbox() {
@@ -40,9 +59,10 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form>
+      <form data-testid="search-bar-form">
         {this.renderInputText()}
         {this.renderInputCheckbox()}
+        {this.renderInputSelect()}
       </form>
     );
   }
@@ -53,8 +73,8 @@ SearchBar.propTypes = {
   onSearchTextChange: PropTypes.func.isRequired,
   bookmarkedOnly: PropTypes.bool.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
-  // selectedGenre: PropTypes.string.isRequired,
-  // onSelectedGenreChange: PropTypes.function.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
