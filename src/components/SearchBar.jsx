@@ -27,7 +27,6 @@ class SeachBar extends React.Component {
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
-          id="checkboxFilter"
         />
       </label>
     );

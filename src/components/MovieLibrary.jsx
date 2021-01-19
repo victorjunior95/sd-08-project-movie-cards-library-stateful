@@ -8,11 +8,12 @@ import AddMovie from './AddMovie';
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
+    const { movies } = this.props;
     this.state = {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      movies: props.movies,
+      movies: [...movies],
     };
     this.setFilterMovies = this.setFilterMovies.bind(this);
     this.setBookMarked = this.setBookMarked.bind(this);
@@ -22,36 +23,44 @@ class MovieLibrary extends Component {
 
   setFilterMovies(event) {
     const { value } = event.target;
-    this.setState(() => ({
-      searchText: value,
-    }));
+    const { movies, searchText } = this.state;
+    this.setState({ searchText: value }, () => {
+      const filteredMovies = movies
+        .filter((movie) => movie.title.includes(searchText)
+        || movie.subtitle.includes(value) || movie.storyline.includes(value));
+      this.setState({ movies: filteredMovies });
+    });
   }
 
   setBookMarked(event) {
-    const { target } = event;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState(() => ({
-      bookmarkedOnly: value,
-    }));
+    const { movies } = this.state;
+    const { checked } = event.target;
+    this.setState({ bookmarkedOnly: checked }, () => {
+      const filteredMovies = movies
+        .filter((movie) => movie.bookmarked === checked);
+      this.setState({ movies: filteredMovies });
+    });
   }
 
   setFilterByGenre(event) {
     const { value } = event.target;
-    this.setState(() => ({
-      selectedGenre: value,
-    }));
+    const { movies } = this.state;
+    this.setState({ selectedGenre: value }, () => {
+      const filteredMovies = movies
+        .filter((movie) => movie.genre === value);
+      this.setState({ movies: filteredMovies });
+    });
   }
 
   subjectForm(newMovie) {
     const { movies } = this.state;
-    const newList = movies.push(newMovie);
     this.setState(() => ({
-      movies: newList,
+      movies: [...movies, newMovie],
     }));
   }
 
   render() {
-    const { movies } = this.props;
+    const { movies } = this.state;
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
       <div>
