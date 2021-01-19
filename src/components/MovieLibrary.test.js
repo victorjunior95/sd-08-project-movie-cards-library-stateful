@@ -37,7 +37,7 @@ const movies = [
 
 
 describe('15 - Crie um componente chamado `<MovieLibrary />`', () => {
-  it.skip('Renderize o componente', () => {
+  it('Renderize o componente', () => {
     render(<MovieLibrary movies={movies} />);
   });
 });
