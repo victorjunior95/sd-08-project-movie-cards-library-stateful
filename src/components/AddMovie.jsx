@@ -119,6 +119,9 @@ class AddMovie extends React.Component {
             name="rating"
             value={ rating }
             onChange={ this.handleChange }
+            step={ 0.1 }
+            max={ 5 }
+            min={ 0 }
           />
         </label>
       </div>
