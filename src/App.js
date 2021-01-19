@@ -31,7 +31,7 @@ class App extends React.Component {
           selectedGenre={ selectedGenre }
           onSelectedGenreChange={ onSelectedGenreChange }
         />
-        <AddMovie OnClick={ callback } />
+        <AddMovie />
       </div>
     );
   }

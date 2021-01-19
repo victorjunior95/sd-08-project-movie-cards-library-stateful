@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -119,23 +119,40 @@ class AddMovie extends React.Component {
     );
   }
 
+  renderButton(onClick) {
+    onClick(this.state);
+    this.setState = {
+      subtitle: '',
+      title: '',
+      imagemPath: '',
+      storyline: '',
+      rating: '0',
+      genre: 'action',
+    };
+
+    return (
+      <button type="button" data-testid="send-button">Adicionar filme</button>
+    );
+  }
+
   render() {
     const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
-        { this.renderInputTextTitle() }
-        { this.renderInputTextSubtitle() }
-        { this.renderInputTextImage() }
-        { this.renderTextArea() }
-        { this.renderInputNumber() }
-        { this.renderSelect() }
+        {this.renderInputTextTitle()}
+        {this.renderInputTextSubtitle()}
+        {this.renderInputTextImage()}
+        {this.renderTextArea()}
+        {this.renderInputNumber()}
+        {this.renderSelect()}
+        {this.renderButton(onClick)}
       </form>
     );
   }
 }
 
-// AddMovie.propTypes = {
-//   title: PropTypes.string.isRequired,
-// };
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
