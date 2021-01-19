@@ -82,11 +82,11 @@ body {
 }
 
 .ErrorMsg {
-  width: 100%;
   color: tomato;
-  font-weight: 700;
   font-size: 25px;
+  font-weight: 700;
   text-align: center;
+  width: 100%;
 }
 
 .s {
