@@ -14,9 +14,11 @@ function MovieLibrary(props) {
   return (
     <div>
       <h2> My awesome movie library </h2>
+      <AddMovie />
+      <br />
+      <br />
       <SearchBar />
       <MovieList movies={ movies } />
-      <AddMovie />
       {/* <AddMovie onClick={ handleAddMovie } /> */}
     </div>
   );

@@ -20,7 +20,7 @@ const optionList = [
   },
 ];
 
-const DEF_SELECTGENRE_PROPS = {
+const DEF_SELECT_GENRE_PROPS = {
   labelName: 'Gênero',
   testid1: 'genre-input-label',
   testid2: 'genre-input',
@@ -46,37 +46,96 @@ const DEF_SELECTGENRE_PROPS = {
 //   );
 // }
 
+// this.state = {
+//   title: '',
+//   subtitle: '',
+//   imagePath: '',
+//   rating: '',
+//   storyline: '',
+//   name: '',
+// };
 class AddMovie extends Component {
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  //   this.state = {
-  //     title: '',
-  //     subtitle: '',
-  //     imagePath: '',
-  //     rating: '',
-  //     storyline: '',
-  //     name: '',
-  //   };
-  //   // this.handleChange = this.handleClick.bind(this);
-  // }
+    this.state = {};
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-  // handleChange(e) {
-  //   // e.preventDefault();
-  //   // console.log(e.target);
-  //   // this.setState({ [e.target.name]: e.target.value })
-  //   console.log(e.target.name);
-  // }
+  handleChange(e) {
+    // e.preventDefault();
+    // console.log(e.target);
+    // this.setState({ [e.target.name]: e.target.value })
+    console.log(e.target.name);
+  }
+
+  InputTitle() {
+    return (
+      <>
+        <Input type="text" name="title" labelName="Título" onChange={ this.handleChange } />
+        <br />
+      </>
+    );
+  }
+
+  InputSubtitle() {
+    return (
+      <>
+        <Input
+          type="text"
+          name="subtitle"
+          labelName="Subtítulo"
+          onChange={ this.handleChange }
+        />
+        <br />
+      </>
+    );
+  }
+
+  InputRating() {
+    return (
+      <>
+        <Input
+          type="number"
+          name="rating"
+          labelName="Avaliação"
+          onChange={ this.handleChange }
+        />
+        <br />
+      </>
+    );
+  }
+
+  InputStoryLine() {
+    return (
+      <>
+        <StoryLine onChange={ this.handleChange } />
+        <br />
+      </>
+    );
+  }
+
+  InputGenre() {
+    return (
+      <>
+        <SelectGenre
+          { ...DEF_SELECT_GENRE_PROPS }
+          optionList={ optionList }
+          onChange={ this.handleChange }
+        />
+        <br />
+      </>
+    );
+  }
 
   render() {
     return (
       <form data-testid="add-movie-form">
-        <Input type="text" name="title" labelName="Título" />
-        <Input type="text" name="subtitle" labelName="Subtítulo" />
-        <Input type="text" name="imagePath" labelName="Imagem" />
-        <StoryLine />
-        <Input type="number" name="rating" labelName="Avaliação" />
-        <SelectGenre { ...DEF_SELECTGENRE_PROPS } optionList={ optionList } />
+        {this.InputTitle()}
+        {this.InputSubtitle()}
+        {this.InputStoryLine()}
+        {this.InputRating()}
+        {this.InputGenre()}
         <button type="button" data-testid="send-button">
           Adicionar filme
         </button>
