@@ -65,6 +65,83 @@ class AddMovie extends React.Component {
     );
   }
 
+  renderImage() {
+    const { imagePath } = this.state;
+    return (
+      <label data-testid="image-input-label" htmlFor="image-input">
+        Imagem
+        <input
+          data-testid="image-input"
+          name="imagePath"
+          value={ imagePath }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
+  renderStory() {
+    const { storyline } = this.state;
+    return (
+      <label data-testid="storyline-input-label" htmlFor="storyline-input">
+        Sinopse
+        <textarea
+          data-testid="storyline-input"
+          name="storyline"
+          value={ storyline }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
+  renderRating() {
+    const { rating } = this.state;
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating-input">
+        Avaliação
+        <input
+          data-testid="rating-input"
+          name="rating"
+          type="number"
+          value={ rating }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
+  renderGenre() {
+    const { genre } = this.state;
+    return (
+      <label data-testid="genre-input-label" htmlFor="genre-input">
+        Gênero
+        <select
+          data-testid="genre-input"
+          name="genre"
+          value={ genre }
+          onChange={ this.handleChange }
+        >
+          <option data-testid="genre-option" value="action">Ação</option>
+          <option data-testid="genre-option" value="comedy">Comédia</option>
+          <option data-testid="genre-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
+  renderButton() {
+    return (
+      <button
+        data-testid="send-button"
+        type="button"
+        onClick={ this.handleClick }
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
   renderForm() {
     return (
       <form data-testid="add-movie-form">
