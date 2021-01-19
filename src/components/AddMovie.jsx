@@ -146,6 +146,7 @@ class AddMovie extends React.Component {
   }
 
   render() {
+    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form" className="form">
         {this.titleInput()}
@@ -154,6 +155,13 @@ class AddMovie extends React.Component {
         {this.storylineArea()}
         {this.ratingInput()}
         {this.genreInput()}
+        <button
+          type="button"
+          onClick={ () => this.handleClick(onClick) }
+          data-testid="send-button"
+        >
+          Adicionar filme
+        </button>
       </form>
     );
   }
