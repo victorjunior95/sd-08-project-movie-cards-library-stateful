@@ -86,6 +86,26 @@ class AddMovie extends React.Component {
     );
   }
 
+  renderInputNumber() {
+    const { rating } = this.state;
+    return (
+      <label htmlFor="movie-rating" data-testid="rating-input-label">
+        Avaliação
+        <input
+          type="number"
+          name="rating"
+          id="movie-rating"
+          value={ rating }
+          data-testid="rating-input"
+          onChange={ this.handleChange }
+        />
+
+      </label>
+    );
+  }
+
+  render
+
   render() {
     const { onClick } = this.props;
     return (
@@ -93,6 +113,7 @@ class AddMovie extends React.Component {
         { this.renderInputTextTitle() }
         { this.renderInputTextSubtitle() }
         { this.renderInputTextImage() }
+        { this.renderTextArea() }
       </form>
     );
   }
