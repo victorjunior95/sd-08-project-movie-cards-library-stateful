@@ -17,12 +17,33 @@ class SearchBar extends React.Component {
     );
   }
 
+  renderSelectField(props) {
+    const { selectedGenre, onSelectedGenreChange } = props;
+    return (
+      <label htmlFor="select" data-testid="select-input-label">
+        Filtrar por gênero
+        <select
+          name="select"
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+          data-testid="select-input"
+        >
+          <option data-testid="select-option" value="">Todos</option>
+          <option data-testid="select-option" value="action">Ação</option>
+          <option data-testid="select-option" value="comedy">Comédia</option>
+          <option data-testid="select-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
   render() {
     const objProps = this.props;
     return (
       <form data-testid="search-bar-form">
         <InputField objProps={ objProps } />
-        { this.renderCheckBoxField(objProps) }
+        {this.renderCheckBoxField(objProps)}
+        {this.renderSelectField(objProps)}
       </form>
     );
   }
