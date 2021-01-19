@@ -4,9 +4,9 @@ import React from 'react';
 class AddMovie extends React.Component {
   constructor() {
     super();
-    this.handleChangeInput = this.handleChangeInput.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
-      // subtitle: '',
+      subtitle: '',
       title: '',
       // imagePath: '',
       // storyline: '',
@@ -15,7 +15,7 @@ class AddMovie extends React.Component {
     };
   }
 
-  handleChangeInput(event) {
+  handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -30,8 +30,24 @@ class AddMovie extends React.Component {
           name="title"
           type="text"
           value={ title }
-          onChange={ this.handleChangeInput }
+          onChange={ this.handleChange }
           data-testid="title-input"
+        />
+      </label>
+    );
+  }
+
+  renderInputFieldSubtitle() {
+    const { subtitle } = this.state;
+    return (
+      <label data-testid="subtitle-input-label" htmlFor="subtitle">
+        Subtítulo
+        <input
+          name="subtitle"
+          type="text"
+          value={ subtitle }
+          onChange={ this.handleChange }
+          data-testid="subtitle-input"
         />
       </label>
     );
@@ -41,6 +57,7 @@ class AddMovie extends React.Component {
     return (
       <form data-testid="add-movie-form">
         {this.renderInputFieldTitle()}
+        {this.renderInputFieldSubtitle()}
       </form>);
   }
 }
