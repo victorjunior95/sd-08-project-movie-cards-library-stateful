@@ -125,10 +125,10 @@ class AddMovie extends React.Component {
       <label data-testid="genre-input-label" htmlFor="genre-input">
         Gênero
         <select
-        name="genre"
-        value={ genre }
-        data-testid="genre-input"
-        onChange={ this.handleChange }
+          name="genre"
+          value={ genre }
+          data-testid="genre-input"
+          onChange={ this.handleChange }
         >
           <option data-testid="genre-option" value="action">Ação</option>
           <option data-testid="genre-option" value="comedy">Comédia</option>
@@ -158,5 +158,9 @@ class AddMovie extends React.Component {
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
