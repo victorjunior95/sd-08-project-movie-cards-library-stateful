@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ButtonAddMovie extends React.Component {
   render() {
