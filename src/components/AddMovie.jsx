@@ -18,6 +18,7 @@ class AddMovie extends React.Component {
     this.textAreaInput = this.textAreaInput.bind(this);
     this.numberInput = this.numberInput.bind(this);
     this.selectInput = this.selectInput.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
   onChange({ target }) {
@@ -97,15 +98,37 @@ class AddMovie extends React.Component {
     );
   }
 
+  submitForm(e) {
+    e.preventDefault();
+    const { onClick } = this.props;
+    onClick();
+
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+    e.target.reset();
+  }
+
   render() {
     return (
-      <form data-testid="add-movie-form">
+      <form data-testid="add-movie-form" onSubmit={ this.submitForm }>
         {this.textInput('title', 'Título')}
         {this.textInput('subtitle', 'Subtítulo')}
         {this.textInput('image', 'Imagem')}
         {this.textAreaInput()}
         {this.numberInput()}
         {this.selectInput()}
+        <button
+          type="submit"
+          data-testid="send-button"
+        >
+          Adicionar filme
+        </button>
       </form>
     );
   }
