@@ -52,7 +52,7 @@ beforeEach(() => {
 
 
 describe('6 - Crie um componente chamado `<AddMovie />`', () => {
-  it.skip('Renderize o componente', () => {
+  it('Renderize o componente', () => {
     render(<AddMovie onClick={() => jest.fn()} />);
   });
 })
