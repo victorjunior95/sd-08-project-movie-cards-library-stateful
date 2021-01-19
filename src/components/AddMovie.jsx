@@ -5,6 +5,7 @@ class AddMovie extends React.Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
+    this.buttonFunc = this.buttonFunc.bind(this);
 
     this.state = {
       subtitle: '',
@@ -14,6 +15,9 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     };
+
+    this.baseState = this.state;
+    // source: https://medium.com/@justintulk/best-practices-for-resetting-an-es6-react-components-state-81c0c86df98d
   }
 
   handleChange({ target }) {
@@ -121,30 +125,42 @@ class AddMovie extends React.Component {
       </label>
     );
   }
-  /*
-  button() {
+
+  buttonFunc() {
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.setState(this.baseState);
+    // source: https://medium.com/@justintulk/best-practices-for-resetting-an-es6-react-components-state-81c0c86df98d
+  }
+
+  buttonInput() {
     return (
-      <button data-testid="send-button">Adicionar filme</button>
+      <button
+        data-testid="send-button"
+        type="button"
+        onClick={ this.buttonFunc }
+      >
+        Adicionar filme
+      </button>
     );
   }
-  */
 
   render() {
-    // const { onClick } = this.props;
     return (
-      <form>
+      <form data-testid="add-movie-form">
         { this.inputTitle() }
         { this.inputSubtitle() }
         { this.inputImagePath() }
         { this.inputStoryline() }
         { this.inputRating() }
         { this.inputGenre() }
+        { this.buttonInput() }
       </form>
     );
   }
 }
 
-AddMovie.propType = {
+AddMovie.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
