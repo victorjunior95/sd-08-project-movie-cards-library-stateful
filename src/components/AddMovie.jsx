@@ -6,10 +6,10 @@ class AddMovie extends React.Component {
     super(props);
 
     this.state = {
-      subtitle: '',
       title: '',
+      subtitle: '',
+      storyline: '',
       imagePath: '',
-      storyLine: '',
       rating: 0,
       genre: 'action',
     };
@@ -30,10 +30,10 @@ class AddMovie extends React.Component {
   handleClick(callback) {
     callback(this.state);
     this.setState({
-      subtitle: '',
       title: '',
+      subtitle: '',
+      storyline: '',
       imagePath: '',
-      storyLine: '',
       rating: 0,
       genre: 'action',
     });
@@ -62,11 +62,11 @@ class AddMovie extends React.Component {
 
   renderTextarea(name, handleChange) {
     return (
-      <label htmlFor="storyLine" data-testid="storyline-input-label">
+      <label htmlFor="storyline" data-testid="storyline-input-label">
         Sinopse
         <textarea
-          name="storyLine"
-          id="storyLine"
+          name="storyline"
+          id="storyline"
           value={ name }
           onChange={ handleChange }
           cols="30"
@@ -110,13 +110,13 @@ class AddMovie extends React.Component {
 
   render() {
     const { onClick } = this.props;
-    const { subtitle, title, imagePath, storyLine, rating, genre } = this.state;
+    const { title, subtitle, storyline, imagePath, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
         {this.renderInput('Título', 'title', title, this.handleChange)}
         {this.renderInput('Subtítulo', 'subtitle', subtitle, this.handleChange)}
         {this.renderInput('Imagem', 'imagePath', imagePath, this.handleChange)}
-        {this.renderTextarea(storyLine, this.handleChange)}
+        {this.renderTextarea(storyline, this.handleChange)}
         {this.renderInput('Avaliação', 'rating', rating, this.handleChange)}
         {this.renderSelect(genre, this.handleChange)}
         {this.renderButton(onClick)}

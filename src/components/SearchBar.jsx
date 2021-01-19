@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 class SearchBar extends React.Component {
   inputText(searchText, onSearchTextChange) {
     return (
-      <label htmlFor="containsText" data-testid="text-input-label">
+      <label htmlFor="searchText" data-testid="text-input-label">
         Inclui o texto:
         <input
           type="text"
-          name="containsText"
-          id="containsText"
+          name="searchText"
+          id="searchText"
           value={ searchText }
           onChange={ onSearchTextChange }
           data-testid="text-input"
@@ -20,12 +20,12 @@ class SearchBar extends React.Component {
 
   inputCheckBox(bookmarkedOnly, onBookmarkedChange) {
     return (
-      <label htmlFor="bookmarked" data-testid="checkbox-input-label">
+      <label htmlFor="bookmarkedOnly" data-testid="checkbox-input-label">
         Mostrar somente favoritos
         <input
           type="checkbox"
-          name="bookmarked"
-          id="bookmarked"
+          name="bookmarkedOnly"
+          id="bookmarkedOnly"
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
@@ -36,11 +36,11 @@ class SearchBar extends React.Component {
 
   selectGenre(selectedGenre, onSelectedGenreChange) {
     return (
-      <label htmlFor="genre" data-testid="select-input-label">
+      <label htmlFor="selectedGenre" data-testid="select-input-label">
         Filtrar por gênero
         <select
-          name="genre"
-          id="genre"
+          name="selectedGenre"
+          id="selectedGenre"
           value={ selectedGenre }
           onChange={ onSelectedGenreChange }
           data-testid="select-input"
