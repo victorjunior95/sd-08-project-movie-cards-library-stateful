@@ -16,6 +16,7 @@ class AddMovie extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.createButton = this.createButton.bind(this);
   }
 
   handleChange({ target }) {
@@ -26,12 +27,16 @@ class AddMovie extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-  }
-
-  callBackSubmit() {
-    console.log('leo');
+  handleSubmit(callback) {
+    callback(this.state);
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
   }
 
   fillTitleLabelHmlt(titleState, handleChange) {
@@ -135,7 +140,7 @@ class AddMovie extends React.Component {
       <button
         data-testid="send-button"
         type="submit"
-        onClick={ onClick }
+        onClick={ (event) => { event.preventDefault(); this.handleSubmit(onClick); } }
       >
         Adicionar filme
       </button>
