@@ -14,6 +14,7 @@ class AddMovie extends React.Component {
       genre: '',
     };
     this.handleState = this.handleState.bind(this);
+    this.sentForm = this.sentForm.bind(this);
   }
 
   handleState(event) {
@@ -25,6 +26,18 @@ class AddMovie extends React.Component {
       this.setState(() => ({ [name]: value,
       }));
     }
+  }
+
+  sentForm(onClick) {
+    onClick(this.state);
+    this.setState(() => ({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: '',
+    }));
   }
 
   insertInputText(refState, name, content, handleState) {
@@ -94,18 +107,20 @@ class AddMovie extends React.Component {
 
   render() {
     const { insertInputText, insertTextArea, handleState, insertInputNumber,
-      renderSelect } = this;
-    const { onClick } = this.props;
+      renderSelect, sentForm } = this;
+    const { onClick: click } = this.props;
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
-        <button type="button" onClick={ onClick }>eu aqui</button>
         {insertInputText(title, 'title', 'Título:', handleState)}
         {insertInputText(subtitle, 'subtitle', 'Subtítulo', handleState)}
         {insertInputText(imagePath, 'image', 'Imagem', handleState)}
         {insertTextArea(storyline, 'storyline', 'Sinopse', handleState)}
         {insertInputNumber(rating, 'rating', 'Avaliação', handleState)}
         {renderSelect(genre, 'genre', 'Gênero', handleState)}
+        <button type="submit" onClick={ () => sentForm(click) } data-testid="send-button">
+          Adicionar filme
+        </button>
       </form>
     );
   }
