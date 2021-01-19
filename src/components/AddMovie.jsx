@@ -45,9 +45,10 @@ class AddMovie extends Component {
   titleInput() {
     const { title } = this.state;
     return (
-      <label data-testid="title-input-label" htmlFor="title-input">
+      <label data-testid="title-input-label" htmlFor="title">
         Título
         <input
+          name="title"
           id="title-input"
           data-testid="title-input"
           value={ title }
@@ -63,6 +64,7 @@ class AddMovie extends Component {
       <label data-testid="subtitle-input-label" htmlFor="subtitle">
         Subtítulo
         <input
+          name="subtitle"
           id="subtitle"
           value={ subtitle }
           data-testid="subtitle-input"
@@ -75,9 +77,10 @@ class AddMovie extends Component {
   imageInput() {
     const { imagePath } = this.state;
     return (
-      <label data-testid="image-input-label" htmlFor="image-input">
+      <label data-testid="image-input-label" htmlFor="imagePath">
         Imagem
         <input
+          name="imagePath"
           id="image-input"
           imagePath={ imagePath }
           data-testid="image-input"
@@ -91,9 +94,10 @@ class AddMovie extends Component {
   storylineInput() {
     const { storyline } = this.state;
     return (
-      <label data-testid="storyline-input-label" htmlFor="storyline-input">
+      <label data-testid="storyline-input-label" htmlFor="storyline">
         Sinopse
         <textarea
+          name="storyline"
           id="storyline-input"
           storyline={ storyline }
           data-testid="storyline-input"
@@ -107,9 +111,10 @@ class AddMovie extends Component {
   ratingInput() {
     const { rating } = this.state;
     return (
-      <label data-testid="rating-input-label" htmlFor="rating-input">
+      <label data-testid="rating-input-label" htmlFor="rating">
         Avaliação
         <input
+          name="rating"
           id="rating-input"
           type="number"
           data-testid="rating-input"
@@ -123,9 +128,10 @@ class AddMovie extends Component {
   genreInput() {
     const { genre } = this.state;
     return (
-      <label data-testid="genre-input-label" htmlFor="genre-input">
+      <label data-testid="genre-input-label" htmlFor="genre">
         Gênero
         <select
+          name="genre"
           value={ genre }
           onChange={ this.handleChange }
           id="genre-input"
