@@ -1,9 +1,9 @@
 // implement SearchBar component here
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FilterMovieText from './FilterMovieText';
-import CheckMovieFavorite from './CheckMovieFavorite';
-import FilterMovieGender from './FilterMovieGender';
+import FilterMovieText from './searchMovies/FilterMovieText';
+import CheckMovieFavorite from './searchMovies/CheckMovieFavorite';
+import FilterMovieGender from './searchMovies/FilterMovieGender';
 
 class SearchBar extends Component {
   render() {
