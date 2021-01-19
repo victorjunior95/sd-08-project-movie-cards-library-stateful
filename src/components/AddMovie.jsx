@@ -94,7 +94,7 @@ class AddMovie extends Component {
         Imagem
         <input
           id="image-input"
-          imagePath={ imagePath }
+          imagepath={ imagePath }
           data-testid="image-input"
           value={ imagePath }
           onChange={ this.handleImg }

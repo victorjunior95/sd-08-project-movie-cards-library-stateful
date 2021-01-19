@@ -25,6 +25,7 @@ class SearchBar extends Component {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
       <input
+        className="s-book"
         data-testid="checkbox-input"
         type="checkbox"
         id="checkbox-input"
@@ -39,6 +40,7 @@ class SearchBar extends Component {
     const { searchText, onSearchTextChange } = this.props;
     return (
       <input
+        className="s-input"
         id="text-input-label"
         type="text"
         value={ searchText }
@@ -50,7 +52,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form data-testid="search-bar-form">
+      <form className="s" data-testid="search-bar-form">
         <label htmlFor="text-input-label" data-testid="text-input-label">
           Inclui o texto:
           { this.renderInputText() }

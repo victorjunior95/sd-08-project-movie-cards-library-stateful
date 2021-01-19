@@ -17,11 +17,13 @@ class MovieLibrary extends Component {
       bookmarkedOnly: false,
       selectedGenre: '',
       movies: [...movies],
+      msgErr: '',
     };
   }
 
   async onSearchTextChange({ target }) {
-    const { searchText, movies } = this.state;
+    const { searchText } = this.state;
+    const { movies } = this.props;
     await this.setState({ searchText: target.value }, () => {
       const newMovie = movies
         .filter((item) => item.title.includes(searchText)
@@ -32,8 +34,13 @@ class MovieLibrary extends Component {
   }
 
   async onBookmarkedChange({ target }) {
-    const { movies } = this.state;
-    console.log(target.checked);
+    const { movies } = this.props;
+    if (!target.checked) {
+      this.setState({ bookmarkedOnly: false });
+      const newMovie2 = movies;
+      this.setState({ movies: newMovie2 });
+      return;
+    }
     this.setState({ bookmarkedOnly: target.checked }, () => {
       const newMovie = movies
         .filter((item) => item.bookmarked === target.checked);
@@ -42,12 +49,30 @@ class MovieLibrary extends Component {
   }
 
   onSelectedGenreChange({ target }) {
-    const { movies } = this.state;
+    const { movies } = this.props;
+    if (target.value === '') {
+      this.setState({ selectedGenre: target.value });
+      const newMovie2 = movies;
+      this.setState({ movies: newMovie2 });
+      this.checkValue(newMovie2);
+      return;
+    }
     this.setState({ selectedGenre: target.value }, () => {
       const newMovie = movies
         .filter((item) => item.genre === target.value);
       this.setState({ movies: newMovie });
+      this.checkValue(newMovie);
     });
+  }
+
+  checkValue(valor) {
+    if (!valor.length) {
+      this.setState({
+        msgErr: 'Não Tem nenhum filme com esse Gênero...' });
+    } else {
+      this.setState({
+        msgErr: '' });
+    }
   }
 
   addNewMovie(newMovie) {
@@ -63,7 +88,7 @@ class MovieLibrary extends Component {
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre, msgErr } = this.state;
     return (
       <div>
         <SearchBar
@@ -74,6 +99,7 @@ class MovieLibrary extends Component {
           onBookmarkedChange={ this.onBookmarkedChange }
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
+        { msgErr !== '' && <div className="ErrorMsg">{ msgErr }</div>}
         { this.renderMovies() }
         <AddMovie onClick={ this.addNewMovie } />
       </div>
@@ -82,6 +108,6 @@ class MovieLibrary extends Component {
 }
 
 MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 export default MovieLibrary;
