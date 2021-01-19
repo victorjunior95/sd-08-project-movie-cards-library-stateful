@@ -7,7 +7,12 @@ class Select extends React.Component {
     return (
       <label data-testid="select-input-label" htmlFor="select">
         Filtrar por gênero
-        <select data-testid="select-input" value={ value } onChange={ onChange }>
+        <select
+          data-testid="select-input"
+          value={ value }
+          onChange={ onChange }
+          name="selectedGenre"
+        >
           <option data-testid="select-option" value="">Todos</option>
           <option data-testid="select-option" value="action">Ação</option>
           <option data-testid="select-option" value="comedy">Comédia</option>

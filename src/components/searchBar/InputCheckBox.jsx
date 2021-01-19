@@ -10,6 +10,7 @@ class InputCheckBox extends React.Component {
         <input
           id="checkbox-input"
           data-testid="checkbox-input"
+          name="bookmarkedOnly"
           type="checkbox"
           checked={ checked }
           onChange={ onChange }
