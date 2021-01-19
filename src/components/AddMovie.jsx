@@ -42,7 +42,7 @@ class AddMovie extends Component {
     const { subtitle } = this.state;
     return (
       <label
-        htmlFor="title-input"
+        htmlFor="subtitle-input"
         data-testid="subtitle-input-label"
       >
         Subtítulo
@@ -57,11 +57,31 @@ class AddMovie extends Component {
     );
   }
 
+  renderImagePath() {
+    const { imagePath } = this.state;
+    return (
+      <label
+        htmlFor="image-input"
+        data-testid="image-input-label"
+      >
+        Imagem
+        <input
+          name="imagePath"
+          type="text"
+          data-testid="image-input"
+          value={ imagePath }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form>
         {this.renderTitleInput()}
         {this.renderSubtitleInput()}
+        {this.renderImagePath()}
       </form>
     );
   }
