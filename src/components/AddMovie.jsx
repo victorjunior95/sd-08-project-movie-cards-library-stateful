@@ -12,10 +12,12 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     };
+
     this.onChange = this.onChange.bind(this);
     this.textInput = this.textInput.bind(this);
     this.textAreaInput = this.textAreaInput.bind(this);
     this.numberInput = this.numberInput.bind(this);
+    this.selectInput = this.selectInput.bind(this);
   }
 
   onChange({ target }) {
@@ -75,6 +77,26 @@ class AddMovie extends React.Component {
     );
   }
 
+  selectInput() {
+    const { genre } = this.state;
+    return (
+      <label data-testid="genre-input-label" htmlFor="genre-input">
+        Gênero
+        <select
+          value={ genre }
+          data-testid="genre-input"
+          id="genre-input"
+          name="genre"
+          onChange={ this.onChange }
+        >
+          <option value="action" data-testid="genre-option">Ação</option>
+          <option value="comedy" data-testid="genre-option">Comédia</option>
+          <option value="thriller" data-testid="genre-option">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -83,6 +105,7 @@ class AddMovie extends React.Component {
         {this.textInput('image', 'Imagem')}
         {this.textAreaInput()}
         {this.numberInput()}
+        {this.selectInput()}
       </form>
     );
   }
