@@ -25,11 +25,11 @@ class App extends React.Component {
         <Header />
         <SearchBar
           searchText={ searchText }
-          onSearchTextChange={ onSearchTextChange }
+          // onSearchTextChange={ onSearchTextChange }
           bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ onBookmarkedChange }
+          // onBookmarkedChange={ onBookmarkedChange }
           selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ onSelectedGenreChange }
+          // onSelectedGenreChange={ onSelectedGenreChange }
         />
         <AddMovie />
       </div>

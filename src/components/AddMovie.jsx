@@ -9,17 +9,36 @@ class AddMovie extends React.Component {
       title: '',
       imagemPath: '',
       storyline: '',
-      rating: '0',
+      rating: 0,
       genre: 'action',
     };
-
     this.handleChange = this.handleChange.bind(this);
-    this.renderInputTextAddMovie = this.renderInputTextAddMovie.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.renderInputTextTitle = this.renderInputTextTitle.bind(this);
+    this.renderInputTextSubtitle = this.renderInputTextSubtitle.bind(this);
+    this.renderInputTextImage = this.renderInputTextImage.bind(this);
+    this.renderTextArea = this.renderTextArea.bind(this);
+    this.renderInputNumber = this.renderInputNumber.bind(this);
+    this.renderSelect = this.renderSelect.bind(this);
+    this.renderButton = this.renderButton.bind(this);
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
+    });
+  }
+
+  handleClick() {
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagemPath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
     });
   }
 
@@ -48,6 +67,7 @@ class AddMovie extends React.Component {
           name="subtitle"
           id="movie-title"
           value={ subtitle }
+          data-testid="subtitle-input"
           onChange={ this.handleChange }
         />
       </label>
@@ -79,7 +99,7 @@ class AddMovie extends React.Component {
           name="storyline"
           id="movie-sinopse"
           value={ storyline }
-          data-testid="storyline-input-label"
+          data-testid="storyline-input"
           onChange={ this.handleChange }
         />
       </label>
@@ -119,24 +139,19 @@ class AddMovie extends React.Component {
     );
   }
 
-  renderButton(onClick) {
-    onClick(this.state);
-    this.setState = {
-      subtitle: '',
-      title: '',
-      imagemPath: '',
-      storyline: '',
-      rating: '0',
-      genre: 'action',
-    };
-
+  renderButton() {
     return (
-      <button type="button" data-testid="send-button">Adicionar filme</button>
+      <button
+        type="button"
+        data-testid="send-button"
+        onClick={ this.handleClick }
+      >
+        Adicionar filme
+      </button>
     );
   }
 
   render() {
-    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         {this.renderInputTextTitle()}
@@ -145,7 +160,7 @@ class AddMovie extends React.Component {
         {this.renderTextArea()}
         {this.renderInputNumber()}
         {this.renderSelect()}
-        {this.renderButton(onClick)}
+        {this.renderButton()}
       </form>
     );
   }
