@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import MovieList from './MovieList';
+import MovieList from '../components/MovieList';
 
 describe('Verifica o componente <MovieList />', () => {
   const movies = [
@@ -36,11 +36,11 @@ describe('Verifica o componente <MovieList />', () => {
   ];
 
   it('Renderize o componente', () => {
-    render(<MovieList movies={movies} />);
+    render(<MovieList movies={ movies } />);
   });
 
   it('Renderize um componente `<MovieCard />` para cada filme passado como prop', () => {
-    const { getAllByTestId } = render(<MovieList movies={movies} />);
+    const { getAllByTestId } = render(<MovieList movies={ movies } />);
     const movieCards = getAllByTestId('movie-card');
 
     expect(movieCards).toHaveLength(3);

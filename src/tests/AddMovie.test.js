@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import event from '@testing-library/user-event';
-import AddMovie from './AddMovie';
+import AddMovie from '../components/AddMovie';
 
 const initialState = {
   subtitle: '',
@@ -30,9 +30,8 @@ let genreInputLabel;
 let genreOptions;
 let sendButton;
 
-
 beforeEach(() => {
-  const { queryAllByTestId, queryByTestId } = render(<AddMovie onClick={onClick} />);
+  const { queryAllByTestId, queryByTestId } = render(<AddMovie onClick={ onClick } />);
   form = queryAllByTestId('add-movie-form');
   titleInput = queryByTestId('title-input');
   titleInputLabel = queryByTestId('title-input-label');
@@ -50,12 +49,11 @@ beforeEach(() => {
   sendButton = queryByTestId('send-button');
 });
 
-
 describe('6 - Crie um componente chamado `<AddMovie />`', () => {
   it('Renderize o componente', () => {
-    render(<AddMovie onClick={() => jest.fn()} />);
+    render(<AddMovie onClick={ () => jest.fn() } />);
   });
-})
+});
 
 describe('7 - Renderize um formulário dentro de `<AddMovie />`', () => {
   it('Renderize 1, e apenas 1, form', () => {
@@ -174,7 +172,6 @@ describe('13 - Renderize um `select` do formulário em `<AddMovie />` para selec
     { value: 'thriller', text: 'Suspense' },
   ];
 
-
   it('Renderize um select com 3 opções de genero de filme', () => {
     expect(genreInput).toBeInTheDocument();
     expect(genreOptions).toHaveLength(options.length);
@@ -184,7 +181,6 @@ describe('13 - Renderize um `select` do formulário em `<AddMovie />` para selec
     expect(genreInputLabel).toBeInTheDocument();
     expect(genreInputLabel).toHaveTextContent('Gênero');
   });
-
 
   it('Será validado se todas as opções no select tem o texto e o valor esperados, que são, respectivamente: Ação e action, Comédia e comedy, Suspense e thriller', () => {
     genreOptions.forEach((option, index) => {

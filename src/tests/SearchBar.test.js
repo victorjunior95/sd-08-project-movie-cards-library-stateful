@@ -3,20 +3,18 @@ import { render } from '@testing-library/react';
 import event from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
-import SearchBar from './SearchBar';
+import SearchBar from '../components/SearchBar';
 
 let props;
-const searchBar = () => (
-  render(
-    <SearchBar
-      searchText={props.searchText}
-      onSearchTextChange={props.onSearchTextChange}
-      bookmarkedOnly={props.bookmarkedOnly}
-      onBookmarkedChange={props.onBookmarkedChange}
-      selectedGenre={props.selectedGenre}
-      onSelectedGenreChange={props.onSelectedGenreChange}
-    />,
-  )
+const searchBar = () => render(
+  <SearchBar
+    searchText={ props.searchText }
+    onSearchTextChange={ props.onSearchTextChange }
+    bookmarkedOnly={ props.bookmarkedOnly }
+    onBookmarkedChange={ props.onBookmarkedChange }
+    selectedGenre={ props.selectedGenre }
+    onSelectedGenreChange={ props.onSelectedGenreChange }
+  />,
 );
 
 const beforeEachUnitTest = () => {
@@ -140,7 +138,7 @@ describe('5 - Renderize um select dentro do formulário em `<SearchBar />`', () 
     expect(props.onSelectedGenreChange).toHaveBeenCalledTimes(1);
   });
 
-  it("Renderize 4 options dentro do select com os textos e valores, respectivamente: Todos e '', Ação e action, Comédia e comedy, Suspense e thriller", () => {
+  it('Renderize 4 options dentro do select com os textos e valores, respectivamente: Todos e \'\', Ação e action, Comédia e comedy, Suspense e thriller', () => {
     const genreOptions = [
       { text: 'Todos', value: '' },
       { text: 'Ação', value: 'action' },

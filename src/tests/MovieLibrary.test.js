@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import event from '@testing-library/user-event';
 
-import MovieLibrary from './MovieLibrary';
+import MovieLibrary from '../components/MovieLibrary';
 
 const movies = [
   {
@@ -35,34 +35,33 @@ const movies = [
   },
 ];
 
-
 describe('15 - Crie um componente chamado `<MovieLibrary />`', () => {
   it('Renderize o componente', () => {
-    render(<MovieLibrary movies={movies} />);
+    render(<MovieLibrary movies={ movies } />);
   });
 });
 
 describe('16 - Configure o estado inicial do componente `<MovieLibrary />`', () => {
   it('Defina o estado inicial de `searchText` como uma string vazia', () => {
-    const { getByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId } = render(<MovieLibrary movies={ movies } />);
     const searchText = getByTestId('text-input');
     expect(searchText).toHaveValue('');
   });
 
   it('Defina o estado inicial de `bookmarkedOnly` como o boleano `falso`', () => {
-    const { getByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId } = render(<MovieLibrary movies={ movies } />);
     const bookmarkedOnly = getByTestId('checkbox-input');
     expect(bookmarkedOnly).not.toBeChecked();
   });
 
   it('Defina o estado inicial de `selectedGenre` como uma string vazia', () => {
-    const { getByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId } = render(<MovieLibrary movies={ movies } />);
     const selectInput = getByTestId('select-input');
     expect(selectInput).toHaveValue('');
   });
 
   it('Renderize todos os filmes passados pela prop `movies`', () => {
-    const { getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const movieCards = getAllByTestId('movie-card');
     expect(movieCards).toHaveLength(movies.length);
   });
@@ -70,13 +69,13 @@ describe('16 - Configure o estado inicial do componente `<MovieLibrary />`', () 
 
 describe('17 - Renderize `<SearchBar />` dentro de `<MovieLibrary />`', () => {
   it('Renderize o componente `<SearchBar />`', () => {
-    const { getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const searchBar = getAllByTestId('search-bar-form');
     expect(searchBar).toHaveLength(1);
   });
 
   it('Altere o estado da `<SearchBar />` quando algo for digitado nela', () => {
-    const { getByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId } = render(<MovieLibrary movies={ movies } />);
     const searchText = getByTestId('text-input');
     event.type(searchText, 'My Search Text');
 
@@ -84,14 +83,14 @@ describe('17 - Renderize `<SearchBar />` dentro de `<MovieLibrary />`', () => {
   });
 
   it('Disponibilize a opção de filtrar por favoritos', () => {
-    const { getByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId } = render(<MovieLibrary movies={ movies } />);
     const bookmarkedOnly = getByTestId('checkbox-input');
     event.click(bookmarkedOnly);
     expect(bookmarkedOnly).toBeChecked();
   });
 
   it('Disponibilize a opção de filtrar por categorias', () => {
-    const { getByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId } = render(<MovieLibrary movies={ movies } />);
     const selectInput = getByTestId('select-input');
     expect(selectInput).toHaveValue('');
 
@@ -103,13 +102,13 @@ describe('17 - Renderize `<SearchBar />` dentro de `<MovieLibrary />`', () => {
 
 describe('18 - Renderize `<MovieList />` dentro de `<MovieLibrary />`', () => {
   it('Renderize o componente `<MovieList />`', () => {
-    const { getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const movieList = getAllByTestId('movie-list');
     expect(movieList).toHaveLength(1);
   });
 
   it('Filtre os filmes por título de acordo com o que for digitado na barra de busca', () => {
-    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const textInput = getByTestId('text-input');
 
     event.type(textInput, 'awesome');
@@ -122,7 +121,7 @@ describe('18 - Renderize `<MovieList />` dentro de `<MovieLibrary />`', () => {
   });
 
   it('Filtre os filmes por subtítulo de acordo com o que for digitado na barra de busca', () => {
-    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const textInput = getByTestId('text-input');
 
     event.type(textInput, 'incredible');
@@ -135,7 +134,7 @@ describe('18 - Renderize `<MovieList />` dentro de `<MovieLibrary />`', () => {
   });
 
   it('Filtre os filmes por sinopse de acordo com o que for digitado na barra de busca', () => {
-    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const textInput = getByTestId('text-input');
 
     event.type(textInput, 'great');
@@ -148,7 +147,7 @@ describe('18 - Renderize `<MovieList />` dentro de `<MovieLibrary />`', () => {
   });
 
   it('Renderize a lista de filmes sem filtragens se a barra de buscar estiver vazia', () => {
-    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const textInput = getByTestId('text-input');
 
     event.type(textInput, '');
@@ -158,7 +157,7 @@ describe('18 - Renderize `<MovieList />` dentro de `<MovieLibrary />`', () => {
   });
 
   it('Filtre os filmes por favoritos quando a `checkbox` relacionada for selecionada', () => {
-    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const bookmarkedOnly = getByTestId('checkbox-input');
 
     event.click(bookmarkedOnly);
@@ -169,9 +168,8 @@ describe('18 - Renderize `<MovieList />` dentro de `<MovieLibrary />`', () => {
     expect(movieCardTitle).toHaveTextContent(movies[0].title);
   });
 
-
   it('Filtre os filmes por categoria quando a `checkbox` relacionada for selecionada', () => {
-    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const select = getByTestId('select-input');
 
     event.selectOptions(select, 'comedy');
@@ -185,13 +183,13 @@ describe('18 - Renderize `<MovieList />` dentro de `<MovieLibrary />`', () => {
 
 describe('19 - Renderize `<AddMovie />` dentro de `<MovieLibrary />`', () => {
   it('Renderize o componente `<AddMovie />`', () => {
-    const { getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getAllByTestId } = render(<MovieLibrary movies={ movies } />);
     const addMovieForm = getAllByTestId('add-movie-form');
     expect(addMovieForm).toHaveLength(1);
   });
 
   it('Adicione, após preenchimento do formulário e clique no botão de enviar, o novo filme à lista de filmes', () => {
-    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={movies} />);
+    const { getByTestId, getAllByTestId } = render(<MovieLibrary movies={ movies } />);
 
     const newMovie = {
       subtitle: 'Harry Potter magical subtitle',
@@ -202,7 +200,6 @@ describe('19 - Renderize `<AddMovie />` dentro de `<MovieLibrary />`', () => {
     };
 
     let movieCards = getAllByTestId('movie-card');
-
 
     expect(movieCards).toHaveLength(movies.length);
 
@@ -220,7 +217,6 @@ describe('19 - Renderize `<AddMovie />` dentro de `<MovieLibrary />`', () => {
     fireEvent.change(storylineInput, { target: { value: newMovie.storyline } });
     event.type(ratingInput, newMovie.rating);
     event.selectOptions(genreInput, newMovie.genre);
-
 
     event.click(sendButton);
 
