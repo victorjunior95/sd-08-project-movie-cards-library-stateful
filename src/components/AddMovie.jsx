@@ -13,7 +13,11 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     };
+
+    this.initialState = this.state;
+
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   handleInputChange(event) {
@@ -21,6 +25,12 @@ class AddMovie extends React.Component {
     const { name, value } = target;
 
     this.setState({ [name]: value });
+  }
+
+  clickHandler() {
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.setState(this.initialState);
   }
 
   renderTitle() {
@@ -125,7 +135,6 @@ class AddMovie extends React.Component {
   }
 
   render() {
-    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         { this.renderTitle() }
@@ -134,6 +143,9 @@ class AddMovie extends React.Component {
         { this.renderStoryline() }
         { this.renderRating() }
         { this.renderGenre() }
+        <button type="button" data-testid="send-button" onClick={ this.clickHandler }>
+          Adicionar filme
+        </button>
       </form>
     );
   }
