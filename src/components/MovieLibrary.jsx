@@ -5,6 +5,8 @@ import SearchBar from './SearchBar';
 import MovieList from './MovieList';
 import AddMovie from './AddMovie';
 
+import styles from './MovieLibrary.module.css';
+
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
@@ -74,10 +76,14 @@ class MovieLibrary extends Component {
   }
 
   render() {
+    const movies = this.getFilteredMovies();
+    const notFoundMsg = 'Nenhum filme com essa descrição encontrado.';
     return (
       <div>
         { this.renderSearchBar() }
-        <MovieList movies={ this.getFilteredMovies() } />
+        { movies.length
+          ? <MovieList movies={ this.getFilteredMovies() } />
+          : <p className={ styles['not-found'] }>{ notFoundMsg }</p> }
         <AddMovie onClick={ this.handleAddMovie } />
       </div>
     );
