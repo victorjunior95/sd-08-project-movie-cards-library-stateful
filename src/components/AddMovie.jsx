@@ -5,12 +5,14 @@ class AddMovie extends React.Component {
     super();
 
     this.handleChange = this.handleChange.bind(this);
+    this.rating = this.rating.bind(this);
 
     this.state = {
       title: '',
       subtitle: '',
       imagePath: '',
       storyline: '',
+      rating: 0,
     };
   }
 
@@ -79,13 +81,31 @@ class AddMovie extends React.Component {
     );
   }
 
+  rating(rating) {
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating">
+        Avaliação
+        <input
+          type="number"
+          name="rating"
+          value={ rating }
+          data-testid="rating-input"
+          onChange={ this.handleChange }
+          id="rating"
+        />
+      </label>
+    );
+  }
+
   render() {
+    const { rating } = this.state;
     return (
       <form data-testid="add-movie-form">
         {this.title()}
         {this.subtitle()}
         {this.imagePath()}
         {this.storyline()}
+        {this.rating(rating)}
       </form>
     );
   }
