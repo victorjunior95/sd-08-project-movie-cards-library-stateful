@@ -26,7 +26,7 @@ class AddMovie extends React.Component {
     });
   }
 
-  renderTitleInput() {
+  renderTitleInput(title, onChange) {
     return (
       <label htmlFor="title-input" data-testid="title-input-label">
         Título
@@ -34,14 +34,14 @@ class AddMovie extends React.Component {
           data-testid="title-input"
           type="text"
           name="title"
-          value={ this.state.title }
-          onChange={ this.handleChange }
+          value={ title }
+          onChange={ onChange }
         />
       </label>
     );
   }
 
-  renderSubtitleInput() {
+  renderSubtitleInput(subtitle, onChange) {
     return (
       <label htmlFor="subtitle-input" data-testid="subtitle-input-label">
         Subtítulo
@@ -49,14 +49,14 @@ class AddMovie extends React.Component {
           data-testid="subtitle-input"
           type="text"
           name="subtitle"
-          value={ this.state.subtitle }
-          onChange={ this.handleChange }
+          value={ subtitle }
+          onChange={ onChange }
         />
       </label>
     );
   }
 
-  renderImageInput() {
+  renderImageInput(imagePath, onChange) {
     return (
       <label htmlFor="image-input" data-testid="image-input-label">
         Imagem
@@ -64,28 +64,28 @@ class AddMovie extends React.Component {
           data-testid="image-input"
           type="text"
           name="imagePath"
-          value={ this.state.imagePath }
-          onChange={ this.handleChange }
+          value={ imagePath }
+          onChange={ onChange }
         />
       </label>
     );
   }
 
-  renderStorylineInput() {
+  renderStorylineInput(storyline, onChange) {
     return (
       <label htmlFor="storyline-input" data-testid="storyline-input-label">
         Sinopse
         <textarea
           data-testid="storyline-input"
           name="storyline"
-          value={ this.state.storyline }
-          onChange={ this.handleChange }
+          value={ storyline }
+          onChange={ onChange }
         />
       </label>
     );
   }
 
-  renderRatingInput() {
+  renderRatingInput(rating, onChange) {
     return (
       <label htmlFor="rating-input" data-testid="rating-input-label">
         Avaliação
@@ -93,22 +93,22 @@ class AddMovie extends React.Component {
           data-testid="rating-input"
           type="number"
           name="rating"
-          value={ this.state.rating }
-          onChange={ this.handleChange }
+          value={ rating }
+          onChange={ onChange }
         />
       </label>
     );
   }
 
-  renderGenreInput() {
+  renderGenreInput(genre, onChange) {
     return (
       <label htmlFor="subtitle-input" data-testid="genre-input-label">
         Gênero
         <select
           data-testid="genre-input"
           name="genre"
-          value={ this.state.genre }
-          onChange={ this.handleChange }
+          value={ genre }
+          onChange={ onChange }
         >
           <option data-testid="genre-option" value="action">Ação</option>
           <option data-testid="genre-option" value="comedy">Comédia</option>
@@ -118,21 +118,23 @@ class AddMovie extends React.Component {
 
     );
   }
+
   render() {
+    const { subtitle, title, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
-        { this.renderTitleInput() }
-        { this.renderSubtitleInput() }
-        { this.renderImageInput() }
-        { this.renderStorylineInput() }
-        { this.renderRatingInput() }
-        { this.renderGenreInput() }
-        <button
-        data-testid="send-button"
-        onClick= { this.handleChange }
+        { this.renderTitleInput(title, this.handleChange) }
+        { this.renderSubtitleInput(subtitle, this.handleChange) }
+        { this.renderImageInput(imagePath, this.handleChange) }
+        { this.renderStorylineInput(storyline, this.handleChange) }
+        { this.renderRatingInput(rating, this.handleChange) }
+        { this.renderGenreInput(genre, this.handleChange) }
+        {/* <button
+          data-testid="send-button"
+          onClick={ this.handleChange }
         >
           Adicionar filme
-        </button>
+        </button> */}
       </form>
     );
   }
