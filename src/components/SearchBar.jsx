@@ -1,5 +1,9 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
+import FiltrarGenero from './FiltrarGenero';
+import Favoritos from './Favoritos';
+import Text from './IncluiText';
 
 class SearchBar extends React.Component {
   render() {
@@ -7,27 +11,18 @@ class SearchBar extends React.Component {
     return (
       <div>
         <form data-testid="search-bar-form">
-          <label data-testid="text-input-label">
-            Inclui o texto
-            <input type="text" value={ searchText } data-testid="text-input" onChange={ onSearchTextChange } />
-          </label>
-          <label data-testid="checkbox-input-label">
-            Mostrar somente favoritos
-            <input type="checkbox" checked={ bookmarkedOnly } onChange={ onBookmarkedChange } data-testid="checkbox-input" />
-          </label>
-          <label data-testid="select-input-label">
-            Filtrar por gênero
-            <select value={ selectedGenre } onChange={ onSelectedGenreChange } data-testid="select-input">
-              <option value="" data-testid="select-option">Todos</option>
-              <option value="action" data-testid="select-option">Ação</option>
-              <option value="comedy" data-testid="select-option">Comédia</option>
-              <option value="thriller" data-testid="select-option">Suspense</option>
-            </select>
-          </label>
+          <Text onChange={ onSearchTextChange } value={ searchText } />
+          <Favoritos onChange={ onBookmarkedChange } checked={ bookmarkedOnly } />
+          <FiltrarGenero onChange={ onSelectedGenreChange } value={ selectedGenre } />
         </form>
       </div>
     );
   }
 }
+SearchBar.propTypes = {
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.string.isRequired,
+
+};
 
 export default SearchBar;
