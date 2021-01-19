@@ -61,6 +61,7 @@ class MovieLibrary extends Component {
   addMovie(movie) {
     const { originalMovies } = this.state;
     this.setState({ originalMovies: originalMovies.concat(movie) }, () => {
+      console.log('ADD MOVIE', this.state);
       this.updateMovies();
     });
   }
@@ -79,7 +80,7 @@ class MovieLibrary extends Component {
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <MovieList movies={ movies } />
-        <AddMovie addMovie={ this.addMovie } />
+        <AddMovie onClick={ this.addMovie } />
       </div>
     );
   }

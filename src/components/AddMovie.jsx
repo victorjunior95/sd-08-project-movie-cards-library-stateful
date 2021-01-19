@@ -22,10 +22,9 @@ class AddMovie extends Component {
     this.handleForm = this.handleForm.bind(this);
   }
 
-  handleForm(e) {
-    e.preventDefault();
-    const { addMovie } = this.props;
-    addMovie(this.state);
+  handleForm() {
+    const { onClick } = this.props;
+    onClick(this.state);
     this.setState({
       title: '',
       subtitle: '',
@@ -75,15 +74,30 @@ class AddMovie extends Component {
     );
   }
 
+  createTextArea() {
+    const { storyline } = this.state;
+    return (
+      <label htmlFor="storyline-input-label" data-testid="storyline-input-label">
+        Sinopse
+        <textarea
+          name="storyline"
+          text="Sinopse"
+          data-testid="storyline-input"
+          value={ storyline }
+          onChange={ this.updateStates }
+        />
+      </label>
+    );
+  }
+
   render() {
-    const { title, subtitle, imagePath, storyline, rating } = this.state;
-    const stry = 'storyline';
+    const { title, subtitle, imagePath, rating } = this.state;
     return (
       <form data-testid="add-movie-form">
         {this.t(['text', 'title', 'title', 'Título', 'title', title])}
         {this.t(['text', 'subtitle', 'subtitle', 'Subtítulo', 'subtitle', subtitle])}
         {this.t(['text', 'imagePath', 'image', 'Imagem', 'image', imagePath])}
-        {this.t(['textarea', stry, stry, 'Sinopse', stry, storyline])}
+        {this.createTextArea()}
         {this.t(['number', 'rating', 'rating', 'Avaliação', 'rating', rating])}
         {this.genderSelector()}
         <CreateButton dataTestid="send-button" onClick={ this.handleForm } />
@@ -91,20 +105,13 @@ class AddMovie extends Component {
     );
   }
 }
-// <button type="button" data-testid="send-button" onClick={ this.handleForm }>Adicionar filme</button>
-// <CreateTextInput type="text" name="title" dataTestid="title-input-label" text="Título" inPutDataTestid="title-input" inputValue={ title } callBack={ this.updateStates } />
-// <CreateTextInput type="text" name="subtitle" dataTestid="subtitle-input-label" text="Subtítulo" inPutDataTestid="subtitle-input" inputValue={ subtitle } callBack={ this.updateStates } />
-// <CreateTextInput type="text" name="imagePath" dataTestid="image-input-label" text="Imagem" inPutDataTestid="image-input" inputValue={ imagePath } callBack={ this.updateStates } />
-// <CreateTextInput type="textarea" name="storyline" dataTestid="storyline-input-label" text="Sinopse" inPutDataTestid="storyline-input" inputValue={ storyline } callBack={ this.updateStates } />
-// <CreateTextInput type="number" name="rating" dataTestid="rating-input-label" text="Avaliação" inPutDataTestid="rating-input" inputValue={ rating } callBack={ this.updateStates } />
-// <GenderSelector text="Gênero" name="genre" dataTestid="genre-input-label" dataTestid2="genre-input" dataTestid3="select-option" initialState={ genre } callBack={ this.updateStates } blankOption={ false } />
 
 AddMovie.propTypes = {
-  addMovie: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 AddMovie.defaultProps = {
-  addMovie: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 export default AddMovie;
