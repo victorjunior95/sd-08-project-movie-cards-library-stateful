@@ -13,9 +13,19 @@ class MovieLibrary extends Component {
     return (
       <div>
         <h2> My awesome movie library </h2>
-        <SearchBar />
+        <SearchBar
+          searchText={ this.props.searchText }
+        />
+        {
+        // onSearchTextChange={this.onSearchTextChange}
+        // bookmarkedOnly={bookmarkedOnly}
+        // onBookmarkedChange={this.onBookmarkedChange}
+        // selectedGenre={selectedGenre}
+        // onSelectedGenreChange={this.onSelectedGenreChange}
+        }
+
         <MovieList movies={this.props.movies} />
-        <AddMovie />
+        <AddMovie onClick={this.onClick}/>
       </div>
     );
   }
