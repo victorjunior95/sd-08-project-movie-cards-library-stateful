@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import styles from './AddMovie.module.css';
+
 const initialState = {
   'title-input': '',
   'subtitle-input': '',
@@ -11,6 +13,8 @@ const initialState = {
   'image-input': '',
   bookmarked: false,
 };
+
+const labelsClass = 'add-movie-labels';
 
 class AddMovie extends Component {
   constructor(props) {
@@ -60,7 +64,11 @@ class AddMovie extends Component {
   renderTitleInput() {
     const { 'title-input': titleInput } = this.state;
     return (
-      <label htmlFor="title-input" data-testid="title-input-label">
+      <label
+        className={ styles[labelsClass] }
+        htmlFor="title-input"
+        data-testid="title-input-label"
+      >
         Título
         <input
           type="text"
@@ -77,7 +85,11 @@ class AddMovie extends Component {
   renderSubtitleInput() {
     const { 'subtitle-input': subtitleInput } = this.state;
     return (
-      <label htmlFor="subtitle-input" data-testid="subtitle-input-label">
+      <label
+        className={ styles[labelsClass] }
+        htmlFor="subtitle-input"
+        data-testid="subtitle-input-label"
+      >
         Subtítulo
         <input
           type="text"
@@ -94,7 +106,11 @@ class AddMovie extends Component {
   renderImageInput() {
     const { 'image-input': imageInput } = this.state;
     return (
-      <label htmlFor="image-input" data-testid="image-input-label">
+      <label
+        className={ styles[labelsClass] }
+        htmlFor="image-input"
+        data-testid="image-input-label"
+      >
         Imagem
         <input
           type="text"
@@ -111,7 +127,11 @@ class AddMovie extends Component {
   renderStoryLineInput() {
     const { 'storyline-input': storylineInput } = this.state;
     return (
-      <label htmlFor="storyline-input" data-testid="storyline-input-label">
+      <label
+        className={ styles[labelsClass] }
+        htmlFor="storyline-input"
+        data-testid="storyline-input-label"
+      >
         Sinopse
         <input
           type="text"
@@ -128,7 +148,11 @@ class AddMovie extends Component {
   renderRatingInput() {
     const { 'rating-input': ratingInput } = this.state;
     return (
-      <label htmlFor="rating-input" data-testid="rating-input-label">
+      <label
+        className={ styles[labelsClass] }
+        htmlFor="rating-input"
+        data-testid="rating-input-label"
+      >
         Avaliação
         <input
           type="number"
@@ -187,15 +211,18 @@ class AddMovie extends Component {
 
   render() {
     return (
-      <form data-testid="add-movie-form">
-        { this.renderTitleInput() }
-        { this.renderSubtitleInput() }
-        { this.renderImageInput() }
-        { this.renderStoryLineInput() }
-        { this.renderRatingInput() }
-        { this.renderGenreInput() }
-        { this.renderFormButton() }
-      </form>
+      <section className={ styles['add-movie-wrapper'] }>
+        <h2 style={ { textAlign: 'center' } }>Adicione um filme </h2>
+        <form className={ styles['add-movie'] } data-testid="add-movie-form">
+          { this.renderTitleInput() }
+          { this.renderSubtitleInput() }
+          { this.renderImageInput() }
+          { this.renderStoryLineInput() }
+          { this.renderRatingInput() }
+          { this.renderGenreInput() }
+          { this.renderFormButton() }
+        </form>
+      </section>
     );
   }
 }
