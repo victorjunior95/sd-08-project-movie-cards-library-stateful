@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import AddMovie from './AddMovie';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
-import movies from '../data';
 
 class MovieLibrary extends React.Component {
   constructor(props) {
-    super(props);
+    super();
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
@@ -37,6 +36,7 @@ class MovieLibrary extends React.Component {
   }
 
   callbackParaAddmovie(object) {
+    const { movies } = this.state;
     this.setState((
       { movies: [...movies, object] }
     ));
