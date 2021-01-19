@@ -15,6 +15,7 @@ class MovieLibrary extends Component {
       bookmarkedOnly: false,
       selectedGenre: '',
       movies,
+      filteredMovies: movies,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,23 +26,46 @@ class MovieLibrary extends Component {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }, () => this.filterMovies());
+  }
+
+  filterMovies() {
+    const { movies, bookmarkedOnly, selectedGenre, searchText } = this.state;
+    let filteredMovies = movies;
+    if (bookmarkedOnly) {
+      filteredMovies = filteredMovies.filter((movie) => movie.bookmarked);
+    }
+    if (selectedGenre) {
+      filteredMovies = filteredMovies.filter((movie) => movie.genre === selectedGenre);
+    }
+    if (searchText) {
+      filteredMovies = filteredMovies.filter((movie) => movie.title
+        .concat(movie.subtitle, movie.storyline).match(new RegExp(searchText, 'i')));
+    }
+    this.setState({ filteredMovies });
+  }
+
+  renderSearchBar() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    return (
+      <SearchBar
+        searchText={ searchText }
+        onSearchTextChange={ this.handleInputChange }
+        bookmarkedOnly={ bookmarkedOnly }
+        onBookmarkedChange={ this.handleInputChange }
+        selectedGenre={ selectedGenre }
+        onSelectedGenreChange={ this.handleInputChange }
+      />
+    );
   }
 
   render() {
-    const { movies, searchText, bookmarkedOnly, selectedGenre } = this.state;
+    const { filteredMovies } = this.state;
     return (
       <div>
         <h2> My awesome movie library </h2>
-        <SearchBar
-          searchText={ searchText }
-          onSearchTextChange={ this.handleInputChange }
-          bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.handleInputChange }
-          selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ this.handleInputChange }
-        />
-        <MovieList movies={ movies } />
+        { this.renderSearchBar() }
+        <MovieList movies={ filteredMovies } />
         <AddMovie />
       </div>
     );
