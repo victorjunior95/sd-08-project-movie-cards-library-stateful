@@ -38,7 +38,7 @@ class AddMovie extends React.Component {
   handleGenreChange(event) {
     const inputGenre = event.target.value;
     this.setState({
-      rating: inputGenre,
+      genre: inputGenre,
     });
   }
 
