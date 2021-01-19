@@ -1,38 +1,74 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-  render() {
-    const { 
-      searchText,
-      onSearchTextChange,
-      bookmarkedOnly,
-      onBookmarkedChange,
-      selectedGenre,
-      onSelectedGenreChange,
-    } = this.props;
+  genero() {
+    const { searchText, onSearchTextChange } = this.props;
+    return (
+      <label data-testid="text-input-label" htmlFor="text-input">
+        Inclui o texto:
+        <input
+          type="text"
+          value={ searchText }
+          onChange={ onSearchTextChange }
+          data-testid="text-input"
+        />
+      </label>
+    );
+  }
 
+  favoritos() {
+    const { bookmarkedOnly, onBookmarkedChange } = this.props;
+    return (
+      <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
+        Mostrar somente favoritos
+        <input
+          type="checkbox"
+          checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
+          data-testid="checkbox-input"
+        />
+      </label>
+    );
+  }
+
+  filtrar() {
+    const { selectedGenre, onSelectedGenreChange } = this.props;
+    return (
+      <label data-testid="select-input-label" htmlFor="select-input">
+        Filtrar por gênero
+        <select
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+          data-testid="select-input"
+        >
+          <option data-testid="select-option" value="">Todos</option>
+          <option data-testid="select-option" value="action">Ação</option>
+          <option data-testid="select-option" value="comedy">Comédia</option>
+          <option data-testid="select-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
+  render() {
     return (
       <form data-testid="search-bar-form">
-        <label data-testid="text-input-label">
-          Inclui o texto:
-        <input type="text" value={searchText} onChange={onSearchTextChange} data-testid="text-input" />
-        </label>
-        <label data-testid="checkbox-input-label">
-          Mostrar somente favoritos
-          <input type="checkbox" checked={bookmarkedOnly} onChange={onBookmarkedChange} data-testid="checkbox-input"/>
-        </label>
-        <label data-testid="select-input-label">
-          Filtrar por gênero
-          <select value={selectedGenre} onChange={onSelectedGenreChange} data-testid="select-input">
-            <option data-testid="select-option" value=''>Todos</option>
-            <option data-testid="select-option" value='action'>Ação</option>
-            <option data-testid="select-option" value='comedy'>Comédia</option>
-            <option data-testid="select-option" value='thriller'>Suspense</option>
-          </select> 
-        </label>
+        { this.genero() }
+        { this.favoritos() }
+        { this.filtrar() }
       </form>
     );
   }
 }
+
+SearchBar.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  storyline: PropTypes.string,
+  imagePath: PropTypes.string,
+  rating: PropTypes.number,
+  genre: PropTypes.string,
+}.isRequired;
 
 export default SearchBar;
