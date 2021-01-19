@@ -7,11 +7,7 @@
     "minimist": ">=1.2.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-<<<<<<< HEAD
     "react-scripts": "3.4.0"
-=======
-    "react-scripts": "^3.4.4"
->>>>>>> ed9b3735b0db47e753a25f535b15b29721bafcbe
   },
   "scripts": {
     "start": "react-scripts start",
