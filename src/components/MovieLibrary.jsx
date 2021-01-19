@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import AddMovie from './AddMovie';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
+import movies from '../data';
 
 class MovieLibrary extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class MovieLibrary extends React.Component {
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+    this.callbackParaAddmovie = this.callbackParaAddmovie.bind(this);
 
     this.state = {
       searchText: '',
@@ -34,8 +36,10 @@ class MovieLibrary extends React.Component {
     this.setState({ selectedGenre: target.value });
   }
 
-  callbackParaAddmovie() {
-    console.log('a');
+  callbackParaAddmovie(object) {
+    this.setState((
+      { movies: [...movies, object] }
+    ));
   }
 
   filter(array, searchText, selectedGenre, bookmarkedOnly) {
@@ -49,7 +53,8 @@ class MovieLibrary extends React.Component {
           return a;
         } return a.genre === selectedGenre;
       }).filter((name) => (name.title.toUpperCase().includes(searchText.toUpperCase()))
-      || name.subtitle.toUpperCase().includes(searchText.toUpperCase()))
+      || (name.subtitle.toUpperCase().includes(searchText.toUpperCase()))
+      || (name.storyline.toUpperCase().includes(searchText.toUpperCase())))
     );
   }
 
