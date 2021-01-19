@@ -1,7 +1,21 @@
 import React from 'react';
-import InputField from './InputField';
 
 class SearchBar extends React.Component {
+  renderInputField(props) {
+    return (
+      <label data-testid="text-input-label" htmlFor="input-search">
+        Inclui o texto
+        <input
+          name="input-search"
+          type="text"
+          value={ props.searchText }
+          onChange={ props.onSearchTextChange }
+          data-testid="text-input"
+        />
+      </label>
+    );
+  }
+
   renderCheckBoxField(props) {
     return (
       <label htmlFor="checkbox" data-testid="checkbox-input-label">
@@ -41,7 +55,7 @@ class SearchBar extends React.Component {
     const objProps = this.props;
     return (
       <form data-testid="search-bar-form">
-        <InputField objProps={ objProps } />
+        {this.renderInputField(objProps)}
         {this.renderCheckBoxField(objProps)}
         {this.renderSelectField(objProps)}
       </form>
