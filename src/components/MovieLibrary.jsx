@@ -16,14 +16,31 @@ class MovieLibrary extends Component {
       selectedGenre: '',
       movies,
     };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    const { target } = event;
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+
+    this.setState({ [name]: value });
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies, searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
       <div>
         <h2> My awesome movie library </h2>
-        <SearchBar />
+        <SearchBar
+          searchText={ searchText }
+          onSearchTextChange={ this.handleInputChange }
+          bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ this.handleInputChange }
+          selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ this.handleInputChange }
+        />
         <MovieList movies={ movies } />
         <AddMovie />
       </div>
@@ -31,8 +48,8 @@ class MovieLibrary extends Component {
   }
 }
 
-// MovieLibrary.propTypes = {
-//   movies: PropTypes.arrayOf(PropTypes.objects).isRequired,
-// };
+MovieLibrary.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.objects).isRequired,
+};
 
 export default MovieLibrary;
