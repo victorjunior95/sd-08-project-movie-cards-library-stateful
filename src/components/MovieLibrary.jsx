@@ -1,12 +1,12 @@
 // implement MovieLibrary component here
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
-import AddMovie from './AddMovie';
+// import AddMovie from './AddMovie';
 
-class MovieLibrary extends Component {
+class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
     const { movies } = this.props;
@@ -14,7 +14,7 @@ class MovieLibrary extends Component {
       searchText: 'My Text',
       bookmarkedOnly: true,
       selectedGenre: '',
-      movies,
+      movies: [movies],
     };
   }
 
@@ -29,7 +29,7 @@ class MovieLibrary extends Component {
           selectedGenre={ selectedGenre }
         />
         <MovieList movies={ movies } />
-        <AddMovie />
+        {/* <AddMovie /> */}
       </div>
     );
   }
