@@ -50,11 +50,9 @@ class MovieLibrary extends Component {
     });
   }
 
-  addNewMovie(e) {
+  addNewMovie(newMovie) {
     const { movies } = this.state;
-    this.setState({
-      movies: [...movies, e.target.value],
-    });
+    this.setState({ movies: [...movies, newMovie] });
   }
 
   renderMovies() {
