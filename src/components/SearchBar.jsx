@@ -50,6 +50,7 @@ class SearchBar extends React.Component {
           name="selectedGenre"
           value={ selectedGenre }
           onChange={ onSelectedGenreChange }
+          data-testid="select-input"
         >
           {options.map(({ text, value }) => (
             <option key={ text } data-testid="select-option" value={ value }>
