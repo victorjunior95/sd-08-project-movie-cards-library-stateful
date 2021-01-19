@@ -138,9 +138,23 @@ class AddMovie extends React.Component {
     );
   }
 
-  // eslint-disable-next-line max-lines-per-function
-  render() {
+  renderButton() {
     const { onClick } = this.props;
+    return (
+      <button
+        type="button"
+        data-testid="send-button"
+        onClick={ () => {
+          onClick(this.state);
+          this.resetState();
+        } }
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
+  render() {
     return (
       <form data-testid="add-movie-form" className="add-movie">
         { this.renderTitle() }
@@ -149,16 +163,7 @@ class AddMovie extends React.Component {
         { this.renderStoryline() }
         { this.renderRating() }
         { this.renderGenre() }
-        <button
-          type="button"
-          data-testid="send-button"
-          onClick={ () => {
-            onClick(this.state);
-            this.resetState();
-          } }
-        >
-          Adicionar filme
-        </button>
+        { this.renderButton() }
       </form>
     );
   }
