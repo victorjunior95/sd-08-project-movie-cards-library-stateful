@@ -1,5 +1,5 @@
-// import { render } from 'enzyme'
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -33,6 +33,7 @@ class AddMovie extends React.Component {
         Título
         <input
           type="text"
+          name="title"
           value={ title }
           data-testid="title-input"
           onChange={ this.onChange }
@@ -48,6 +49,7 @@ class AddMovie extends React.Component {
         Subtítulo
         <input
           type="text"
+          name="subtitle"
           value={ subtitle }
           data-testid="subtitle-input"
           onChange={ this.onChange }
@@ -63,6 +65,7 @@ class AddMovie extends React.Component {
         Imagem
         <input
           type="text"
+          name="imagePath"
           value={ imagePath }
           data-testid="image-input"
           onChange={ this.onChange }
@@ -77,7 +80,7 @@ class AddMovie extends React.Component {
       <label data-testid="storyline-input-label" htmlFor="storyline-input">
         Sinopse
         <textarea
-          name="estadoFavorito"
+          name="storyline"
           value={ storyline }
           data-testid="storyline-input"
           onChange={ this.onChange }
@@ -93,6 +96,7 @@ class AddMovie extends React.Component {
         Avaliação
         <input
           type="number"
+          name="rating"
           value={ rating }
           data-testid="rating-input"
           onChange={ this.onChange }
@@ -106,7 +110,12 @@ class AddMovie extends React.Component {
     return (
       <label data-testid="genre-input-label" htmlFor="genre-input">
         Gênero
-        <select value={ genre } data-testid="genre-input">
+        <select
+          value={ genre }
+          name="genre"
+          data-testid="genre-input"
+          onChange={ this.onChange }
+        >
           <option data-testid="genre-option" value="action">Ação</option>
           <option data-testid="genre-option" value="comedy">Comédia</option>
           <option data-testid="genre-option" value="thriller">Suspense</option>
@@ -117,7 +126,6 @@ class AddMovie extends React.Component {
 
   render() {
     // const { onClick } = this.props
-
     return (
       <form data-testid="add-movie-form">
         { this.titulo() }
@@ -125,6 +133,7 @@ class AddMovie extends React.Component {
         { this.imagem() }
         { this.sinopse() }
         { this.avaliacao() }
+        { this.genero() }
         <button
           type="button"
           data-testid="send-button"
@@ -136,5 +145,9 @@ class AddMovie extends React.Component {
     );
   }
 }
+
+AddMovie.propTypes = {
+  onChange: PropTypes.func,
+}.isRequired;
 
 export default AddMovie;
