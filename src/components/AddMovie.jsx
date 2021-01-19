@@ -23,7 +23,7 @@ class AddMovie extends React.Component {
     });
   }
 
-  renderInputTextAddMovie() {
+  renderInputTextTitle() {
     const { title } = this.state;
     return (
       <label htmlFor="movie-title" data-testid="title-input-label">
@@ -39,12 +39,45 @@ class AddMovie extends React.Component {
     );
   }
 
+  renderInputTextSubtitle() {
+    const { subtitle } = this.state;
+    return (
+      <label htmlFor="movie-subtitle" data-testid="subtitle-input-label">
+        Subtítulo
+        <input
+          name="subtitle"
+          id="movie-title"
+          value={ subtitle }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
+  renderInputTextImage() {
+    const { imagemPath } = this.state;
+    return (
+      <label htmlFor="movie-image" data-testid="image-input-label">
+        <input
+          name="imagemPath"
+          id="movie-image"
+          value={ imagemPath }
+          data-testid="image-input"
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
+  render
+
   render() {
-    // const { subtitle, title, imagemPath, storyline, rating, genre} = this.state;
     const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
-        { this.renderInputTextAddMovie() }
+        { this.renderInputTextTitle() }
+        { this.renderInputTextSubtitle() }
+        { this.renderInputTextImage() }
       </form>
     );
   }
