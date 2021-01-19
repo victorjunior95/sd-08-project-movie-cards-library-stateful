@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class SearchBar extends React.Component {
   inputText(searchText, onSearchTextChange) {
     return (
-      <label htmlFor="searchText" data-testid="text-input-label">
+      <label htmlFor="searchText" data-testid="text-input-label" className="label">
         Inclui o texto:
         <input
           type="text"
@@ -13,6 +13,7 @@ class SearchBar extends React.Component {
           value={ searchText }
           onChange={ onSearchTextChange }
           data-testid="text-input"
+          className="input"
         />
       </label>
     );
@@ -20,8 +21,11 @@ class SearchBar extends React.Component {
 
   inputCheckBox(bookmarkedOnly, onBookmarkedChange) {
     return (
-      <label htmlFor="bookmarkedOnly" data-testid="checkbox-input-label">
-        Mostrar somente favoritos
+      <label
+        htmlFor="bookmarkedOnly"
+        data-testid="checkbox-input-label"
+        className="checkbox-label"
+      >
         <input
           type="checkbox"
           name="bookmarkedOnly"
@@ -29,14 +33,16 @@ class SearchBar extends React.Component {
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
+          className="checkbox-input"
         />
+        Mostrar somente favoritos
       </label>
     );
   }
 
   selectGenre(selectedGenre, onSelectedGenreChange) {
     return (
-      <label htmlFor="selectedGenre" data-testid="select-input-label">
+      <label htmlFor="selectedGenre" data-testid="select-input-label" className="label">
         Filtrar por gênero
         <select
           name="selectedGenre"
@@ -44,6 +50,7 @@ class SearchBar extends React.Component {
           value={ selectedGenre }
           onChange={ onSelectedGenreChange }
           data-testid="select-input"
+          className="input"
         >
           <option data-testid="select-option" value="">Todos</option>
           <option data-testid="select-option" value="action">Ação</option>
@@ -65,7 +72,7 @@ class SearchBar extends React.Component {
     } = this.props;
 
     return (
-      <form data-testid="search-bar-form">
+      <form data-testid="search-bar-form" className="form">
         {this.inputText(searchText, onSearchTextChange)}
         {this.inputCheckBox(bookmarkedOnly, onBookmarkedChange)}
         {this.selectGenre(selectedGenre, onSelectedGenreChange)}
