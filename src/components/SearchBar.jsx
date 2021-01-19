@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   renderCheckox() {
@@ -36,4 +37,11 @@ class SearchBar extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  onBookmarkChange: PropTypes.func.isRequired,
+};
 export default SearchBar;
