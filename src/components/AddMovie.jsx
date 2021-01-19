@@ -1,6 +1,7 @@
 // implement AddMovie component here
 import React from 'react';
 import PropTypes from 'prop-types';
+import movies from '../data';
 
 const renderInput = (type, name, value, onChange) => (
   <label htmlFor={ `AddMovie-${type}` } data-testid={ `${type}-input-label` }>
@@ -15,15 +16,15 @@ const renderInput = (type, name, value, onChange) => (
   </label>
 );
 
-const renderTextArea = (storyLine, onChange) => (
-  <label htmlFor="storyLine" data-testid="storyline-input-label">
+const renderTextArea = (storyline, onChange) => (
+  <label htmlFor="storyline" data-testid="storyline-input-label">
     Sinopse
     <textarea
       name=""
-      id="AddMovie-storyLine"
+      id="AddMovie-storyline"
       cols="30"
       rows="10"
-      value={ storyLine }
+      value={ storyline }
       data-testid="storyline-input"
       onChange={ onChange }
     />
@@ -64,7 +65,7 @@ const renderButton = (onClick, addMovieThis) => (
   <button
     type="button"
     data-testid="send-button"
-    onClick={ onClick(addMovieThis) }
+    onClick={ onClick(addMovieThis, movies) }
   >
     Adicionar Filme
   </button>
@@ -78,7 +79,7 @@ class AddMovie extends React.Component {
       subtitle: '',
       title: '',
       imagePath: '',
-      storyLine: '',
+      storyline: '',
       rating: 0,
       genre: 'action',
     };
@@ -92,13 +93,13 @@ class AddMovie extends React.Component {
 
   render() {
     const { onClick } = this.props;
-    const { subtitle, title, imagePath, storyLine, rating, genre } = this.state;
+    const { subtitle, title, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
         {renderInput('title', 'Título', title, this.refreshState)}
         {renderInput('subtitle', 'Subtítulo', subtitle, this.refreshState)}
         {renderInput('image', 'Imagem', imagePath, this.refreshState)}
-        {renderTextArea(storyLine, this.refreshState)}
+        {renderTextArea(storyline, this.refreshState)}
         {renderInputNumber(rating, this.refreshState)}
         {renderSelect(genre, this.refreshState)}
         {renderButton(onClick, this)}
