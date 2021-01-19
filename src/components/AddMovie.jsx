@@ -9,7 +9,7 @@ class AddMovie extends React.Component {
       subtitle: '',
       title: '',
       imagePath: '',
-      // storyline: '',
+      storyline: '',
       // rating: 0,
       // genre: 'action',
     };
@@ -69,12 +69,28 @@ class AddMovie extends React.Component {
     );
   }
 
+  renderInputTextArea() {
+    const { storyline } = this.state;
+    return (
+      <label htmlFor="storyline" data-testid="storyline-input-label">
+        Sinopse
+        <textarea
+          name="storyline"
+          value={ storyline }
+          data-testid="storyline-input"
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
         {this.renderInputFieldTitle()}
         {this.renderInputFieldSubtitle()}
         {this.renderInputFieldPath()}
+        {this.renderInputTextArea()}
       </form>);
   }
 }
