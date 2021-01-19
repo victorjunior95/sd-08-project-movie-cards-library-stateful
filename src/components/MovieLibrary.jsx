@@ -14,17 +14,18 @@ class MovieLibrary extends React.Component {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      movies,
+      movies: [...movies],
     };
     this.handleChange = this.handleChange.bind(this);
     this.addMovie = this.addMovie.bind(this);
+    this.filterMovie = this.filterMovie.bind(this);
   }
 
   handleChange(event) {
     const { target } = event;
     this.setState({
       [target.name]: target.value === 'checkbox' ? target.checked : target.value,
-    });
+    }, () => this.filterMovie());
   }
 
   addMovie(newMovie) {
@@ -34,15 +35,23 @@ class MovieLibrary extends React.Component {
     });
   }
 
-  // filterMovie() {
-  //   const { movies } = this.state;
-  //   const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-  //   let filteredMovie = movies;
-  //   if (bookmarkedOnly) {
-  //     filteredMovie = filteredMovie.filter((movie) => movie.bookmarked);
-  //   }
-  //   this.setState({ movies: filteredMovie });
-  // }
+  filterMovie() {
+    const { movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    let filteredMovie = movies;
+    if (searchText) {
+      filteredMovie = filteredMovie.filter((movie) => movie.title.includes(searchText)
+        || movie.subtitle.includes(searchText)
+        || movie.storyline.includes(searchText));
+    }
+    if (bookmarkedOnly) {
+      filteredMovie = filteredMovie.filter((movie) => movie.bookmarked);
+    }
+    if (selectedGenre) {
+      filteredMovie = filteredMovie.filter((movie) => movie.genre === selectedGenre);
+    }
+    this.setState({ movies: filteredMovie });
+  }
 
   render() {
     const { movies } = this.state;
