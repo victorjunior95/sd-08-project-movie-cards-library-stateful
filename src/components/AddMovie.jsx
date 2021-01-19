@@ -24,21 +24,22 @@ class AddMovie extends React.Component {
   onChange({ target }) {
     const { name, value } = target;
     this.setState({
-      [name]: value,
+      [name]: (name === 'rating' ? Number(value) : value),
     });
   }
 
   textInput(name, label) {
     const value = this.state;
+    const nameState = (name === 'image' ? 'imagePath' : name);
     return (
       <label htmlFor={ `${name}-input` } data-testid={ `${name}-input-label` }>
         {label}
         <input
           type="text"
-          value={ value[name] || value[`${name}Path`] }
+          value={ value[nameState] }
           id={ `${name}-input` }
           data-testid={ `${name}-input` }
-          name={ name }
+          name={ nameState }
           onChange={ this.onChange }
         />
       </label>
