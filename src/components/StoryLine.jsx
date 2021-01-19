@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StoryLine = (props) => {
-  const { onChange } = props;
+  const { onChange, value } = props;
 
   return (
     <label htmlFor="storyline" data-testid="storyline-input-label">
@@ -13,6 +13,7 @@ const StoryLine = (props) => {
         rows="10"
         data-testid="storyline-input"
         onChange={ onChange }
+        value={ value }
       />
     </label>
   );
@@ -20,10 +21,12 @@ const StoryLine = (props) => {
 
 StoryLine.defaultProps = {
   onChange: null,
+  value: '',
 };
 
 StoryLine.propTypes = {
   onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default StoryLine;

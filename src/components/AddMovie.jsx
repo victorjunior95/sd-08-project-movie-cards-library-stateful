@@ -57,28 +57,63 @@ const DEF_SELECT_GENRE_PROPS = {
 class AddMovie extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
+    this.state = {
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.resetState = this.resetState.bind(this);
+  }
+
+  handleSubmit() {
+    const { onClick } = this.props;
+    if (onClick) {
+      const data = this.state;
+      // this.setState({ title: '' });
+      this.resetState();
+      onClick(data);
+    }
   }
 
   handleChange(e) {
-    // e.preventDefault();
-    // console.log(e.target);
-    // this.setState({ [e.target.name]: e.target.value })
-    console.log(e.target.name);
+    this.setState({ [e.target.name]: e.target.value });
+    // console.log(this.state);
+    // console.log(e.target.name);
+  }
+
+  resetState() {
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
   }
 
   InputTitle() {
+    const { title } = this.state;
     return (
       <>
-        <Input type="text" name="title" labelName="Título" onChange={ this.handleChange } />
+        <Input
+          name="title"
+          labelName="Título"
+          onChange={ this.handleChange }
+          value={ title || '' }
+        />
         <br />
       </>
     );
   }
 
   InputSubtitle() {
+    const { subtitle } = this.state;
     return (
       <>
         <Input
@@ -86,6 +121,7 @@ class AddMovie extends Component {
           name="subtitle"
           labelName="Subtítulo"
           onChange={ this.handleChange }
+          value={ subtitle }
         />
         <br />
       </>
@@ -93,6 +129,7 @@ class AddMovie extends Component {
   }
 
   InputRating() {
+    const { rating } = this.state;
     return (
       <>
         <Input
@@ -100,6 +137,23 @@ class AddMovie extends Component {
           name="rating"
           labelName="Avaliação"
           onChange={ this.handleChange }
+          value={ rating }
+        />
+        <br />
+      </>
+    );
+  }
+
+  InputImagePath() {
+    const { imagePath } = this.state;
+    return (
+      <>
+        <Input
+          type="text"
+          name="imagePath"
+          labelName="Imagem"
+          onChange={ this.handleChange }
+          value={ imagePath }
         />
         <br />
       </>
@@ -107,21 +161,24 @@ class AddMovie extends Component {
   }
 
   InputStoryLine() {
+    const { storyline } = this.state;
     return (
       <>
-        <StoryLine onChange={ this.handleChange } />
+        <StoryLine onChange={ this.handleChange } value={ storyline } />
         <br />
       </>
     );
   }
 
   InputGenre() {
+    const { genre } = this.state;
     return (
       <>
         <SelectGenre
           { ...DEF_SELECT_GENRE_PROPS }
           optionList={ optionList }
           onChange={ this.handleChange }
+          value={ genre }
         />
         <br />
       </>
@@ -134,9 +191,10 @@ class AddMovie extends Component {
         {this.InputTitle()}
         {this.InputSubtitle()}
         {this.InputStoryLine()}
+        {this.InputImagePath()}
         {this.InputRating()}
         {this.InputGenre()}
-        <button type="button" data-testid="send-button">
+        <button type="button" data-testid="send-button" onClick={ this.handleSubmit }>
           Adicionar filme
         </button>
       </form>
@@ -144,8 +202,12 @@ class AddMovie extends Component {
   }
 }
 
-// AddMovie.propTypes = {
-//   onClick: PropTypes.func.isRequired,
-// };
+AddMovie.defaultProps = {
+  onClick: null,
+};
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func,
+};
 
 export default AddMovie;

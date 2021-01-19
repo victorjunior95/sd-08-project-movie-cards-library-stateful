@@ -7,19 +7,20 @@ import AddMovie from './AddMovie';
 
 function MovieLibrary(props) {
   const { movies } = props;
-  // const handleAddMovie = (e) => {
-  //   // e.preventDefault();
-  //   console.log('sss');
-  // };
+
+  const handleAddMovie = (data) => {
+    // e.preventDefault();
+    // console.log(data);
+    if (data) movies.push(data);
+  };
   return (
     <div>
       <h2> My awesome movie library </h2>
-      <AddMovie />
+      <AddMovie movies={ movies } onClick={ handleAddMovie } />
       <br />
       <br />
-      <SearchBar />
       <MovieList movies={ movies } />
-      {/* <AddMovie onClick={ handleAddMovie } /> */}
+      <SearchBar />
     </div>
   );
 }
