@@ -11,8 +11,8 @@ class MovieLibrary extends React.Component {
     super(props);
     const { movies } = this.props;
     this.state = {
-      searchText: 'My Text',
-      bookmarkedOnly: true,
+      searchText: '',
+      bookmarkedOnly: false,
       selectedGenre: '',
       movies: [movies],
     };
@@ -32,7 +32,7 @@ class MovieLibrary extends React.Component {
           bookmarkedOnly={ bookmarkedOnly }
           selectedGenre={ selectedGenre }
         />
-        <MovieList movies={ movies } />
+        <MovieList movies={ movies.find((e) => e[0]) } />
         <AddMovie onClick={ this.onClick } />
       </div>
     );
