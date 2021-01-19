@@ -28,6 +28,15 @@ class AddMovie extends React.Component {
     );
   }
 
+  inputSinopse() {
+    return (
+      <label data-testid="storyline-input-label" htmlFor="sinopse">
+        Sinopse
+        <input data-testid="storyline-input" id="sinopse" type="text" />
+      </label>
+    );
+  }
+
   render() {
     return (
       <div>
@@ -35,6 +44,7 @@ class AddMovie extends React.Component {
           {this.inputTitle()}
           {this.inputSubtitle()}
           {this.inputImage()}
+          {this.inputSinopse()}
         </form>
       </div>
     );
