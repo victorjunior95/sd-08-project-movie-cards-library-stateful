@@ -9,13 +9,14 @@ class AddMovie extends React.Component {
       title: '',
       imagePath: '',
       storyline: '',
-      // rating: 0,
+      rating: 0,
       // genre: 'action',
     };
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleSubtitleInput = this.handleSubtitleInput.bind(this);
     this.handleImageInput = this.handleImageInput.bind(this);
     this.handleStorylineInput = this.handleStorylineInput.bind(this);
+    this.handleRatingInput = this.handleRatingInput.bind(this);
   }
 
   handleTitleInput(event) {
@@ -40,6 +41,12 @@ class AddMovie extends React.Component {
     const { storyline } = this.state;
     this.setState({ storyline: event.target.value });
     console.log(storyline);
+  }
+
+  handleRatingInput(event) {
+    const { rating } = this.state;
+    this.setState({ rating: event.target.value });
+    console.log(rating);
   }
 
   titleInputLabel(title, handleTitleInput) {
@@ -106,16 +113,35 @@ class AddMovie extends React.Component {
     );
   }
 
+  ratingInputLabel(rating, handleRatingInput) {
+    return (
+      <label htmlFor="input" data-testid="rating-input-label">
+        Avaliação
+        <input
+          type="number"
+          name="rating-input"
+          id="rating-input"
+          data-testid="rating-input"
+          value={ rating }
+          onChange={ handleRatingInput }
+          min="0"
+          max="10"
+        />
+      </label>
+    );
+  }
+
   render() {
-    const { title, subtitle, imagePath, storyline } = this.state;
-    const { handleTitleInput, handleSubtitleInput,
-      handleImageInput, handleStorylineInput } = this;
+    const { title, subtitle, imagePath, storyline, rating } = this.state;
+    const { handleTitleInput, handleSubtitleInput, handleImageInput, handleStorylineInput,
+      handleRatingInput } = this;
     return (
       <form action="" data-testid="add-movie-form">
         {this.titleInputLabel(title, handleTitleInput)}
         {this.subtitleInputLabel(subtitle, handleSubtitleInput)}
         {this.imageInputLabel(imagePath, handleImageInput)}
         {this.storylineInputLabel(storyline, handleStorylineInput)}
+        {this.ratingInputLabel(rating, handleRatingInput)}
       </form>
     );
   }
