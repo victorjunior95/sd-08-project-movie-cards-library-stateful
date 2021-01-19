@@ -3,15 +3,16 @@ import React, { Component } from 'react';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
-import MoviesBase from '../data';
 
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
 
+    const { movies } = this.props;
+
     this.state = {
-      movies: MoviesBase,
-      originalMovies: MoviesBase,
+      movies,
+      originalMovies: movies,
       searchText: '',
       selectedGenre: '',
       bookmarkedOnly: false,
