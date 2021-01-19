@@ -64,4 +64,13 @@ class SearchBar extends React.Component {
   }
 }
 
+SearchBar.propTypes = {
+  title: PropTypes.string,
+  subtitle: PropTypes.string,
+  storyline: PropTypes.string,
+  imagePath: PropTypes.string,
+  rating: PropTypes.number,
+  genre: PropTypes.string,
+}.isRequired;
+
 export default SearchBar;
