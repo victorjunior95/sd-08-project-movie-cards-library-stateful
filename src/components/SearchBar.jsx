@@ -29,17 +29,22 @@ class SearchBar extends React.Component {
     );
   }
 
-  // renderSelect() {
-  //   const { selectedGenre, onSelectedGenreChange } = this.props;
-  //   return (
-  //     <select
-  //       name=""
-  //       id="">
-  //       value={ selectedGenre}
-  //       onChange={ onSelectedGenreChange }
-  //       </select>
-  //   );
-  // }
+  renderSelect() {
+    const { selectedGenre, onSelectedGenreChange } = this.props;
+    return (
+      <select
+        onChange={ onSelectedGenreChange }
+        value={ selectedGenre }
+        id="select-input"
+        data-testid="select-input"
+      >
+        <option data-testid="select-option" value="">Todos</option>
+        <option data-testid="select-option" value="action">Ação</option>
+        <option data-testid="select-option" value="comedy">Comédia</option>
+        <option data-testid="select-option" value="thriller">Suspense</option>
+      </select>
+    );
+  }
 
   render() {
     return (
@@ -52,10 +57,10 @@ class SearchBar extends React.Component {
           { this.renderCheckBox() }
           Mostrar somente favoritos
         </label>
-        {/* <label>
+        <label data-testid="select-input-label" htmlFor="select-input">
           Filtrar por gênero
-           { this.renderSelect }
-        </label> */}
+          { this.renderSelect() }
+        </label>
       </form>
     );
   }
@@ -66,6 +71,8 @@ SearchBar.propTypes = {
   onSearchTextChange: PropTypes.func.isRequired,
   bookmarkedOnly: PropTypes.bool.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
