@@ -1,6 +1,9 @@
 import React from 'react';
 
 import SearchBar from './SearchBar';
+import MovieList from './MovieList';
+import AddMovie from './AddMovie';
+import { parse } from 'acorn';
 
 
 class MovieLibrary extends React.Component {
@@ -13,6 +16,10 @@ class MovieLibrary extends React.Component {
       selectedGenre: '',
       movies: props.movies
     }
+  }
+
+  updateMovies = () => {
+
   }
 
   onSearchTextChange = ({ target }) => {
@@ -39,6 +46,16 @@ class MovieLibrary extends React.Component {
     })
   }
 
+  onClick = (obj) => {
+    let rate = parseFloat(obj.rating);
+    obj.rating = rate
+    let newList = this.state.movies;
+    newList.push(obj);
+    this.setState({ movies: newList });
+  }
+
+
+
   render() {
     return (
       <div>
@@ -50,7 +67,12 @@ class MovieLibrary extends React.Component {
           selectedGenre={this.state.selectedGenre}
           onSelectedGenreChange={this.onSelectedGenreChange}
         />
-
+        <MovieList
+          movies={this.state.movies}
+        />
+        <AddMovie
+          onClick={this.onClick}
+        />
       </div>
     );
   }
