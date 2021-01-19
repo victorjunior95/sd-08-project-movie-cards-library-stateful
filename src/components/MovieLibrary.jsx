@@ -55,8 +55,6 @@ class MovieLibrary extends React.Component {
   }
 
   addNewMovie(movie) {
-    // const movieAdded = this.state.movies.concat(movie);
-    // this.setState({ movies: movieAdded });
     this.setState((oldState) => ({ movies: [...oldState.movies, movie] }));
   }
 
@@ -81,6 +79,13 @@ class MovieLibrary extends React.Component {
   }
 }
 
-MovieLibrary.propTypes = { movies: PropTypes.array.isRequired };
+MovieLibrary.propTypes = { movies: PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  storyline: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  imagePath: PropTypes.string.isRequired,
+  map: PropTypes.func.isRequired,
+}).isRequired };
 
 export default MovieLibrary;
