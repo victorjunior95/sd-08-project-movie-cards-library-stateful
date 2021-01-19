@@ -22,7 +22,7 @@ class MovieLibray extends React.Component {
 }
 
 // MovieLibray.propTypes = {
-//   movies: q.shape({
+//   movies: PropTypes.shape({
 //     title: PropTypes.string.isRequired,
 //     subtitle: PropTypes.string.isRequired,
 //     storyline: PropTypes.string.isRequired,
