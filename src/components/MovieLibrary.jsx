@@ -20,21 +20,33 @@ class MovieLibrary extends Component {
     };
   }
 
-  onSearchTextChange(e) {
-    this.setState({
-      searchText: e.target.value,
+  async onSearchTextChange({ target }) {
+    const { searchText, movies } = this.state;
+    await this.setState({ searchText: target.value }, () => {
+      const newMovie = movies
+        .filter((item) => item.title.includes(searchText)
+          || item.subtitle.includes(target.value)
+          || item.storyline.includes(target.value));
+      this.setState({ movies: newMovie });
     });
   }
 
-  onBookmarkedChange(e) {
-    this.setState({
-      bookmarkedOnly: e.target.value,
+  async onBookmarkedChange({ target }) {
+    const { movies } = this.state;
+    console.log(target.checked);
+    this.setState({ bookmarkedOnly: target.checked }, () => {
+      const newMovie = movies
+        .filter((item) => item.bookmarked === target.checked);
+      this.setState({ movies: newMovie });
     });
   }
 
-  onSelectedGenreChange(e) {
-    this.setState({
-      selectedGenre: e.target.value,
+  onSelectedGenreChange({ target }) {
+    const { movies } = this.state;
+    this.setState({ selectedGenre: target.value }, () => {
+      const newMovie = movies
+        .filter((item) => item.genre === target.value);
+      this.setState({ movies: newMovie });
     });
   }
 
@@ -71,5 +83,7 @@ class MovieLibrary extends Component {
   }
 }
 
-MovieLibrary.propTypes = { movies: PropTypes.arrayOf(PropTypes.string).isRequired };
+MovieLibrary.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 export default MovieLibrary;
