@@ -2,39 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TextInputLabel from '../myComponents/TextInputLabel';
 import CheckBoxInputLabel from '../myComponents/CheckBoxInputLabel';
-import SelectInputLabel from '../myComponents/SelectInputLabel';
+import SelectInputLabelGenreFilter from '../myComponents/SelectInputLabelGenreFilter';
 
 class SearchBar extends React.Component {
-  createTextInput(searchText, onSearchTextChange) {
+  createTextInputLabel(value, onChange) {
     return (
       <TextInputLabel
-        value={ searchText }
-        onChange={ onSearchTextChange }
-        dataTesteId="text-input"
-        dataLabelTesteId="text-input-label"
+        labelText="Inclui o texto"
+        name="text-input"
+        type="text"
+        value={ value }
+        onChange={ onChange }
+        dataTestId="text-input"
+        dataLabelTestId="text-input-label"
       />
     );
   }
 
-  createCheckBoxInput(bookmarkedOnly, onBookmarkedChange) {
+  createCheckBoxInputLabel(checked, onChange) {
     return (
       <CheckBoxInputLabel
-        checked={ bookmarkedOnly }
-        onChange={ onBookmarkedChange }
+        checked={ checked }
+        onChange={ onChange }
         dataTesteId="checkbox-input"
         dataLabelTesteId="checkbox-input-label"
       />
     );
   }
 
-  createSelectInput(selectedGenre, onSelectedGenreChange) {
+  createSelectInputLabelGenreFilter(value, onChange) {
     return (
-      <SelectInputLabel
-        value={ selectedGenre }
-        onChange={ onSelectedGenreChange }
-        dataTesteId="select-input"
-        dataLabelTesteId="select-input-label"
-        dataOptTesteId="select-option"
+      <SelectInputLabelGenreFilter
+        labelText="Filtrar por gênero"
+        name="select-input"
+        value={ value }
+        onChange={ onChange }
+        dtId="select-input"
+        dtLabelId="select-input-label"
+        dtOptionId="select-option"
       />
     );
   }
@@ -45,9 +50,9 @@ class SearchBar extends React.Component {
     return (
       <div>
         <form data-testid="search-bar-form">
-          { this.createTextInput(searchText, onSearchTextChange) }
-          { this.createCheckBoxInput(bookmarkedOnly, onBookmarkedChange) }
-          { this.createSelectInput(selectedGenre, onSelectedGenreChange) }
+          { this.createTextInputLabel(searchText, onSearchTextChange) }
+          { this.createCheckBoxInputLabel(bookmarkedOnly, onBookmarkedChange) }
+          { this.createSelectInputLabelGenreFilter(selectedGenre, onSelectedGenreChange) }
         </form>
       </div>
     );
