@@ -5,10 +5,10 @@ class SelectGenre extends React.Component {
   render() {
     const { value, func } = this.props;
     return (
-      <label data-testid="select-input-label" htmlFor="genre">
+      <label data-testid="select-input-label" htmlFor="selectedGenre">
         Filtrar por gênero
         <select
-          name="genre"
+          name="selectedGenre"
           value={ value }
           onChange={ func }
           data-testid="select-input"

@@ -6,11 +6,11 @@ class InputText extends React.Component {
     const { value, func } = this.props;
 
     return (
-      <label data-testid="text-input-label" htmlFor="search">
+      <label data-testid="text-input-label" htmlFor="searchText">
         Inclui o texto
         <input
           type="text"
-          name="search"
+          name="searchText"
           value={ value }
           onChange={ func }
           data-testid="text-input"

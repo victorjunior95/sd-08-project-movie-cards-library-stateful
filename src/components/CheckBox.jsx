@@ -5,10 +5,10 @@ class CheckBox extends React.Component {
   render() {
     const { checked, func } = this.props;
     return (
-      <label data-testid="checkbox-input-label" htmlFor="bookmark">
+      <label data-testid="checkbox-input-label" htmlFor="bookmarkedOnly">
         Mostrar somente favoritos
         <input
-          name="bookmark"
+          name="bookmarkedOnly"
           type="checkbox"
           checked={ checked }
           onChange={ func }

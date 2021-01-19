@@ -1,6 +1,6 @@
 // implement AddMovie component here
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import InputTitle from './InputTitle';
 import InputSubtitle from './InputSubtitle';
 import InputImage from './InputImage';
@@ -44,7 +44,7 @@ class AddMovie extends React.Component {
 
   render() {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
-    const { onClick } = this.props;
+    // const { onClick } = this.props;
     return (
       <div>
         <InputTitle func={ this.handleChange } title={ title } />
@@ -58,9 +58,9 @@ class AddMovie extends React.Component {
     );
   }
 }
-
+/*
 AddMoviae.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
-
+*/
 export default AddMovie;
