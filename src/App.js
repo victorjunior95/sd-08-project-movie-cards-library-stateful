@@ -7,21 +7,34 @@ import SearchBar from './components/SearchBar';
 import Header from './components/Header';
 import AddMovie from './components/AddMovie';
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <SearchBar
-        earchText={ searchText }
-        onSearchTextChange={ onSearchTextChange }
-        bookmarkedOnly={ bookmarkedOnly }
-        onBookmarkedChange={ onBookmarkedChange }
-        selectedGenre={ selectedGenre }
-        onSelectedGenreChange={ onSelectedGenreChange }
-      />
-      <AddMovie onClick={ callback } />
-    </div>
-  );
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: 'Todos',
+    };
+  }
+
+  render() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    return (
+      <div className="App">
+        <Header />
+        <SearchBar
+          searchText={ searchText }
+          onSearchTextChange={ onSearchTextChange }
+          bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ onBookmarkedChange }
+          selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ onSelectedGenreChange }
+        />
+        <AddMovie OnClick={ callback } />
+      </div>
+    );
+  }
 }
 
 export default App;

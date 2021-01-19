@@ -1,8 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InputTextSearch from './InputTextSearch';
-import InputCheckbox from './InputCheckbox';
-import InputSelect from './InputSelect';
 
 class SearchBar extends React.Component {
   constructor() {
@@ -15,30 +12,51 @@ class SearchBar extends React.Component {
   renderInputText() {
     const { searchText, onSearchTextChange } = this.props;
     return (
-      <InputTextSearch
-        searchText={ searchText }
-        onSearchTextChange={ onSearchTextChange }
-      />
+      <label htmlFor="searchInput" data-testid="text-input-label">
+        Inclui o texto:
+        <input
+          value={ searchText }
+          onChange={ onSearchTextChange }
+          id="searchInput"
+          data-testid="text-input"
+        />
+      </label>
     );
   }
 
   renderCheckbox() {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
-      <InputCheckbox
-        bookmarkedOnly={ bookmarkedOnly }
-        onBookmarkedChange={ onBookmarkedChange }
-      />
+      <label htmlFor="checkbox" data-testid="checkbox-input-label">
+        Mostrar somente favoritos
+        <input
+          type="checkbox"
+          id="checkbox"
+          checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
+          data-testid="checkbox-input"
+        />
+      </label>
     );
   }
 
   renderSelect() {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <InputSelect
-        selectedGenre={ selectedGenre }
-        onSelectedGenreChange={ onSelectedGenreChange }
-      />
+      <label htmlFor="select" data-testid="select-input-label">
+        Filtrar por gênero
+        <select
+          value={ selectedGenre }
+          id="select"
+          onChange={ onSelectedGenreChange }
+          data-testid="select-input"
+        >
+          <option value="" data-testid="select-option">Todos</option>
+          <option value="action" data-testid="select-option">Ação</option>
+          <option value="comedy" data-testid="select-option">Comédia</option>
+          <option value="thriller" data-testid="select-option">Suspense</option>
+        </select>
+      </label>
     );
   }
 
