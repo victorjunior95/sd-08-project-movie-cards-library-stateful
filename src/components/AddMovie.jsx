@@ -112,12 +112,11 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     });
-    e.target.reset();
   }
 
   render() {
     return (
-      <form data-testid="add-movie-form" onSubmit={ this.submitForm }>
+      <form data-testid="add-movie-form">
         {this.textInput('title', 'Título')}
         {this.textInput('subtitle', 'Subtítulo')}
         {this.textInput('image', 'Imagem')}
@@ -125,6 +124,7 @@ class AddMovie extends React.Component {
         {this.numberInput()}
         {this.selectInput()}
         <button
+          onClick={ this.submitForm }
           type="submit"
           data-testid="send-button"
         >
