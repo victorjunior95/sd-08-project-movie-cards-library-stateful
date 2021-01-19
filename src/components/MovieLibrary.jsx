@@ -1,8 +1,8 @@
 // implement MovieLibrary component here
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MovieCard from './MovieCard';
 import SearchBar from './SearchBar';
+import MovieList from './MovieList';
 
 class MovieLibrary extends Component {
   constructor(props) {
@@ -21,6 +21,27 @@ class MovieLibrary extends Component {
     const { name, type, value, checked } = target;
     const newValue = type === 'checkbox' ? checked : value;
     this.setState({ [name]: newValue });
+  }
+
+  getFilteredMovies() {
+    const { movies } = this.props;
+    const { 'text-input': textInput, 'check-box': checkBox,
+      'select-input': selectInput } = this.state;
+    let result = [...movies];
+    if (textInput) {
+      result = result.filter((movie) => (
+        movie.title.includes(textInput)
+        || movie.subtitle.includes(textInput)
+        || movie.storyline.includes(textInput)
+      ));
+    }
+    if (selectInput) {
+      result = result.filter((movie) => movie.genre.includes(selectInput));
+    }
+    if (checkBox) {
+      result = result.filter((movie) => movie.bookmarked);
+    }
+    return result;
   }
 
   renderSearchBar() {
@@ -42,12 +63,15 @@ class MovieLibrary extends Component {
     );
   }
 
+  renderMovieList() {
+    return <MovieList movies={ this.getFilteredMovies() } />;
+  }
+
   render() {
-    const { movies } = this.props;
     return (
       <div>
         { this.renderSearchBar() }
-        { movies.map((movie, index) => <MovieCard key={ index } movie={ movie } />) }
+        { this.renderMovieList() }
       </div>
     );
   }
