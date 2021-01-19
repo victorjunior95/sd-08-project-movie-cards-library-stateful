@@ -77,7 +77,7 @@ class AddMovie extends React.Component {
         <input
           data-testid="image-input"
           type="text"
-          name="text"
+          name="imagePath"
           value={ imagePath }
           onChange={ handleChange }
         />
@@ -92,7 +92,7 @@ class AddMovie extends React.Component {
         <input
           data-testid="storyline-input"
           type="textarea"
-          name="textarea"
+          name="storyline"
           value={ storyline }
           onChange={ handleChange }
         />
@@ -107,7 +107,7 @@ class AddMovie extends React.Component {
         <input
           data-testid="rating-input"
           type="number"
-          name="number"
+          name="rating"
           min="0"
           max="5"
           value={ rating }
@@ -122,7 +122,7 @@ class AddMovie extends React.Component {
       <label htmlFor="selectList" data-testid="genre-input-label">
         Gênero
         <select
-          name="selectList"
+          name="genre"
           data-testid="genre-input"
           value={ selectedGenre }
           onChange={ onSelectedGenreChange }
