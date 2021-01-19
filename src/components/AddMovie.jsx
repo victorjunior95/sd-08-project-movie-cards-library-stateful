@@ -7,13 +7,14 @@ class AddMovie extends React.Component {
     this.state = {
       subtitle: '',
       title: '',
-      // imagePath: '',
+      imagePath: '',
       // storyline: '',
       // rating: 0,
       // genre: 'action',
     };
     this.handleTitleInput = this.handleTitleInput.bind(this);
     this.handleSubtitleInput = this.handleSubtitleInput.bind(this);
+    this.handleImageInput = this.handleImageInput.bind(this);
   }
 
   handleTitleInput(event) {
@@ -26,6 +27,12 @@ class AddMovie extends React.Component {
     const { subtitle } = this.state;
     this.setState({ subtitle: event.target.value });
     console.log(subtitle);
+  }
+
+  handleImageInput(event) {
+    const { imagePath } = this.state;
+    this.setState({ imagePath: event.target.value });
+    console.log(imagePath);
   }
 
   titleInputLabel(title, handleTitleInput) {
@@ -60,13 +67,30 @@ class AddMovie extends React.Component {
     );
   }
 
+  imageInputLabel(imagePath, handleImageInput) {
+    return (
+      <label htmlFor="input" data-testid="image-input-label">
+        Imagem
+        <input
+          type="text"
+          name="image-input"
+          id="image-input"
+          data-testid="image-input"
+          value={ imagePath }
+          onChange={ handleImageInput }
+        />
+      </label>
+    );
+  }
+
   render() {
-    const { title, subtitle } = this.state;
-    const { handleTitleInput, handleSubtitleInput } = this;
+    const { title, subtitle, imagePath } = this.state;
+    const { handleTitleInput, handleSubtitleInput, handleImageInput } = this;
     return (
       <form action="" data-testid="add-movie-form">
         {this.titleInputLabel(title, handleTitleInput)}
         {this.subtitleInputLabel(subtitle, handleSubtitleInput)}
+        {this.imageInputLabel(imagePath, handleImageInput)}
       </form>
     );
   }
