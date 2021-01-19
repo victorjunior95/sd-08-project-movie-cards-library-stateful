@@ -105,7 +105,7 @@ class AddMovie extends Component {
           name="title"
           labelName="Título"
           onChange={ this.handleChange }
-          value={ title || '' }
+          value={ title }
         />
         <br />
       </>
