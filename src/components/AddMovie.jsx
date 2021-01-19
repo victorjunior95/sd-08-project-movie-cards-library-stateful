@@ -9,6 +9,7 @@ class AddMovie extends React.Component {
     this.state = {
       title: '',
       subtitle: '',
+      imagePath: '',
     };
   }
 
@@ -48,11 +49,27 @@ class AddMovie extends React.Component {
     );
   }
 
+  imagePath() {
+    return (
+      <label data-testid="image-input-label" htmlFor="imagePath">
+        Imagem
+        <input
+          type="text"
+          name="imagePath"
+          data-testid="image-input"
+          onChange={ this.handleChange }
+          id="imagePath"
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
         {this.title()}
         {this.subtitle()}
+        {this.imagePath()}
       </form>
     );
   }
