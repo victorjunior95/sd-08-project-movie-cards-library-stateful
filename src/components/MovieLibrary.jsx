@@ -3,7 +3,6 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import MovieList from './MovieList';
 import AddMovie from './AddMovie';
-import { parse } from 'acorn';
 
 
 class MovieLibrary extends React.Component {
@@ -14,12 +13,9 @@ class MovieLibrary extends React.Component {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      movies: props.movies
+      movies: props.movies,
+      filteredMovies: []
     }
-  }
-
-  updateMovies = () => {
-
   }
 
   onSearchTextChange = ({ target }) => {
@@ -54,7 +50,36 @@ class MovieLibrary extends React.Component {
     this.setState({ movies: newList });
   }
 
+  filterMovies = (arr) => {
+    const { searchText,
+      bookmarkedOnly,
+      selectedGenre
+    } = this.state;
 
+    let filterList = arr;
+
+    if (bookmarkedOnly === true) {
+      filterList = arr.filter(movie => movie.bookmarked === bookmarkedOnly)
+    }
+
+    if (selectedGenre !== '') {
+      filterList = arr.filter(movie => movie.genre === selectedGenre)
+    }
+
+    return filterList.filter((movie) => {
+
+      if (movie.title.toLowerCase().includes(searchText.toLowerCase())) {
+        return movie;
+      }
+      else if (movie.subtitle.toLowerCase().includes(searchText.toLowerCase())) {
+        return movie;
+      }
+      else if (movie.storyline.toLowerCase().includes(searchText.toLowerCase())) {
+        return movie;
+      }
+      
+    });
+  }
 
   render() {
     return (
@@ -68,7 +93,7 @@ class MovieLibrary extends React.Component {
           onSelectedGenreChange={this.onSelectedGenreChange}
         />
         <MovieList
-          movies={this.state.movies}
+          movies={this.filterMovies(this.state.movies)}
         />
         <AddMovie
           onClick={this.onClick}
