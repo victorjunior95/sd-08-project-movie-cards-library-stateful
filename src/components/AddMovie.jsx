@@ -58,6 +58,7 @@ class AddMovie extends React.Component {
     const { imagemPath } = this.state;
     return (
       <label htmlFor="movie-image" data-testid="image-input-label">
+        Imagem
         <input
           name="imagemPath"
           id="movie-image"
@@ -69,7 +70,21 @@ class AddMovie extends React.Component {
     );
   }
 
-  render
+  renderTextArea() {
+    const { storyline } = this.state;
+    return (
+      <label htmlFor="movie-sinopse" data-testid="storyline-input-label">
+        Sinopse
+        <textarea
+          name="storyline"
+          id="movie-sinopse"
+          value={ storyline }
+          data-testid="storyline-input-label"
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
 
   render() {
     const { onClick } = this.props;
