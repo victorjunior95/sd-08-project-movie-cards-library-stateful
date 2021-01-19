@@ -79,7 +79,7 @@ class AddMovie extends React.Component {
           name="storyLine"
           id="stryLine"
           cols="30"
-          rows="10"
+          rows="5"
           onChange={ callBack }
         />
       </label>
