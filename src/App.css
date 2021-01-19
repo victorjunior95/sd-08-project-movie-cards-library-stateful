@@ -92,8 +92,8 @@ body {
 .s {
   align-items: center;
   display: flex;
-  justify-content: center;
   height: 80px;
+  justify-content: center;
 }
 
 .s-input {
