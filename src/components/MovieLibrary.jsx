@@ -18,7 +18,11 @@ class MovieLibrary extends React.Component {
     const { movies } = this.props;
     return (
       <main>
-        <SearchBar searchText={ searchText } />
+        <SearchBar
+          searchText={ searchText }
+          bookmarkedOnly={ bookmarkedOnly }
+          selectedGenre={ selectedGenre }
+        />
         <MovieList movies={ movies } />
       </main>
     );
