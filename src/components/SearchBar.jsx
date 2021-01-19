@@ -2,6 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SeachBar extends React.Component {
+  seachBar() {
+    const { searchText, onSearchTextChange } = this.props;
+    return (
+      <label htmlFor="searchbar" data-testid="text-input-label">
+        Inclui o texto
+        <input
+          id="searchbar"
+          value={ searchText }
+          onChange={ onSearchTextChange }
+          data-testid="text-input"
+          type="text"
+        />
+      </label>
+    );
+  }
+
   checkBox() {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
@@ -17,22 +33,33 @@ class SeachBar extends React.Component {
     );
   }
 
+  select() {
+    const { selectedGenre, onSelectedGenreChange } = this.props;
+    return (
+      <label data-testid="select-input-label" htmlFor="select">
+        Filtrar por gênero
+        <select
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+          data-testid="select-input"
+          id="select"
+        >
+          <option data-testid="select-option" value="">Todos</option>
+          <option data-testid="select-option" value="action">Ação</option>
+          <option data-testid="select-option" value="comedy">Comédia</option>
+          <option data-testid="select-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
   render() {
-    const { searchText, onSearchTextChange } = this.props;
     return (
       <div>
         <form action="" data-testid="search-bar-form">
-          <label htmlFor="searchbar" data-testid="text-input-label">
-            Inclui o texto
-            <input
-              id="searchbar"
-              value={ searchText }
-              onChange={ onSearchTextChange }
-              data-testid="text-input"
-              type="text"
-            />
-          </label>
+          {this.seachBar()}
           {this.checkBox()}
+          {this.select()}
         </form>
       </div>
     );
@@ -44,6 +71,8 @@ SeachBar.propTypes = {
   onSearchTextChange: PropTypes.string.isRequired,
   bookmarkedOnly: PropTypes.bool.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 export default SeachBar;
