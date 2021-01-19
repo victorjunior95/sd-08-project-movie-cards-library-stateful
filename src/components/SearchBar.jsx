@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import InputSearchBar from './InputSearchBar';
+import InputCheckBox from './InputCheckbox';
+import SelectGenre from './SelectGenre';
 
 class SearchBar extends Component {
   render() {
@@ -11,8 +14,13 @@ class SearchBar extends Component {
       selectedGenre,
       onSelectedGenreChange,
     } = this.props;
-    return (
 
+    return (
+      <form data-testid="search-bar-form">
+        <InputSearchBar text={ searchText } onTextChange={ onSearchTextChange } />
+        <InputCheckBox markedOnly={ bookmarkedOnly } onChange={ onBookmarkedChange } />
+        <SelectGenre selected={ selectedGenre } onSelected={ onSelectedGenreChange } />
+      </form>
     );
   }
 }
