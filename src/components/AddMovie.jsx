@@ -1,6 +1,6 @@
 // implement AddMovie component here
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import InputTitle from './InputTitle';
 import InputSubtitle from './InputSubtitle';
 import InputImage from './InputImage';
@@ -13,6 +13,7 @@ class AddMovie extends React.Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
+    this.handleButton = this.handleButton.bind(this);
     this.state = {
       subtitle: '',
       title: '',
@@ -32,7 +33,23 @@ class AddMovie extends React.Component {
     });
   }
 
-  onClick() {
+  handleButton() {
+    const { onClick } = this.props;
+    const { subtitle, title, imagePath, storyline, rating, genre } = this.state;
+    const movie = {
+      title,
+      subtitle,
+      storyline,
+      rating,
+      imagePath,
+      bookmarked: false,
+      genre,
+    };
+    onClick(movie);
+    this.resetState();
+  }
+
+  resetState() {
     this.setState({
       subtitle: '',
       title: '',
@@ -45,7 +62,6 @@ class AddMovie extends React.Component {
 
   render() {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
-    // const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         <InputTitle func={ this.handleChange } title={ title } />
@@ -54,14 +70,14 @@ class AddMovie extends React.Component {
         <InputTextArea func={ this.handleChange } storyline={ storyline } />
         <InputNumber func={ this.handleChange } rating={ rating } />
         <InputSelect func={ this.handleChange } genre={ genre } />
-        <ButtonAddMovie func={ this.onClick } />
+        <ButtonAddMovie func={ this.handleButton } />
       </form>
     );
   }
 }
-/*
+
 AddMovie.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
-*/
+
 export default AddMovie;
