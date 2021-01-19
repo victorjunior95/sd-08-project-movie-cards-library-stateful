@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
     );
   }
 
-  bookMarkInput(bookmarked, onBookmarkedChange) {
+  bookMarkInput(bookmarkedOnly, onBookmarkedChange) {
     return (
       <label data-testid="checkbox-input-label" htmlFor="bookmarked">
         Mostrar somente favoritos
@@ -63,7 +63,7 @@ class SearchBar extends React.Component {
     return (
       <div>
         <form data-testid="search-bar-form">
-          {this.inputSearch(searchText, onSearchTextChange)}
+          {this.searchInput(searchText, onSearchTextChange)}
           {this.bookMarkInput(bookmarkedOnly, onBookmarkedChange)}
           {this.selectInput(selectedGenre, onSelectedGenreChange)}
         </form>
