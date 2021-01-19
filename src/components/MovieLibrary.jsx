@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
@@ -20,10 +22,10 @@ class MovieLibrary extends Component {
   }
 
   handleChange({ target }) {
-    const { name, value } = target;
+    const { name, value, type, checked } = target;
     const { movies } = this.props;
 
-    this.setState({ [name]: value }, () => {
+    this.setState({ [name]: type === 'checkbox' ? checked : value }, () => {
       const { bookmarkedOnly, selectedGenre, searchText } = this.state;
       const moviesFiltered = movies.filter(
         ({ bookmarked, genre, title, subtitle, storyline }) => (
@@ -65,5 +67,9 @@ class MovieLibrary extends Component {
     );
   }
 }
+
+MovieLibrary.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default MovieLibrary;
