@@ -9,6 +9,7 @@ class AddMovie extends Component {
       'subtitle-input': '',
       'image-input': '',
       'storyline-input': '',
+      'rating-input': '0',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -71,7 +72,7 @@ class AddMovie extends Component {
     );
   }
 
-  renderStoryLine() {
+  renderStoryLineInput() {
     const { 'storyline-input': storylineInput } = this.state;
     return (
       <label htmlFor="storyline-input" data-testid="storyline-input-label">
@@ -88,13 +89,31 @@ class AddMovie extends Component {
     );
   }
 
+  renderRatingInput() {
+    const { 'rating-input': ratingInput } = this.state;
+    return (
+      <label htmlFor="rating-input" data-testid="rating-input-label">
+        Avaliação
+        <input
+          type="number"
+          id="rating-input"
+          name="rating-input"
+          data-testid="rating-input"
+          value={ ratingInput }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
         { this.renderTitleInput() }
         { this.renderSubtitleInput() }
         { this.renderImageInput() }
-        { this.renderStoryLine() }
+        { this.renderStoryLineInput() }
+        { this.renderRatingInput() }
       </form>
     );
   }
