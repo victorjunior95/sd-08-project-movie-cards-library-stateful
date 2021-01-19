@@ -12,6 +12,7 @@ import ButtonAddMovie from './ButtonAddMovie';
 class AddMovie extends React.Component {
   constructor() {
     super();
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       subtitle: '',
       title: '',
@@ -24,7 +25,7 @@ class AddMovie extends React.Component {
 
   handleChange({ target }) {
     const { name, type } = target;
-    const value = type !== 'CheckBox' ? target.value : target.checked;
+    const value = type !== 'checkbox' ? target.value : target.checked;
 
     this.setState({
       [name]: value,
@@ -59,7 +60,7 @@ class AddMovie extends React.Component {
   }
 }
 /*
-AddMoviae.propTypes = {
+AddMovie.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 */
