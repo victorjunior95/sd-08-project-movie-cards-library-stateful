@@ -6,7 +6,7 @@ class AddButton extends Component {
     const { onClick } = this.props;
     return (
       <div>
-        <button data-testid="send-button" type="submit" onClick={ onClick }>
+        <button data-testid="send-button" type="button" onClick={ onClick }>
           Adicionar filme
         </button>
       </div>

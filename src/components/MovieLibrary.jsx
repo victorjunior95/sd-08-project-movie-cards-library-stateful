@@ -27,34 +27,35 @@ class MovieLibrary extends Component {
   handleChange(event) {
     const { target } = event;
     if (target.type !== 'checkbox') {
-      this.setState(() => ({ [target.name]: target.value }));
+      this.setState({ [target.name]: target.value });
     } else {
-      this.setState(() => ({ [target.name]: target.checked }));
+      this.setState({ [target.name]: target.checked });
     }
   }
 
-  handleFilter() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+  handleFilter(movies) {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     const moviesResults = movies.filter((movie) => {
       if (selectedGenre === movie.genre) return movie;
       if (selectedGenre === '') return movie;
       return '';
     }).filter((movie) => {
-      if (searchText === '') return movie;
-      if (movie.title.includes(searchText) || (
-        movie.subtitle.includes(searchText) || movie.storyline.includes(searchText)
-      )) {
+      if (searchText === '' || searchText === ' ') return movie;
+      if (movie.title.toLowerCase().includes(searchText.toLowerCase())
+        || movie.subtitle.toLowerCase().includes(searchText.toLowerCase())
+        || movie.storyline.toLowerCase().includes(searchText.toLowerCase())
+      ) {
         return movies;
       }
-      return '';
+      return undefined;
     });
     return this.handFilterBook(bookmarkedOnly, moviesResults);
   }
 
   handleAddMovie(newMovie) {
-    const { movies } = this.props;
-    movies.push(newMovie);
-    this.setState({ movies });
+    this.setState((currentState) => ({
+      movies: [...currentState.movies, newMovie],
+    }));
   }
 
   handFilterBook(bookmarkedOnly, movies) {
@@ -68,8 +69,8 @@ class MovieLibrary extends Component {
   }
 
   render() {
-    const { bookmarkedOnly, searchText, selectedGenre } = this.state;
-    const movies = this.handleFilter();
+    const { bookmarkedOnly, searchText, selectedGenre, movies } = this.state;
+    const moviesN = this.handleFilter(movies);
     return (
       <div>
         <h2> My awesome movie library </h2>
@@ -81,7 +82,7 @@ class MovieLibrary extends Component {
           onBookmarkedChange={ this.handleChange }
           onSelectedGenreChange={ this.handleChange }
         />
-        <MovieList movies={ movies } />
+        <MovieList movies={ moviesN } />
         <AddMovie onClick={ this.handleAddMovie } />
       </div>
     );
@@ -89,7 +90,11 @@ class MovieLibrary extends Component {
 }
 
 MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+MovieLibrary.defaultProps = {
+  movies: [],
 };
 
 export default MovieLibrary;

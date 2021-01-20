@@ -40,7 +40,7 @@ class AddMovie extends Component {
       title,
       imagePath,
       storyline,
-      rating: parseInt(rating, 2),
+      rating,
       genre,
     };
     onClick(movie);

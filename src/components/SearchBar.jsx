@@ -10,7 +10,7 @@ class SearchBar extends Component {
     const { bookmarkedOnly, searchText, selectedGenre,
       onSearchTextChange, onBookmarkedChange, onSelectedGenreChange } = this.props;
     return (
-      <form action="#" method="GET" data-testid="search-bar-form">
+      <form action="#" data-testid="search-bar-form">
         <FilterMovieText
           searchText={ searchText }
           onSearchTextChange={ onSearchTextChange }
@@ -29,12 +29,21 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  searchText: PropTypes.string.isRequired,
-  selectedGenre: PropTypes.string.isRequired,
-  bookmarkedOnly: PropTypes.bool.isRequired,
-  onSearchTextChange: PropTypes.func.isRequired,
-  onBookmarkedChange: PropTypes.func.isRequired,
-  onSelectedGenreChange: PropTypes.func.isRequired,
+  searchText: PropTypes.string,
+  selectedGenre: PropTypes.string,
+  bookmarkedOnly: PropTypes.bool,
+  onSearchTextChange: PropTypes.func,
+  onBookmarkedChange: PropTypes.func,
+  onSelectedGenreChange: PropTypes.func,
+};
+
+SearchBar.defaultProps = {
+  searchText: '',
+  selectedGenre: '',
+  bookmarkedOnly: false,
+  onSearchTextChange: () => {},
+  onBookmarkedChange: () => {},
+  onSelectedGenreChange: () => {},
 };
 
 export default SearchBar;
