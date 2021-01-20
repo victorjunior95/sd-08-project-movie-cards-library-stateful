@@ -46,43 +46,27 @@ class SearchBar extends Component {
   // }
 
   render() {
-    const searchText = this.props;
-    const onSearchTextChange = this.props;
-    const bookmarkedOnly = this.props;
-    const onBookmarkedChange = this.props;
-    const selectedGenre = this.props;
-    const onSelectedGenreChange = this.props;
+    const { searchText, onSearchTextChange, onBookmarkedChange } = this.props;
+    const { onSelectedGenreChange, bookmarkedOnly, selectedGenre } = this.props;
 
     return (
       <form data-testid="search-bar-form">
         <label data-testid="text-input-label">
           Inclui o texto
-          <input
-            type="text"
-            value={ searchText }
-            onChange={ onSearchTextChange }
-            data-testid="text-input"
-          />
+          <input type="text" value={ searchText }
+            onChange={ onSearchTextChange } data-testid="text-input" />
         </label>
         <br />
         <label data-testid="checkbox-input-label">
-          <input
-            type="checkbox"
-            checked={ bookmarkedOnly }
-            onChange={ onBookmarkedChange }
-            data-testid="checkbox-input"
-          />
+          <input type="checkbox" checked={ bookmarkedOnly }
+            onChange={ onBookmarkedChange } data-testid="checkbox-input" />
           Mostrar somente favoritos
         </label>
         <br />
         <label data-testid="select-input-label">
           Filtrar por gênero
-          <select
-            type="text"
-            value={ selectedGenre }
-            onChange={ onSelectedGenreChange }
-            data-testid="select-input"
-          >
+          <select type="text" value={ selectedGenre }
+            onChange={ onSelectedGenreChange } data-testid="select-input" >
               <option value="">Todos</option>
               <option value="action">Ação</option>
               <option value="comedy">Comédia</option>
