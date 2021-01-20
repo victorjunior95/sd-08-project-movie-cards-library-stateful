@@ -14,11 +14,26 @@ class MovieLibrary extends React.Component {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      movies: [movies],
+      movies,
     };
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
+  }
+
+  handleFilter(movies) {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    let moviesToShow = movies
+      .filter((movie) => movie.genre.includes(selectedGenre))
+      .filter((movie) => movie.title.includes(searchText)
+        || movie.subtitle.includes(searchText)
+        || movie.storyline.includes(searchText));
+    moviesToShow = !bookmarkedOnly
+      ? moviesToShow
+      : moviesToShow.filter((movie) => movie.bookmarked);
+
+    return moviesToShow;
   }
 
   onClick(data) {
@@ -33,7 +48,7 @@ class MovieLibrary extends React.Component {
 
   onBookmarkedChange() {
     const { bookmarkedOnly } = this.state;
-    this.setState({ bookmarkedOnly: true });
+    this.setState({ bookmarkedOnly: !bookmarkedOnly });
     console.log(bookmarkedOnly);
   }
 
@@ -45,10 +60,11 @@ class MovieLibrary extends React.Component {
 
   render() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
-    const { onSearchTextChange, onBookmarkedChange, onSelectedGenreChange } = this;
+    const { onSearchTextChange, onBookmarkedChange, onSelectedGenreChange,
+      onClick } = this;
+    const moviesToShow = this.handleFilter(movies);
     return (
       <div>
-        <h2> My awesome movie library </h2>
         <SearchBar
           searchText={ searchText }
           bookmarkedOnly={ bookmarkedOnly }
@@ -57,8 +73,8 @@ class MovieLibrary extends React.Component {
           onBookmarkedChange={ onBookmarkedChange }
           onSelectedGenreChange={ onSelectedGenreChange }
         />
-        <MovieList movies={ movies.find((array) => array[0]) } />
-        <AddMovie onClick={ this.onClick } />
+        <MovieList movies={ moviesToShow } />
+        <AddMovie onClick={ onClick } />
       </div>
     );
   }
