@@ -2,13 +2,13 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import Titulo from './titulo';
-import SubTitulo from './subtitulo';
-import Image from './image';
-import Sinopse from './sinopse';
-import Avaliacao from './avaliacao';
-import Genero from './genero';
-import Botao from './botao';
+import Titulo from './titulo.jsx';
+import SubTitulo from './subtitulo.jsx';
+import Image from './image.jsx';
+import Sinopse from './sinopse.jsx';
+import Avaliacao from './avaliacao.js';
+import Genero from './genero.jsx';
+import Botao from './botao.jsx';
 
 class AddMovie extends React.Component {
   constructor() {
