@@ -22,4 +22,5 @@ MovieList.propTypes = {
     map: PropTypes.func.isRequired,
   }).isRequired,
 };
+
 export default MovieList;
