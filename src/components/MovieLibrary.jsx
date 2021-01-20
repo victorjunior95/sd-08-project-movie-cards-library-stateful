@@ -61,7 +61,6 @@ class MovieLibrary extends Component {
   addMovie(movie) {
     const { originalMovies } = this.state;
     this.setState({ originalMovies: originalMovies.concat(movie) }, () => {
-      console.log('ADD MOVIE', this.state);
       this.updateMovies();
     });
   }

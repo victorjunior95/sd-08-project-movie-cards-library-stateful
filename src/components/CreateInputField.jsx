@@ -2,22 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class CreateTextInput extends Component {
-  textInput(name, dataTestid, value, callBack) {
-    return (
-      <label htmlFor={ name } data-testid={ dataTestid }>
-        { name }
-        <input
-          name={ name }
-          data-testid="title-input"
-          type="text"
-          value={ value }
-          onChange={ callBack }
-        />
-      </label>
-    );
-  }
-
+class CreateInputField extends Component {
   render() {
     const { name,
       dataTestid,
@@ -40,7 +25,7 @@ class CreateTextInput extends Component {
   }
 }
 
-CreateTextInput.propTypes = {
+CreateInputField.propTypes = {
   name: PropTypes.string.isRequired,
   dataTestid: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
@@ -53,4 +38,4 @@ CreateTextInput.propTypes = {
   callBack: PropTypes.func.isRequired,
 };
 
-export default CreateTextInput;
+export default CreateInputField;

@@ -1,7 +1,7 @@
 // implement AddMovie component here
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CreateTextInput from './CreateTextInput';
+import CreateInputField from './CreateInputField';
 import GenderSelector from './GenderSelector';
 import CreateButton from './CreateButton';
 
@@ -58,20 +58,32 @@ class AddMovie extends Component {
     );
   }
 
-  t([...params]) {
+  textInputs() {
+    const { title, subtitle, imagePath, rating } = this.state;
+    const inputs = [
+      ['text', 'title', 'title', 'Título', 'title', title],
+      ['text', 'subtitle', 'subtitle', 'Subtítulo', 'subtitle', subtitle],
+      ['text', 'imagePath', 'image', 'Imagem', 'image', imagePath],
+      ['number', 'rating', 'rating', 'Avaliação', 'rating', rating],
+    ];
+    return inputs;
+  }
+
+  createAllTextInput() {
+    const inputs = this.textInputs();
     const lbl = '-input-label';
     const input = '-input';
-    return (
-      <CreateTextInput
-        type={ params[0] }
-        name={ params[1] }
-        dataTestid={ params[2] + lbl }
-        text={ params[3] }
-        inPutDataTestid={ params[4] + input }
-        inputValue={ params[5] }
-        callBack={ this.updateStates }
-      />
-    );
+    const allInputs = inputs.map((e) => (<CreateInputField
+      key={ e[3] }
+      type={ e[0] }
+      name={ e[1] }
+      dataTestid={ e[2] + lbl }
+      text={ e[3] }
+      inPutDataTestid={ e[4] + input }
+      inputValue={ e[5] }
+      callBack={ this.updateStates }
+    />));
+    return allInputs;
   }
 
   createTextArea() {
@@ -91,14 +103,10 @@ class AddMovie extends Component {
   }
 
   render() {
-    const { title, subtitle, imagePath, rating } = this.state;
     return (
       <form data-testid="add-movie-form">
-        {this.t(['text', 'title', 'title', 'Título', 'title', title])}
-        {this.t(['text', 'subtitle', 'subtitle', 'Subtítulo', 'subtitle', subtitle])}
-        {this.t(['text', 'imagePath', 'image', 'Imagem', 'image', imagePath])}
+        {this.createAllTextInput()}
         {this.createTextArea()}
-        {this.t(['number', 'rating', 'rating', 'Avaliação', 'rating', rating])}
         {this.genderSelector()}
         <CreateButton dataTestid="send-button" onClick={ this.handleForm } />
       </form>

@@ -1,7 +1,7 @@
 // implement SearchBar component here
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CreateTextInput from './CreateTextInput';
+import CreateInputField from './CreateInputField';
 import GenderSelector from './GenderSelector';
 
 class SearchBar extends Component {
@@ -21,10 +21,10 @@ class SearchBar extends Component {
     );
   }
 
-  createTextInput() {
+  CreateInputField() {
     const { searchText, onSearchTextChange } = this.props;
     return (
-      <CreateTextInput
+      <CreateInputField
         type="text"
         name="search"
         dataTestid="text-input-label"
@@ -54,7 +54,7 @@ class SearchBar extends Component {
   render() {
     return (
       <form data-testid="search-bar-form">
-        {this.createTextInput()}
+        {this.CreateInputField()}
         {this.createBookmarksSelector()}
         {this.createGenderSelector()}
       </form>
