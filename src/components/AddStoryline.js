@@ -11,7 +11,7 @@ class AddStoryline extends React.Component {
           id="storyline-input"
           name="storyline"
           value={ value }
-          data-testid="image-input"
+          data-testid="storyline-input"
           onChange={ handleChange }
         />
       </label>
