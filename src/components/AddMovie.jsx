@@ -119,7 +119,7 @@ class AddMovie extends React.Component {
 
   render() {
     return (
-      <form>
+      <form data-testid="add-movie-form">
         {this.inputTitle()}
         {this.inputSubtitle()}
         {this.inputImagePath()}
