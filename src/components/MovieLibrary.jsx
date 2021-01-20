@@ -10,24 +10,24 @@ class MovieLibrary extends Component {
     super(props);
 
     this.setState = {
-        searchText: '',
-        bookmarkedOnly: false,
-        selectedGenre: '',
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: '',
     }
   }
 
-  onSearchTextChange = (event) =>{
-      this.setState = {
-          searchText: event.target.value,
-      }
+  onSearchTextChange = (event) => {
+    this.setState = {
+      searchText: event.target.value,
+    }
   }
 
   onBookmarkedChange = (event) => {
-      return 'tudo bom'
+    return 'tudo bom'
   }
 
   onSelectedGenreChange = (event) => {
-      return 'haha'
+    return 'haha'
   }
 
   render() {
