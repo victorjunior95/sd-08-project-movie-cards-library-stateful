@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   render() {
-      dsddsd
     return (
       <div data-testid="movie-list" className="movie-list">
         <input type="text" onChange={ this.handleChange } />
