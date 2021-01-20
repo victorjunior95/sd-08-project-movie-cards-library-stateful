@@ -4,8 +4,6 @@ import React from 'react';
 class AddMovie extends React.Component {
   constructor() {
     super();
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = {
       subtitle: '',
       title: '',
@@ -14,6 +12,8 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.onReset = this.onReset.bind(this);
   }
 
   handleChange({ target }) {
@@ -24,6 +24,20 @@ class AddMovie extends React.Component {
     this.setState({
       [name]: value,
     });
+  }
+
+  onReset() {
+    // event.preventDefault();
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.setState = {
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    };
   }
 
   renderTitleInput(title, onChange) {
@@ -129,12 +143,13 @@ class AddMovie extends React.Component {
         { this.renderStorylineInput(storyline, this.handleChange) }
         { this.renderRatingInput(rating, this.handleChange) }
         { this.renderGenreInput(genre, this.handleChange) }
-        {/* <button
+        <button
+          type="button"
           data-testid="send-button"
-          onClick={ this.handleChange }
+          onClick={ this.onReset }
         >
           Adicionar filme
-        </button> */}
+        </button>
       </form>
     );
   }
