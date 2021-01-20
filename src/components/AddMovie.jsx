@@ -46,20 +46,22 @@ class AddMovie extends React.Component {
   }
 
   submitChange(event) {
+    const { submitNewMovie } = this.props;
     event.preventDefault();
-    this.props.onClick(this.state);
+    submitNewMovie(this.state);
     this.resetStates();
   }
 
   render() {
+    const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form>
-        <AddTitle value={ this.state.title } handleChange={ this.handleChange } />
-        <AddSubtitle value={ this.state.subtitle } handleChange={ this.handleChange } />
-        <AddImage value={ this.state.imagePath } handleChange={ this.handleChange } />
-        <AddStoryline value={ this.state.storyline } handleChange={ this.handleChange } />
-        <AddRating value={ this.state.rating } handleChange={ this.handleChange } />
-        <AddGenre value={ this.state.genre } handleChange={ this.handleChange } />
+        <AddTitle value={ title } handleChange={ this.handleChange } />
+        <AddSubtitle value={ subtitle } handleChange={ this.handleChange } />
+        <AddImage value={ imagePath } handleChange={ this.handleChange } />
+        <AddStoryline value={ storyline } handleChange={ this.handleChange } />
+        <AddRating value={ rating } handleChange={ this.handleChange } />
+        <AddGenre value={ genre } handleChange={ this.handleChange } />
         <button
           type="button"
           data-testid="send-button"
@@ -71,5 +73,9 @@ class AddMovie extends React.Component {
     );
   }
 }
+
+AddMovie.propTypes = {
+  submitNewMovie: PropTypes.func.isRequired,
+};
 
 export default AddMovie;

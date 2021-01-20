@@ -3,16 +3,17 @@ import PropTypes from 'prop-types';
 
 class AddImage extends React.Component {
   render() {
-    return(
+    const { value, handleChange } = this.props;
+    return (
       <label htmlFor="image-input" data-testid="image-input-label">
         Imagem
         <input
           id="image-input"
           name="imagePath"
           type="text"
-          value={ this.props.value }
+          value={ value }
           data-testid="image-input"
-          onChange={ this.props.handleChange }
+          onChange={ handleChange }
         />
       </label>
     );

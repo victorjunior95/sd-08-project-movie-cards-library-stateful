@@ -20,7 +20,7 @@ class MovieLibrary extends React.Component {
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
-    this.onClick = this.onClick.bind(this);
+    this.submitNewMovie = this.submitNewMovie.bind(this);
     this.filterMovies = this.filterMovies.bind(this);
   }
 
@@ -48,7 +48,7 @@ class MovieLibrary extends React.Component {
     })
   }
 
-  onClick(obj) {
+  submitNewMovie(obj) {
     let rate = parseFloat(obj.rating);
     obj.rating = rate
     let newList = this.state.movies;
@@ -102,7 +102,7 @@ class MovieLibrary extends React.Component {
           movies={this.filterMovies(this.state.movies)}
         />
         <AddMovie
-          onClick={this.onClick}
+          submitNewMovie={this.submitNewMovie}
         />
       </div>
     );
