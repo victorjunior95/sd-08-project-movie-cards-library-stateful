@@ -2,23 +2,32 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class InputType extends Component {
+  input() {
+    const { type, name, onChange,
+      value, inputTestId, max, min, step } = this.props;
+
+    return (
+      <input
+        type={ type }
+        id={ name }
+        name={ name }
+        data-testid={ inputTestId }
+        onChange={ onChange }
+        value={ type !== 'checkbox' ? value : false }
+        checked={ type === 'checkbox' ? value : false }
+        max={ max }
+        min={ min }
+        step={ step }
+      />
+    );
+  }
+
   render() {
-    const { type, name, children, onChange,
-      value, labelTestId, inputTestId, max, min, step } = this.props;
+    const { name, children, labelTestId } = this.props;
     return (
       <label htmlFor={ name } data-testid={ labelTestId }>
         { children }
-        <input
-          type={ type }
-          id={ name }
-          name={ name }
-          data-testid={ inputTestId }
-          onChange={ onChange }
-          value={ value }
-          max={ max }
-          min={ min }
-          step={ step }
-        />
+        { this.input() }
       </label>
     );
   }
