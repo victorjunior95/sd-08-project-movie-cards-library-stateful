@@ -23,7 +23,6 @@ function Input(props) {
 Input.defaultProps = {
   type: 'text',
   onChange: null,
-  value: '',
 };
 
 Input.propTypes = {
@@ -31,7 +30,7 @@ Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default Input;

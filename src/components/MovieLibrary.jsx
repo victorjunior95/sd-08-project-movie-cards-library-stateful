@@ -9,18 +9,17 @@ function MovieLibrary(props) {
   const { movies } = props;
 
   const handleAddMovie = (data) => {
-    // e.preventDefault();
-    // console.log(data);
     if (data) movies.push(data);
+    console.log(movies);
   };
   return (
     <div>
       <h2> My awesome movie library </h2>
-      <AddMovie movies={ movies } onClick={ handleAddMovie } />
-      <br />
+      <SearchBar />
       <br />
       <MovieList movies={ movies } />
-      <SearchBar />
+      <br />
+      <AddMovie movies={ movies } onClick={ handleAddMovie } />
     </div>
   );
 }

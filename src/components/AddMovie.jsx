@@ -30,30 +30,6 @@ const DEF_SELECT_GENRE_PROPS = {
 // Return 20 Linhas
 // /* eslint-disable */
 
-// function AddMovie() {
-//   return (
-//     <form data-testid="add-movie-form">
-//       <Input type="text" name="title" testid="title-input" labelName="Título" />
-//       <Input type="text" name="subtitle" testid="subtitle-input" labelName="Subtítulo" />
-//       <Input type="text" name="imagePath" testid="image-input" labelName="Imagem" />
-//       <StoryLine />
-//       <Input type="number" name="rating" testid="rating-input" labelName="Avaliação" />
-//       <SelectGenre { ...DEF_SELECTGENRE_PROPS } optionList={ optionList } />
-//       <button type="submit" onClick={ handleClick } data-testid="send-button">
-//         Adicionar filme
-//       </button>
-//     </form>
-//   );
-// }
-
-// this.state = {
-//   title: '',
-//   subtitle: '',
-//   imagePath: '',
-//   rating: '',
-//   storyline: '',
-//   name: '',
-// };
 class AddMovie extends Component {
   constructor(props) {
     super(props);
