@@ -39,7 +39,7 @@ class AddMovie extends React.Component {
 
   inputSubtitle() {
     const { subtitle } = this.state;
-    return(
+    return (
       <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
         Subtítulo
         <input
@@ -58,7 +58,6 @@ class AddMovie extends React.Component {
       <label data-testid="image-input-label" htmlFor="imageInput">
         Imagem
         <input
-          id="imageInput"
           data-testid="image-input"
           name="imagePath"
           value={ imagePath }
