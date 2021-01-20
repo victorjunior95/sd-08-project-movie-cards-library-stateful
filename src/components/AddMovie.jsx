@@ -2,13 +2,13 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import Titulo from './titulo.jsx';
-import SubTitulo from './subtitulo.jsx';
-import Image from './image.jsx';
-import Sinopse from './sinopse.jsx';
-import Avaliacao from './avaliacao.js';
-import Genero from './genero.jsx';
-import Botao from './botao.jsx';
+import Titulo from './titulo';
+import SubTitulo from './subtitulo';
+import Image from './image';
+import Sinopse from './sinopse';
+import Avaliacao from './Avaliacao';
+import Genero from './genero';
+import Botao from './botao';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -32,6 +32,9 @@ class AddMovie extends React.Component {
   }
 
   botaoCliqued() {
+    const { onClick } = this.props;
+    onClick(this.state);
+
     this.setState({
       subtitle: '',
       title: '',
@@ -44,7 +47,6 @@ class AddMovie extends React.Component {
 
   render() {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
-    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         <Titulo value={ title } onChange={ this.onChangeAction } />
@@ -53,7 +55,7 @@ class AddMovie extends React.Component {
         <Sinopse value={ storyline } onChange={ this.onChangeAction } />
         <Avaliacao value={ rating } onChange={ this.onChangeAction } />
         <Genero value={ genre } onChange={ this.onChangeAction } />
-        <Botao value={ this.state } onClick={ onClick } />
+        <Botao onClick={ this.botaoCliqued } />
       </form>
     );
   }

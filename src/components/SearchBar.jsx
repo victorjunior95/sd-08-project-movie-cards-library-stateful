@@ -2,9 +2,9 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import Favoritos from './favoritos.jsx';
-import FiltraGenero from './filtragenero.js';
-import IncluiTexto from './incluitexto.jsx';
+import Favoritos from './favoritos';
+import FiltraGenero from './filtragenero';
+import IncluiTexto from './incluitexto';
 
 class SearchBar extends React.Component {
   render() {

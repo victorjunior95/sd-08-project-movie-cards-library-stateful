@@ -7,13 +7,12 @@ import MovieLibrary from './components/MovieLibrary';
 import Movies from './data';
 
 function App() {
-  const { movies } = Movies;
-
+  console.log(Movies);
   return (
     <div className="App">
       <Header />
 
-      <MovieLibrary movies={ movies } />
+      <MovieLibrary movies={ Movies } />
     </div>
   );
 }

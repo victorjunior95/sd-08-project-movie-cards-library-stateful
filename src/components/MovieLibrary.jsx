@@ -10,7 +10,7 @@ class MovieLibrary extends Component {
   constructor(props) {
     super(props);
 
-    const { movies: { movies } } = this.props;
+    const { movies } = this.props;
 
     this.state = {
       searchText: '',
@@ -26,7 +26,8 @@ class MovieLibrary extends Component {
   }
 
   onClick(newMovie) {
-    const { movies: { movies } } = this.state;
+    const { movies } = this.props;
+    console.log(movies);
     movies.push(newMovie);
     this.setState({ movies });
   }
@@ -35,8 +36,18 @@ class MovieLibrary extends Component {
     const valor = event.target.value;
     this.setState({ searchText: valor });
 
-    const { movies: { moviesInit } } = this.state;
-    const moviesFiltred = moviesInit.filter((movie) => movie.title.includes(valor));
+    const { movies } = this.state;
+    let moviesFiltred = movies.filter((movie) => movie.title.includes(valor));
+
+    if (moviesFiltred.length === 0) {
+      const moviesFiltredBySub = movies.filter((movie) => movie.subtitle.includes(valor));
+      moviesFiltred = moviesFiltredBySub;
+    }
+
+    if (moviesFiltred.length === 0) {
+      const movFiltSinop = movies.filter((movie) => movie.storyline.includes(valor));
+      moviesFiltred = movFiltSinop;
+    }
 
     this.setState({ movies: moviesFiltred });
   }
@@ -44,8 +55,8 @@ class MovieLibrary extends Component {
   onBookmarkedChange(event) {
     this.setState({ bookmarkedOnly: event.target.value });
 
-    const { movies: { moviesInit } } = this.state;
-    const moviesFiltred = moviesInit.filter((movie) => movie.bookmarked === true);
+    const { movies } = this.state;
+    const moviesFiltred = movies.filter((movie) => movie.bookmarked === true);
     this.setState({ movies: moviesFiltred });
   }
 
@@ -53,13 +64,14 @@ class MovieLibrary extends Component {
     const valor = event.target.value;
     this.setState({ selectedGenre: valor });
 
-    const { movies: { moviesInit } } = this.state;
-    const moviesFiltred = moviesInit.filter((movie) => movie.genre === valor);
+    const { movies } = this.state;
+    const moviesFiltred = movies.filter((movie) => movie.genre === valor);
     this.setState({ movies: moviesFiltred });
   }
 
   render() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+
     return (
       <div>
         <h2> My awesome movie library </h2>
