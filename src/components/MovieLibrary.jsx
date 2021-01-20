@@ -17,7 +17,9 @@ class MovieLibrary extends Component {
   }
 
   onSearchTextChange = (event) =>{
-      return 'oi'
+      this.setState = {
+          searchText: event.target.value,
+      }
   }
 
   onBookmarkedChange = (event) => {
