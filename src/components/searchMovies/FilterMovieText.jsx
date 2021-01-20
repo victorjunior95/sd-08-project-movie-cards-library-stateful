@@ -22,13 +22,13 @@ class FilterMovieText extends Component {
 }
 
 FilterMovieText.propTypes = {
-  searchText: PropTypes.string.isRequired,
-  onSearchTextChange: PropTypes.func.isRequired,
+  searchText: PropTypes.string,
+  onSearchTextChange: PropTypes.func,
 };
 
-// FilterMovieText.defaultProps = {
-//   searchText: '',
-//   onSearchTextChange: () => {},
-// };
+FilterMovieText.defaultProps = {
+  searchText: '',
+  onSearchTextChange: () => {},
+};
 
 export default FilterMovieText;

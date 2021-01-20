@@ -12,7 +12,7 @@ class CheckMovieFavorite extends Component {
             data-testid="checkbox-input"
             name="bookmarkedOnly"
             type="checkbox"
-            checked={ bookmarkedOnly }
+            defaultChecked={ bookmarkedOnly }
             value="favorite"
             onChange={ onBookmarkedChange }
           />
@@ -23,8 +23,13 @@ class CheckMovieFavorite extends Component {
 }
 
 CheckMovieFavorite.propTypes = {
-  bookmarkedOnly: PropTypes.bool.isRequired,
-  onBookmarkedChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool,
+  onBookmarkedChange: PropTypes.func,
+};
+
+CheckMovieFavorite.defaultProps = {
+  bookmarkedOnly: false,
+  onBookmarkedChange: () => {},
 };
 
 export default CheckMovieFavorite;

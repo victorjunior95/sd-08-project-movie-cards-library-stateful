@@ -21,6 +21,7 @@ class MovieLibrary extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.handFilterBook = this.handFilterBook.bind(this);
+    this.handleAddMovie = this.handleAddMovie.bind(this);
   }
 
   handleChange(event) {
@@ -50,7 +51,11 @@ class MovieLibrary extends Component {
     return this.handFilterBook(bookmarkedOnly, moviesResults);
   }
 
-  handleAddMovie() {}
+  handleAddMovie(newMovie) {
+    const { movies } = this.props;
+    movies.push(newMovie);
+    this.setState({ movies });
+  }
 
   handFilterBook(bookmarkedOnly, movies) {
     return movies.filter((movie) => {
@@ -77,7 +82,7 @@ class MovieLibrary extends Component {
           onSelectedGenreChange={ this.handleChange }
         />
         <MovieList movies={ movies } />
-        <AddMovie />
+        <AddMovie onClick={ this.handleAddMovie } />
       </div>
     );
   }
