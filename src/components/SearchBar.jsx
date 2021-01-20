@@ -1,18 +1,14 @@
+/* eslint-disable no-trailing-spaces */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   render() {
     return (
-      <div data-testid="movie-list" className="movie-list">
-        <input type="text" onChange={ this.handleChange } />
-        {searchText}
-        {onSearchTextChange}
-        {bookmarkedOnly}
-        {onBookmarkedChange}
-        {selectedGenre}
-        {onSelectedGenreChange}
-      </div>
+      <label data-testid="search-bar-form" htmlFor="text-input">
+        Nome:
+        <input type="text" name="name" />
+      </label>
     );
   }
 }
