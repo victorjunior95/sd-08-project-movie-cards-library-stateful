@@ -20,24 +20,34 @@ export default class AddMovie extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === 'rating') {
+      this.setState({
+        [event.target.name]: parseFloat(event.target.value),
+      });
+    } else {
+      this.setState({
+        [event.target.name]: event.target.value,
+      });
+    }
   }
 
   handleClick(event) {
     event.preventDefault();
-    const { onClick } = this.props;
-    onClick(this.state);
+    const { title, subtitle, storyline } = this.state;
+    if (title !== '' && subtitle !== '' && storyline !== '') {
+      console.log('ok');
+      const { onClick } = this.props;
+      onClick(this.state);
 
-    this.setState({
-      subtitle: '',
-      title: '',
-      imagePath: '',
-      storyline: '',
-      rating: 0,
-      genre: 'action',
-    });
+      this.setState({
+        subtitle: '',
+        title: '',
+        imagePath: '',
+        storyline: '',
+        rating: 0,
+        genre: 'action',
+      });
+    }
   }
 
   FInputTitle() {
@@ -48,6 +58,8 @@ export default class AddMovie extends React.Component {
         <input
           type="text"
           name="title"
+          minLength="1"
+          maxLength="30"
           value={ title }
           data-testid="title-input"
           onChange={ this.handleChange }
@@ -64,6 +76,8 @@ export default class AddMovie extends React.Component {
         <input
           type="text"
           name="subtitle"
+          minLength="1"
+          maxLength="40"
           value={ subtitle }
           data-testid="subtitle-input"
           onChange={ this.handleChange }
@@ -80,6 +94,8 @@ export default class AddMovie extends React.Component {
         <input
           type="text"
           name="imagePath"
+          minLength="1"
+          maxLength="300"
           value={ imagePath }
           data-testid="image-input"
           onChange={ this.handleChange }
@@ -98,6 +114,7 @@ export default class AddMovie extends React.Component {
           cols="30"
           rows="5"
           maxLength="200"
+          minLength="1"
           value={ storyline }
           data-testid="storyline-input"
           onChange={ this.handleChange }
@@ -109,7 +126,7 @@ export default class AddMovie extends React.Component {
   FInputRating() {
     const { rating } = this.state;
     return (
-      <label htmlFor="ratinig" data-testid="storyline-input">
+      <label htmlFor="ratinig" data-testid="rating-input-label">
         Avaliação
         <input
           type="number"
