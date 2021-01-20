@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -7,8 +8,12 @@ class AddMovie extends React.Component {
       titleText: '',
       subtitleText: '',
       image: '',
+      storyLine: '',
+      rating: 0,
+      genre: 'action',
     };
-    this.updateTitleText = this.updateTitleText.bind(this);
+    this.updateState = this.updateState.bind(this);
+    this.resetState = this.resetState.bind(this);
   }
 
   createTitle() {
@@ -18,9 +23,9 @@ class AddMovie extends React.Component {
         Título
         <input
           type="text"
-          title={ titleText }
+          value={ titleText }
           data-testid="title-input"
-          onChange={ this.updateTitleText }
+          onChange={ this.updateState }
           id="titleText"
         />
       </label>
@@ -34,9 +39,9 @@ class AddMovie extends React.Component {
         Subtítulo
         <input
           type="text"
-          subtitle={ subtitleText }
+          value={ subtitleText }
           data-testid="subtitle-input"
-          onChange={ this.updateTitleText }
+          onChange={ this.updateState }
           id="subtitleText"
         />
       </label>
@@ -50,20 +55,98 @@ class AddMovie extends React.Component {
         Imagem
         <input
           type="text"
-          imagePath={ image }
+          value={ image }
           data-testid="image-input"
-          onChange={ this.updateTitleText }
+          onChange={ this.updateState }
           id="image"
         />
       </label>
     );
   }
 
-  updateTitleText(event) {
-    const text = event.target.value;
-    const keyName = event.target.id;
+  createStoryLine() {
+    const { storyLine } = this.state;
+    return (
+      <label data-testid="storyline-input-label" htmlFor="storyLine">
+        Sinopse
+        <textarea
+          value={ storyLine }
+          data-testid="storyline-input"
+          onChange={ this.updateState }
+          id="storyLine"
+        />
+      </label>
+    );
+  }
+
+  createRating() {
+    const { rating } = this.state;
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating">
+        Avaliação
+        <input
+          type="number"
+          value={ rating }
+          data-testid="rating-input"
+          onChange={ this.updateState }
+          id="rating"
+        />
+      </label>
+    );
+  }
+
+  createSelect() {
+    const { genre } = this.state;
+    return (
+      <label data-testid="genre-input-label" htmlFor="genre">
+        Gênero
+        <select
+          data-testid="genre-input"
+          id="genre"
+          onChange={ this.updateState }
+          value={ genre }
+        >
+          <option data-testid="genre-option" value="action">Ação</option>
+          <option data-testid="genre-option" value="comedy">Comédia</option>
+          <option data-testid="genre-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
+  createButton() {
+    const { onClick } = this.props;
+    return (
+      <button
+        style={ { width: '200px' } }
+        type="reset"
+        data-testid="send-button"
+        onClick={ () => {
+          onClick();
+          this.resetState();
+        } }
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
+  updateState(e) {
+    const keyName = e.target.id;
+    const t = e.target.id === 'rating' ? parseFloat(e.target.value) : e.target.value;
     this.setState({
-      [keyName]: text,
+      [keyName]: t,
+    });
+  }
+
+  resetState() {
+    this.setState({
+      titleText: '',
+      subtitleText: '',
+      image: '',
+      storyLine: '',
+      rating: 0,
+      genre: 'action',
     });
   }
 
@@ -73,9 +156,17 @@ class AddMovie extends React.Component {
         { this.createTitle() }
         { this.createSubtitle() }
         { this.createImage() }
+        { this.createStoryLine() }
+        { this.createRating() }
+        { this.createSelect() }
+        { this.createButton() }
       </form>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
