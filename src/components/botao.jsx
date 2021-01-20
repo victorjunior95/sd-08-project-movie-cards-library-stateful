@@ -8,7 +8,7 @@ class Botao extends React.Component {
     return (
       <div>
         <button
-          type="submit"
+          type="button"
           onClick={ onClick }
           data-testid="send-button"
         >

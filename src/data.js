@@ -46,10 +46,4 @@ const movies = [
   },
 ];
 
-const opGenre = [{
-  action: 'Ação',
-  comedy: 'Comédia',
-  thriller: 'Suspense',
-}];
-
 export default movies;

@@ -24,7 +24,7 @@ class Favoritos extends React.Component {
 
 Favoritos.propTypes = {
   onChange: PropTypes.func.isRequired,
-  checked: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
 };
 
 export default Favoritos;

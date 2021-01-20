@@ -24,7 +24,7 @@ class Image extends React.Component {
 }
 
 Image.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

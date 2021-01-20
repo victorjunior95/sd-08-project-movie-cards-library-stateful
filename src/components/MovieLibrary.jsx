@@ -26,9 +26,11 @@ class MovieLibrary extends Component {
   }
 
   onClick(newMovie) {
-    const { movies } = this.props;
-    movies.push(newMovie);
-    this.setState({ movies });
+    this.setState((anterior) => {
+      const newMovies = [...anterior.movies];
+      newMovies.push(newMovie);
+      return { movies: newMovies };
+    });
   }
 
   onSearchTextChange(event) {
