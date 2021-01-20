@@ -20,17 +20,22 @@ class MovieLibrary extends React.Component {
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.handleAddMovie = this.handleAddMovie.bind(this);
+  }
+
+  handleAddMovie(objectMovie) {
+    this.setState((currentState) => ({
+      movies: [...currentState.movies, objectMovie],
+    }));
   }
 
   handleFilter(movies) {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     let moviesToShow = movies
       .filter((movie) => movie.genre.includes(selectedGenre))
-      .filter((movie) => movie.title.includes(searchText)
-        || movie.subtitle.includes(searchText)
-        || movie.storyline.includes(searchText));
-    moviesToShow = !bookmarkedOnly
-      ? moviesToShow
+      .filter((movie) => JSON.stringify(Object.values(movie))
+        .toLowerCase().includes(searchText));
+    moviesToShow = !bookmarkedOnly ? moviesToShow
       : moviesToShow.filter((movie) => movie.bookmarked);
 
     return moviesToShow;
@@ -61,7 +66,7 @@ class MovieLibrary extends React.Component {
   render() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
     const { onSearchTextChange, onBookmarkedChange, onSelectedGenreChange,
-      onClick } = this;
+      handleAddMovie } = this;
     const moviesToShow = this.handleFilter(movies);
     return (
       <div>
@@ -74,7 +79,7 @@ class MovieLibrary extends React.Component {
           onSelectedGenreChange={ onSelectedGenreChange }
         />
         <MovieList movies={ moviesToShow } />
-        <AddMovie onClick={ onClick } />
+        <AddMovie onClick={ handleAddMovie } />
       </div>
     );
   }
