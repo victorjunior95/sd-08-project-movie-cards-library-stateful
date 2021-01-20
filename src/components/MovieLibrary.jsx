@@ -79,7 +79,7 @@ class MovieLibrary extends Component {
     return this.handleFilter3(this.handleFilter2(this.handleFilter1(moviesList)));
   }
 
-  /* eslint-disable */
+  // /* eslint-disable */
   render() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
     const selectedMovies = this.handleMovieFilter(movies);
@@ -87,15 +87,15 @@ class MovieLibrary extends Component {
       <div>
         <h2> My awesome movie library </h2>
         <SearchBar
-          searchText={searchText}
-          onSearchTextChange={this.handleChangeSearchText}
-          bookmarkedOnly={bookmarkedOnly}
-          onBookmarkedChange={this.handleChangeBookmarkedOnly}
-          selectedGenre={selectedGenre}
-          onSelectedGenreChange={this.handleChangeSelectedGenre}
+          searchText={ searchText }
+          onSearchTextChange={ this.handleChangeSearchText }
+          bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ this.handleChangeBookmarkedOnly }
+          selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ this.handleChangeSelectedGenre }
         />
-        <MovieList movies={selectedMovies} />
-        <AddMovie onClick={this.handleInsertMovie} />
+        <MovieList movies={ selectedMovies } />
+        <AddMovie onClick={ this.handleInsertMovie } />
       </div>
     );
   }

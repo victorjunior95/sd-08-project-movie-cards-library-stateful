@@ -109,15 +109,6 @@ class SearchBar extends Component {
   }
 }
 
-// SearchBar.defaultProps = {
-//   searchText: '',
-//   onSearchTextChange: null,
-//   bookmarkedOnly: false,
-//   selectedGenre: '',
-//   onSelectedGenreChange: null,
-//   onBookmarkedChange: null,
-// };
-
 SearchBar.propTypes = {
   searchText: PropTypes.string.isRequired,
   onSearchTextChange: PropTypes.func.isRequired,
@@ -128,10 +119,3 @@ SearchBar.propTypes = {
 };
 
 export default SearchBar;
-// handleFilter1(moviesList) {
-//   const { bookmarkedOnly } = this.state;
-//   if (bookmarkedOnly) {
-//     return moviesList.filter((i) => i.bookmarked === true);
-//   }
-//   return moviesList;
-// }
