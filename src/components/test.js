@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import AddMovie from './AddMovie';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
-import AddMovie from './AddMovie';
 
-export default class MovieLibrary extends Component {
+class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,54 +19,52 @@ export default class MovieLibrary extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.addThisMovie = this.addThisMovie.bind(this);
     this.filterMovies = this.filterMovies.bind(this);
+    this.addNewMovie = this.addNewMovie.bind(this);
   }
 
   handleChange({ target }) {
-    const { name } = target;
-    const value = (target.type === 'checkbox') ? target.checked : target.value;
     this.setState({
-      [name]: value,
+      [target.name]: target.type === 'checkbox' ? target.checked : target.value,
     });
   }
 
-  addThisMovie(newMovie) {
-    this.setState((currState) => ({
-      movies: [...currState.movies, newMovie],
+  addNewMovie(movieObject) {
+    this.setState((currentState) => ({
+      movies: [...currentState.movies, movieObject],
     }));
   }
 
   filterMovies(movies) {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-    let filtered = bookmarkedOnly
+    let moviesToRender = bookmarkedOnly
       ? movies.filter((movie) => movie.bookmarked)
       : movies;
-    filtered = filtered
+    moviesToRender = moviesToRender
       .filter((movie) => movie.genre.includes(selectedGenre))
       .filter((movie) => movie.title.toLowerCase().includes(searchText)
         || movie.subtitle.toLowerCase().includes(searchText)
         || movie.storyline.toLowerCase().includes(searchText));
 
-    return filtered;
+    return moviesToRender;
   }
 
   render() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const moviesToRender = this.filterMovies(movies);
     return (
-      <div>
-        <h2> My awesome movie library </h2>
+      <section>
         <SearchBar
           searchText={ searchText }
-          onSearchTextChange={ this.handleChange }
           bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.handleChange }
           selectedGenre={ selectedGenre }
+          onSearchTextChange={ this.handleChange }
+          onBookmarkedChange={ this.handleChange }
           onSelectedGenreChange={ this.handleChange }
         />
-        <MovieList movies={ this.filterMovies(movies) } />
-        <AddMovie onClick={ this.addThisMovie } />
-      </div>
+        <MovieList movies={ moviesToRender } />
+        <AddMovie onClick={ this.addNewMovie } />
+      </section>
     );
   }
 }
@@ -74,3 +72,5 @@ export default class MovieLibrary extends Component {
 MovieLibrary.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+export default MovieLibrary;

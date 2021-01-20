@@ -30,7 +30,7 @@ export default class SearchBar extends Component {
   projectIsFresco2() {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
-      <div>
+      <div key="checkbox-input">
         <label htmlFor="checkbox-input" data-testid="checkbox-input-label">
           Mostrar somente favoritos:
           <input
@@ -48,7 +48,7 @@ export default class SearchBar extends Component {
   projectIsFresco3() {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <div>
+      <div key="select-input">
         <label htmlFor="select-input" data-testid="select-input-label">
           Filtrar por gênero:
           <select
@@ -70,7 +70,9 @@ export default class SearchBar extends Component {
     return (
       <form data-testid="search-bar-form">
         <fieldset>
-          {[this.projectIsFresco1(), this.projectIsFresco2(), this.projectIsFresco3()] }
+          {this.projectIsFresco1()}
+          {this.projectIsFresco2()}
+          { this.projectIsFresco3()}
         </fieldset>
       </form>
     );

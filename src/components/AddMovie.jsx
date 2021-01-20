@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from './SearchBar';
+import PropTypes from 'prop-types';
+// import SearchBar from './SearchBar';
 // import MovieList from './MovieList';
 
 export default class AddMovie extends Component {
@@ -53,16 +54,18 @@ export default class AddMovie extends Component {
   theSubTitle() {
     const { subtitle } = this.state;
     return (
-      <label htmlFor="subtitle-input" data-testid="subtitle-input-label">
-        Subtítulo
-        <input
-          type="text"
-          data-testid="subtitle-input"
-          name="subtitle"
-          value={ subtitle }
-          onChange={ this.handleChange }
-        />
-      </label>
+      <div>
+        <label htmlFor="subtitle-input" data-testid="subtitle-input-label">
+          Subtítulo
+          <input
+            type="text"
+            data-testid="subtitle-input"
+            name="subtitle"
+            value={ subtitle }
+            onChange={ this.handleChange }
+          />
+        </label>
+      </div>
     );
   }
 
@@ -87,15 +90,17 @@ export default class AddMovie extends Component {
   theSinopsis() {
     const { storyline } = this.state;
     return (
-      <label htmlFor="storyline-input" data-testid="storyline-input-label">
-        Sinopse
-        <textarea
-          data-testid="storyline-input"
-          name="storyline"
-          value={ storyline }
-          onChange={ this.handleChange }
-        />
-      </label>
+      <div>
+        <label htmlFor="storyline-input" data-testid="storyline-input-label">
+          Sinopse
+          <textarea
+            data-testid="storyline-input"
+            name="storyline"
+            value={ storyline }
+            onChange={ this.handleChange }
+          />
+        </label>
+      </div>
     );
   }
 
@@ -111,6 +116,7 @@ export default class AddMovie extends Component {
             name="rating"
             value={ rating }
             onChange={ this.handleChange }
+            max={ 5 }
           />
         </label>
       </div>
@@ -122,8 +128,9 @@ export default class AddMovie extends Component {
     return (
       <div>
         <label htmlFor="genre-input" data-testid="genre-input-label">
-          Gênero:
+          Gênero
           <select
+            name="genre"
             value={ genre }
             onChange={ this.handleChange }
             data-testid="genre-input"
@@ -137,15 +144,28 @@ export default class AddMovie extends Component {
     );
   }
 
-  addNReset() {
-
+  addNReset(onClick) {
+    onClick(this.state);
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
   }
 
   theButton() {
+    const { onClick } = this.props;
     return (
       <div>
-        <button type="submit" data-testid="send-button" onClick={ this.addNReset() }>
-          Adicionar Filme
+        <button
+          type="submit"
+          data-testid="send-button"
+          onClick={ (event) => { event.preventDefault(); this.addNReset(onClick); } }
+        >
+          Adicionar filme
         </button>
       </div>
     );
@@ -154,17 +174,21 @@ export default class AddMovie extends Component {
   render() {
     return (
       <form data-testid="add-movie-form">
-        <fieldset>
-          <h2> My awesome movie library </h2>
-          <section>
-            {[this.theTitle(), this.theSubTitle(), this.theImagePath(),
-              this.theSinopsis(), this.theRating(), this.addNReset(), this.theButton()] }
-          </section>
-          {/* <SearchBar /> */}
-          {/* <MovieList movies={ this.props.movies } /> */}
-          {/* <AddMovie /> */}
-        </fieldset>
+        <h2> My awesome movie library </h2>
+        <section>
+          {this.theTitle()}
+          {this.theSubTitle()}
+          {this.theImagePath()}
+          {this.theSinopsis()}
+          {this.theRating()}
+          {this.theGenre()}
+          {this.theButton() }
+        </section>
       </form>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
