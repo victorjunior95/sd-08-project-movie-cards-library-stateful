@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
-  testeFuncao(searchText, onSearchTextChange) {
+  inputText(searchText, onSearchTextChange) {
     return (
       <label data-testid="text-input-label" htmlFor="text-input">
         Inclui o texto:
@@ -56,7 +56,7 @@ class SearchBar extends Component {
     } = this.props;
     return (
       <form data-testid="search-bar-form">
-        {this.testeFuncao(searchText, onSearchTextChange)}
+        {this.inputText(searchText, onSearchTextChange)}
         {this.inputCheckBox(bookmarkedOnly, onBookmarkedChange)}
         {this.inputSelect(selectedGenre, onSelectedGenreChange)}
       </form>
