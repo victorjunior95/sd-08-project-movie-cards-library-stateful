@@ -2,13 +2,13 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import Titulo from './formulario/titulo';
-import SubTitulo from './formulario/subtitulo';
-import Image from './formulario/image';
-import Sinopse from './formulario/sinopse';
-import Avaliacao from './formulario/avaliacao';
-import Genero from './formulario/genero';
-import Botao from './formulario/botao';
+import Titulo from './titulo';
+import SubTitulo from './subtitulo';
+import Image from './image';
+import Sinopse from './sinopse';
+import Avaliacao from './avaliacao';
+import Genero from './genero';
+import Botao from './botao';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -53,7 +53,7 @@ class AddMovie extends React.Component {
         <Sinopse value={ storyline } onChange={ this.onChangeAction } />
         <Avaliacao value={ rating } onChange={ this.onChangeAction } />
         <Genero value={ genre } onChange={ this.onChangeAction } />
-        <Botao value={ this.state } onClick={ onClick } onClick2={ this.botaoCliqued } />
+        <Botao value={ this.state } onClick={ onClick } />
       </form>
     );
   }
