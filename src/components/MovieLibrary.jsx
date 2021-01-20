@@ -35,19 +35,44 @@ class MovieLibrary extends React.Component {
     });
   }
 
-  render() {
+  searchBarComponent() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    return (
+      <SearchBar
+        searchText={ searchText }
+        onSearchTextChange={ this.handleChange }
+        bookmarkedOnly={ bookmarkedOnly }
+        onBookmarkedChange={ this.handleChange }
+        selectedGenre={ selectedGenre }
+        onSelectedGenreChange={ this.handleChange }
+      />);
+  }
+
+  filterMovies() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    let movieList = movies;
+    if (bookmarkedOnly === true) {
+      movieList = movieList.filter((m) => m.bookmarked === true);
+    }
+    if (selectedGenre !== '') {
+      movieList = movieList.filter((m) => m.genre === selectedGenre);
+    }
+    if (searchText !== '') {
+      movieList = movieList.filter((m) => m.title.toLowerCase()
+        .includes(searchText.toLowerCase())
+        || m.subtitle.toLowerCase().includes(searchText.toLowerCase())
+        || m.storyline.toLowerCase().includes(searchText.toLowerCase()));
+    }
+    return (
+      <MovieList movies={ movieList } />
+    );
+  }
+
+  render() {
     return (
       <div>
-        <SearchBar
-          searchText={ searchText }
-          onSearchTextChange={ this.handleChange }
-          bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.handleChange }
-          selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ this.handleChange }
-        />
-        <MovieList movies={ movies } />
+        { this.searchBarComponent() }
+        { this.filterMovies() }
         <AddMovie onClick={ this.addMovie } />
       </div>
     );
