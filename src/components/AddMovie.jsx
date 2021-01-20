@@ -52,7 +52,7 @@ class AddMovie extends React.Component {
     );
   }
 
-  imagePath() {
+  inputImagePath() {
     const { imagePath } = this.state;
     return (
       <label data-testid="image-input-label" htmlFor="imageInput">
@@ -61,7 +61,22 @@ class AddMovie extends React.Component {
           data-testid="image-input"
           name="imagePath"
           value={ imagePath }
-          onChange={ this.handleInputChange }
+          onChange={ this.handleEvent }
+        />
+      </label>
+    );
+  }
+
+  inputStoryline() {
+    const { storyline } = this.state;
+    return (
+      <label data-testid="storyline-input-label" htmlFor="storylineInput">
+        Sinopse
+        <input
+          data-testid="storyline-input"
+          name="storyline"
+          value={ storyline }
+          onChange={ this.handleEvent }
         />
       </label>
     );
@@ -72,7 +87,8 @@ class AddMovie extends React.Component {
       <form>
         {this.inputTitle()}
         {this.inputSubtitle()}
-        {this.imagePath()}
+        {this.inputImagePath()}
+        {this.inputStoryline()}
       </form>
     );
   }
