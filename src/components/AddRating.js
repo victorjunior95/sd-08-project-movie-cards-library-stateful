@@ -21,12 +21,12 @@ class AddRating extends React.Component {
 }
 
 AddRating.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
   handleChange: PropTypes.func.isRequired,
 };
 
 AddRating.defaultProps = {
-  value: '',
+  value: 0,
 };
 
 export default AddRating;
