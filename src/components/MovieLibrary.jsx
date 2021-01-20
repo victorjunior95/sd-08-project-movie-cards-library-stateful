@@ -9,14 +9,16 @@ class MovieLibrary extends Component {
   constructor(props) {
     super(props);
 
-    this.setState = {
+		this.onSearchTextChange = this.onSearchTextChange.bind(this);
+
+    this.state = {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
     }
   }
 
-  onSearchTextChange = (event) => {
+  onSearchTextChange(event) {
     this.setState = {
       searchText: event.target.value,
     }
