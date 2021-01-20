@@ -62,7 +62,7 @@ class MovieLibrary extends Component {
     const { movies } = this.state;
     this.setState(() => ({
       movies: [...movies, newMovie],
-      newMovies: [...this.props.movies, newMovie],
+      newMovies: [...movies, newMovie],
     }));
   }
 
