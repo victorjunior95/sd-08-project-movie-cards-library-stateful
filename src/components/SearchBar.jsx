@@ -109,22 +109,29 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.defaultProps = {
-  searchText: '',
-  onSearchTextChange: null,
-  bookmarkedOnly: false,
-  selectedGenre: '',
-  onSelectedGenreChange: null,
-  onBookmarkedChange: null,
-};
+// SearchBar.defaultProps = {
+//   searchText: '',
+//   onSearchTextChange: null,
+//   bookmarkedOnly: false,
+//   selectedGenre: '',
+//   onSelectedGenreChange: null,
+//   onBookmarkedChange: null,
+// };
 
 SearchBar.propTypes = {
-  searchText: PropTypes.string,
-  onSearchTextChange: PropTypes.func,
-  bookmarkedOnly: PropTypes.bool,
-  selectedGenre: PropTypes.string,
-  onSelectedGenreChange: PropTypes.func,
-  onBookmarkedChange: PropTypes.func,
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  onBookmarkedChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
+// handleFilter1(moviesList) {
+//   const { bookmarkedOnly } = this.state;
+//   if (bookmarkedOnly) {
+//     return moviesList.filter((i) => i.bookmarked === true);
+//   }
+//   return moviesList;
+// }
