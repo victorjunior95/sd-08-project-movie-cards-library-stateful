@@ -15,6 +15,7 @@ export default class MovieLibrary extends React.Component {
       bookmarkedOnly: false,
       selectedGenre: '',
       movies,
+      filteredMovies: movies,
     };
 
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
@@ -26,58 +27,45 @@ export default class MovieLibrary extends React.Component {
   onSearchTextChange(event) {
     this.setState({
       searchText: event.target.value,
-    }, () => this.filterMovies());
+    }, () => this.filterText());
   }
 
   onBookmarkedChange(event) {
     this.setState({
       bookmarkedOnly: event.target.checked,
-    }, () => this.filterMovies());
+    }, () => this.filterBookmark());
   }
 
   onSelectedGenreChange(event) {
-    this.setState({ selectedGenre: event.target.value }, () => this.filterMovies());
+    this.setState({ selectedGenre: event.target.value }, () => this.filterGenre());
   }
 
   addNewMovie(newMovie) {
     const { movies } = this.state;
-    this.setState({ movies: [...movies, newMovie] });
+    this.setState({ filteredMovies: [...movies, newMovie] });
+    console.log({ movies });
   }
 
   filterBookmark() {
     const { filteredMovies } = this.state;
-    console.log(filteredMovies);
-    console.log('ok 1');
     this.setState({ filteredMovies: filteredMovies.filter((movie) => movie.bookmarked) });
   }
 
-  filterGenre(selectedGenre) {
-    const { filteredMovies } = this.state;
-    console.log('ok 2');
-    console.log(selectedGenre);
+  filterGenre() {
+    const { filteredMovies, selectedGenre } = this.state;
     this.setState({ filteredMovies: filteredMovies
       .filter((movie) => movie.genre === selectedGenre) });
   }
 
-  filterText(searchText) {
-    const { filteredMovies } = this.state;
-    console.log('ok 3');
+  filterText() {
+    const { filteredMovies, searchText } = this.state;
     this.setState({ filteredMovies: filteredMovies
       .filter((movie) => [movie.title, movie.subtitle, movie.storyline]
         .some((content) => content.includes(searchText))) });
   }
 
-  filterMovies() {
-    const { selectedGenre, searchText, movies } = this.state;
-    this.setState({ filteredMovies: movies }, () => {
-      this.filterBookmark();
-      this.filterGenre(selectedGenre);
-      this.filterText(searchText);
-    });
-  }
-
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre, filteredMovies } = this.state;
     return (
       <>
         <SearchBar
@@ -88,7 +76,7 @@ export default class MovieLibrary extends React.Component {
           onBookmarkedChange={ this.onBookmarkedChange }
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
-        <MovieList movies={ movies } />
+        <MovieList movies={ filteredMovies } />
         <AddMovie onClick={ this.addNewMovie } />
       </>
     );
