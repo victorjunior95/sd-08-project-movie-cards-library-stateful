@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Input from './Input';
 import SelectGenre from './SelectGenre';
 
 const optionList = [
@@ -24,7 +23,7 @@ const optionList = [
 ];
 
 const DEF_SELECT_GENRE_PROPS = {
-  labelName: 'Gênero',
+  labelName: 'Filtrar por gênero',
   testid1: 'select-input-label',
   testid2: 'select-input',
   testid3: 'select-option',
@@ -49,12 +48,14 @@ class SearchBar extends Component {
     const { searchText, onSearchTextChange } = this.props;
     return (
       <>
-        <Input
-          name="text-input"
-          labelName="Inclui o texto:"
-          onChange={ onSearchTextChange }
-          value={ searchText }
-        />
+        <label htmlFor="text-input" data-testid="text-input-label">
+          Inclui o texto:
+          <input
+            data-testid="text-input"
+            onChange={ onSearchTextChange }
+            value={ searchText }
+          />
+        </label>
         <br />
       </>
     );
