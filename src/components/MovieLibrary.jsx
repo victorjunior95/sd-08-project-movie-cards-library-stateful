@@ -52,34 +52,32 @@ class MovieLibrary extends Component {
     const { movies, searchText, bookmarkedOnly, selectedGenre } = this.state;
 
     return movies.filter((movie) => movie.title.includes(searchText)
-      || movie.subtitle.includes(searchText)
-      || movie.storyline.includes(searchText))
+    || movie.subtitle.includes(searchText)
+    || movie.storyline.includes(searchText))
       .filter((movie) => (bookmarkedOnly ? movie.bookmarked === true : movie))
       .filter((movie) => movie.genre.includes(selectedGenre));
   }
 
   render() {
-/* eslint-disable */
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-    
+
     return (
       <div>
         <h2> My awesome movie library </h2>
         <SearchBar
-        searchText={ searchText }
-        onSearchTextChange={ this.onSearchTextChange }
-        bookmarkedOnly={ bookmarkedOnly }
-        onBookmarkedChange={ this.onBookmarkedChange }
-        selectedGenre={ selectedGenre }
-        onSelectedGenreChange={ this.onSelectedGenreChange }
+          searchText={ searchText }
+          onSearchTextChange={ this.onSearchTextChange }
+          bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ this.onBookmarkedChange }
+          selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <MovieList movies={ this.filterMovies() } />
-        <AddMovie  onClick={ this.addMovie }/>
+        <AddMovie onClick={ this.addMovie } />
       </div>
     );
   }
 }
-/* eslint-enable */
 
 MovieLibrary.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
