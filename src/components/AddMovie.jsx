@@ -32,7 +32,22 @@ class AddMovie extends React.Component {
     return (
       <label data-testid="storyline-input-label" htmlFor="sinopse">
         Sinopse
-        <input data-testid="storyline-input" id="sinopse" type="text" />
+        <textarea
+          data-testid="storyline-input"
+          name="sinopse"
+          id="sinopse"
+          cols="30"
+          rows="5"
+        />
+      </label>
+    );
+  }
+
+  inputRating() {
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating">
+        Avaliação
+        <input data-testid="rating-input" id="rating" type="number" defaultValue="0" />
       </label>
     );
   }
@@ -45,6 +60,7 @@ class AddMovie extends React.Component {
           {this.inputSubtitle()}
           {this.inputImage()}
           {this.inputSinopse()}
+          {this.inputRating()}
         </form>
       </div>
     );
