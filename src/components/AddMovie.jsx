@@ -6,7 +6,6 @@ class AddMovie extends React.Component {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleAdd = this.handleAdd.bind(this);
     this.handleReset = this.handleReset.bind(this);
 
     this.state = {
@@ -21,34 +20,28 @@ class AddMovie extends React.Component {
 
   handleChange({ target }) {
     const { name } = target;
-    const value = target.name === 'rating' ? Number(target.value) : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
     });
   }
 
   handleReset() {
-    this.setState({
+    this.setState(() => ({
       subtitle: '',
       title: '',
       imagePath: '',
       storyline: '',
       rating: 0,
       genre: 'action',
-    });
-  }
-
-  handleAdd() {
-    const { propriedades } = this.props;
-    propriedades.onClick(this.state);
-    this.handleReset();
+    }));
   }
 
   renderTitle() {
-    const { title } = this.props;
+    const { title } = this.state;
     return (
       <div>
-        <label data-testid="title-input-label" htmlFor="title-input">
+        <label data-testid="title-input-label" htmlFor="title">
           Título:
           <input
             type="text"
@@ -64,10 +57,10 @@ class AddMovie extends React.Component {
   }
 
   renderSubtitle() {
-    const { subtitle } = this.props;
+    const { subtitle } = this.state;
     return (
       <div>
-        <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
+        <label data-testid="subtitle-input-label" htmlFor="subtitle">
           Subtítulo:
           <input
             type="text"
@@ -83,10 +76,10 @@ class AddMovie extends React.Component {
   }
 
   renderImage() {
-    const { imagePath } = this.props;
+    const { imagePath } = this.state;
     return (
       <div>
-        <label data-testid="image-input-label" htmlFor="image-input">
+        <label data-testid="image-input-label" htmlFor="imagePath">
           Imagem:
           <input
             type="text"
@@ -102,10 +95,10 @@ class AddMovie extends React.Component {
   }
 
   renderStoryline() {
-    const { storyline } = this.props;
+    const { storyline } = this.state;
     return (
       <div>
-        <label data-testid="storyline-input-label" htmlFor="storyline-input">
+        <label data-testid="storyline-input-label" htmlFor="storyline">
           Sinopse:
           <textarea
             name="storyline"
@@ -120,10 +113,10 @@ class AddMovie extends React.Component {
   }
 
   renderRating() {
-    const { rating } = this.props;
+    const { rating } = this.state;
     return (
       <div>
-        <label data-testid="rating-input-label" htmlFor="rating-input">
+        <label data-testid="rating-input-label" htmlFor="rating">
           Avaliação:
           <input
             type="number"
@@ -139,7 +132,7 @@ class AddMovie extends React.Component {
   }
 
   renderGenre() {
-    const { genre } = this.props;
+    const { genre } = this.state;
     return (
       <label data-testid="genre-input-label" htmlFor="genre-input">
         Gênero:
@@ -159,11 +152,15 @@ class AddMovie extends React.Component {
   }
 
   renderButton() {
+    const { onClick } = this.props;
     return (
       <button
         type="button"
         data-testid="send-button"
-        onClick={ this.handleAdd }
+        onClick={ () => {
+          onClick(this.state);
+          this.handleReset();
+        } }
         name="button"
       >
         Adicionar filme
@@ -192,9 +189,5 @@ class AddMovie extends React.Component {
 export default AddMovie;
 
 AddMovie.propTypes = {
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  imagePath: PropTypes.string,
-  storyline: PropTypes.string,
-  rating: PropTypes.number,
-}.isRequired;
+  onClick: PropTypes.func.isRequired,
+};
