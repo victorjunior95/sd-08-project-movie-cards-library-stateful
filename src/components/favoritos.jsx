@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Favoritos extends React.Component {
   render() {
-    const { value, onChange } = this.props;
+    const { onChange, checked } = this.props;
     return (
       <div>
         <label data-testid="checkbox-input-label" htmlFor="checkbox">
@@ -13,9 +13,8 @@ class Favoritos extends React.Component {
             id="checkbox"
             data-testid="checkbox-input"
             type="checkbox"
-            value={ value }
             onChange={ onChange }
-            checked
+            checked={ checked }
           />
         </label>
       </div>
@@ -24,8 +23,8 @@ class Favoritos extends React.Component {
 }
 
 Favoritos.propTypes = {
-  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  checked: PropTypes.string.isRequired,
 };
 
 export default Favoritos;

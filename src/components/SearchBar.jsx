@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
     return (
       <form data-testid="search-bar-form">
         <IncluiTexto value={ searchText } onChange={ onSearchTextChange } />
-        <Favoritos value={ bookmarkedOnly } onChange={ onBookmarkedChange } />
+        <Favoritos checked={ bookmarkedOnly } onChange={ onBookmarkedChange } />
         <FiltraGenero value={ selectedGenre } onChange={ onSelectedGenreChange } />
       </form>
     );
