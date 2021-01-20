@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class AddMovie extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       subtitle: '',
       title: '',
@@ -45,6 +45,8 @@ export default class AddMovie extends React.Component {
       <label data-testid="title-input-label" htmlFor="title-input">
         Título
         <input
+          name="title"
+          type="text"
           value={ title }
           data-testid="title-input"
           onChange={ this.handleChange }
@@ -59,6 +61,8 @@ export default class AddMovie extends React.Component {
       <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
         Subtítulo
         <input
+          name="subtitle"
+          type="text"
           value={ subtitle }
           data-testid="subtitle-input"
           onChange={ this.handleChange }
