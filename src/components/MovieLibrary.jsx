@@ -39,10 +39,10 @@ class MovieLibrary extends Component {
   }
 
   setBookMarked(event) {
-    const { movies } = this.state;
+    const { newMovies } = this.state;
     const { checked } = event.target;
     this.setState({ bookmarkedOnly: checked }, () => {
-      const filteredMovies = movies
+      const filteredMovies = newMovies
         .filter((movie) => movie.bookmarked === checked);
       this.setState({ movies: filteredMovies });
     });
@@ -50,10 +50,10 @@ class MovieLibrary extends Component {
 
   setFilterByGenre(event) {
     const { value } = event.target;
-    const { movies } = this.state;
+    const { newMovies } = this.state;
     this.setState({ selectedGenre: value }, () => {
-      const filteredMovies = movies
-        .filter((movie) => movie.genre === value);
+      const filteredMovies = newMovies
+        .filter((movie) => movie.genre.includes(value));
       this.setState({ movies: filteredMovies });
     });
   }
@@ -62,7 +62,7 @@ class MovieLibrary extends Component {
     const { movies } = this.state;
     this.setState(() => ({
       movies: [...movies, newMovie],
-      newMovies: [...movies, newMovie],
+      newMovies: [...newMovie, newMovie],
     }));
   }
 

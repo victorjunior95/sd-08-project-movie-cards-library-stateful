@@ -41,6 +41,7 @@ class SeachBar extends React.Component {
           id="filterSelect"
           value={ selectedGenre }
           data-testid="select-input"
+          className="selectGenre"
         >
           <option value="" data-testid="select-option">Todos</option>
           <option value="action" data-testid="select-option">Ação</option>
