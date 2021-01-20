@@ -22,6 +22,10 @@ class AddMovie extends React.Component {
     if (name === 'image') {
       this.setState(() => ({ imagePath: value,
       }));
+    } if (name === 'rating') {
+      const convertValue = Number(value);
+      this.setState(() => ({ [name]: convertValue,
+      }));
     } else {
       this.setState(() => ({ [name]: value,
       }));
@@ -87,6 +91,22 @@ class AddMovie extends React.Component {
     );
   }
 
+  insertFileInput(refState, name, content, handleState) {
+    return (
+      <label htmlFor={ name } data-testid={ `${name}-input-label` }>
+        { content }
+        <input
+          onChange={ handleState }
+          value={ refState }
+          name={ name }
+          id={ name }
+          data-testid={ `${name}-input` }
+          type="file"
+        />
+      </label>
+    );
+  }
+
   renderSelect(refState, name, content, handleState) {
     return (
       <label htmlFor={ name } data-testid={ `${name}-input-label` }>
@@ -107,18 +127,18 @@ class AddMovie extends React.Component {
 
   render() {
     const { insertInputText, insertTextArea, handleState, insertInputNumber,
-      renderSelect, sentForm } = this;
+      renderSelect, sentForm, insertFileInput } = this;
     const { onClick: click } = this.props;
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
         {insertInputText(title, 'title', 'Título:', handleState)}
         {insertInputText(subtitle, 'subtitle', 'Subtítulo', handleState)}
-        {insertInputText(imagePath, 'image', 'Imagem', handleState)}
+        {insertFileInput(imagePath, 'image', 'Imagem', handleState)}
         {insertTextArea(storyline, 'storyline', 'Sinopse', handleState)}
-        {insertInputNumber(rating, 'rating', 'Avaliação', handleState)}
+        {insertInputNumber((rating), 'rating', 'Avaliação', handleState)}
         {renderSelect(genre, 'genre', 'Gênero', handleState)}
-        <button type="submit" onClick={ () => sentForm(click) } data-testid="send-button">
+        <button type="button" onClick={ () => sentForm(click) } data-testid="send-button">
           Adicionar filme
         </button>
       </form>

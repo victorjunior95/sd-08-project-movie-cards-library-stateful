@@ -14,6 +14,7 @@ class MovieLibrary extends Component {
       bookmarkedOnly: false,
       selectedGenre: '',
       movies: [...movies],
+      newMovies: [...movies],
     };
     this.setFilterMovies = this.setFilterMovies.bind(this);
     this.setBookMarked = this.setBookMarked.bind(this);
@@ -23,11 +24,16 @@ class MovieLibrary extends Component {
 
   setFilterMovies(event) {
     const { value } = event.target;
-    const { movies, searchText } = this.state;
-    this.setState({ searchText: value }, () => {
-      const filteredMovies = movies
-        .filter((movie) => movie.title.includes(searchText)
-        || movie.subtitle.includes(value) || movie.storyline.includes(value));
+    const { searchText, newMovies } = this.state;
+    this.setState({ searchText: value, movies: newMovies }, () => {
+      const lowerText = searchText.toLowerCase();
+      const filteredMovies = newMovies
+        .filter((movie) => movie.title
+          .toLowerCase().includes(lowerText)
+        || movie.subtitle
+          .toLowerCase().includes(value)
+        || movie.storyline
+          .toLowerCase().includes(value));
       this.setState({ movies: filteredMovies });
     });
   }
@@ -56,6 +62,7 @@ class MovieLibrary extends Component {
     const { movies } = this.state;
     this.setState(() => ({
       movies: [...movies, newMovie],
+      newMovies: [...this.props.movies, newMovie],
     }));
   }
 
