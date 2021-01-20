@@ -1,8 +1,10 @@
 import React from 'react';
+
 import './App.css';
 
 import Header from './components/Header';
 import MovieLibrary from './components/MovieLibrary';
+import movies from './data';
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
         <Header />
       </header>
       <main>
-        <MovieLibrary />
+        <MovieLibrary movies={ movies } />
       </main>
     </div>
   );

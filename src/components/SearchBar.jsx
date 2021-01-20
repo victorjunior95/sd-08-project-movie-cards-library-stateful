@@ -20,15 +20,15 @@ export default class SearchBar extends React.Component {
   }
 
   SBInputCheckbox() {
-    const { bookmarckedOnly, onBookmarckedChange } = this.props;
+    const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
-      <label htmlFor="bookmarckedOnly" data-testid="checkbox-input-label">
+      <label htmlFor="bookmarkedOnly" data-testid="checkbox-input-label">
         Mostrar somente favoritos
         <input
           type="checkbox"
-          name="bookmarckedOnly"
-          checked={ bookmarckedOnly }
-          onChange={ onBookmarckedChange }
+          name="bookmarkedOnly"
+          checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
         />
       </label>
@@ -69,7 +69,7 @@ SearchBar.propTypes = ({
   searchText: PropTypes.string,
   bookmarkedOnly: PropTypes.bool,
   selectedGenre: PropTypes.string,
-  onSearchTextChange: PropTypes.callback,
-  onBookmarckedChange: PropTypes.callback,
-  onSelectGenreChange: PropTypes.callback,
+  onSearchTextChange: PropTypes.func,
+  onBookmarkedChange: PropTypes.func,
+  onSelectedGenreChange: PropTypes.func,
 }).isRequired;
