@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleChange = this.handleChange.bind(this);
     this.buttonFunc = this.buttonFunc.bind(this);
 
