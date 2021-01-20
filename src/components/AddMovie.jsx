@@ -12,7 +12,6 @@ export default class AddMovie extends Component {
     this.theImagePath = this.theImagePath.bind(this);
     this.theSinopsis = this.theSinopsis.bind(this);
     this.theRating = this.theRating.bind(this);
-    this.addNReset = this.addNReset.bind(this);
     this.theButton = this.theButton.bind(this);
 
     this.state = {
@@ -22,6 +21,7 @@ export default class AddMovie extends Component {
       storyline: '',
       rating: 0,
       genre: 'action',
+      bookMarked: false,
     };
   }
 

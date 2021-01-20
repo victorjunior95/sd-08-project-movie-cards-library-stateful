@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import AddMovie from './AddMovie';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
-import AddMovie from './AddMovie';
 
-export default class MovieLibrary extends Component {
+export default class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,21 +19,21 @@ export default class MovieLibrary extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.addThisMovie = this.addThisMovie.bind(this);
     this.filterMovies = this.filterMovies.bind(this);
+    this.addNewMovie = this.addNewMovie.bind(this);
   }
 
   handleChange({ target }) {
     const { name } = target;
-    const value = (target.type === 'checkbox') ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
     });
   }
 
-  addThisMovie(newMovie) {
-    this.setState((currState) => ({
-      movies: [...currState.movies, newMovie],
+  addNewMovie(movieObject) {
+    this.setState((currentState) => ({
+      movies: [...currentState.movies, movieObject],
     }));
   }
 
@@ -54,19 +54,18 @@ export default class MovieLibrary extends Component {
   render() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
     return (
-      <div>
-        <h2> My awesome movie library </h2>
+      <section>
         <SearchBar
           searchText={ searchText }
-          onSearchTextChange={ this.handleChange }
           bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.handleChange }
           selectedGenre={ selectedGenre }
+          onSearchTextChange={ this.handleChange }
+          onBookmarkedChange={ this.handleChange }
           onSelectedGenreChange={ this.handleChange }
         />
         <MovieList movies={ this.filterMovies(movies) } />
-        <AddMovie onClick={ this.addThisMovie } />
-      </div>
+        <AddMovie onClick={ this.addNewMovie } />
+      </section>
     );
   }
 }
