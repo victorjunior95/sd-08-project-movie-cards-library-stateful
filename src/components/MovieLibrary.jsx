@@ -3,19 +3,23 @@ import PropTypes from 'prop-types';
 
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
-// import AddMovie from './AddMovie';
+import AddMovie from './AddMovie';
 
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
 
+    const { movies } = this.props;
+
     this.state = {
       searchText: '',
       bookmarkCheckbox: false,
       selectGenre: '',
+      movies: [...movies],
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   onChange({ target }) {
@@ -26,9 +30,15 @@ class MovieLibrary extends Component {
     });
   }
 
+  onClick(state) {
+    state.rating = parseFloat(state.rating);
+    this.setState(({ movies }) => ({
+      movies: [...movies, state],
+    }));
+  }
+
   render() {
-    const { movies } = this.props;
-    const { searchText, bookmarkCheckbox, selectGenre } = this.state;
+    const { searchText, bookmarkCheckbox, selectGenre, movies } = this.state;
     return (
       <main>
         <h2> My awesome movie library </h2>
@@ -41,7 +51,7 @@ class MovieLibrary extends Component {
           onSelectedGenreChange={ this.onChange }
         />
         <MovieList movies={ movies } />
-        {/* <AddMovie /> */}
+        <AddMovie onClick={ this.onClick } />
       </main>
     );
   }

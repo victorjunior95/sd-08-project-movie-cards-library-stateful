@@ -1,31 +1,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import InputText from './form/InputText';
-import InputCheckbox from './form/InputCheckbox';
+import InputType from './form/InputType';
 import Select from './form/Select';
 import selectData from './form/selectOptions';
 
 class SearchBar extends Component {
   inputText(value, onChange) {
     return (
-      <InputText name="searchText" onChange={ onChange } value={ value }>
+      <InputType
+        type="text"
+        name="searchText"
+        onChange={ onChange }
+        value={ value }
+        labelTestId="text-input-label"
+        inputTestId="text-input"
+      >
         Inclui o texto:
-      </InputText>
+      </InputType>
     );
   }
 
   inputCheckbox(checked, onChange) {
     return (
-      <InputCheckbox name="bookmarkCheckbox" onChange={ onChange } value={ checked }>
+      <InputType
+        type="checkbox"
+        name="bookmarkCheckbox"
+        onChange={ onChange }
+        value={ checked }
+        labelTestId="checkbox-input-label"
+        inputTestId="checkbox-input"
+      >
         Mostrar somente favoritos
-      </InputCheckbox>
+      </InputType>
     );
   }
 
   select(data, value, onChange) {
     return (
-      <Select data={ data } name="selectGenre" onChange={ onChange } value={ value }>
+      <Select
+        data={ data }
+        name="selectGenre"
+        onChange={ onChange }
+        value={ value }
+        labelTestId="select-input-label"
+        inputTestId="select-input"
+        optionTestId="select-option"
+      >
         Filtrar por gênero
       </Select>
     );
@@ -36,13 +57,11 @@ class SearchBar extends Component {
       onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
 
     return (
-      <section>
-        <form data-testid="search-bar-form">
-          { this.inputText(searchText, onSearchTextChange) }
-          { this.inputCheckbox(bookmarkedOnly, onBookmarkedChange) }
-          { this.select(selectData, selectedGenre, onSelectedGenreChange) }
-        </form>
-      </section>
+      <form data-testid="search-bar-form">
+        { this.inputText(searchText, onSearchTextChange) }
+        { this.inputCheckbox(bookmarkedOnly, onBookmarkedChange) }
+        { this.select(selectData, selectedGenre, onSelectedGenreChange) }
+      </form>
     );
   }
 }

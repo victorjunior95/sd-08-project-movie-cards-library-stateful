@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class InputText extends Component {
+class Textarea extends Component {
   render() {
-    const { name, children, onChange, value } = this.props;
+    const { name, children, onChange, value, labelTestId, inputTestId } = this.props;
     return (
-      <label htmlFor={ name } data-testid="text-input-label">
+      <label htmlFor={ name } data-testid={ labelTestId }>
         { children }
-        <input
-          type="text"
+        <textarea
           id={ name }
           name={ name }
-          data-testid="text-input"
+          data-testid={ inputTestId }
           onChange={ onChange }
           value={ value }
         />
@@ -20,11 +19,13 @@ class InputText extends Component {
   }
 }
 
-InputText.propTypes = {
+Textarea.propTypes = {
   name: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  labelTestId: PropTypes.string.isRequired,
+  inputTestId: PropTypes.string.isRequired,
 };
 
-export default InputText;
+export default Textarea;
