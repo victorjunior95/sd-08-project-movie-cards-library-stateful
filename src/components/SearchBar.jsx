@@ -39,12 +39,9 @@ class SearchBar extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    // console.log(this.state);
-    // console.log(e.target.name);
   }
 
   InputText() {
-    // const { title } = this.state;
     const { searchText, onSearchTextChange } = this.props;
     return (
       <>
@@ -62,7 +59,6 @@ class SearchBar extends Component {
   }
 
   InputBookmarked() {
-    // const { genre } = this.state;
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
       <>
@@ -83,7 +79,6 @@ class SearchBar extends Component {
   }
 
   InputGenre() {
-    // const { genre } = this.state;
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
       <>

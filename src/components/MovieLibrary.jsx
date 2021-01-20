@@ -26,12 +26,10 @@ class MovieLibrary extends Component {
 
   handleInsertMovie(data) {
     const { movies } = this.state;
-
     if (data) {
       const aux = [...movies, data];
       this.setState({ movies: aux });
     }
-    // this.setState({ searchText: '', bookmarkedOnly: false, selectedGenre: '' });
     console.log(movies);
   }
 

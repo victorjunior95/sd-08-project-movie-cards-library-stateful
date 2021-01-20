@@ -27,9 +27,6 @@ const DEF_SELECT_GENRE_PROPS = {
   testid3: 'genre-option',
 };
 
-// Return 20 Linhas
-// /* eslint-disable */
-
 class AddMovie extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +47,6 @@ class AddMovie extends Component {
     const { onClick } = this.props;
     if (onClick) {
       const data = this.state;
-      // this.setState({ title: '' });
       this.resetState();
       onClick(data);
     }
@@ -58,8 +54,6 @@ class AddMovie extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    // console.log(this.state);
-    // console.log(e.target.name);
   }
 
   resetState() {

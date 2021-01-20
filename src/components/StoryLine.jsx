@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const StoryLine = (props) => {
   const { onChange, value } = props;
-
   return (
     <label htmlFor="storyline" data-testid="storyline-input-label">
       Sinopse
