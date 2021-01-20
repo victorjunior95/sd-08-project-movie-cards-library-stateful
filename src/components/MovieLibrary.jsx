@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
@@ -33,7 +34,6 @@ class MovieLibrary extends Component {
     this.setState({
       bookmarkedOnly: event.target.checked,
     });
-
   }
 
   onSelectedGenreChange(event) {
@@ -50,6 +50,7 @@ class MovieLibrary extends Component {
 
   filterMovies() {
     const { movies, searchText, bookmarkedOnly, selectedGenre } = this.state;
+
     return movies.filter((movie) => movie.title.includes(searchText)
       || movie.subtitle.includes(searchText)
       || movie.storyline.includes(searchText))
@@ -79,5 +80,9 @@ class MovieLibrary extends Component {
   }
 }
 /* eslint-enable */
+
+MovieLibrary.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default MovieLibrary;
