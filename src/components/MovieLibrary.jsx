@@ -28,11 +28,11 @@ class MovieLibrary extends Component {
     const { movies } = this.state;
 
     if (data) {
-      const aux = movies;
-      aux.push(data);
+      const aux = [...movies, data];
       this.setState({ movies: aux });
     }
-    // console.log(movies);
+    // this.setState({ searchText: '', bookmarkedOnly: false, selectedGenre: '' });
+    console.log(movies);
   }
 
   handleChangeSearchText(e) {
