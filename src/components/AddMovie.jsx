@@ -148,8 +148,9 @@ class AddMovie extends React.Component {
           data-testid="rating-input"
           value={ rating }
           onChange={ handleRatingInput }
-          min="0"
-          max="10"
+          min="0.0"
+          max="10.0"
+          step="0.1"
         />
       </label>
     );

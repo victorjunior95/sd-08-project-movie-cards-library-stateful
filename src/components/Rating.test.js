@@ -5,11 +5,11 @@ import '@testing-library/jest-dom';
 import Rating from './Rating';
 
 describe('Verifica o componente <Rating />', () => {
-  it.skip('Renderize o componente', () => {
+  it('Renderize o componente', () => {
     render(<Rating />);
   });
 
-  it.skip('Renderize o componente com o valor passado para ele via prop `rating`', () => {
+  it('Renderize o componente com o valor passado para ele via prop `rating`', () => {
     const { getByTestId } = render(<Rating rating={3} />);
     const rating = getByTestId('rating');
 
