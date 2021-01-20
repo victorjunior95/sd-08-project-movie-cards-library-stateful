@@ -4,7 +4,7 @@ class AddMovie extends React.Component {
   constructor() {
     super();
     this.state = {
-      // subtitle: '',
+      subtitle: '',
       title: '',
       // imagePath: '',
       // storyline: '',
@@ -37,24 +37,27 @@ class AddMovie extends React.Component {
     );
   }
 
-  // const { imagePath, storyline, rating, genre } = this.state;
+  inputSubtitle() {
+    const { subtitle } = this.state;
+    return (
+      <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
+        Subtítulo
+        <input
+          data-testid="subtitle-input"
+          name="subtitle"
+          onChange={ this.handleEvent }
+          value={ subtitle }
+        />
+      </label>
+    );
+  }
+
   render() {
-    // const { title, subtitle } = this.state;
     return (
       <form>
         {this.inputTitle()}
+        {this.inputSubtitle()}
       </form>
-      // <form data-testid="add-movie-form">
-      //   {this.inputTitle()}
-      //   <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
-      //     Subtítulo
-      //     <input
-      //       value={ subtitle }
-      //       data-testid="subtitle-input"
-      //       onChange={ this.handleEvent }
-      //     />
-      //   </label>
-      // </form>
     );
   }
 }
