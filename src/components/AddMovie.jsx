@@ -17,8 +17,6 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     };
-
-    this.baseState = this.state;
   }
 
   handleChange(event) {
@@ -125,8 +123,8 @@ class AddMovie extends React.Component {
     );
   }
 
-  callFuncs() {
-    // callBack(this.state);
+  callFuncs(callBack) {
+    callBack(this.state);
     this.setState({
       title: '',
       subtitle: '',
