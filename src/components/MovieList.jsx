@@ -13,7 +13,7 @@ class MovieList extends React.Component {
     );
   }
 }
-
+// leo
 // MovieList.propTypes = {
 //   movies: PropTypes.shape({
 //     title: PropTypes.string.isRequired,
