@@ -1,0 +1,31 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+class AddRating extends React.Component {
+  render() {
+    return(
+      <label htmlFor="rating-input" data-testid="rating-input-label">
+        Avaliação
+        <input
+          id="rating-input"
+          name="rating"
+          type="number"
+          value={ this.props.value }
+          data-testid="rating-input"
+          onChange={ this.props.handleChange }
+        />
+      </label>
+    );
+  }
+}
+
+AddRating.propTypes = {
+  value: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
+};
+
+AddRating.defaultProps = {
+  value: '',
+};
+
+export default AddRating;

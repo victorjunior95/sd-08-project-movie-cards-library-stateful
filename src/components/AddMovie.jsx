@@ -1,4 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import AddTitle from './AddTitle';
+import AddSubtitle from './AddSubtitle';
+import AddImage from './AddImage';
+import AddStoryline from './AddStoryline';
+import AddRating from './AddRating';
+import AddGenre from './AddGenre';
 
 class AddMovie extends React.Component {
   constructor(props) {
@@ -10,102 +18,55 @@ class AddMovie extends React.Component {
       imagePath: '',
       storyline: '',
       rating: 0,
-      genre: 'action'
-    }
+      genre: 'action',
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.resetStates = this.resetStates.bind(this);
+    this.submitChange = this.submitChange.bind(this);
   }
 
-  handleChange = ({ target }) => {
+  handleChange({ target }) {
     const { name, value } = target;
 
     this.setState({
-      [name]: value
-    })
+      [name]: value,
+    });
   }
 
-  resetStates = () => {
+  resetStates() {
     this.setState({
       subtitle: '',
       title: '',
       imagePath: '',
       storyline: '',
       rating: 0,
-      genre: 'action'
-    })
+      genre: 'action',
+    });
   }
 
-  submitChange = (event) => {
+  submitChange(event) {
     event.preventDefault();
     this.props.onClick(this.state);
     this.resetStates();
   }
 
-
-  render() {    
+  render() {
     return (
       <form>
-        <label data-testid="title-input-label">Título
-          <input
-            name="title"
-            type="text"
-            value={this.state.title}
-            data-testid="title-input"
-            onChange={this.handleChange}
-          />
-        </label>
-        <label data-testid="subtitle-input-label">Subtítulo
-          <input
-            name="subtitle"
-            type="text"
-            value={this.state.subtitle}
-            data-testid="subtitle-input"
-            onChange={this.handleChange}
-          />
-        </label>
-        <label data-testid="image-input-label">Imagem
-          <input
-            name="imagePath"
-            type="text"
-            value={this.state.imagePath}
-            data-testid="image-input"
-            onChange={this.handleChange}
-          />
-        </label>
-        <label data-testid="storyline-input-label">Sinopse
-          <textarea
-            name="storyline"
-            value={this.state.storyline}
-            data-testid="image-input"
-            onChange={this.handleChange}
-          />
-        </label>
-        <label data-testid="rating-input-label">Avaliação
-          <input
-            name="rating"
-            type="number"
-            value={this.state.rating}
-            data-testid="rating-input"
-            onChange={this.handleChange}
-          />
-        </label>
-        <label data-testid="genre-input-label">Gênero
-          <select
-            name="genre"
-            type="number"
-            value={this.state.genre}
-            data-testid="genre-input"
-            onChange={this.handleChange}
-
-          >
-            <option value="action" data-testid="genre-option">Ação</option>
-            <option value="comedy" data-testid="genre-option">Comédia</option>
-            <option value="thriller" data-testid="genre-option">Suspense</option>
-          </select>
-        </label>
-        <button 
+        <AddTitle value={ this.state.title } handleChange={ this.handleChange } />
+        <AddSubtitle value={ this.state.subtitle } handleChange={ this.handleChange } />
+        <AddImage value={ this.state.imagePath } handleChange={ this.handleChange } />
+        <AddStoryline value={ this.state.storyline } handleChange={ this.handleChange } />
+        <AddRating value={ this.state.rating } handleChange={ this.handleChange } />
+        <AddGenre value={ this.state.genre } handleChange={ this.handleChange } />
+        <button
           type="button"
           data-testid="send-button"
-          onClick={this.submitChange}
-        >Adicionar filme</button>
+          onClick={ this.submitChange }
+        >
+          Adicionar filme
+        </button>
       </form>
     );
   }

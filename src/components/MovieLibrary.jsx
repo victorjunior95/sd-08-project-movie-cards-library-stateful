@@ -16,9 +16,15 @@ class MovieLibrary extends React.Component {
       movies: props.movies,
       filteredMovies: []
     }
+
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.filterMovies = this.filterMovies.bind(this);
   }
 
-  onSearchTextChange = ({ target }) => {
+  onSearchTextChange({ target }) {
     const { value } = target;
 
     this.setState({
@@ -26,7 +32,7 @@ class MovieLibrary extends React.Component {
     })
   }
 
-  onBookmarkedChange = ({ target }) => {
+  onBookmarkedChange({ target }) {
     const { checked } = target;
 
     this.setState({
@@ -34,7 +40,7 @@ class MovieLibrary extends React.Component {
     })
   }
 
-  onSelectedGenreChange = ({ target }) => {
+  onSelectedGenreChange({ target }) {
     const { value } = target;
 
     this.setState({
@@ -42,7 +48,7 @@ class MovieLibrary extends React.Component {
     })
   }
 
-  onClick = (obj) => {
+  onClick(obj) {
     let rate = parseFloat(obj.rating);
     obj.rating = rate
     let newList = this.state.movies;
@@ -50,7 +56,7 @@ class MovieLibrary extends React.Component {
     this.setState({ movies: newList });
   }
 
-  filterMovies = (arr) => {
+  filterMovies(arr) {
     const { searchText,
       bookmarkedOnly,
       selectedGenre
