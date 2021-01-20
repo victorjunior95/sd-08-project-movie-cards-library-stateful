@@ -1,5 +1,6 @@
 // implement SearchBar component here
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class SearchBar extends Component {
   constructor() {
@@ -7,38 +8,53 @@ export default class SearchBar extends Component {
   }
 
   render() {
+    //   Desestruturando as props
+    const {
+      searchText,
+      onSearchTextChange,
+      onBookmarkedChange,
+      bookmarkedOnly,
+      selectedGenre,
+      onSelectedGenreChange,
+    } = this.props;
+    // Retornando o form com os elementos
     return (
-      <fomr className="search-bar" data-testid="search-bar-form">
-        <label data-testid="text-input-label">
+      <form className="search-bar" data-testid="search-bar-form">
+        { /* Retornando o input text para a busca */ }
+        <label data-testid="text-input-label" htmlFor="text-input">
           Inclui o texto
           <input
             data-testid="text-input"
+            id="text-input"
             type="search"
             name="search"
-            value={this.props.searchText}
-            onChange={this.props.onSearchTextChange}
+            value={ searchText }
+            onChange={ onSearchTextChange }
             placeholder="Pesquisar..."
           />
         </label>
-        <label data-testid="checkbox-input-label">
+        { /* Retornando o checkbox para escolher somente os favoritos */ }
+        <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
           Mostrar somente favoritos
           <input
             type="checkbox"
             value=""
+            id="text-input"
             data-testid="checkbox-input"
-            onChange={this.props.onBookmarkedChange}
+            onChange={ onBookmarkedChange }
             name="bookmark"
-            checked={this.props.bookmarkedOnly}
+            checked={ bookmarkedOnly }
           />
         </label>
-
-        <label data-testid="select-input-label">
+        { /* Retornando o select para escolher o gênero */ }
+        <label data-testid="select-input-label" htmlFor="select-input">
           Filtrar por gênero
           <select
             name="genre"
-            value={this.props.selectedGenre}
-            onChange={this.props.onSelectedGenreChange}
+            value={ selectedGenre }
+            onChange={ onSelectedGenreChange }
             data-testid="select-input"
+            id="select-input"
           >
             <option value="" data-testid="select-option">
               Todos
@@ -54,7 +70,16 @@ export default class SearchBar extends Component {
             </option>
           </select>
         </label>
-      </fomr>
+      </form>
     );
   }
 }
+
+SearchBar.propTypes = {
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  onBookmarkedChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
+};
