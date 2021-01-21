@@ -10,8 +10,8 @@ class AddMovie extends React.Component {
       imagemPath: '',
       storyline: '',
       rating: 0,
-      genre: 'action',
-    };
+      genre: 'action' };
+    this.initialState = this.state;
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.renderInputTextTitle = this.renderInputTextTitle.bind(this);
@@ -23,23 +23,17 @@ class AddMovie extends React.Component {
     this.renderButton = this.renderButton.bind(this);
   }
 
-  handleChange(event) {
+  handleChange({ target }) {
+    const { name, value } = target;
     this.setState({
-      [event.target.name]: event.target.value,
+      [name]: value,
     });
   }
 
   handleClick() {
     const { onClick } = this.props;
     onClick(this.state);
-    this.setState({
-      subtitle: '',
-      title: '',
-      imagemPath: '',
-      storyline: '',
-      rating: 0,
-      genre: 'action',
-    });
+    this.setState(this.initialState);
   }
 
   renderInputTextTitle() {
@@ -127,9 +121,15 @@ class AddMovie extends React.Component {
   renderSelect() {
     const { genre } = this.state;
     return (
-      <label htmlFor="movie-genre" data-testid="genre-input-label" value={ genre }>
+      <label htmlFor="movie-genre" data-testid="genre-input-label">
         Gênero
-        <select name="genre" id="movie-genre" data-testid="genre-input">
+        <select
+          name="genre"
+          id="movie-genre"
+          data-testid="genre-input"
+          value={ genre }
+          onChange={ this.handleChange }
+        >
           <option value="action" data-testid="genre-option">Ação</option>
           <option value="comedy" data-testid="genre-option">Comédia</option>
           <option value="thriller" data-testid="genre-option">Suspense</option>
