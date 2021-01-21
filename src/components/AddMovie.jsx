@@ -11,6 +11,13 @@ class AddMovie extends Component {
       rating: 0,
       genre: 'action',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.renderTitleInput = this.renderTitleInput.bind(this);
+    this.renderSubtitleInput = this.renderSubtitleInput.bind(this);
+    this.renderImagePath = this.renderImagePath.bind(this);
+    this.renderTextarea = this.renderTextarea.bind(this);
+    this.renderNumberInput = this.renderNumberInput.bind(this);
+    this.renderSelect = this.renderSelect.bind(this);
   }
 
   handleChange(target) {
@@ -138,6 +145,7 @@ class AddMovie extends Component {
         {this.renderImagePath()}
         {this.renderTextarea()}
         {this.renderNumberInput}
+        {this.renderSelect()}
       </form>
     );
   }
