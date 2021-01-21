@@ -51,9 +51,9 @@ class AddMovie extends React.Component {
   }
 
   submitChange(event) {
-    const { submitNewMovie } = this.props;
+    const { onClick } = this.props;
     event.preventDefault();
-    submitNewMovie(this.state);
+    onClick(this.state);
     this.resetStates();
   }
 
@@ -80,7 +80,7 @@ class AddMovie extends React.Component {
 }
 
 AddMovie.propTypes = {
-  submitNewMovie: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default AddMovie;
