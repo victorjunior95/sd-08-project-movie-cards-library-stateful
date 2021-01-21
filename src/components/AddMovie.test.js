@@ -167,7 +167,7 @@ describe('12 - Renderize um `input` do tipo `number` dentro do formulário em `<
   });
 });
 
-describe.only('13 - Renderize um `select` do formulário em `<AddMovie />` para selecionar o gênero do novo filme', () => {
+describe('13 - Renderize um `select` do formulário em `<AddMovie />` para selecionar o gênero do novo filme', () => {
   const options = [
     { value: 'action', text: 'Ação' },
     { value: 'comedy', text: 'Comédia' },
@@ -203,7 +203,7 @@ describe.only('13 - Renderize um `select` do formulário em `<AddMovie />` para 
   });
 });
 
-describe.only('14 - Renderize um botão do formulário em `<AddMovie />` para fazer uso dos dados do novo filme, contidos no estado de `<AddMovie />`', () => {
+describe('14 - Renderize um botão do formulário em `<AddMovie />` para fazer uso dos dados do novo filme, contidos no estado de `<AddMovie />`', () => {
   it('Será validado se o texto do botão é "Adicionar filme"', () => {
     expect(sendButton).toHaveTextContent('Adicionar filme');
   });
