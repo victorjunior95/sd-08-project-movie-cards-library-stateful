@@ -14,13 +14,19 @@ class MovieLibrary extends React.Component {
       selectedGenre: '',
       movies,
     };
+    this.addMovie = this.addMovie.bind(this);
+  }
+
+  addMovie(newMovie) {
+    const { movies } = this.state;
+    this.setState({ movies: movies.concat(newMovie) });
   }
 
   render() {
     const { movies, searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
       <div>
-        <AddMovie onClick={ this.onClick } />
+        <AddMovie onClick={ this.addMovie } />
         <SearchBar />
         <MovieList
           movies={ movies }
