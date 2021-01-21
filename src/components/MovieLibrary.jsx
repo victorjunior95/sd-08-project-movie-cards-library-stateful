@@ -23,7 +23,7 @@ class MovieLibrary extends Component {
   }
 
   searchHandler({ target }) {
-    this.state({
+    this.setState({
       [target.name]: target.type === 'checkbox' ? target.checked : target.value,
     });
   }
@@ -69,7 +69,7 @@ class MovieLibrary extends Component {
 }
 
 MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf().isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MovieLibrary;

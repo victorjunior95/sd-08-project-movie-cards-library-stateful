@@ -39,7 +39,7 @@ class AddMovie extends React.Component {
 
   titleInput(title, onChange) {
     return (
-      <label htmlFor="title-input" data-testid="title-input-label">
+      <label htmlFor="title" data-testid="title-input-label">
         Título
         <input
           type="text"
@@ -54,7 +54,7 @@ class AddMovie extends React.Component {
 
   subtitleInput(subtitle, onChange) {
     return (
-      <label htmlFor="subtitle-input" data-testid="subtitle-input-label">
+      <label htmlFor="subtitle" data-testid="subtitle-input-label">
         Subtítulo
         <input
           type="text"
@@ -69,7 +69,7 @@ class AddMovie extends React.Component {
 
   imageInput(imagePath, onChange) {
     return (
-      <label htmlFor="image-input" data-testid="image-input-label">
+      <label htmlFor="imagePath" data-testid="image-input-label">
         Imagem
         <input
           type="text"
@@ -84,7 +84,7 @@ class AddMovie extends React.Component {
 
   textAreaFunc(storyline, onChange) {
     return (
-      <label htmlFor="storyline-input" data-testid="storyline-input-label">
+      <label htmlFor="storyline" data-testid="storyline-input-label">
         Sinopse
         <textarea
           data-testid="storyline-input"
@@ -100,7 +100,7 @@ class AddMovie extends React.Component {
 
   ratingInput(rating, onChange) {
     return (
-      <label htmlFor="rating-input" data-testid="rating-input-label">
+      <label htmlFor="rating" data-testid="rating-input-label">
         Avaliação
         <input
           type="number"
@@ -115,7 +115,7 @@ class AddMovie extends React.Component {
 
   genreSelect(genre, onChange) {
     return (
-      <label htmlFor="genre-input" data-testid="genre-input-label">
+      <label htmlFor="genre" data-testid="genre-input-label">
         Gênero
         <select
           name="genre"
@@ -151,13 +151,13 @@ class AddMovie extends React.Component {
     const { subtitle, title, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
-        { this.titleInput(title) }
-        { this.subtitleInput(subtitle) }
-        { this.imageInput(imagePath) }
-        { this.textAreaFunc(storyline) }
-        { this.ratingInput(rating) }
-        { this.genreSelect(genre) }
-        { this.formButton(onClick) }
+        { this.titleInput(title, this.submitHandler) }
+        { this.subtitleInput(subtitle, this.submitHandler) }
+        { this.imageInput(imagePath, this.submitHandler) }
+        { this.textAreaFunc(storyline, this.submitHandler) }
+        { this.ratingInput(rating, this.submitHandler) }
+        { this.genreSelect(genre, this.submitHandler) }
+        { this.formButton(onClick, this.submitHandler) }
       </form>
     );
   }
