@@ -112,6 +112,24 @@ class AddMovie extends Component {
     );
   }
 
+  renderSelect() {
+    const { genre } = this.state;
+    return (
+      <label
+        htmlFor="genre-input"
+        data-testid="genre-input-label"
+      >
+        <select data-testid="genre-input" value={ genre } onChange={ this.handleChange }>
+          <option value="">Todos</option>
+          <option value="action">Ação</option>
+          <option value="comedy">Comédia</option>
+          <option value="thriller">Suspense</option>
+        </select>
+        Gênero
+      </label>
+    );
+  }
+
   render() {
     return (
       <form>
