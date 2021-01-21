@@ -6,7 +6,7 @@ class MovieLibrary extends React.Component {
   render() {
     return (
       <div>
-        <AddMovie onClick={ () => console.log('teste') } />
+        <AddMovie onClick={ this.onClick } />
         <SearchBar />
       </div>
 
