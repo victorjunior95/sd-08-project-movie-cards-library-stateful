@@ -2,35 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-  onSearch(param1, param2) {
+  onSearch(onSearchTextChange, searchText) {
     return (
       <label id="text-input-label" htmlFor="text-input">
         Inclui o texto
-        <input id="text-input" type="text" onChange={ param1 } />
-        { param2 }
+        <input
+          data-testid="text-input"
+          type="text"
+          value={ searchText }
+          onChange={ onSearchTextChange }
+        />
       </label>
     );
   }
 
-  onBookMark(param1, param2) {
+  onBookMark(onBookmarkedChange, bookmarkedOnly) {
     return (
       <label id="checkbox-input-label" htmlFor="checkbox-input">
         Mostrar somente favoritos
         <input
           id="checkbox-input"
           type="checkbox"
-          onChange={ param1 }
-          checked={ param2 }
+          onChange={ onBookmarkedChange }
+          checked={ bookmarkedOnly }
         />
       </label>
     );
   }
 
-  select(param1, param2) {
+  select(selectedGenre, onSelectedGenreChange) {
     return (
       <label htmlFor="select-input" data-testid="select-input-label">
         Filtrar por gênero
-        <select name="" data-testid="select-input" value={ param1 } onChange={ param2 }>
+        <select
+          name="genre"
+          data-testid="select-input"
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+        >
           <option data-testid="select-option" value="">Todos</option>
           <option data-testid="select-option" value="action">Ação</option>
           <option data-testid="select-option" value="comedy">Comédia</option>
@@ -41,11 +50,10 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const { search } = this.props;
     const { searchText, onSearchTextChange,
       bookmarkedOnly, onBookmarkedChange,
       selectedGenre, onSelectedGenreChange,
-    } = search;
+    } = this.props;
     return (
       <form id="search-bar-form">
         { this.onSearch(onSearchTextChange, searchText) }
@@ -57,14 +65,12 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  search: PropTypes.shape({
-    searchText: PropTypes.string.isRequired,
-    onSearchTextChange: PropTypes.func.isRequired,
-    bookmarkedOnly: PropTypes.bool.isRequired,
-    onBookmarkedChange: PropTypes.func.isRequired,
-    selectedGenre: PropTypes.string.isRequired,
-    onSelectedGenreChange: PropTypes.func.isRequired,
-  }).isRequired,
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  onBookmarkedChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
