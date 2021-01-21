@@ -139,12 +139,12 @@ class AddMovie extends Component {
 
   render() {
     return (
-      <form>
+      <form data-testid="add-movie-form">
         {this.renderTitleInput()}
         {this.renderSubtitleInput()}
         {this.renderImagePath()}
         {this.renderTextarea()}
-        {this.renderNumberInput}
+        {this.renderNumberInput()}
         {this.renderSelect()}
       </form>
     );
