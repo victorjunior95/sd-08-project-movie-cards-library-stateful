@@ -21,7 +21,7 @@ class AddMovie extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleReset = this.handleReset.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange({ target }) {
@@ -56,7 +56,7 @@ class AddMovie extends Component {
         <StorylineMovie value={ storyline } handleChange={ this.handleChange } />
         <RatingMovie value={ rating } handleChange={ this.handleChange } />
         <SelectGenreMovie value={ genre } handleChange={ this.handleChange } />
-        <ButtonSubmitMovie handleChange={ this.handleChange } />
+        <ButtonSubmitMovie handleChange={ this.handleSubmit } />
       </form>
     );
   }
