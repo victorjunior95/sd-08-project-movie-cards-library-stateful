@@ -35,6 +35,7 @@ class AddMovie extends React.Component {
 
   handleReset(event) {
     event.preventDefault();
+
     this.setState({
       title: '',
       subtitle: '',
@@ -45,7 +46,7 @@ class AddMovie extends React.Component {
     });
 
     const { onClick } = this.props;
-    onClick(event);
+    onClick(this.state);
   }
 
   render() {
