@@ -107,6 +107,7 @@ class AddMovie extends React.Component {
         Gênero
         <select
           name="genre"
+          type="checkbox"
           value={ genre }
           onChange={ this.handleChange }
           data-testid="genre-input"
