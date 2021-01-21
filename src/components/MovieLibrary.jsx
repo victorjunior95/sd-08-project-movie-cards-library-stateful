@@ -1,39 +1,33 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import MovieList from './MovieList';
 import SearchBar from './SearchBar';
-import AddMovie from './AddMovie';
 
 class MovieLibrary extends Component {
+  constructor() {
+    super();
+    this.state = {
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: '',
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   render() {
-    const { movies } = this.props;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
-      <div>
-        <h2> My awesome movie library </h2>
+      <section>
         <SearchBar
-          searchText="teste"
-          onSearchTextChange="teste"
-          bookmarkedOnly="test"
-          onBookmarkedChange="teste"
-          selectedGenre="teste"
-          onSelectedGenreChange="teste"
+          searchText={ searchText }
+          bookmarkedOnly={ bookmarkedOnly }
+          selectedGenre={ selectedGenre }
+          onSearchTextChange={ this.handleChange }
+          onBookmarkedChange={ this.handleChange }
+          onSelectedGenreChange={ this.handleChange }
         />
-        <MovieList movies={ movies } />
-        <AddMovie />
-      </div>
+      </section>
     );
   }
 }
-
-MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf({
-    title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
-    storyline: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    imagePath: PropTypes.string.isRequired,
-    map: PropTypes.func.isRequired,
-  }).isRequired,
-};
 
 export default MovieLibrary;
