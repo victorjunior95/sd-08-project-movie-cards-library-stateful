@@ -41,12 +41,21 @@ class MovieLibrary extends React.Component {
     });
   }
 
-  filterFunc({ movies, searchText }) {
-    console.log(movies);
-    console.log(searchText);
+  filterFunc({ movies, searchText, bookmarkedOnly, selectedGenre }) {
     let film = movies;
     if (searchText) {
-      film = film.filter((text) => console.log(text));
+      film = film.filter((text) => (
+        text.title.includes(searchText)
+        || text.subtitle.includes(searchText)
+        || text.storyline.includes(searchText)
+      ));
+    }
+    if (bookmarkedOnly) {
+      film = film.filter((check) => check.bookmarked);
+    }
+    if (selectedGenre) {
+      console.log(selectedGenre);
+      film = film.filter((genre) => genre.genre === selectedGenre);
     }
     return film;
   }
