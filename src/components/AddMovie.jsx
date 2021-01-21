@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class AddMovie extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       subtitle: '',
       title: '',
@@ -11,6 +13,19 @@ export default class AddMovie extends React.Component {
       rating: 0,
       genre: '',
     };
+    this.handleClick = this.buttonClick.bind(this);
+  }
+
+  buttonClick(callback) {
+    callback(this.state);
+    this.setState({
+      title: '',
+      subtitle: '',
+      storyline: '',
+      imagePath: '',
+      rating: 0,
+      genre: 'action',
+    });
   }
 
   renderTitle() {
@@ -85,7 +100,38 @@ export default class AddMovie extends React.Component {
     );
   }
 
+  renderGenre() {
+    const { genre } = this.state;
+    return (
+      <label data-testid="genre-input-label" htmlFor="genre-input">
+        Gênero
+        <select
+          value={ genre }
+          data-testid="genre-input"
+          onChange={ (e) => this.setState({ genre: e.target.value }) }
+        >
+          <option value="action" data-testid="genre-option">Ação</option>
+          <option value="comedy" data-testid="genre-option">Comédia</option>
+          <option value="thriller" data-testid="genre-option">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
+  renderButton(onClick) {
+    return (
+      <button
+        type="button"
+        data-testid="send-button"
+        onClick={ () => this.buttonClick(onClick) }
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
   render() {
+    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         {this.renderTitle()}
@@ -93,7 +139,13 @@ export default class AddMovie extends React.Component {
         {this.renderImage()}
         {this.renderTextArea()}
         {this.renderRating()}
+        {this.renderGenre()}
+        {this.renderButton(onClick)}
       </form>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
