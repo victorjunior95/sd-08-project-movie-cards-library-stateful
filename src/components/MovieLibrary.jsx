@@ -1,26 +1,18 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
-// import MovieList from './MovieList';
 
 class MovieLibrary extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     searchText: '',
-  //     bookmarkedOnly: false,
-  //     selectedGenre: '',
-  //     movies,
-  //   };
-  // }
+  addMovie(newMovie) {
+    const { movies } = this.state;
+    this.setState({ movies: movies.concat(newMovie) });
+  }
 
   render() {
-    // const { movies } = this.state;
     return (
       <div>
         <AddMovie onClick={ this.onClick } />
         <SearchBar />
-        {/* <MovieList movies={ movies } /> */}
       </div>
     );
   }
