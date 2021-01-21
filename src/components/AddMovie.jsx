@@ -58,34 +58,6 @@ class AddMovie extends Component {
     );
   }
 
-  textInputs() {
-    const { title, subtitle, imagePath, rating } = this.state;
-    const inputs = [
-      ['text', 'title', 'title', 'Título', 'title', title],
-      ['text', 'subtitle', 'subtitle', 'Subtítulo', 'subtitle', subtitle],
-      ['text', 'imagePath', 'image', 'Imagem', 'image', imagePath],
-      ['number', 'rating', 'rating', 'Avaliação', 'rating', rating],
-    ];
-    return inputs;
-  }
-
-  createAllTextInput() {
-    const inputs = this.textInputs();
-    const lbl = '-input-label';
-    const input = '-input';
-    const allInputs = inputs.map((e) => (<CreateInputField
-      key={ e[3] }
-      type={ e[0] }
-      name={ e[1] }
-      dataTestid={ e[2] + lbl }
-      text={ e[3] }
-      inPutDataTestid={ e[4] + input }
-      inputValue={ e[5] }
-      callBack={ this.updateStates }
-    />));
-    return allInputs;
-  }
-
   createTextArea() {
     const { storyline } = this.state;
     return (
@@ -100,6 +72,32 @@ class AddMovie extends Component {
         />
       </label>
     );
+  }
+
+  textInputs() {
+    const { title, subtitle, imagePath, rating } = this.state;
+    // Button type, Button name/id/htmlFor, Label dataTestid, Inner text, inPutDataTestid, inputValue
+    const inputs = [
+      { type: 'text', name: 'title', testLabel: 'title', text: 'Título', testInput: 'title', value: title },
+      { type: 'text', name: 'subtitle', testLabel: 'subtitle', text: 'Subtítulo', testInput: 'subtitle', value: subtitle },
+      { type: 'text', name: 'imagePath', testLabel: 'image', text: 'Imagem', testInput: 'image', value: imagePath },
+      { type: 'number', name: 'rating', testLabel: 'rating', text: 'Avaliação', testInput: 'rating', value: rating }];
+    return inputs;
+  }
+
+  createAllTextInput() {
+    const inputs = this.textInputs();
+    const allInputs = inputs.map((e) => (<CreateInputField
+      key={ e.text }
+      type={ e.type }
+      name={ e.name }
+      dataTestid={ `${e.testLabel}-input-label` }
+      text={ e.text }
+      inPutDataTestid={ `${e.testInput}-input` }
+      inputValue={ e.value }
+      callBack={ this.updateStates }
+    />));
+    return allInputs;
   }
 
   render() {

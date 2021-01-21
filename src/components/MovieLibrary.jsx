@@ -18,38 +18,29 @@ class MovieLibrary extends Component {
       selectedGenre: '',
       bookmarkedOnly: false,
     };
-    this.onSearchTextChange = this.onSearchTextChange.bind(this);
-    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
-    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.addMovie = this.addMovie.bind(this);
+    this.updateStates = this.updateStates.bind(this);
   }
 
-  onSearchTextChange(e) {
-    this.setState({ searchText: e.target.value }, () => {
-      this.updateMovies();
+  updateStates(e) {
+    if (e.target.name === 'bookmarkedOnly') {
+      const { bookmarkedOnly } = this.state;
+      return this.setState({ bookmarkedOnly: !bookmarkedOnly }, () => {
+        this.filterMovies();
+      });
+    }
+    return this.setState({ [e.target.name]: e.target.value }, () => {
+      this.filterMovies();
     });
   }
 
-  onBookmarkedChange() {
-    const { bookmarkedOnly } = this.state;
-    this.setState({ bookmarkedOnly: !bookmarkedOnly }, () => {
-      this.updateMovies();
-    });
-  }
-
-  onSelectedGenreChange(e) {
-    this.setState({ selectedGenre: e.target.value }, () => {
-      this.updateMovies();
-    });
-  }
-
-  updateMovies() {
+  filterMovies() {
     const { searchText, selectedGenre, bookmarkedOnly, originalMovies } = this.state;
     let filter = originalMovies;
     if (searchText) {
-      filter = filter.filter((e) => (e.title.includes(searchText)
-        || e.subtitle.includes(searchText)
-        || e.storyline.includes(searchText)));
+      filter = filter.filter((e) => (e.title.toLowerCase().includes(searchText)
+        || e.subtitle.toLowerCase().includes(searchText)
+        || e.storyline.toLowerCase().includes(searchText)));
     }
     if (selectedGenre) { filter = filter.filter((e) => e.genre === selectedGenre); }
     if (bookmarkedOnly) {
@@ -61,7 +52,7 @@ class MovieLibrary extends Component {
   addMovie(movie) {
     const { originalMovies } = this.state;
     this.setState({ originalMovies: originalMovies.concat(movie) }, () => {
-      this.updateMovies();
+      this.filterMovies();
     });
   }
 
@@ -72,11 +63,11 @@ class MovieLibrary extends Component {
         <h2> My awesome movie library </h2>
         <SearchBar
           searchText={ searchText }
-          onSearchTextChange={ this.onSearchTextChange }
+          onSearchTextChange={ this.updateStates }
           bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.onBookmarkedChange }
+          onBookmarkedChange={ this.updateStates }
           selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ this.onSelectedGenreChange }
+          onSelectedGenreChange={ this.updateStates }
         />
         <MovieList movies={ movies } />
         <AddMovie onClick={ this.addMovie } />

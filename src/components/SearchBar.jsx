@@ -8,10 +8,10 @@ class SearchBar extends Component {
   createBookmarksSelector() {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
-      <label htmlFor="bookmarks" data-testid="checkbox-input-label">
+      <label htmlFor="bookmarkedOnly" data-testid="checkbox-input-label">
         Mostrar somente favoritos
         <input
-          name="bookmarks"
+          name="bookmarkedOnly"
           data-testid="checkbox-input"
           type="checkbox"
           checked={ bookmarkedOnly }
@@ -26,7 +26,7 @@ class SearchBar extends Component {
     return (
       <CreateInputField
         type="text"
-        name="search"
+        name="searchText"
         dataTestid="text-input-label"
         text="Inclui o texto:"
         inPutDataTestid="text-input"
@@ -40,6 +40,7 @@ class SearchBar extends Component {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
       <GenderSelector
+        name="selectedGenre"
         text="Filtrar por gênero"
         dataTestid="select-input-label"
         dataTestid2="select-input"
