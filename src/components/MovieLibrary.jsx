@@ -37,20 +37,43 @@ class MovieLibrary extends Component {
     }));
   }
 
-  render() {
+  searchBar() {
+    const { searchText, bookmarkCheckbox, selectGenre } = this.state;
+    return (
+      <SearchBar
+        searchText={ searchText }
+        bookmarkedOnly={ bookmarkCheckbox }
+        selectedGenre={ selectGenre }
+        onSearchTextChange={ this.onChange }
+        onBookmarkedChange={ this.onChange }
+        onSelectedGenreChange={ this.onChange }
+      />
+    );
+  }
+
+  toLowerAndSearch(searchText, ...strs) {
+    return strs.map((str) => str.toLowerCase())
+      .some((str) => str.includes(searchText));
+  }
+
+  filteredMovies() {
     const { searchText, bookmarkCheckbox, selectGenre, movies } = this.state;
+    return movies.filter(({ title, subtitle, storyline }) => (
+      this.toLowerAndSearch(searchText, title, subtitle, storyline)
+    ))
+      .filter(({ bookmarked }) => {
+        if (bookmarkCheckbox) return bookmarked === bookmarkCheckbox;
+        return true;
+      })
+      .filter(({ genre }) => genre.includes(selectGenre));
+  }
+
+  render() {
     return (
       <main>
         <h2> My awesome movie library </h2>
-        <SearchBar
-          searchText={ searchText }
-          bookmarkedOnly={ bookmarkCheckbox }
-          selectedGenre={ selectGenre }
-          onSearchTextChange={ this.onChange }
-          onBookmarkedChange={ this.onChange }
-          onSelectedGenreChange={ this.onChange }
-        />
-        <MovieList movies={ movies } />
+        { this.searchBar() }
+        <MovieList movies={ this.filteredMovies() } />
         <AddMovie onClick={ this.onClick } />
       </main>
     );
@@ -63,6 +86,8 @@ MovieLibrary.propTypes = {
     subtitle: PropTypes.string.isRequired,
     storyline: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
+    bookmarked: PropTypes.bool.isRequired,
+    genre: PropTypes.string.isRequired,
     imagePath: PropTypes.string.isRequired,
   })).isRequired,
 };
