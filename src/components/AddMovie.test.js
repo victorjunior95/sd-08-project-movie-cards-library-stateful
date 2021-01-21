@@ -73,11 +73,11 @@ describe('8 - Renderize um input do tipo texto dentro do formulário em `<AddMov
     expect(titleInputLabel).toHaveTextContent('Título');
   });
 
-  it.skip('Defina o estado inicial do titulo como "", ou seja, uma string vazia', () => {
+  it('Defina o estado inicial do titulo como "", ou seja, uma string vazia', () => {
     expect(titleInput).toHaveValue(initialState.title);
   });
 
-  it.skip('Altere o valor do input de título quando algo for digitado nele', () => {
+  it('Altere o valor do input de título quando algo for digitado nele', () => {
     event.type(titleInput, 'my awesome movie title');
 
     expect(titleInput).toHaveValue('my awesome movie title');
