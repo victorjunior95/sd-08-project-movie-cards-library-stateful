@@ -62,19 +62,16 @@ class SearchBar extends React.Component {
     const { searchText, onSearchTextChange, bookmarkedOnly,
       onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <div>
+      <main>
         <form data-testid="search-bar-form">
-          <div>
-            {this.TextInput(searchText, onSearchTextChange)}
-          </div>
-          <div>
-            {this.CheckboxInput(bookmarkedOnly, onBookmarkedChange)}
-          </div>
-          <div>
-            {this.SelectInput(selectedGenre, onSelectedGenreChange)}
-          </div>
+          {this.TextInput(searchText, onSearchTextChange)}
+
+          {this.CheckboxInput(bookmarkedOnly, onBookmarkedChange)}
+
+          {this.SelectInput(selectedGenre, onSelectedGenreChange)}
+
         </form>
-      </div>);
+      </main>);
   }
 }
 
