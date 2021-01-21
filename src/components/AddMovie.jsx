@@ -20,9 +20,9 @@ class AddMovie extends Component {
     this.renderSelect = this.renderSelect.bind(this);
   }
 
-  handleChange(target) {
+  handleChange(event) {
     return (
-      this.setState({ [target.name]: target.value })
+      this.setState({ [event.target.name]: event.target.value })
     );
   }
 
