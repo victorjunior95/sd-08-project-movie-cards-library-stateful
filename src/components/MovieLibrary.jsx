@@ -41,8 +41,18 @@ class MovieLibrary extends React.Component {
     });
   }
 
+  filterFunc({ movies, searchText }) {
+    console.log(movies);
+    console.log(searchText);
+    let film = movies;
+    if (searchText) {
+      film = film.filter((text) => console.log(text));
+    }
+    return film;
+  }
+
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
       <div>
         <h2> My awesome movie library </h2>
@@ -54,7 +64,7 @@ class MovieLibrary extends React.Component {
           selectedGenre={ selectedGenre }
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
-        <MovieList movies={ movies } />
+        <MovieList movies={ this.filterFunc(this.state) } />
         <AddMovie onClick={ this.onClick } />
       </div>
     );
