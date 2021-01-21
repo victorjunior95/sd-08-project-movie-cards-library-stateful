@@ -78,7 +78,7 @@ class AddMovie extends Component {
 
   renderTextarea() {
     const { storyline } = this.state;
-    return(
+    return (
       <label
         htmlFor="storyline-input"
         data-testid="storyline-input-label"
@@ -86,11 +86,30 @@ class AddMovie extends Component {
         Sinopse
         <textarea
           value={ storyline }
-          onChange={this.handleChange}
+          onChange={ this.handleChange }
           data-testid="storyline-input"
         />
       </label>
-    )
+    );
+  }
+
+  renderNumberInput() {
+    const { rating } = this.state;
+    return (
+      <label
+        htmlFor="image-input"
+        data-testid="rating-input-label"
+      >
+        Avaliação
+        <input
+          name="rating"
+          type="number"
+          data-testid="rating-input"
+          value={ rating }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
   }
 
   render() {
@@ -100,6 +119,7 @@ class AddMovie extends Component {
         {this.renderSubtitleInput()}
         {this.renderImagePath()}
         {this.renderTextarea()}
+        {this.renderNumberInput}
       </form>
     );
   }
