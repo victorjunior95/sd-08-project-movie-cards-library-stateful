@@ -1,6 +1,7 @@
 // implement SearchBar component here
 import React from 'react';
 import Proptypes from 'prop-types';
+import './css/SearchBar.css';
 
 class SeachBar extends React.Component {
   renderInput(searchText, onSearchTextChange) {
@@ -13,6 +14,8 @@ class SeachBar extends React.Component {
           value={ searchText }
           onChange={ onSearchTextChange }
           id="searchInput"
+          className="search-text"
+          placeholder="Digite o nome do filme"
         />
       </label>
     );
@@ -21,13 +24,13 @@ class SeachBar extends React.Component {
   renderCheckBox(bookmarkedOnly, onBookmarkedChange) {
     return (
       <label htmlFor="checkboxFilter" data-testid="checkbox-input-label">
-        Mostrar somente favoritos
         <input
-          type="checkbox"
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
+          type="checkbox"
         />
+        Mostrar somente favoritos
       </label>
     );
   }
@@ -59,10 +62,13 @@ class SeachBar extends React.Component {
     return (
       <form
         data-testid="search-bar-form"
+        className="search-bar-form"
       >
         {this.renderInput(searchText, onSearchTextChange)}
-        {this.renderCheckBox(bookmarkedOnly, onBookmarkedChange)}
-        {this.renderSelect(selectedGenre, onSelectedGenreChange)}
+        <div className="filter-checks">
+          {this.renderCheckBox(bookmarkedOnly, onBookmarkedChange)}
+          {this.renderSelect(selectedGenre, onSelectedGenreChange)}
+        </div>
       </form>
     );
   }

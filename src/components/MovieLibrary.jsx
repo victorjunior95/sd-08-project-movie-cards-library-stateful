@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
+import './css/MovieLibrary.css';
 
 class MovieLibrary extends Component {
   constructor(props) {
@@ -41,10 +42,13 @@ class MovieLibrary extends Component {
   setBookMarked(event) {
     const { newMovies } = this.state;
     const { checked } = event.target;
+    console.log(checked);
     this.setState({ bookmarkedOnly: checked }, () => {
-      const filteredMovies = newMovies
-        .filter((movie) => movie.bookmarked === checked);
-      this.setState({ movies: filteredMovies });
+      if (checked) {
+        const filteredMovies = newMovies
+          .filter((movie) => movie.bookmarked === checked);
+        this.setState({ movies: filteredMovies });
+      } else { this.setState({ movies: newMovies }); }
     });
   }
 
@@ -70,7 +74,7 @@ class MovieLibrary extends Component {
     const { movies } = this.state;
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
-      <div>
+      <div className="section-library">
         <h2> My awesome movie library </h2>
         <SearchBar
           searchText={ searchText }
