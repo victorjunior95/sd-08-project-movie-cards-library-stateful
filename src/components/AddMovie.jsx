@@ -52,10 +52,6 @@ class AddMovie extends Component {
     }
   }
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
   resetState() {
     this.setState({
       subtitle: '',
@@ -66,6 +62,11 @@ class AddMovie extends Component {
       genre: 'action',
     });
   }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
 
   InputTitle() {
     const { title } = this.state;
