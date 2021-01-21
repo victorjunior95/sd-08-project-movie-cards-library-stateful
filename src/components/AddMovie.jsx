@@ -27,9 +27,10 @@ class AddMovie extends React.Component {
   }
 
   handleChange({ target }) {
-    let { name, value } = target;
+    const { name } = target;
+    let { value } = target;
 
-    if(name === 'rating') {
+    if (name === 'rating') {
       value = parseFloat(value);
     }
 
@@ -50,7 +51,7 @@ class AddMovie extends React.Component {
   }
 
   submitChange(event) {
-    const submitNewMovie = this.props.submitNewMovie;
+    const { submitNewMovie } = this.props;
     event.preventDefault();
     submitNewMovie(this.state);
     this.resetStates();
