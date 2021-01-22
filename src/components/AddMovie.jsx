@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      subtitle: '',
+  constructor(props) {
+    super(props);
+    this.state = { subtitle: '',
       title: '',
       imagemPath: '',
       storyline: '',
@@ -30,8 +29,7 @@ class AddMovie extends React.Component {
     });
   }
 
-  handleClick(event) {
-    event.preventDefault();
+  handleClick() {
     const { onClick } = this.props;
     onClick(this.state);
     this.setState(this.initialState);
