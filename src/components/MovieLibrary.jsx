@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
@@ -12,6 +12,7 @@ class MovieLibrary extends Component {
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
     this.filterOptions = this.filterOptions.bind(this);
+    this.addMovie = this.addMovie.bind(this);
 
     this.state = {
       searchText:'',
@@ -45,12 +46,18 @@ class MovieLibrary extends Component {
     return movies.filter((text) =>
       text.title.includes(searchText) ||
       text.subtitle.includes(searchText) ||
-      text.storyline.includes(searchText) 
+      text.storyline.includes(searchText),
     )
   }
 
+  addMovie(newMovie){
+    this.setState(
+      (previousState) => ({movies: previousState.movies.concat(newMovie) })
+    );
+  };
+  
+
   render() {
-    const { movies } = this.props
     return (
       <div className="library">
         <h2> My awesome movie library </h2>
@@ -63,10 +70,12 @@ class MovieLibrary extends Component {
           onSelectedGenreChange={ this.onSelectedGenreChange}
           />
         <MovieList movies={ this.filterOptions() } />
-        <AddMovie />
+        <AddMovie addMovie={ this.addMovie} />
       </div>
     );
   }
 }
+
+MovieLibrary.propTypes = { movies: PropTypes.arrayOf(PropTypes.shape()).isRequired };
 
 export default MovieLibrary;
