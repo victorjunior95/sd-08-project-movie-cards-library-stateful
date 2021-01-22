@@ -28,7 +28,6 @@ class AddMovie extends React.Component {
     const { onClick } = this.props;
     onClick(this.state);
     this.setState(this.initialState);
-    console.log('clicou')
   }
 
   renderTitle() {
