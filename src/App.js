@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from './components/SearchBar';
+
 import MovieLibrary from './components/MovieLibrary';
 import movies from './data';
 
