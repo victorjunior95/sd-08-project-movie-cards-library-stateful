@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
@@ -20,14 +19,14 @@ class AddMovie extends React.Component {
   }
 
   onChangeHandler(event) {
-    this.state(
-      [event.target.name] = this.event.value,
-    );
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
   submitHandler(callback) {
     callback(this.state);
-    this.state({
+    this.setState({
       subtitle: '',
       title: '',
       imagePath: '',
@@ -151,13 +150,13 @@ class AddMovie extends React.Component {
     const { subtitle, title, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
-        { this.titleInput(title, this.submitHandler) }
-        { this.subtitleInput(subtitle, this.submitHandler) }
-        { this.imageInput(imagePath, this.submitHandler) }
-        { this.textAreaFunc(storyline, this.submitHandler) }
-        { this.ratingInput(rating, this.submitHandler) }
-        { this.genreSelect(genre, this.submitHandler) }
-        { this.formButton(onClick, this.submitHandler) }
+        { this.titleInput(title, this.onChangeHandler) }
+        { this.subtitleInput(subtitle, this.onChangeHandler) }
+        { this.imageInput(imagePath, this.onChangeHandler) }
+        { this.textAreaFunc(storyline, this.onChangeHandler) }
+        { this.ratingInput(rating, this.onChangeHandler) }
+        { this.genreSelect(genre, this.onChangeHandler) }
+        { this.formButton(onClick) }
       </form>
     );
   }

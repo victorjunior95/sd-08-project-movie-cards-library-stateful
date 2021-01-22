@@ -29,7 +29,7 @@ class MovieLibrary extends Component {
   }
 
   addMovieHandler(movieObj) {
-    this.state((state) => ({
+    this.setState((state) => ({
       movies: [...state.movies, movieObj],
     }));
   }
