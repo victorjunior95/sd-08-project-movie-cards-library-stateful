@@ -65,9 +65,7 @@ class SearchBar extends React.Component {
       <main>
         <form data-testid="search-bar-form">
           {this.TextInput(searchText, onSearchTextChange)}
-
           {this.CheckboxInput(bookmarkedOnly, onBookmarkedChange)}
-
           {this.SelectInput(selectedGenre, onSelectedGenreChange)}
 
         </form>
