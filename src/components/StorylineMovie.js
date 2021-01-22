@@ -10,8 +10,8 @@ class StorylineMovie extends Component {
         <textarea
           data-testid="storyline-input"
           type="text"
-          name="storyline-input"
-          id="storyline-input"
+          name="storyline"
+          id="storyline"
           value={ value }
           onChange={ handleChange }
         />

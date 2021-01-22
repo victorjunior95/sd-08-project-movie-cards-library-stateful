@@ -10,8 +10,8 @@ class TitleMovie extends Component {
         <input
           data-testid="title-input"
           type="text"
-          name="title-input"
-          id="title-input"
+          name="title"
+          id="title"
           value={ value }
           onChange={ handleChange }
         />

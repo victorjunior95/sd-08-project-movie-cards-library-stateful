@@ -10,8 +10,8 @@ class ImageMovie extends Component {
         <input
           data-testid="image-input"
           type="text"
-          name="image-input"
-          id="image-input"
+          name="imagePath"
+          id="imagePath"
           value={ value }
           onChange={ handleChange }
         />

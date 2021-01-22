@@ -9,8 +9,8 @@ class SelectGenreMovie extends Component {
         Gênero
         <select
           data-testid="genre-input"
-          name="genre-input"
-          id="genre-input"
+          name="genre"
+          id="genre"
           value={ value }
           onChange={ handleChange }
         >

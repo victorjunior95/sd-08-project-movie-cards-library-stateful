@@ -10,8 +10,8 @@ class RatingMovie extends Component {
         <input
           data-testid="rating-input"
           type="number"
-          name="rating-input"
-          id="rating-input"
+          name="rating"
+          id="rating"
           value={ value }
           onChange={ handleChange }
         />
