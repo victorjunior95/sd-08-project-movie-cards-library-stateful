@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       subtitle: '',
@@ -15,8 +15,7 @@ class AddMovie extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.createButton = this.createButton.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange({ target }) {
@@ -27,7 +26,7 @@ class AddMovie extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(callback) {
+  handleClick(callback) {
     callback(this.state);
     this.setState({
       subtitle: '',
@@ -135,12 +134,14 @@ class AddMovie extends React.Component {
     );
   }
 
-  createButton(onClick) {
+  renderButton(onClick) {
+    // const { onClick } = this.props;
     return (
       <button
         data-testid="send-button"
-        type="submit"
-        onClick={ (event) => { event.preventDefault(); this.handleSubmit(onClick); } }
+        type="button"
+        onClick={ () => this.handleClick(onClick) }
+        className="button"
       >
         Adicionar filme
       </button>
