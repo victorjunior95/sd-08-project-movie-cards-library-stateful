@@ -160,7 +160,7 @@ class AddMovie extends React.Component {
         {this.fillTextareaHmlt(storyline, this.handleChange)}
         {this.fillNumberHmlt(rating, this.handleChange)}
         {this.fillSelectHtml(genre, this.handleChange)}
-        {this.createButton(onClick)}
+        {this.renderButton(onClick)}
       </form>
     );
   }
