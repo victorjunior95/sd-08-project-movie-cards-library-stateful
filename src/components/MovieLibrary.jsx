@@ -40,9 +40,8 @@ class MovieLibrary extends React.Component {
 
   addNewMovie(movie) {
     const { movies } = this.state;
-    const { nowState } = movies;
     this.setState({
-      movies: [...nowState, movie],
+      movies: [...movies, movie],
     });
   }
 
@@ -60,7 +59,7 @@ class MovieLibrary extends React.Component {
           onSelectedGenreChange={ this.handleChange }
         />
         <MovieList movies={ this.filteredMovies() } />
-        <AddMovie OnClick={ this.addNewMovie } />
+        <AddMovie onClick={ this.addNewMovie } />
       </div>
     );
   }
