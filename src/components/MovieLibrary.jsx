@@ -20,6 +20,7 @@ class MovieLibray extends React.Component {
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
     this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+    this.addNewMovie = this.addNewMovie.bind(this);
   }
 
   onSearchTextChange(text) {
@@ -34,6 +35,10 @@ class MovieLibray extends React.Component {
 
   onSelectedGenreChange() {
     console.log('sardinha');
+  }
+
+  addNewMovie() {
+    console.log('addnewmovie');
   }
 
   render() {
@@ -51,7 +56,7 @@ class MovieLibray extends React.Component {
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <MovieList movies={ movies } />
-        <AddMovie />
+        <AddMovie onClick={ this.addNewMovie } />
       </div>
     );
   }

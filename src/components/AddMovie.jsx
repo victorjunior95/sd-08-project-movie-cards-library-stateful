@@ -134,8 +134,8 @@ class AddMovie extends React.Component {
     );
   }
 
-  renderButton(onClick) {
-    // const { onClick } = this.props;
+  renderButton() {
+    const { onClick } = this.props;
     return (
       <button
         data-testid="send-button"
@@ -151,7 +151,6 @@ class AddMovie extends React.Component {
   render() {
     const { onClick } = this.props;
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
-    console.log('render', title);
     return (
       <form data-testid="add-movie-form">
         {this.fillTitleLabelHmlt(title, this.handleChange)}
