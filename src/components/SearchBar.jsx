@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-  onSearch(onSearchTextChange, searchText) {
+  onSearch(searchText, onSearchTextChange) {
     return (
-      <label id="text-input-label" htmlFor="text-input">
+      <label data-testid="text-input-label" htmlFor="searchText">
         Inclui o texto
         <input
+          name="searchText"
           data-testid="text-input"
           type="text"
           value={ searchText }
@@ -16,15 +17,16 @@ class SearchBar extends React.Component {
     );
   }
 
-  onBookMark(onBookmarkedChange, bookmarkedOnly) {
+  onBookMark(bookmarkedOnly, onBookmarkedChange) {
     return (
-      <label id="checkbox-input-label" htmlFor="checkbox-input">
+      <label data-testid="checkbox-input-label" htmlFor="bookmarked">
         Mostrar somente favoritos
         <input
-          id="checkbox-input"
+          name="bookmarked"
+          data-testid="checkbox-input"
           type="checkbox"
-          onChange={ onBookmarkedChange }
           checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
         />
       </label>
     );
@@ -32,7 +34,7 @@ class SearchBar extends React.Component {
 
   select(selectedGenre, onSelectedGenreChange) {
     return (
-      <label htmlFor="select-input" data-testid="select-input-label">
+      <label htmlFor="genre" data-testid="select-input-label">
         Filtrar por gênero
         <select
           name="genre"
@@ -56,8 +58,8 @@ class SearchBar extends React.Component {
     } = this.props;
     return (
       <form data-testid="search-bar-form">
-        { this.onSearch(onSearchTextChange, searchText) }
-        { this.onBookMark(onBookmarkedChange, bookmarkedOnly) }
+        { this.onSearch(searchText, onSearchTextChange) }
+        { this.onBookMark(bookmarkedOnly, onBookmarkedChange) }
         { this.select(selectedGenre, onSelectedGenreChange) }
       </form>
     );
