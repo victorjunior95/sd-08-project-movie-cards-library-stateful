@@ -1,7 +1,7 @@
-import React, { Componet } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class SubtitleMovie extends Componet {
+class SubtitleMovie extends Component {
   render() {
     const { value, handleChange } = this.props;
     return (

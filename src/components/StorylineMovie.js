@@ -1,7 +1,7 @@
-import React, { Componet } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class StorylineMovie extends Componet {
+class StorylineMovie extends Component {
   render() {
     const { value, handleChange } = this.props;
     return (
@@ -20,7 +20,7 @@ class StorylineMovie extends Componet {
   }
 }
 
-StorylineMovie.PropTypes = {
+StorylineMovie.propTypes = {
   value: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };

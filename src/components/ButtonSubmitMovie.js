@@ -1,7 +1,7 @@
-import React, { Componet } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class ButtonSubmitMovie extends Componet {
+class ButtonSubmitMovie extends Component {
   render() {
     const { handleReset } = this.props;
     return (
@@ -16,7 +16,7 @@ class ButtonSubmitMovie extends Componet {
   }
 }
 
-ButtonSubmitMovie.PropTypes = {
+ButtonSubmitMovie.propTypes = {
   handleReset: PropTypes.func.isRequired,
 };
 

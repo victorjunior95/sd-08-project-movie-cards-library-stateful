@@ -67,7 +67,7 @@ class MovieLibrary extends Component {
           onBookmarkedChange={ this.handleChange }
           onSelectedGenreChange={ this.handleChange }
         />
-        <MovieList movies={ this.filterFilms() } />
+        <MovieList movies={ this.handlefilterMovie } />
         <AddMovie onClick={ this.handleAddMovie } />
       </section>
     );
