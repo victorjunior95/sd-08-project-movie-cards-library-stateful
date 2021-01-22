@@ -1,7 +1,15 @@
 // implement AddMovie component here
 import React from 'react';
 import PropTypes from 'prop-types';
-import movies from '../data';
+
+const defaultMovieState = {
+  subtitle: '',
+  title: '',
+  imagePath: '',
+  storyline: '',
+  rating: 0,
+  genre: 'action',
+};
 
 const renderInput = (type, name, value, onChange) => (
   <label htmlFor={ `AddMovie-${type}` } data-testid={ `${type}-input-label` }>
@@ -61,13 +69,13 @@ const renderSelect = (genre, onChange) => (
   </label>
 );
 
-const renderButton = (onClick, addMovieThis) => (
+const renderButton = (onClick) => (
   <button
     type="button"
     data-testid="send-button"
-    onClick={ onClick(addMovieThis, movies) }
+    onClick={ onClick }
   >
-    Adicionar Filme
+    Adicionar filme
   </button>
 );
 
@@ -75,6 +83,7 @@ class AddMovie extends React.Component {
   constructor() {
     super();
     this.refreshState = this.refreshState.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.state = {
       subtitle: '',
       title: '',
@@ -85,6 +94,14 @@ class AddMovie extends React.Component {
     };
   }
 
+  onClick() {
+    const newMovie = this.state;
+    const { onClick } = this.props;
+    newMovie.rating = parseFloat(newMovie.rating);
+    onClick(newMovie);
+    this.setState(defaultMovieState);
+  }
+
   refreshState(event) {
     this.setState({
       [event.target.id.split('-')[1]]: event.target.value,
@@ -92,7 +109,6 @@ class AddMovie extends React.Component {
   }
 
   render() {
-    const { onClick } = this.props;
     const { subtitle, title, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
@@ -102,7 +118,7 @@ class AddMovie extends React.Component {
         {renderTextArea(storyline, this.refreshState)}
         {renderInputNumber(rating, this.refreshState)}
         {renderSelect(genre, this.refreshState)}
-        {renderButton(onClick, this)}
+        {renderButton(this.onClick)}
       </form>
     );
   }

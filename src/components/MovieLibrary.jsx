@@ -6,15 +6,6 @@ import SearchBar from './SearchBar';
 import MovieList from './MovieList';
 import AddMovie from './AddMovie';
 
-const defaultMovieState = {
-  subtitle: '',
-  title: '',
-  imagePath: '',
-  storyline: '',
-  rating: 0,
-  genre: 'action',
-};
-
 class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
@@ -23,12 +14,12 @@ class MovieLibrary extends React.Component {
     this.handleBookmarkedOnly = this.handleBookmarkedOnly.bind(this);
     this.handleSelectedGenreChange = this.handleSelectedGenreChange.bind(this);
     this.applyFilter = this.applyFilter.bind(this);
-    this.onClick = this.onClick.bind(this);
+    this.updateMovies = this.updateMovies.bind(this);
     this.state = {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      movies,
+      movies: JSON.parse(JSON.stringify(movies)),
     };
   }
 
@@ -50,22 +41,12 @@ class MovieLibrary extends React.Component {
     });
   }
 
-  onClick(addMovieThis, movies) {
-    return () => {
-      movies.push({
-        title: addMovieThis.state.title,
-        subtitle: addMovieThis.state.subtitle,
-        imagePath: addMovieThis.state.imagePath,
-        storyline: addMovieThis.state.storyline,
-        rating: parseFloat(addMovieThis.state.rating),
-        genre: addMovieThis.state.genre,
-      });
-      console.log(movies);
-      addMovieThis.setState(defaultMovieState);
-      this.setState({
-        movies,
-      });
-    };
+  updateMovies(newMovie) {
+    const { movies } = this.state;
+    movies.push(newMovie);
+    this.setState({
+      movies,
+    });
   }
 
   movieIncludes(movie, searchText) {
@@ -105,7 +86,7 @@ class MovieLibrary extends React.Component {
           onSelectedGenreChange={ this.handleSelectedGenreChange }
         />
         <MovieList movies={ this.applyFilter(movies) } />
-        <AddMovie onClick={ this.onClick } />
+        <AddMovie onClick={ this.updateMovies } />
       </main>
     );
   }
