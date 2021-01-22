@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import AddMovie from './AddMovie';
+import AddMovie from './AddMovie';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 
@@ -15,18 +15,31 @@ class MovieLibrary extends React.Component {
       movies,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.filteredMovies = this.filteredMovies.bind(this);
   }
 
   handleChange({ target }) {
-    const { name, value } = target;
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
     });
   }
 
+  filteredMovies() {
+    const { searchText, selectedGenre, bookmarkedOnly, movies } = this.state;
+    const allMovies = movies.filter((movie) => movie.title.toUpperCase()
+      .includes(searchText.toUpperCase()) || movie.subtitle.toUpperCase()
+      .includes(searchText.toUpperCase()) || movie.storyline.toUpperCase()
+      .includes(searchText.toUpperCase()))
+      .filter((movie) => movie.genre.includes(selectedGenre));
+    if (bookmarkedOnly) return allMovies.filter((movie) => movie.bookmarked);
+    return allMovies;
+  }
+
   render() {
-    const { movies } = this.props;
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    this.filteredMovies();
     return (
       <div>
         <SearchBar
@@ -37,17 +50,15 @@ class MovieLibrary extends React.Component {
           onBookmarkedChange={ this.handleChange }
           onSelectedGenreChange={ this.handleChange }
         />
-        <MovieList movies={ movies } />
+        <MovieList movies={ this.filteredMovies() } />
+        <AddMovie OnClick={ () => {} } />
       </div>
     );
   }
 }
 
 MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  searchText: PropTypes.string.isRequired,
-  bookmarkedOnly: PropTypes.bool.isRequired,
-  selectedGenre: PropTypes.string.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default MovieLibrary;
