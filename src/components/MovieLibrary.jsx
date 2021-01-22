@@ -5,7 +5,7 @@ import MovieList from './MovieList';
 import AddMovie from './AddMovie';
 
 class MovieLibrary extends Component {
-  constructor() {
+  constructor(props) {
     super(props);
     const { movies } = props;
     this.state = {
@@ -58,6 +58,7 @@ class MovieLibrary extends Component {
 
   render() {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    const { movies } = this.state;
     return (
       <section>
         <SearchBar
@@ -68,7 +69,7 @@ class MovieLibrary extends Component {
           onBookmarkedChange={ this.handleChange }
           onSelectedGenreChange={ this.handleChange }
         />
-        <MovieList movies={ this.handlefilterMovie } />
+        <MovieList movies={ movies } />
         <AddMovie onClick={ this.handleAddMovie } />
       </section>
     );
