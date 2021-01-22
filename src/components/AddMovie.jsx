@@ -41,6 +41,7 @@ class AddMovie extends React.Component {
       <label htmlFor="movie-title" data-testid="title-input-label">
         Título
         <input
+          className="input-text"
           id="movie-title"
           value={ title }
           data-testid="title-input"
@@ -57,6 +58,7 @@ class AddMovie extends React.Component {
       <label htmlFor="movie-subtitle" data-testid="subtitle-input-label">
         Subtítulo
         <input
+          className="input-text"
           name="subtitle"
           id="movie-title"
           value={ subtitle }
@@ -73,6 +75,7 @@ class AddMovie extends React.Component {
       <label htmlFor="movie-image" data-testid="image-input-label">
         Imagem
         <input
+          className="input-text"
           name="imagemPath"
           id="movie-image"
           value={ imagemPath }
@@ -86,16 +89,18 @@ class AddMovie extends React.Component {
   renderTextArea() {
     const { storyline } = this.state;
     return (
-      <label htmlFor="movie-sinopse" data-testid="storyline-input-label">
-        Sinopse
-        <textarea
-          name="storyline"
-          id="movie-sinopse"
-          value={ storyline }
-          data-testid="storyline-input"
-          onChange={ this.handleChange }
-        />
-      </label>
+      <div>
+        <label htmlFor="movie-sinopse" data-testid="storyline-input-label">
+          Sinopse
+          <textarea
+            name="storyline"
+            id="movie-sinopse"
+            value={ storyline }
+            data-testid="storyline-input"
+            onChange={ this.handleChange }
+          />
+        </label>
+      </div>
     );
   }
 
@@ -105,6 +110,7 @@ class AddMovie extends React.Component {
       <label htmlFor="movie-rating" data-testid="rating-input-label">
         Avaliação
         <input
+          className="input-number"
           type="number"
           name="rating"
           id="movie-rating"
@@ -117,12 +123,12 @@ class AddMovie extends React.Component {
     );
   }
 
-  renderSelect() {
-    const { genre } = this.state;
+  renderSelect(genre) {
     return (
       <label htmlFor="movie-genre" data-testid="genre-input-label">
         Gênero
         <select
+          className="input-select"
           name="genre"
           id="movie-genre"
           data-testid="genre-input"
@@ -151,16 +157,19 @@ class AddMovie extends React.Component {
   }
 
   render() {
+    const { genre } = this.state;
     return (
-      <form data-testid="add-movie-form">
-        {this.renderInputTextTitle()}
-        {this.renderInputTextSubtitle()}
-        {this.renderInputTextImage()}
-        {this.renderTextArea()}
-        {this.renderInputNumber()}
-        {this.renderSelect()}
-        {this.renderButton()}
-      </form>
+      <section className="section-form">
+        <form data-testid="add-movie-form">
+          {this.renderInputTextTitle()}
+          {this.renderInputTextSubtitle()}
+          {this.renderInputTextImage()}
+          {this.renderTextArea()}
+          {this.renderInputNumber()}
+          {this.renderSelect(genre)}
+          {this.renderButton()}
+        </form>
+      </section>
     );
   }
 }

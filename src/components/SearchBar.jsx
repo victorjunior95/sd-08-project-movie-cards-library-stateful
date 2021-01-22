@@ -6,9 +6,6 @@ class SearchBar extends React.Component {
     super(props);
     this.renderInputText = this.renderInputText.bind(this);
     this.renderCheckbox = this.renderCheckbox.bind(this);
-    // this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
-    // this.onSearchTextChange = this.onSearchTextChange.bind(this);
-    // this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
   }
 
   renderInputText() {
@@ -17,6 +14,7 @@ class SearchBar extends React.Component {
       <label htmlFor="searchInput" data-testid="text-input-label">
         Inclui o texto:
         <input
+          className="input-text"
           name="searchText"
           value={ searchText }
           onChange={ onSearchTextChange }
@@ -31,8 +29,8 @@ class SearchBar extends React.Component {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
       <label htmlFor="checkbox" data-testid="checkbox-input-label">
-        Mostrar somente favoritos
         <input
+          className="input-checkbox"
           name="bookmarkedOnly"
           type="checkbox"
           id="checkbox"
@@ -40,20 +38,21 @@ class SearchBar extends React.Component {
           onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
         />
+        Mostrar somente favoritos
       </label>
     );
   }
 
-  renderSelect() {
-    const { selectedGenre, onSelectedGenreChange } = this.props;
+  renderSelect(genre, change) {
     return (
       <label htmlFor="select" data-testid="select-input-label">
         Filtrar por gênero
         <select
+          className="input-select"
           name="selectedGenre"
-          value={ selectedGenre }
+          value={ genre }
           id="select"
-          onChange={ onSelectedGenreChange }
+          onChange={ change }
           data-testid="select-input"
         >
           <option value="" data-testid="select-option">Todos</option>
@@ -66,12 +65,15 @@ class SearchBar extends React.Component {
   }
 
   render() {
+    const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <form data-testid="search-bar-form">
-        {this.renderInputText()}
-        {this.renderCheckbox()}
-        {this.renderSelect()}
-      </form>
+      <section className="section-form">
+        <form data-testid="search-bar-form">
+          {this.renderInputText()}
+          {this.renderCheckbox()}
+          {this.renderSelect(selectedGenre, onSelectedGenreChange)}
+        </form>
+      </section>
     );
   }
 }
