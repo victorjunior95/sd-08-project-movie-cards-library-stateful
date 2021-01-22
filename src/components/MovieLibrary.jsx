@@ -8,20 +8,51 @@ import SearchBar from './SearchBar';
 class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
     const { movies } = this.props;
     this.state = {
-    /*       searchText: '',
+      searchText: '',
       bookmarkedOnly: false,
-      selectedGenre: '', */
+      selectedGenre: '',
       movies,
     };
   }
 
+  onSearchTextChange({ target }) {
+    const { value } = target;
+    this.setState({
+      searchText: value,
+    });
+  }
+
+  onBookmarkedChange({ target }) {
+    const { checked } = target;
+    this.setState({
+      bookmarkedOnly: checked,
+    });
+  }
+
+  onSelectedGenreChange({ target }) {
+    const { value } = target;
+    this.setState({
+      selectedGenre: value,
+    });
+  }
+
   render() {
-    const { /* searchText, bookmarkedOnly, selectedGenre, */ movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
     return (
       <div>
-        <SearchBar />
+        <SearchBar
+          searchText={ searchText }
+          onSearchTextChange={ this.onSearchTextChange }
+          bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ this.onBookmarkedChange }
+          selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ this.onSelectedGenreChange }
+        />
         <AddMovie />
         <MovieList movies={ movies } />
       </div>
