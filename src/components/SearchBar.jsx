@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
 
+  render () {
+    return (
+      <h1>Teste</h1>
+    );
+  }
 }
 
-SearchBar.propTypes = {
+/* SearchBar.propTypes = {
   searchText: PropTypes.string,
   onSearchTextChange: PropTypes.func,
   bookmarkedOnly: PropTypes.bool,
@@ -21,6 +26,6 @@ SearchBar.defaultProps = {
   onBookmarkedExchange: null,
   selectedGenre: '',
   onSelectedGenreExchange: null,
-}
+} */
 
 export default SearchBar;
