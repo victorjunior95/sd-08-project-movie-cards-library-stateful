@@ -12,13 +12,23 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     };
+
+    this.initialState = this.state;
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
     const { target } = event;
     const { name, value } = target;
     this.setState({ [name]: value });
+  }
+
+  handleClick() {
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.setState(this.initialState);
+    console.log('clicou')
   }
 
   renderTitle() {
@@ -133,6 +143,9 @@ class AddMovie extends React.Component {
         { this.renderTextarea() }
         { this.renderRating() }
         { this.renderSelected() }
+        <button type="button" data-testid="send-button" onClick={ this.handleClick }>
+          Adicionar filme
+        </button>
       </form>
     );
   }
