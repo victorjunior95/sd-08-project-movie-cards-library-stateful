@@ -19,7 +19,7 @@ class CheckboxInputLabel extends React.Component {
 }
 
 CheckboxInputLabel.propTypes = {
-  bookmarkedOnly: PropTypes.string.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

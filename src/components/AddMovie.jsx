@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Title from './addMovieComponents/Title';
 import Subtitle from './addMovieComponents/Subtitle';
@@ -6,14 +7,14 @@ import ImageWay from './addMovieComponents/ImageWay';
 import StoryLine from './addMovieComponents/StoryLine';
 import Rating from './addMovieComponents/Rating';
 import Genre from './addMovieComponents/Genre';
-// import AddMovieButton from './addMovieComponents/AddMovieButton';
+import AddMovieButton from './addMovieComponents/AddMovieButton';
 
 class AddMovie extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-    // this.addMovieFunc = this.addMovieFunc.bind(this);
+    this.sendButton = this.sendButton.bind(this);
 
     this.state = {
       subtitle: '',
@@ -65,20 +66,20 @@ class AddMovie extends React.Component {
     );
   }
 
-  // sendButton(event) {
-  //   const { onClick } = this.props;
-  //   onClick(this.state);
+  sendButton(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    onClick(this.state);
 
-  //   this.setState(({
-  //     subtitle: '',
-  //     title: '',
-  //     imagePath: '',
-  //     storyline: '',
-  //     rating: 0,
-  //     genre: 'action',
-  //   }));
-  //   event.preventDefault();
-  // }
+    this.setState(({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    }));
+  }
 
   render() {
     const { title, rating, genre } = this.state;
@@ -90,10 +91,14 @@ class AddMovie extends React.Component {
         {this.storylineCall()}
         <Rating name="rating" value={ rating } handleChange={ this.handleChange } />
         <Genre name="genre" value={ genre } handleChange={ this.handleChange } />
-        {/* <AddMovieButton onClick={ this.sendButton } /> */}
+        <AddMovieButton onClick={ this.sendButton } />
       </form>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
