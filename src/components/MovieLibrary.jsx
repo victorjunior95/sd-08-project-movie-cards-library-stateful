@@ -16,6 +16,24 @@ class MovieLibray extends React.Component {
       selectedGenre: '',
       movies,
     };
+
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+  }
+
+  onSearchTextChange(text) {
+    const { movies } = this.state;
+    const moviesFiltered = movies.filter((movie) => movie.title === text);
+    console.log(moviesFiltered);
+  }
+
+  onBookmarkedChange() {
+    console.log('leo');
+  }
+
+  onSelectedGenreChange() {
+    console.log('sardinha');
   }
 
   render() {
@@ -26,8 +44,11 @@ class MovieLibray extends React.Component {
         <SearchBar
           movies={ movies }
           searchText={ searchText }
+          onSearchTextChange={ this.onSearchTextChange }
           bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ this.onBookmarkedChange }
           selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <MovieList movies={ movies } />
         <AddMovie />
