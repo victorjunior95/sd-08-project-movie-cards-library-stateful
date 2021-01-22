@@ -56,7 +56,7 @@ class AddMovie extends Component {
         <StorylineMovie value={ storyline } handleChange={ this.handleChange } />
         <RatingMovie value={ rating } handleChange={ this.handleChange } />
         <SelectGenreMovie value={ genre } handleChange={ this.handleChange } />
-        <ButtonSubmitMovie handleChange={ this.handleReset } />
+        <ButtonSubmitMovie handleReset={ this.handleReset } />
       </form>
     );
   }
