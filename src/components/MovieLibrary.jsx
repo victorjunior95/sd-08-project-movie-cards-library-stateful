@@ -13,6 +13,8 @@ class MovieLibrary extends Component {
       selectedGenre: '',
     };
     this.onSearchChange = this.onSearchChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
     this.movieAdd = this.movieAdd.bind(this);
   }
 
