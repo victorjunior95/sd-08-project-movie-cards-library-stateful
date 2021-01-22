@@ -150,7 +150,7 @@ class AddMovie extends React.Component {
 
   render() {
     return (
-      <form data-testid="add-movie-form">
+      <form data-testid="add-movie-form" className="add-movie">
         { this.inputTitle() }
         { this.inputSubtitle() }
         { this.inputImage() }

@@ -56,7 +56,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form data-testid="search-bar-form">
+      <form data-testid="search-bar-form" className="search-bar">
         { this.inputText() }
         { this.inputCheckbox() }
         { this.select() }
