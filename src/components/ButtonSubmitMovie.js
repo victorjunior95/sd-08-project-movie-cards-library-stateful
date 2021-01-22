@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 class ButtonSubmitMovie extends Componet {
   render() {
-    const { handleSubmit } = this.props;
+    const { handleReset } = this.props;
     return (
       <button
         data-testid="send-button"
         type="submit"
-        onClick={ handleSubmit }
+        onClick={ handleReset }
       >
         Adicionar filme
       </button>
@@ -17,7 +17,7 @@ class ButtonSubmitMovie extends Componet {
 }
 
 ButtonSubmitMovie.PropTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  handleReset: PropTypes.func.isRequired,
 };
 
 export default ButtonSubmitMovie;
