@@ -4,7 +4,7 @@ import AddMovie from './AddMovie';
 class MovieLibrary extends Component {
   movieAdd() {
   // this.setState((stateanterior)=> {
-  //   return {
+  //   return { ,
   //     movies:{movies:[...stateanterior.movies.movies,state]}
   //   }
   // })
