@@ -18,6 +18,7 @@ class AddMovie extends Component {
     this.renderTextarea = this.renderTextarea.bind(this);
     this.renderNumberInput = this.renderNumberInput.bind(this);
     this.renderSelect = this.renderSelect.bind(this);
+    this.renderButton = this.renderButton.bind(this);
   }
 
   handleChange(event) {
@@ -104,7 +105,7 @@ class AddMovie extends Component {
     const { rating } = this.state;
     return (
       <label
-        htmlFor="image-input"
+        htmlFor="rating-input"
         data-testid="rating-input-label"
       >
         Avaliação
@@ -137,6 +138,18 @@ class AddMovie extends Component {
     );
   }
 
+  renderButton() {
+    return (
+      <button
+        type="submit"
+        data-testid="send-button"
+        onClick={ null }
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -146,6 +159,7 @@ class AddMovie extends Component {
         {this.renderTextarea()}
         {this.renderNumberInput()}
         {this.renderSelect()}
+        {this.renderButton()}
       </form>
     );
   }
