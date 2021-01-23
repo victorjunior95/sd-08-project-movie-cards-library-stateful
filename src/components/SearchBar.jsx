@@ -32,16 +32,38 @@ class SearchBar extends Component {
     );
   }
 
+  FormSelect(selectedGenre, onSelectedGenreChange) {
+    return (
+      <label htmlFor="select_movie" data-testid="select-input-label">
+        Filtrar por gênero
+        <select
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+          id="select_movie"
+          data-testid="select-input"
+        >
+          <option data-testid="select-option" value="">Todos</option>
+          <option data-testid="select-option" value="action">Ação</option>
+          <option data-testid="select-option" value="comedy">Comédia</option>
+          <option data-testid="select-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
+  }
+
   render() {
     const {
       searchText,
       onSearchTextChange,
       bookmarkedOnly,
-      onBookmarkedChange } = this.props;
+      onBookmarkedChange,
+      selectedGenre,
+      onSelectedGenreChange } = this.props;
     return (
       <form data-testid="search-bar-form">
         { this.InputText(searchText, onSearchTextChange) }
         { this.InputCheckBox(bookmarkedOnly, onBookmarkedChange) }
+        { this.FormSelect(selectedGenre, onSelectedGenreChange) }
       </form>
     );
   }
@@ -52,6 +74,8 @@ SearchBar.propTypes = {
   onSearchTextChange: PropTypes.func.isRequired,
   bookmarkedOnly: PropTypes.string.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 SearchBar.defaultProps = {
