@@ -14,6 +14,8 @@ class AddMovie extends React.Component {
       // genre: 'action',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearDataMovie = this.clearDataMovie.bind(this);
   }
 
   //  inspirado no codigo da patricia https://github.com/tryber/sd-08-project-movie-cards-library-stateful/pull/46/files?file-filters%5B%5D=.jsx
@@ -145,7 +147,7 @@ class AddMovie extends React.Component {
     return (
       <div>
         <label
-          htmlFor="text-input"
+          htmlFor="number-input"
           data-testid="rating-input-label"
         >
           Avaliação
