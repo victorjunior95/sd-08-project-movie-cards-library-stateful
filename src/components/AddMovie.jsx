@@ -13,7 +13,16 @@ class AddMovie extends React.Component {
       rating: 0,
       // genre: 'action',
     };
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  //  inspirado no codigo da patricia https://github.com/tryber/sd-08-project-movie-cards-library-stateful/pull/46/files?file-filters%5B%5D=.jsx
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
   // textInput()
   // textInput(title, onClick, Title, variavel) {
   //   return (
@@ -37,71 +46,71 @@ class AddMovie extends React.Component {
   //     </div>
   //   );
   // }
-  TitleInput(onChange) {
+  TitleInput(title) {
     return (
       <div>
 
         <label htmlFor="text-input" data-testid="title-input-label">
           Título
-          <input type="text" value={ title } onChange={ onChange } data-testid="title-input" />
+          <input type="text" value={ title } onChange={ this.handleChange } data-testid="title-input" />
         </label>
       </div>
     );
   }
 
-  SubtitleInput(onChange) {
+  SubtitleInput(subtitle) {
     return (
       <div>
         <label htmlFor="text-input" data-testid="subtitle-input-label">
           Subtítulo
-          <input type="text" value={ subtitle } onChange={ onChange } data-testid="subtitle-input" />
+          <input type="text" value={ subtitle } onChange={ this.handleChange } data-testid="subtitle-input" />
         </label>
       </div>
     );
   }
 
-  ImageInput(onChange) {
+  ImageInput(imagePath) {
     return (
       <div>
         <label htmlFor="text-input" data-testid="image-input-label">
           Imagem
-          <input type="text" value={ imagePath } onChange={ onChange } data-testid="image-input" />
+          <input type="text" value={ imagePath } onChange={ this.handleChange } data-testid="image-input" />
         </label>
       </div>
     );
   }
 
-  StoylineInput(onChange) {
+  StoylineInput(storyline) {
     return (
       <div>
         <label htmlFor="text-input" data-testid="storyline-input-label">
           Sinopse
-          <input type="textarea" value={ storyline } onChange={ onChange } data-testid="storyline-input" />
+          <input type="textarea" value={ storyline } onChange={ this.handleChange } data-testid="storyline-input" />
         </label>
       </div>
     );
   }
 
-  RaitingInput(onChange) {
+  RaitingInput(genere) {
     return (
       <div>
         <label htmlFor="text-input" data-testid="rating-input-label">
           Avaliação
-          <input type="number" value="rating" onChange={ onChange } data-testid="rating-input" />
+          <input type="number" value="rating" onChange={ this.handleChange } data-testid="rating-input" />
         </label>
       </div>
     );
   }
 
   render() {
-    const { onClick } = this.props;
+    const { title, subtitle, imagePath, storyline, rating } = this.state;
     return (
       <form data-testid="add-movie-form">
-        {this.TitleInput(onClick)}
-        {this.SubTitleInput(onClick)}
-        {this.imageInput(onClick)}
-        {this.storyLineInput(onClick)}
-        {this.raitingInput(onClick)}
+        {this.TitleInput(title)}
+        {this.SubTitleInput(subtitle)}
+        {this.imageInput(imagePath)}
+        {this.storyLineInput(storyline)}
+        {this.raitingInput(rating)}
         {/* {this.textInput(subtitle, onClick, 'Subtítulo', 'subtitle')}
         {this.textInput(imagePath, onClick, 'Imagem', 'image')}
         {this.numberInput(rating, onClick, 'Avaliação', 'rating')} */}
