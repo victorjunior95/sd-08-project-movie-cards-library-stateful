@@ -19,7 +19,7 @@ class MovieLibrary extends Component {
     // this.movieAdd = this.movieAdd.bind(this);
   }
 
-  onSearchChange(event) {
+  onSearchTextChange(event) {
     this.setState({
       searchText: event.target.value,
     });
@@ -45,7 +45,7 @@ class MovieLibrary extends Component {
       <div>
         <h2> My awesome movie library </h2>
         <SearchBar
-          onSearchChange={ this.onSearchChange }
+          onSearchTextChange={ this.onSearchTextChange }
           searchText={ searchText }
           onBookmarkedChange={ this.onBookmarkedChange }
           bookmarkedOnly={ bookmarkedOnly }
