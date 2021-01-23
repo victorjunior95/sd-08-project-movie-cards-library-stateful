@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class AddMovie extends Component {
-
   InputText() {
     return (
       <label htmlFor="input_text" data-testid="title-input-label">
