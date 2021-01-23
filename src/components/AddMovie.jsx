@@ -23,6 +23,24 @@ class AddMovie extends React.Component {
     });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.clearDataMovie();
+  }
+
+  clearDataMovie() {
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+  }
+
   // textInput()
   // textInput(title, onClick, Title, variavel) {
   //   return (
@@ -80,7 +98,7 @@ class AddMovie extends React.Component {
     );
   }
 
-  StoylineInput(storyline) {
+  StorylineInput(storyline) {
     return (
       <div>
         <label htmlFor="text-input" data-testid="storyline-input-label">
@@ -91,7 +109,7 @@ class AddMovie extends React.Component {
     );
   }
 
-  RaitingInput(genere) {
+  RatingInput(rating) {
     return (
       <div>
         <label htmlFor="text-input" data-testid="rating-input-label">
@@ -107,26 +125,26 @@ class AddMovie extends React.Component {
     return (
       <form data-testid="add-movie-form">
         {this.TitleInput(title)}
-        {this.SubTitleInput(subtitle)}
-        {this.imageInput(imagePath)}
-        {this.storyLineInput(storyline)}
-        {this.raitingInput(rating)}
-        {/* {this.textInput(subtitle, onClick, 'Subtítulo', 'subtitle')}
-        {this.textInput(imagePath, onClick, 'Imagem', 'image')}
-        {this.numberInput(rating, onClick, 'Avaliação', 'rating')} */}
-
-        <h3>AddMovie</h3>
+        {this.SubtitleInput(subtitle)}
+        {this.ImageInput(imagePath)}
+        {this.StorylineInput(storyline)}
+        {this.RatingInput(rating)}
+        <button
+          type="submit"
+          data-testid="send-button"
+          onClick={ this.handleSubmit }
+        >
+          Adicionar filme
+        </button>
       </form>
     );
   }
 }
 
-AddMovie.defaultProps = {
-  onClick: null,
-};
-
 AddMovie.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
 };
-
 export default AddMovie;
+{ /* {this.textInput(subtitle, onClick, 'Subtítulo', 'subtitle')}
+        {this.textInput(imagePath, onClick, 'Imagem', 'image')}
+        {this.numberInput(rating, onClick, 'Avaliação', 'rating')} */ }
