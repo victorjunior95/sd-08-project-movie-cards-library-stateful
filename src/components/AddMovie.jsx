@@ -134,7 +134,7 @@ class AddMovie extends React.Component {
   }
 
   render() {
-    const { onClick } = this.props;
+    const { callback } = this.props;
     return (
       <form data-testid="add-movie-form" onSubmit={ this.handleSubmit }>
         {this.renderInputFieldTitle()}
@@ -146,7 +146,7 @@ class AddMovie extends React.Component {
         <button
           type="submit"
           data-testid="send-button"
-          onClick={ () => onClick(this.state) } // lembrar do array
+          onClick={ () => callback(this.state) } // lembrar do array
         >
           Adicionar filme
         </button>
@@ -157,5 +157,5 @@ class AddMovie extends React.Component {
 export default AddMovie;
 
 AddMovie.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  callback: PropTypes.func.isRequired,
 };

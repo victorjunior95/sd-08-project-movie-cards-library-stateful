@@ -17,6 +17,7 @@ class MovieLibrary extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.moviesFilter = this.moviesFilter.bind(this);
+    this.handleSubmitNewMovie = this.handleSubmitNewMovie.bind(this);
   }
 
   handleChange(event) {
@@ -24,6 +25,12 @@ class MovieLibrary extends React.Component {
     this.setState({
       [elemento.name]: elemento.type === 'checkbox' ? elemento.checked : elemento.value,
     });
+  }
+
+  handleSubmitNewMovie(newMovie) {
+    this.setState((state) => ({
+      movies: [...state.movies, newMovie],
+    }));
   }
 
   moviesFilter(allmovies) {
@@ -49,7 +56,7 @@ class MovieLibrary extends React.Component {
           onSelectedGenreChange={ this.handleChange }
         />
         <MovieList movies={ this.moviesFilter(movies) } />
-        <AddMovie />
+        <AddMovie callback={ this.handleSubmitNewMovie } />
       </div>
     );
   }
