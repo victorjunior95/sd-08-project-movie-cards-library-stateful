@@ -5,44 +5,43 @@ import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 
 class MovieLibrary extends Component {
-  // // constructor(props) {
-  // //   super(props);
-  // //   // const { movies } = this.props;
-  // //   this.state = {
-  // //     searchText: '',
-  // //     bookmarkedOnly: false,
-  // //     selectedGenre: '',
-  // //     // movies,
-  // //   };
+  constructor(props) {
+    super(props);
+    const { movies } = props;
+    this.state = {
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: '',
+      movies,
+    };
 
-  //   this.onSearchTextChange = this.onSearchTextChange.bind(this);
-  //   this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
-  //   this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
-  //   this.newMovieAdd = this.newMovieAdd.bind(this);
-  // }
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+    this.newMovieAdd = this.newMovieAdd.bind(this);
+  }
 
-  // onSearchTextChange(event) {
-  //   this.setState({ searchText: event.target.value,
-  //   });
-  // }
+  onSearchTextChange(event) {
+    this.setState({ searchText: event.target.value,
+    });
+  }
 
-  // onBookmarkedChange() {
-  //   this.setState({ bookmarkedOnly: !bookmarkedOnly,
-  //   });
-  // }
+  onBookmarkedChange() {
+    this.setState({ bookmarkedOnly: !bookmarkedOnly,
+    });
+  }
 
-  // onSelectedGenreChange(event) {
-  //   this.setState({ selectedGenre: event.target.value,
-  //   });
-  // }
+  onSelectedGenreChange(event) {
+    this.setState({ selectedGenre: event.target.value,
+    });
+  }
 
   newMovieAdd() {
 
   }
 
   render() {
-    // const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-    const { movies } = this.props;
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
     return (
       <div>
         <SearchBar
@@ -61,7 +60,6 @@ class MovieLibrary extends Component {
 }
 
 MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.objects).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
-
 export default MovieLibrary;
