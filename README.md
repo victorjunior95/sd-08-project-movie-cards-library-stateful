@@ -340,7 +340,7 @@ Uma estratégia é pular todos os testes no início e ir implementando um teste 
 Você também pode rodar apenas um arquivo de teste, por exemplo:
 
 ```bash
-npm run test SearchBar.test.js
+npm test SearchBar.test.js
 ```
 
 ⚠️ Lembre-se de não entregar o projeto com nenhum teste ignorado. **Testes ignorados serão tratados como testes falhando**. ⚠️
@@ -432,7 +432,7 @@ Dentro desse formulário haverá campos usados na filtragem de cartões.
 
 - A propriedade `value` do select deve receber o valor da prop `selectedGenre`;
 
-- A propriedade `onChange` do input deve receber o valor da prop `onSelectedGenreChange`;
+- A propriedade `onChange` do select deve receber o valor da prop `onSelectedGenreChange`;
 
 - O `select` deve renderizar quatro tags `option`, com as opções de filtragem por gênero, na seguinte ordem:
    - `Todos`, com o valor `""`;
@@ -494,6 +494,7 @@ Dentro desse formulário haverá campos usados para preencher informações do n
 
 **O que será verificado:**
   - Será validado se o componente renderiza 1, e apenas 1, form
+  - O form deve conter o atributo `data-testid="add-movie-form"`
 
 
 ### 8 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o título do novo filme
@@ -599,7 +600,7 @@ Dentro desse formulário haverá campos usados para preencher informações do n
 
 - O `select` deve ter seu valor inicial provido pelo estado inicial do componente, via `genre`;
 
-- Essa `input` deve apresentar o atributo `data-testid="genre-input"`
+- O `select` deve apresentar o atributo `data-testid="genre-input"`
 
 - A propriedade `onChange` deve atualizar o estado de `<AddMovie />`, atribuindo a `genre` o gênero atual selecionado;
 
