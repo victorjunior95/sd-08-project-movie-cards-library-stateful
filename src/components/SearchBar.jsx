@@ -19,10 +19,10 @@ class SearchBar extends React.Component {
 
   onBookMark(bookmarkedOnly, onBookmarkedChange) {
     return (
-      <label data-testid="checkbox-input-label" htmlFor="bookmarked">
+      <label data-testid="checkbox-input-label" htmlFor="bookmarkedOnly">
         Mostrar somente favoritos
         <input
-          name="bookmarked"
+          name="bookmarkedOnly"
           data-testid="checkbox-input"
           type="checkbox"
           checked={ bookmarkedOnly }
@@ -34,10 +34,10 @@ class SearchBar extends React.Component {
 
   select(selectedGenre, onSelectedGenreChange) {
     return (
-      <label htmlFor="genre" data-testid="select-input-label">
+      <label htmlFor="selectedGenre" data-testid="select-input-label">
         Filtrar por gênero
         <select
-          name="genre"
+          name="selectedGenre"
           data-testid="select-input"
           value={ selectedGenre }
           onChange={ onSelectedGenreChange }
