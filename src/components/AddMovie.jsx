@@ -20,7 +20,7 @@ class AddMovie extends React.Component {
 
   onChange(event) {
     this.setState({
-    [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
@@ -38,7 +38,7 @@ class AddMovie extends React.Component {
       imagePath: '',
       storyline: '',
       rating: 0,
-      genre: 'action', 
+      genre: 'action',
     });
   }
 
@@ -125,36 +125,36 @@ class AddMovie extends React.Component {
     return (
       <label data-testid="genre-input-label" htmlFor="genre">
         Avaliação
-          <select
-            id="genre-input"
-            data-testid="genre-input"
-            value={ genre }
-            onChange={ this.onChange }
-            name="genre"
-          >
-            <option data-testid="select-option" value="action">Ação</option>
-            <option data-testid="select-option" value="comedy">Comédia</option>
-            <option data-testid="select-option" value="thriller">Suspense</option>
-          </select>
-        </label>
+        <select
+          id="genre-input"
+          data-testid="genre-input"
+          value={ genre }
+          onChange={ this.onChange }
+          name="genre"
+        >
+          <option data-testid="select-option" value="action">Ação</option>
+          <option data-testid="select-option" value="comedy">Comédia</option>
+          <option data-testid="select-option" value="thriller">Suspense</option>
+        </select>
+      </label>
     );
   }
-  
+
   render() {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
-      return (
-        <form data-testid="add-movie-form">
-          {this.inputTitle(title)}
-          {this.inputSubtitle(subtitle)}
-          {this.inputImage(imagePath)}
-          {this.inputStoryLine(storyline)}
-          {this.inputRating(rating)}
-          {this.inputGenre(genre)}
-        </form>
-      );
+    return (
+      <form data-testid="add-movie-form">
+        {this.inputTitle(title)}
+        {this.inputSubtitle(subtitle)}
+        {this.inputImage(imagePath)}
+        {this.inputStoryLine(storyline)}
+        {this.inputRating(rating)}
+        {this.inputGenre(genre)}
+      </form>
+    );
   }
 }
- 
+
 AddMovie.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
