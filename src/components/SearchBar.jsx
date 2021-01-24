@@ -10,7 +10,7 @@ class SearchBar extends React.Component {
           <input
             id="searchText"
             name="searchText"
-            data-testeid="text-input"
+            data-testid="text-input"
             onChange={ onSearchTextChange }
             value={ searchText }
             type="text"
@@ -44,14 +44,14 @@ class SearchBar extends React.Component {
         <select
           name="select-input"
           id="select-input"
-          data-testeid="select-input"
+          data-testid="select-input"
           value={ selectedGenre }
           onChange={ onSelectedGenreChange }
         >
-          <option data-testeid="select-option" value="">Todos</option>
-          <option data-testeid="select-option" value="action">Ação</option>
-          <option data-testeid="select-option" value="comedy">Comédia</option>
-          <option data-testeid="select-option" value="thriller">Suspense</option>
+          <option data-testid="select-option" value="">Todos</option>
+          <option data-testid="select-option" value="action">Ação</option>
+          <option data-testid="select-option" value="comedy">Comédia</option>
+          <option data-testid="select-option" value="thriller">Suspense</option>
         </select>
       </label>
     );
@@ -62,7 +62,7 @@ class SearchBar extends React.Component {
       onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
     return (
       <div>
-        <form data-testeid="search-bar-form">
+        <form data-testid="search-bar-form">
           <div>
             {this.inputText(searchText, onSearchTextChange)}
           </div>
