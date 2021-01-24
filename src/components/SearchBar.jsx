@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class SearchBar extends React.Component {  
+class SearchBar extends React.Component {
   inputText(searchText, onSearchTextChange) {
     return (
       <div>
-          <label htmlFor="input-text" data-testid="text-input-label">
-                    Inclui o texto:
-          <input
+        <label htmlFor="input-text" data-testid="text-input-label">
+        Inclui o texto:
+            <input
             id="searchText"
             name="searchText"
             data-testeid="text-input"
             onChange={ onSearchTextChange }
             value={ searchText }
             type="text"
-          />
-        </label>
+            />
+          </label>
       </div>
     );
   }
@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
   inputCheckBox(bookmarkedOnly, onBookmarkedChange) {
     return (
       <div>
-        <label htmlFor="input-checkbox" data-testid="checkbox-input-label">
+          <label htmlFor="input-checkbox" data-testid="checkbox-input-label">
                     Mostrar somente favoritos
           <input
             id="checkbox-input"
@@ -32,21 +32,22 @@ class SearchBar extends React.Component {
             checked={ bookmarkedOnly }
             onChange={ onBookmarkedChange }
           />
-        </label>
+          </label>
       </div>
     );
   }
 
   inputSelect(selectedGenre, onSelectedGenreChange) {
     return (
-      <label htmlFor="input-select" data-testeid="select-input-label">
+        <label htmlFor="input-select" data-testeid="select-input-label">
                 Filtrar por gênero
         <select
           name="select-input"
           id="select-input"
           data-testeid="select-input"
           value={ selectedGenre }
-          onChange={ onSelectedGenreChange }>
+          onChange={ onSelectedGenreChange }
+        >
           <option data-testeid="select-option" value="">Todos</option>
           <option data-testeid="select-option" value="action">Ação</option>
           <option data-testeid="select-option" value="comedy">Comédia</option>
