@@ -18,6 +18,7 @@ class MovieLibrary extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleBookmarkedChange = this.handleBookmarkedChange.bind(this);
+    this.filterMovies = this.filterMovies.bind(this);
   }
 
   handleChange(event) {
@@ -32,8 +33,26 @@ class MovieLibrary extends React.Component {
     });
   }
 
+  filterMovies(movies) {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    return movies
+      .filter((movie) => {
+        const titleLowerCase = movie.title.toLowerCase();
+        const subtitleLowerCase = movie.subtitle.toLowerCase();
+        const storylineLowerCase = movie.storyline.toLowerCase();
+        const searchTextLowerCase = searchText.toLowerCase();
+
+        return (titleLowerCase.includes(searchTextLowerCase)
+          || subtitleLowerCase.includes(searchTextLowerCase)
+          || storylineLowerCase.includes(searchTextLowerCase));
+      })
+      .filter((movie) => !bookmarkedOnly || movie.bookmarked)
+      .filter((movie) => selectedGenre === '' || selectedGenre === movie.genre);
+  }
+
   render() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const filtredMovies = this.filterMovies(movies);
     return (
       <section>
         <SearchBar
@@ -45,20 +64,20 @@ class MovieLibrary extends React.Component {
           onSelectedGenreChange={ this.handleChange }
         />
         <AddMovie />
-        <MovieList movies={ movies } />
+        <MovieList movies={ filtredMovies } />
       </section>
     );
   }
 }
 
 MovieLibrary.propTypes = {
-  movies: PropTypes.shape({
+  movies: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string.isRequired,
     storyline: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     imagePath: PropTypes.string.isRequired,
-  }).isRequired,
+  })).isRequired,
 };
 
 export default MovieLibrary;
