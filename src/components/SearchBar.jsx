@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
             onChange={ onSearchTextChange }
             value={ searchText }
             type="text"
-          />
+            />
         </label>
       </div>
     );
