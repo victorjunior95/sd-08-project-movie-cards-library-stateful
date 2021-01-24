@@ -4,21 +4,20 @@ import PropTypes from 'prop-types';
 class SearchBar extends React.Component {
   inputText(searchText, onSearchTextChange) {
     return (
-      <div>
-        <label htmlFor="input-text" data-testid="text-input-label">
-            Inclui o texto:
-            <input
-            id="searchText"
-            name="searchText"
-            data-testeid="text-input"
-            onChange={ onSearchTextChange }
-            value={ searchText }
-            type="text"
-            />
-        </label>
-      </div>
-    );
-  }
+        <div>
+            <label htmlFor="input-text" data-testid="text-input-label">
+              Inclui o texto:
+                <input
+                  id="searchText"
+                  name="searchText"
+                  data-testeid="text-input"
+                  onChange={ onSearchTextChange }
+                  value={ searchText }
+                  type="text"/> 
+            </label>
+        </div>
+      );
+    }
 
   inputCheckBox(bookmarkedOnly, onBookmarkedChange) {
     return (
