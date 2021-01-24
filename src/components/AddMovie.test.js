@@ -63,7 +63,7 @@ describe('7 - Renderize um formulário dentro de `<AddMovie />`', () => {
   });
 });
 
-describe.only('8 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o título do novo filme', () => {
+describe('8 - Renderize um input do tipo texto dentro do formulário em `<AddMovie />` para obter o título do novo filme', () => {
   it('Renderize um input de texto para quem usa escrever o titulo do filme', () => {
     expect(titleInput).toBeInTheDocument();
   });
@@ -203,7 +203,7 @@ describe('13 - Renderize um `select` do formulário em `<AddMovie />` para selec
   });
 });
 
-describe('14 - Renderize um botão do formulário em `<AddMovie />` para fazer uso dos dados do novo filme, contidos no estado de `<AddMovie />`', () => {
+describe.only('14 - Renderize um botão do formulário em `<AddMovie />` para fazer uso dos dados do novo filme, contidos no estado de `<AddMovie />`', () => {
   it('Será validado se o texto do botão é "Adicionar filme"', () => {
     expect(sendButton).toHaveTextContent('Adicionar filme');
   });

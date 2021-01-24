@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import MovieCard from './MovieCard';
 
-class MovieList extends React.Component {
+class MovieList extends React.PureComponent {
   render() {
     const { movies } = this.props;
 
