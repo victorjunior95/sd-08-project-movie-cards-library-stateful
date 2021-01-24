@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class SearchBar extends React.Component {
   findMovieText(searchText, onSearchTextChange) {
     return (
-      <label data-testid="text-input-label">
+      <label data-testid="text-input-label" htmlFor="text-input">
         Inclui o texto
         <input
           type="text"
@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
 
   checkBox(bookmarkedOnly, onBookmarkedChange) {
     return (
-      <label data-testid="checkbox-input-label">
+      <label data-testid="checkbox-input-label" htmlFor="text-input">
         Mostrar somente favoritos
         <input
           type="checkbox"
@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
 
   select(selectedGenre, onSelectedGenreChange) {
     return (
-      <label data-testid="select-input-label">
+      <label data-testid="select-input-label" htmlFor="text-input">
         Filtrar por gênero
         <select
           data-testid="select-input"
