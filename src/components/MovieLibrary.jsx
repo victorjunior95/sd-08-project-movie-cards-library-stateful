@@ -1,25 +1,21 @@
-// implement MovieLibrary component here
-import React, { Component } from 'react';
-
-import MovieList from './MovieList';
+import React from 'react';
+import propTypes from 'propTypes';
 import SearchBar from './SearchBar';
+import MovieList from './MovieList';
 import AddMovie from './AddMovie';
 
-class MovieLibrary extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+class MovieLibrary extends React.components {
   render() {
     return (
-      <div>
-        <h2> My awesome movie library </h2>
+      <main>
         <SearchBar />
-        <MovieList movies={this.props.movies} />
+        <MovieList />
         <AddMovie />
-      </div>
+      </main>
     );
   }
 }
+
+propTypes {}
 
 export default MovieLibrary;
