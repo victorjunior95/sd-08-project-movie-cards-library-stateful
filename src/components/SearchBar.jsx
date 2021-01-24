@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-
   searchBarForm(searchText, onSearchTextChange) {
     return (
       <label data-testid="text-input-label">
@@ -15,17 +14,17 @@ class SearchBar extends Component {
       </label>
     );
   }
-  
+
   checkboxInput(bookmarkedOnly, onBookmarkedChange) {
     return (
       <label data-testid="checkbox-input-label">
-          Mostrar somente favoritos
-          <input
-            data-testid="checkbox-input"
-            checked={ bookmarkedOnly }
-            type="checkbox"
-            onChange={ onBookmarkedChange }
-          />
+        Mostrar somente favoritos
+        <input
+          data-testid="checkbox-input"
+          checked={ bookmarkedOnly }
+          type="checkbox"
+          onChange={ onBookmarkedChange }
+        />
         </label>
     );
   }
@@ -34,9 +33,10 @@ class SearchBar extends Component {
     return (
       <label data-testid="select-input-label">
         Filtrar por gênero
-        <select data-testid="select-input"
-        value={ selectedGenre }
-        onChange={ onSelectedGenreChange } >
+        <select 
+          data-testid="select-input"
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange } >
           <option
             data-testid="select-option"
             value="">Todos</option>
