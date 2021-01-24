@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-    
+
   inputText(searchText, onSearchTextChange) {
     return (
       <div>
@@ -14,7 +14,8 @@ class SearchBar extends React.Component {
             data-testeid="text-input"
             onChange={ onSearchTextChange }
             value={ searchText }
-            type="text"/> 
+            type="text"
+          />
         </label>
       </div>
     );
