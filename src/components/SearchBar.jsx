@@ -5,16 +5,16 @@ class SearchBar extends React.Component {
   inputText(searchText, onSearchTextChange) {
     return (
       <div>
-          <label htmlFor="input-text" data-testid="text-input-label">
-          Inclui o texto:
-          <input
-            id="searchText"
-            name="searchText"
-            data-testeid="text-input"
-            onChange={ onSearchTextChange }
-            value={ searchText }
-            type="text"
-          />
+        <label htmlFor="input-text" data-testid="text-input-label">
+            Inclui o texto:
+            <input
+              id="searchText"
+              name="searchText"
+              data-testeid="text-input"
+              onChange={ onSearchTextChange }
+              value={ searchText }
+              type="text"
+            />
         </label>
       </div>
     );
@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
   inputCheckBox(bookmarkedOnly, onBookmarkedChange) {
     return (
       <div>
-          <label htmlFor="input-checkbox" data-testid="checkbox-input-label">
+        <label htmlFor="input-checkbox" data-testid="checkbox-input-label">
           Mostrar somente favoritos
           <input
             id="checkbox-input"
@@ -39,7 +39,7 @@ class SearchBar extends React.Component {
 
   inputSelect(selectedGenre, onSelectedGenreChange) {
     return (
-        <label htmlFor="input-select" data-testeid="select-input-label">
+      <label htmlFor="input-select" data-testeid="select-input-label">
         Filtrar por gênero
         <select
           name="select-input"
@@ -58,12 +58,8 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    const { searchText, 
-            onSearchTextChange,
-            bookmarkedOnly,
-            onBookmarkedChange,
-            selectedGenre,
-            onSelectedGenreChange } = this.props;
+    const { searchText, onSearchTextChange, bookmarkedOnly,
+        onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
     return (
       <div>
         <form data-testeid="search-bar-form">
