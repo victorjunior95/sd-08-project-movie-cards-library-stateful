@@ -1,25 +1,41 @@
 import React from 'react';
 
-class SearchBar extends React.components {
-  render() {
+class SearchBar extends React.Component {
+  textInputLabel(searchText, onSearchTextChange) {
     return (
-      <form data-testid="search-bar-form">
-        <label data-testid="text-input-label" />
+      <label data-testid="text-input-label">
+        Inclui o texto:
         <input
           data-testid="text-input"
           type="text"
-          value={searchText.props}
-          onChange={onSearchTextChange}
+          value={ searchText }
+          onChange={ onSearchTextChange }
         />
-        <label data-testid="checkbox-input-label" >
+      </label>
+    );
+  }
+
+  render() {
+    const { searchText, onSearchTextChange, bookmarkedOnly, onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
+    return (
+      <form data-testid="search-bar-form">
+        {this.textInputLabel(searchText, onSearchTextChange)}
+        <label data-testid="checkbox-input-label">
           Mostrar somente favoritos
+          <input data-testid="checkbox-input" type="checkbox" checked={ bookmarkedOnly } onChange={ onBookmarkedChange } />
         </label>
-        <input type="checkbox" checked={bookmarkedOnly.props} onChange={onBookmarkedChange} />
-        <select>Genre</select>
+        <label data-testid="select-input-label" >
+          Filtrar por gênero
+          <select data-testid="select-input" value={selectedGenre} onChange={onSelectedGenreChange} >
+            <option data-testid="select-option" value="">Todos</option>
+            <option data-testid="select-option" value="action">Ação</option>
+            <option data-testid="select-option" value="comedy">Comédia</option>
+            <option data-testid="select-option" value="thriller">Suspense</option>
+          </select>
+        </label>
       </form>
     );
   }
 }
 
 export default SearchBar;
-
