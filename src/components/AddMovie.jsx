@@ -124,11 +124,13 @@ class AddMovie extends Component {
   renderSelect() {
     const { genre } = this.state;
     return (
-      <label
-        htmlFor="genre-input"
-        data-testid="genre-input-label"
-      >
-        <select name="genre" data-testid="genre-input" value={ genre } onChange={ this.handleChange }>
+      <label htmlFor="genre-input" data-testid="genre-input-label">
+        <select
+          name="genre"
+          data-testid="genre-input"
+          value={ genre }
+          onChange={ this.handleChange }
+        >
           <option value="">Todos</option>
           <option value="action">Ação</option>
           <option value="comedy">Comédia</option>
