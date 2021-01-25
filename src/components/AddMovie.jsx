@@ -23,20 +23,6 @@ class AddMovie extends React.Component {
     });
   }
 
-  resetState(event) {
-    event.preventDefault();
-    const { onClick } = this.props;
-    this.setState({
-      subtitle: '',
-      title: '',
-      imagePath: '',
-      storyline: '',
-      rating: 0,
-      genre: 'action',
-    });
-    onClick(this.state);
-  }
-
   inputTitle() {
     const { title } = this.state;
     return (
@@ -130,6 +116,20 @@ class AddMovie extends React.Component {
         </select>
       </label>
     );
+  }
+
+  resetState(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+    onClick(this.state);
   }
 
   buttonAddFilm() {
