@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './Forms.css';
-
 class SearchBar extends Component {
   firstFieldSearchBar() {
     const { searchText, onSearchTextChange } = this.props;

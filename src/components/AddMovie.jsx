@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './Forms.css';
-
 export default class AddMovie extends Component {
   constructor() {
     super();
