@@ -1,10 +1,9 @@
-import { render } from 'enzyme';
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 
-class movieLibray extends Component {
-  render() {
-    return (
-      <div></div>
-    );
-  }
-} 
+// class movieLibray extends Component {
+//   render() {
+//     return (
+//       <div></div>
+//     );
+//   }
+// } 
