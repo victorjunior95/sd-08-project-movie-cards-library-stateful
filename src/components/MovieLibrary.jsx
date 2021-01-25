@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import movies from '../data';
 import SearchBar from './SearchBar';
 import MovieList from './MovieList';
 import AddMovie from './AddMovie';
@@ -10,13 +9,13 @@ import AddMovie from './AddMovie';
 class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
-    //  const { movies } = this.props;
+    const { movies } = this.props;
 
     this.state = {
       searchText: '',
-      // bookmarkedOnly: false,
+      bookmarkedOnly: false,
       selectedGenre: '',
-      //  movies,
+      movies,
       filteredMovies: movies,
     };
 
@@ -32,17 +31,18 @@ class MovieLibrary extends React.Component {
     }, () => this.filterText());
   }
 
-  /* onBookmarkedChange(event) {
+  onBookmarkedChange(event) {
     this.setState({
       bookmarkedOnly: event.target.checked,
     }, () => this.filterBookmark());
-  } */
+  }
 
   onSelectedGenreChange(event) {
     this.setState({ selectedGenre: event.target.value }, () => this.filterGenre());
   }
 
   addNewMovie(newMovie) {
+    const { movies } = this.state;
     this.setState({ filteredMovies: [...movies, newMovie] });
     console.log({ movies });
   }
@@ -66,11 +66,16 @@ class MovieLibrary extends React.Component {
   }
 
   render() {
+    const { bookmarkedOnly } = this.state;
+    const { movies } = this.props;
     return (
       <div className="movie-library" data-testid="movie-library">
         <SearchBar
+          selectedGenre={ this.selectedGenre }
+          searchText={ this.searchText }
+          bookmarkedOnly={ bookmarkedOnly }
           onSearchTextChange={ this.onSearchTextChange }
-          // onBookmarkedChange={ this.onBookmarkedChange }
+          onBookmarkedChange={ this.onBookmarkedChange }
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <MovieList movies={ movies } />
@@ -79,9 +84,6 @@ class MovieLibrary extends React.Component {
     );
   }
 }
-/* searchText={ searchText }
-  bookmarkedOnly={ bookmarkedOnly }
-  selectedGenre={ selectedGenre } */
 
 MovieLibrary.propTypes = ({
   movies: PropTypes.arrayOf(PropTypes.object),

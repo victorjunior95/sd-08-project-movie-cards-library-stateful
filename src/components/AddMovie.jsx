@@ -34,7 +34,7 @@ export default class AddMovie extends React.Component {
     event.preventDefault();
     const { title, subtitle, storyline } = this.state;
     if (title !== '' && subtitle !== '' && storyline !== '') {
-      console.log('ok');
+    //  console.log('ok');
       const { onClick } = this.props;
       onClick(this.state);
 
@@ -133,7 +133,7 @@ export default class AddMovie extends React.Component {
           min="0"
           max="5"
           step="0.1"
-          value={ rating }
+          value={ String({ rating }) }
           data-testid="rating-input"
           onChange={ this.handleChange }
         />
