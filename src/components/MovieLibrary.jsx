@@ -10,13 +10,13 @@ import AddMovie from './AddMovie';
 class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
-    const { movies } = this.props;
+    //  const { movies } = this.props;
 
     this.state = {
       searchText: '',
-      bookmarkedOnly: false,
+      // bookmarkedOnly: false,
       selectedGenre: '',
-      movies,
+      //  movies,
       filteredMovies: movies,
     };
 
@@ -32,11 +32,11 @@ class MovieLibrary extends React.Component {
     }, () => this.filterText());
   }
 
-  onBookmarkedChange(event) {
+  /* onBookmarkedChange(event) {
     this.setState({
       bookmarkedOnly: event.target.checked,
     }, () => this.filterBookmark());
-  }
+  } */
 
   onSelectedGenreChange(event) {
     this.setState({ selectedGenre: event.target.value }, () => this.filterGenre());
@@ -70,7 +70,7 @@ class MovieLibrary extends React.Component {
       <div className="movie-library" data-testid="movie-library">
         <SearchBar
           onSearchTextChange={ this.onSearchTextChange }
-          onBookmarkedChange={ this.onBookmarkedChange }
+          // onBookmarkedChange={ this.onBookmarkedChange }
           onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <MovieList movies={ movies } />
