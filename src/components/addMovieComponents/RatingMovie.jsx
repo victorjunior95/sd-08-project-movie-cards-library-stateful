@@ -23,6 +23,6 @@ class RatingMovie extends React.Component {
 export default RatingMovie;
 
 RatingMovie.propTypes = {
-  value: propTypes.string.isRequired,
+  value: propTypes.number.isRequired,
   onChange: propTypes.func.isRequired,
 };
