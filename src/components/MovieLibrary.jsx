@@ -9,18 +9,30 @@ class MovieLibrary extends Component {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
+      movies,
     };
-    const movies = props.movies;
+    const {movies} = props;
   }
 
   render() {
+    const {bookmarkedOnly, selectedGenre, searchText } = this.state;
     return (
       <div>
         <AddMovie />
-        <SearchBar />
+        <SearchBar
+        searchText={this.props.searchText}
+        selectedGenre={this.props.selectedGenre}
+        bookmarkedOnly={this.props.bookmarkedOnly}
+        />
+        <MovieList movies={ movies } />
       </div>
     );
   }
+}
+
+MovieLibrary.protoType = {
+  movies: PropTypes.arrayOf(
+    PropTypes.)
 }
 
 export default MovieLibrary;
