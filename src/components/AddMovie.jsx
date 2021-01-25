@@ -177,7 +177,6 @@ class AddMovie extends Component {
         {this.renderNumberInput()}
         {this.renderSelect()}
         {this.renderButton()}
-        {this.renderButton()}
       </form>
     );
   }
