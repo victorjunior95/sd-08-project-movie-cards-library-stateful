@@ -15,11 +15,12 @@ class SearchBar extends Component {
           <option data-testid="select-option" value="">Todos</option>
           <option data-testid="select-option" value="action">Ação</option>
           <option data-testid="select-option" value="comedy">Comédia</option>
-          <option data-testid="select-option" value="thriller">Suspense</option>          
+          <option data-testid="select-option" value="thriller">Suspense</option>
         </select>
       </label>
     );
   }
+
   textInput(searchText, onSearchTextChange) {
     return (
       <label data-testid="text-input-label" htmlFor="text-input">
@@ -31,31 +32,33 @@ class SearchBar extends Component {
           data-testid="text-input"
         />
       </label>
-    )
+    );
   }
+
   checkboxInput(bookmarkedOnly, onBookmarkedChange) {
     return (
       <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
         Mostrar somente favoritos
-        <input          
+        <input
           name="bookmarkedOnly"
           data-testid="checkbox-input"
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
           type="checkbox"
         />
-      </label>     
+      </label>
     );
   }
+
   render() {
     const {
-      searchText, onSearchTextChange, 
-      bookmarkedOnly, onBookmarkedChange, 
-      selectedGenre, onSelectedGenreChange
+      searchText, onSearchTextChange,
+      bookmarkedOnly, onBookmarkedChange,
+      selectedGenre, onSelectedGenreChange,
     } = this.props;
     return (
       <div>
-        <form data-testid="search-bar-form">          
+        <form data-testid="search-bar-form">
           {this.selectInput(selectedGenre, onSelectedGenreChange)}
           {this.textInput(searchText, onSearchTextChange)}
           {this.checkboxInput(bookmarkedOnly, onBookmarkedChange)}
@@ -65,7 +68,7 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.prototypes = {
+SearchBar.propTypes = {
   searchText: PropTypes.string.isRequired,
   onSearchTextChange: PropTypes.func.isRequired,
   bookmarkedOnly: PropTypes.bool.isRequired,

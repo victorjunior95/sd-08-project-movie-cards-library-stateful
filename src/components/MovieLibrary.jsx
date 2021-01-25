@@ -15,10 +15,11 @@ class MovieLibrary extends Component {
       movies,
     };
     this.busca = this.busca.bind(this);
-    this.adicionar_filme = this.adicionar_filme.bind(this);
-    this.filtrar_filme = this.filtrar_filme.bind(this);
+    this.adicionarFilme = this.adicionarFilme.bind(this);
+    this.filtrarFilme = this.filtrarFilme.bind(this);
   }
-  filtrar_filme(moviesFilter) {
+
+  filtrarFilme(moviesFilter) {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     let showMovies = moviesFilter
       .filter((movie) => movie.genre.includes(selectedGenre))
@@ -30,23 +31,26 @@ class MovieLibrary extends Component {
       : showMovies.filter((movie) => movie.bookmarked);
     return showMovies;
   }
-  adicionar_filme(movieObj) {
+
+  adicionarFilme(movieObj) {
     this.setState((state) => ({
-      movies: [...state.movies, movieObj]
+      movies: [...state.movies, movieObj],
     }));
   }
+
   busca({ target }) {
     this.setState({
-      [target.name]: target.type !== 'checkbox' ? target.value : target.checked
+      [target.name]: target.type !== 'checkbox' ? target.value : target.checked,
     });
   }
+
   render() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
-    const showMovies = this.filtrar_filme(movies);
+    const showMovies = this.filtrarFilme(movies);
     return (
       <div>
         <h2> My awesome movie library </h2>
-        <SearchBar 
+        <SearchBar
           searchText={ searchText }
           bookmarkedOnly={ bookmarkedOnly }
           selectedGenre={ selectedGenre }
@@ -54,15 +58,15 @@ class MovieLibrary extends Component {
           onBookmarkedChange={ this.busca }
           onSelectedGenreChange={ this.busca }
         />
-        <MovieList movies={showMovies} />
-        <AddMovie onClick={ this.adicionar_filme }/>
+        <MovieList movies={ showMovies } />
+        <AddMovie onClick={ this.adicionarFilme } />
       </div>
     );
   }
 }
 
 MovieLibrary.propTypes = {
-  movies: PropTypes.object.isRequired
+  movies: PropTypes.arrayOf().isRequired,
 };
 
 export default MovieLibrary;

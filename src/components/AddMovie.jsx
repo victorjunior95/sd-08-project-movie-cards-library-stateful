@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 class AddMovie extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			subtitle: '',
-			title: '',
-			imagePath: '',
-			storyline: '',
-			rating: 0,
-			genre: 'action',
+  constructor(props) {
+    super(props);
+    this.state = {
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
     };
     this.alterar = this.alterar.bind(this);
-    this.botao_form = this.botao_form.bind(this);
-		this.enviar = this.enviar.bind(this);
-	}	
-  //-----
-  inserir_titulo(title, onChange) {
+    this.botaoForm = this.botaoForm.bind(this);
+    this.enviar = this.enviar.bind(this);
+  }
+
+  inserirTitulo(title, onChange) {
     return (
       <label data-testid="title-input-label" htmlFor="title">
         Título
@@ -30,8 +31,8 @@ class AddMovie extends React.Component {
       </label>
     );
   }
-  //-----
-  inserir_subtitulo(subtitle, onChange) {
+
+  inserirSubtitulo(subtitle, onChange) {
     return (
       <label data-testid="subtitle-input-label" htmlFor="subtitle">
         Subtítulo
@@ -43,10 +44,10 @@ class AddMovie extends React.Component {
           onChange={ onChange }
         />
       </label>
-    )
+    );
   }
-  //-----
-  inserir_imagem(imagePath, onChange) {
+
+  inserirImagem(imagePath, onChange) {
     return (
       <label data-testid="image-input-label" htmlFor="imagePath">
         Imagem
@@ -58,10 +59,10 @@ class AddMovie extends React.Component {
           onChange={ onChange }
         />
       </label>
-    )
+    );
   }
-  //---------
-  inserir_sinopse(storyline, onChange) {
+
+  inserirSinopse(storyline, onChange) {
     return (
       <label data-testid="storyline-input-label" htmlFor="storyline">
         Sinopse
@@ -72,10 +73,10 @@ class AddMovie extends React.Component {
           onChange={ onChange }
         />
       </label>
-    )
+    );
   }
-  //---------
-  inserir_avaliacao(rating, onChange) {
+
+  inserirAvaliacao(rating, onChange) {
     return (
       <label data-testid="rating-input-label" htmlFor="rating">
         Avaliação
@@ -87,10 +88,10 @@ class AddMovie extends React.Component {
           onChange={ onChange }
         />
       </label>
-    )
+    );
   }
-  //-------
-  inserir_genero(genre, onChange) {
+
+  inserirGenero(genre, onChange) {
     return (
       <label data-testid="genre-input-label" htmlFor="genre">
         Gênero
@@ -107,26 +108,26 @@ class AddMovie extends React.Component {
       </label>
     );
   }
-  //-------
-  enviar(retorno_callback) {
-		retorno_callback(this.state);
-		this.setState({
-			subtitle: '',
-			title: '',
-			imagePath: '',
-			storyline: '',
-			rating: 0,
-			genre: 'action',
-		});
+
+  enviar(retornoCallback) {
+    retornoCallback(this.state);
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
   }
-  //-----
+
   alterar(event) {
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
-  //-------
-  botao_form(onClick) {
+
+  botaoForm(onClick) {
     return (
       <button
         type="submit"
@@ -134,31 +135,31 @@ class AddMovie extends React.Component {
         onClick={ (e) => {
           e.preventDefault();
           this.enviar(onClick);
-        }}
+        } }
       >
-        Adicionar filme
+      Adicionar filme
       </button>
     );
   }
-  //------
-  render() {    
+
+  render() {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
-        { this.inserir_titulo(title, this.alterar) }
-        { this.inserir_subtitulo(subtitle, this.alterar) }
-        { this.inserir_imagem(imagePath, this.alterar) }
-        { this.inserir_sinopse(storyline, this.alterar) }
-        { this.inserir_avaliacao(rating, this.alterar) }
-        { this.inserir_genero(genre, this.alterar) }
-        { this.botao_form(onClick) }
+        { this.inserirTitulo(title, this.alterar) }
+        { this.inserirSubtitulo(subtitle, this.alterar) }
+        { this.inserirImagem(imagePath, this.alterar) }
+        { this.inserirSinopse(storyline, this.alterar) }
+        { this.inserirAvaliacao(rating, this.alterar) }
+        { this.inserirGenero(genre, this.alterar) }
+        { this.botaoForm(onClick) }
       </form>
     );
   }
 }
 
-AddMovie.prototypes = {
+AddMovie.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
