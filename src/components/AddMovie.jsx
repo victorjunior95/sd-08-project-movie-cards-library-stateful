@@ -7,6 +7,8 @@ class AddMovie extends React.Component {
     super();
 
     this.Handler = this.Handler.bind(this);
+    this.clickSendButton = this.clickSendButton.bind(this);
+
     this.state = {
       subtitle: '',
       title: '',
