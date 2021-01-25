@@ -5,11 +5,12 @@ import MovieList from './MovieList';
 
 class MovieLibrary extends React.Component {
   render() {
+    const { movies } = this.props;
     return (
       <div>
         <SearchBar />
         <AddMovie />
-        <MovieList />
+        <MovieList movies={ movies } />
       </div>
     );
   }
