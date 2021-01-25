@@ -22,6 +22,7 @@ class MovieLibrary extends React.Component {
 
   // falta filtrar os filmes!!!!
   onSearchTextChange(event) {
+    const { movies } = this.state;
     this.setState(() => (() => ({
       searchText: event.target.value,
       movies: movies.filter((movie) => movie.bookmarked === checked),
@@ -41,7 +42,7 @@ class MovieLibrary extends React.Component {
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
     return (
       <>
         <SearchBar
