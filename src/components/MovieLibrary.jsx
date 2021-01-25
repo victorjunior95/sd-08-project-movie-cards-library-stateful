@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AddMovie from './AddMovie';
 import SearchBar from './SearchBar';
-import MovieList from './MovieList';
+// import MovieList from './MovieList';
 
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
-    //  const { movies } = props;
+    // const { movies } = props;
     this.state = {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      //  movies,
+      // movies,
     };
   }
 
@@ -26,7 +26,7 @@ class MovieLibrary extends Component {
           selectedGenre={ selectedGenre }
           bookmarkedOnly={ bookmarkedOnly }
         />
-        <MovieList movies={ movies } />
+        {/* <MovieList movies={ movies } /> */}
       </div>
     );
   }
