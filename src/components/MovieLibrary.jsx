@@ -36,8 +36,8 @@ class MovieLibrary extends Component {
     });
   }
 
-  newMovieAdd() {
-
+  newMovieAdd(newMovie) {
+    this.setState({ movies: [...movies, newMovie] });
   }
 
   render() {
