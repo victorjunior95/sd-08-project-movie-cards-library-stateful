@@ -33,10 +33,11 @@ class SearchBar extends Component {
     return (
       <label data-testid="select-input-label">
         Filtrar por gênero
-        <select 
+        <select
           data-testid="select-input"
           value={ selectedGenre }
-          onChange={ onSelectedGenreChange }>
+          onChange={ onSelectedGenreChange }
+        >
           <option data-testid="select-option" value="">Todos</option>
           <option data-testid="select-option" value="action">Ação</option>
           <option data-testid="select-option" value="comedy">Comédia</option>
@@ -47,7 +48,8 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { searchText, onSearchTextChange, bookmarkedOnly, onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
+    const { searchText, onSearchTextChange, bookmarkedOnly,
+      onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
     return (
       <form data-testid="search-bar-form">
         {this.searchBarForm(searchText, onSearchTextChange)}
