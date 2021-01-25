@@ -22,7 +22,6 @@ MovieList.propTypes = {
     storyline: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     imagePath: PropTypes.string.isRequired,
-    map: PropTypes.func.isRequired,
   })).isRequired,
 };
 

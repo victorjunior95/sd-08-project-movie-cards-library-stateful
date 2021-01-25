@@ -135,12 +135,26 @@ class AddMovie extends React.Component {
     );
   }
 
+  newMovie() {
+    const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
+    return {
+      title,
+      subtitle,
+      imagePath,
+      storyline,
+      rating: parseFloat(rating),
+      genre,
+      bookmarked: false,
+    };
+  }
+
   addButton(onClick) {
+    const movie = this.newMovie();
     return (
       <button
         type="submit"
         data-testid="send-button"
-        onClick={ onClick }
+        onClick={ () => onClick(movie) }
       >
         Adicionar filme
       </button>

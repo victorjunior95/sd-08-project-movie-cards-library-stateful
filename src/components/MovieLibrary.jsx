@@ -18,6 +18,7 @@ class MovieLibrary extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleBookmarkedChange = this.handleBookmarkedChange.bind(this);
+    this.handleMoviesChange = this.handleMoviesChange.bind(this);
     this.filterMovies = this.filterMovies.bind(this);
   }
 
@@ -30,6 +31,13 @@ class MovieLibrary extends React.Component {
   handleBookmarkedChange(event) {
     this.setState({
       [event.target.name]: event.target.checked,
+    });
+  }
+
+  handleMoviesChange(movie) {
+    const { movies } = this.state;
+    this.setState({
+      movies: [...movies, movie],
     });
   }
 
@@ -63,7 +71,7 @@ class MovieLibrary extends React.Component {
           selectedGenre={ selectedGenre }
           onSelectedGenreChange={ this.handleChange }
         />
-        <AddMovie />
+        <AddMovie onClick={ this.handleMoviesChange } />
         <MovieList movies={ filtredMovies } />
       </section>
     );
