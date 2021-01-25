@@ -8,6 +8,10 @@ import AddMovie from './AddMovie';
 class MovieLibrary extends React.Component {
   /* constructor(props) {
     super(props);
+    const { movies } = this.props;
+    this.state = {
+      movies,
+    };
   } */
 
   render() {
