@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class InputAddMovie extends React.Component {
+class InputTitle extends React.Component {
   render() {
     const { value, onChange } = this.props;
     return (
@@ -9,6 +9,7 @@ class InputAddMovie extends React.Component {
         Título
         <input
           type="text"
+          name="title"
           data-testid="title-input"
           value={ value }
           onChange={ onChange }
@@ -18,9 +19,9 @@ class InputAddMovie extends React.Component {
   }
 }
 
-export default InputAddMovie;
+export default InputTitle;
 
-InputAddMovie.propTypes = {
+InputTitle.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.string.isRequired,
 };

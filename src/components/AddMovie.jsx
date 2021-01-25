@@ -1,13 +1,14 @@
 import React from 'react';
 
-import InputAddMovie from './addMovieComponents/InputAddMovie';
+import InputTitle from './addMovieComponents/InputTitle';
+import InputSubtitle from './addMovieComponents/inputSubtitle';
 
 class AddMovie extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      // subtitle: '',
+      subtitle: '',
       title: '',
       // imagePath: '',
       // storyline: '',
@@ -18,14 +19,15 @@ class AddMovie extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ title: event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
-    const { title } = this.state;
+    const { title, subtitle } = this.state;
     return (
       <form data-testid="add-movie-form">
-        <InputAddMovie value={ title } onChange={ this.handleChange } />
+        <InputTitle value={ title } onChange={ this.handleChange } />
+        <InputSubtitle value={ subtitle } onChange={ this.handleChange } />
       </form>
     );
   }
