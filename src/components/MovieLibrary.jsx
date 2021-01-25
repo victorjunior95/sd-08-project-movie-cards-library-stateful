@@ -13,8 +13,8 @@ class MovieLibrary extends Component {
       selectedGenre: '',
       movies,
     };
-  this.searchChange = this.searchChange.bind(this);
-  this.movieAdd = this.movieAdd.bind(this);
+    this.searchChange = this.searchChange.bind(this);
+    this.movieAdd = this.movieAdd.bind(this);
   }
 
   searchChange({ target }) {
@@ -32,7 +32,7 @@ class MovieLibrary extends Component {
           || storyline.includes(searchText))
         ),
       );
-    this.setState({ movies: moviesByFilter });
+      this.setState({ movies: moviesByFilter });
     });
   }
 
@@ -42,22 +42,22 @@ class MovieLibrary extends Component {
       movies: [...movies, movie],
     });
   }
-    
+
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre,movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
     return (
       <div>
         <h2>My awesome movie library</h2>
-          <SearchBar
-            searchText={ searchText }
-            searchTextChange={ this.searchChange }
-            bookmarkedOnly={ bookmarkedOnly }
-            bookmarkedChange={ this.searchChange }
-            selectedGenre={ selectedGenre }
-            selectedGenreChange={ this.searchChange }
-          />
-          <MovieList movies={ movies } />
-          <AddMovie onClick={ this.movieAdd } />
+        <SearchBar
+          searchText={ searchText }
+          searchTextChange={ this.searchChange }
+          bookmarkedOnly={ bookmarkedOnly }
+          bookmarkedChange={ this.searchChange }
+          selectedGenre={ selectedGenre }
+          selectedGenreChange={ this.searchChange }
+        />
+        <MovieList movies={ movies } />
+        <AddMovie onClick={ this.movieAdd } />
       </div>
     );
   }
