@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import MovieLibrary from './components/MovieLibrary';
-
+import movies from './data';
 import Header from './components/Header';
 
 class App extends React.PureComponent {
@@ -9,7 +9,7 @@ class App extends React.PureComponent {
     return (
       <div className="App">
         <Header />
-        <MovieLibrary />
+        <MovieLibrary movies={movies} />
       </div>
     );
   }
