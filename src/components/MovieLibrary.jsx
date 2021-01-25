@@ -15,6 +15,16 @@ class MovieLibrary extends React.Component {
       selectedGenre: '',
       movies,
     };
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+  }
+//falta filtrar os filmes!!!!
+  onSearchTextChange(event) {
+    this.setState(() => ({searchText: event.target.value}))
+  }
+
+  onBookmarkedChange(event) {
+    this.setState(() => {bookmarkedOnly: event.target === selected})
   }
 
   render() {
@@ -25,6 +35,9 @@ class MovieLibrary extends React.Component {
           searchText={ searchText }
           bookmarkedOnly={ bookmarkedOnly }
           selectedGenre={ selectedGenre }
+          onSearchTextChange={ this.onSearchTextChange }
+          onBookmarkedChange={ this.onBookmarkedChange }
+          onSelectedGenreChange={}
         />
         <MovieList movies={ movies } />
         <AddMovie />
