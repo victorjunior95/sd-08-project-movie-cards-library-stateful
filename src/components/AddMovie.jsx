@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   constructor() {
@@ -11,18 +12,27 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     };
+    this.handleEvent = this.handleEvent.bind(this);
+    this.resetState = this.resetState.bind(this);
+  }
+
+  handleEvent(event) {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
   }
 
   inputTitle() {
     const { title } = this.state;
     return (
       <label data-testid="title-input-label" htmlFor="title-input">
-        Titúlo
+        Título
         <input
           data-testid="title-input"
           name="title"
-          value={ title }
           onChange={ this.handleEvent }
+          value={ title }
         />
       </label>
     );
@@ -108,6 +118,20 @@ class AddMovie extends React.Component {
     );
   }
 
+  resetState(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+    onClick(this.state);
+  }
+
   buttonAddFilm() {
     return (
       <button type="button" data-testid="send-button" onClick={ this.resetState }>
@@ -130,4 +154,8 @@ class AddMovie extends React.Component {
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 export default AddMovie;
