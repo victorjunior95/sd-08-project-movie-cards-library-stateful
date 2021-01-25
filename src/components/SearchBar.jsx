@@ -66,6 +66,7 @@ export default class SearchBar extends Component {
       <form className="search-bar" data-testid="search-bar-form">
         { this.InputSearchText() }
         { this.InputBookmarked() }
+        { this.InputSelectedGenre() }
       </form>
     );
   }
