@@ -24,17 +24,30 @@ class MovieLibrary extends React.Component {
     const { movies } = this.state;
     this.setState({
       searchText: event.target.value,
-      movies: movies.filter((movie) => movie.title.includes(event.target.value
-        || movie.subtitle.includes(event.target.value))),
+      movies: movies
+        .filter((movie) => movie.title.includes(event.target.value)
+        || movie.subtitle.includes(event.target.value)
+        || movie.storyline.includes(event.target.value)),
     });
   }
 
-  onBookmarkedChange(target) {
+  onBookmarkedChange({ target: { checked } }) {
     const { movies } = this.state;
     this.setState({
-      bookmarkedOnly: target.checked,
-      movies: movies.filter((movie) => movie.bookmarked === target.checked) });
+      bookmarkedOnly: checked,
+      movies: movies.filter((movie) => movie.bookmarked === checked),
+    });
   }
+
+  // onBookmarkedChange(target) {
+  //   const { movies } = this.state;
+  //   this.setState({
+  //     bookmarkedOnly: target.checked,
+  //     movies: bookmarkedOnly
+  //       ? movies.filter((movie) => movie.bookmarked)
+  //       : movies,
+  //   });
+  // }
 
   onSelectedGenreChange(event) {
     const { movies } = this.state;
