@@ -141,7 +141,7 @@ export default class AddMovie extends Component {
 
   InputButton() {
     return (
-      <button type="submit" data-testid="send-button" onClick={ this.initialState }>
+      <button type="button" data-testid="send-button" onClick={ this.initialState }>
         Adicionar filme
       </button>
     );
@@ -157,8 +157,8 @@ export default class AddMovie extends Component {
           { this.InputStoryline() }
           { this.InputRating() }
           { this.InputGenre() }
+          { this.InputButton() }
         </form>
-        { this.InputButton() }
       </div>
     );
   }
