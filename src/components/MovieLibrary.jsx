@@ -22,21 +22,26 @@ class MovieLibrary extends React.Component {
 
   // falta filtrar os filmes!!!!
   onSearchTextChange(event) {
-    this.setState(() => ({ searchText: event.target.value }));
+    this.setState(() => (() => ({
+      searchText: event.target.value,
+      movies: movies.filter((movie) => movie.bookmarked === checked),
+    })));
   }
+  // falta mudar checked!!!
 
   onBookmarkedChange() {
-    this.setState({ movies: movies.filter((movie) => movie.bokmarked === true) });
+    this.setState(() => ({ movies: movies.filter((movie) => movie.bokmarked === true) }));
   }
 
+  // falta mudar selectedGenre!!!
   onSelectedGenreChange(event) {
     return (
-      this.setState({ [event.target.name]: event.target.selected.value })
-    );
+      this.setState({ movies: movies
+        .filter((movie) => movie.genre === event.target.option.selected) }));
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
       <>
         <SearchBar

@@ -25,11 +25,10 @@ class SearchBar extends React.Component {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
       <label
-        htmlFor="bookmarked"
+        htmlFor="checkbox-input"
         data-testid="checkbox-input-label"
       >
         <input
-          id="bookmarked"
           type="checkbox"
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
@@ -43,13 +42,12 @@ class SearchBar extends React.Component {
   renderSelect() {
     const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <label
-        htmlFor="select-input"
-        data-testid="select-input-label"
-        value={ selectedGenre }
-        onChange={ onSelectedGenreChange }
-      >
-        <select data-testid="select-input" value={ selectedGenre }>
+      <label htmlFor="select-input" data-testid="select-input-label">
+        <select
+          data-testid="select-input"
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+        >
           <option data-testid="select-option" value="">Todos</option>
           <option data-testid="select-option" value="action">Ação</option>
           <option data-testid="select-option" value="comedy">Comédia</option>

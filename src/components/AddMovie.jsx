@@ -20,7 +20,6 @@ class AddMovie extends Component {
     this.renderNumberInput = this.renderNumberInput.bind(this);
     this.renderSelect = this.renderSelect.bind(this);
     this.renderButton = this.renderButton.bind(this);
-    this.renderButton = this.renderButton.bind(this);
   }
 
   handleChange(event) {
