@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
 import InputTitle from './addMovieComponents/InputTitle';
 import InputSubtitle from './addMovieComponents/InputSubtitle';
@@ -21,15 +22,16 @@ class AddMovie extends React.Component {
       genre: 'action',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleClick(event) {
     event.preventDefault();
+    const { onClick } = this.props;
     this.setState({
       subtitle: '',
       title: '',
@@ -38,6 +40,7 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: 'action',
     });
+    onClick(event);
   }
 
   render() {
@@ -50,10 +53,14 @@ class AddMovie extends React.Component {
         <TextAreaSinopse value={ storyline } onChange={ this.handleChange } />
         <RatingMovie value={ rating } onChange={ this.handleChange } />
         <Genre value={ genre } onChange={ this.handleChange } />
-        <ButtonAddMovie onClick={ this.handleSubmit } />
+        <ButtonAddMovie onClick={ this.handleClick } />
       </form>
     );
   }
 }
 
 export default AddMovie;
+
+AddMovie.propTypes = {
+  onClick: propTypes.func.isRequired,
+};
