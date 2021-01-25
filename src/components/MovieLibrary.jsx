@@ -5,8 +5,8 @@ import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
 
-class MovieLibrary extends Component {
-  constructor () {
+class MovieLibrary extends React.Component {
+/*  constructor () {
     super ();
     
     this.state = {
@@ -16,6 +16,7 @@ class MovieLibrary extends Component {
       movies:[{ movies }],
     }
   }
+  */
   render() {
     const { movies } = this.props;
     return (
