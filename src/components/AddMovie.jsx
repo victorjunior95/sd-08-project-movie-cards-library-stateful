@@ -3,9 +3,9 @@ import React from 'react';
 class AddMovie extends React.Component {
   render() {
     return (
-      <h4>
-        teste do Add Movie
-      </h4>
+      <form data-testid="search-bar-form">
+        <p>teste do formulário do AddMovie</p>
+      </form>
     );
   }
 }
