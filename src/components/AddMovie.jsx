@@ -25,11 +25,12 @@ class AddMovie extends React.Component {
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.clearDataMovie();
+  handleSubmit() {
+    // event.preventDefault();
+
     const { onClick } = this.props;
     onClick(this.state);
+    this.clearDataMovie();
   }
 
   clearDataMovie() {
@@ -178,7 +179,7 @@ class AddMovie extends React.Component {
         {this.RatingInput(rating)}
         {this.GenreSelect(genre)}
         <button
-          type="submit"
+          type="button"
           data-testid="send-button"
           onClick={ this.handleSubmit }
         >
