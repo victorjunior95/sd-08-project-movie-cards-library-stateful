@@ -132,9 +132,9 @@ class AddMovie extends React.Component {
           onChange={ this.onChange }
           name="genre"
         >
-          <option data-testid="select-option" value="action">Ação</option>
-          <option data-testid="select-option" value="comedy">Comédia</option>
-          <option data-testid="select-option" value="thriller">Suspense</option>
+          <option data-testid="genre-option" value="action">Ação</option>
+          <option data-testid="genre-option" value="comedy">Comédia</option>
+          <option data-testid="genre-option" value="thriller">Suspense</option>
         </select>
       </label>
     );
@@ -150,6 +150,12 @@ class AddMovie extends React.Component {
         {this.inputStoryLine(storyline)}
         {this.inputRating(rating)}
         {this.inputGenre(genre)}
+        <button
+          type="submit"
+          data-testid="send-button"
+          onClick={ this.submit }>
+          Adicionar filme
+        </button>
       </form>
     );
   }
