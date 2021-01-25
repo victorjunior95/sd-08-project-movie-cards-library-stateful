@@ -22,7 +22,7 @@ class MovieLibrary extends React.Component {
 
   onSearchTextChange(event) {
     const { movies } = this.state;
-    this.setState(() =>({
+    this.setState(() => ({
       searchText: event.target.value,
       movies: movies.filter((movie) => movie.title.includes(event.target.value
         || movie.subtitle.includes(event.target.value))),
@@ -36,7 +36,6 @@ class MovieLibrary extends React.Component {
       movies: movies.filter((movie) => movie.bokmarked === checked) }));
   }
 
-  // falta mudar selectedGenre!!!
   onSelectedGenreChange(target) {
     const { movies } = this.state;
     return (
