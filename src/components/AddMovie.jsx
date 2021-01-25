@@ -1,4 +1,5 @@
 // implement AddMovie component here
+import PropTypes from 'prop-types';
 import React from 'react';
 
 class AddMovie extends React.Component {
@@ -14,6 +15,7 @@ class AddMovie extends React.Component {
       rating: 0,
       genre: action,
     };
+    this.baseState = this.state;
   }
 
   Handler({ target }) {
@@ -121,6 +123,12 @@ class AddMovie extends React.Component {
     );
   }
 
+  clickSendButton() {
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.setState(this.baseState);
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
@@ -135,4 +143,8 @@ class AddMovie extends React.Component {
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 export default AddMovie;

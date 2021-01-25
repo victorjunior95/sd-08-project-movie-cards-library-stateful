@@ -9,7 +9,8 @@ class SearchBar extends React.Component {
     this.inputSelect = this.inputSelect.bind(this);
   }
 
-  inputText(searchText, onSearchTextChange) {
+  inputText() {
+    const { searchText, onSearchTextChange } = this.props;
     return (
       <label data-testid="text-input-label" htmlFor="text-input">
         Inclui o texto:
@@ -24,7 +25,8 @@ class SearchBar extends React.Component {
     );
   }
 
-  inputCheckBox(bookmarkedOnly, onBookmarkedChange) {
+  inputCheckBox() {
+    const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
       <label data-testid="checkbox-input-label" htmlFor="text-input">
         Mostrar somente favoritos
@@ -38,12 +40,10 @@ class SearchBar extends React.Component {
     );
   }
 
-  inputSelect(selectedGenre, onSelectedGenreChange) {
+  inputSelect() {
+    const { selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <label
-        data-testid="select-input-label"
-        htmlFor="text-input"
-      >
+      <label data-testid="select-input-label" htmlFor="text-input">
         Filtrar por gênero
         <select
           data-testid="select-input"
@@ -71,15 +71,12 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  movies: PropTypes.shape({
-    searchText: PropTypes.string.isRequired,
-    onSearchTextChange: PropTypes.func.isRequired,
-    bookmarkedOnly: PropTypes.bool.isRequired,
-    onBookmarkedChange: PropTypes.func.isRequired,
-    selectedGenre: PropTypes.string.isRequired,
-    onSelectedGenreChange: PropTypes.func.isRequired,
-    map: PropTypes.func.isRequired,
-  }).isRequired,
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  onBookmarkedChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
