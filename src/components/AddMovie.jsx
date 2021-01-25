@@ -6,8 +6,8 @@ export default class AddMovie extends React.Component {
     super();
 
     this.state = {
-      title: '',
       subtitle: '',
+      title: '',
       imagePath: '',
       storyline: '',
       rating: 0,
@@ -34,7 +34,7 @@ export default class AddMovie extends React.Component {
     event.preventDefault();
     const { title, subtitle, storyline } = this.state;
     if (title !== '' && subtitle !== '' && storyline !== '') {
-    //  console.log('ok');
+      console.log('ok');
       const { onClick } = this.props;
       onClick(this.state);
 
