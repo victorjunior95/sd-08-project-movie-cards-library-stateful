@@ -6,8 +6,6 @@ import SearchBar from './SearchBar';
 import MovieList from './MovieList';
 import AddMovie from './AddMovie';
 
-import './Forms.css';
-
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
