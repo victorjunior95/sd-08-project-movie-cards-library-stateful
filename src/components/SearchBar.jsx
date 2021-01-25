@@ -46,12 +46,12 @@ class SearchBar extends React.Component {
   }
 
   renderSelect() {
-    const { selectedGenre, onSelectedGenreChange } = this.props;
+    const { genre, onSelectedGenreChange } = this.props;
     return (
       <label htmlFor="select-input" data-testid="select-input-label">
         <select
           data-testid="select-input"
-          value={ selectedGenre }
+          value={ genre }
           onChange={ onSelectedGenreChange }
         >
           <option data-testid="select-option" value="">Todos</option>
@@ -80,7 +80,7 @@ SearchBar.propTypes = {
   onSearchTextChange: PropTypes.func.isRequired,
   bookmarkedOnly: PropTypes.bool.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired.isRequired,
-  selectedGenre: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
   onSelectedGenreChange: PropTypes.func.isRequired,
 };
 

@@ -36,13 +36,13 @@ class MovieLibrary extends React.Component {
       movies: movies.filter((movie) => movie.bokmarked === target.checked) }));
   }
 
-  onSelectedGenreChange(target) {
+  onSelectedGenreChange(event) {
     const { movies } = this.state;
     return (
       this.setState({
-        selectedGenre: target.value,
+        selectedGenre: event.target.value,
         movies: movies
-          .filter((movie) => movie.genre === target.option.selected) }));
+          .filter((movie) => movie.genre === event.target.value) }));
   }
 
   onClick(movie) {

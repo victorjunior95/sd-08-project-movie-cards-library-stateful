@@ -20,6 +20,7 @@ class AddMovie extends Component {
     this.renderNumberInput = this.renderNumberInput.bind(this);
     this.renderSelect = this.renderSelect.bind(this);
     this.renderButton = this.renderButton.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
 
   handleChange(event) {
@@ -28,7 +29,7 @@ class AddMovie extends Component {
     );
   }
 
-  formSubmit(event) {
+  onClick(event) {
     event.preventDefault();
     const { onClick } = this.props;
     onClick(this.state);
@@ -146,9 +147,9 @@ class AddMovie extends Component {
           value={ genre }
           onChange={ this.handleChange }
         >
-          <option value="action">Ação</option>
-          <option value="comedy">Comédia</option>
-          <option value="thriller">Suspense</option>
+          <option data-testid="genre-option" value="action">Ação</option>
+          <option data-testid="genre-option" value="comedy">Comédia</option>
+          <option data-testid="genre-option" value="thriller">Suspense</option>
         </select>
         Gênero
       </label>
@@ -160,7 +161,7 @@ class AddMovie extends Component {
       <button
         type="submit"
         data-testid="send-button"
-        onClick={ this.formSubmit }
+        onClick={ this.onClick }
       >
         Adicionar filme
       </button>
