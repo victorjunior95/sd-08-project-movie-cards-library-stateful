@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
+  constructor() {
+    super();
+    this.renderTextInput = this.renderTextInput.bind(this);
+    this.renderCheckBox = this.renderCheckBox.bind(this);
+    this.renderSelect = this.renderSelect.bind(this);
+  }
+
   renderInputText() {
     const { searchText, onSearchTextChange } = this.props;
     return (
