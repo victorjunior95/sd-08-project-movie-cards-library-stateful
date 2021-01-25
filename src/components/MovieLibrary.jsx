@@ -20,10 +20,13 @@ class MovieLibrary extends React.Component {
     this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
   }
 
-  // falta filtrar os filmes!!!!
   onSearchTextChange(event) {
     const { movies } = this.state;
-     return null;
+    this.setState(() =>({
+      searchText: event.target.value,
+      movies: movies.filter((movie) => movie.title.includes(event.target.value
+        || movie.subtitle.includes(event.target.value))),
+    }));
   }
 
   onBookmarkedChange(target) {
@@ -40,7 +43,7 @@ class MovieLibrary extends React.Component {
       this.setState({
         selectedGenre: target.value,
         movies: movies
-          .filter((movie) => movie.genre === event.target.option.selected) }));
+          .filter((movie) => movie.genre === target.option.selected) }));
   }
 
   render() {
