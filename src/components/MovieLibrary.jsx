@@ -7,18 +7,62 @@ import AddMovie from './AddMovie';
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
+    const { movies } = this.props;
+    this.state = {
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: '',
+      movies,
+    };
+    this.busca = this.busca.bind(this);
+    this.adicionar_filme = this.adicionar_filme.bind(this);
+    this.filtrar_filme = this.filtrar_filme.bind(this);
   }
-
+  filtrar_filme(moviesFilter) {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    let showMovies = moviesFilter
+      .filter((movie) => movie.genre.includes(selectedGenre))
+      .filter((movie) => movie.title.includes(searchText)
+      || movie.subtitle.includes(searchText)
+      || movie.storyline.includes(searchText));
+    showMovies = !bookmarkedOnly
+      ? showMovies
+      : showMovies.filter((movie) => movie.bookmarked);
+    return showMovies;
+  }
+  adicionar_filme(movieObj) {
+    this.setState((state) => ({
+      movies: [...state.movies, movieObj]
+    }));
+  }
+  busca({ target }) {
+    this.setState({
+      [target.name]: target.type !== 'checkbox' ? target.value : target.checked
+    });
+  }
   render() {
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const showMovies = this.filtrar_filme(movies);
     return (
       <div>
         <h2> My awesome movie library </h2>
-        <SearchBar />
-        <MovieList movies={this.props.movies} />
-        {/* <AddMovie /> */}
+        <SearchBar 
+          searchText={ searchText }
+          bookmarkedOnly={ bookmarkedOnly }
+          selectedGenre={ selectedGenre }
+          onSearchTextChange={ this.busca }
+          onBookmarkedChange={ this.busca }
+          onSelectedGenreChange={ this.busca }
+        />
+        <MovieList movies={showMovies} />
+        <AddMovie onClick={ this.adicionar_filme }/>
       </div>
     );
   }
 }
+
+MovieLibrary.propTypes = {
+  movies: PropTypes.object.isRequired
+};
 
 export default MovieLibrary;
