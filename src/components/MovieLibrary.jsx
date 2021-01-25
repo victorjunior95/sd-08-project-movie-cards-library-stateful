@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import searchBar from './SearchBar';
+import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
 import MovieList from './MovieList';
 
@@ -15,13 +15,13 @@ class MovieLibrary extends React.Component {
   }
 
   render() {
-    const { movies } = this.props;
+    const { movies } = this.state;
     return (
-      <section>
-        <searchBar />
+      <div>
+        <SearchBar />
         <AddMovie />
         <MovieList movies={ movies } />
-      </section>
+      </div>
     );
   }
 }
