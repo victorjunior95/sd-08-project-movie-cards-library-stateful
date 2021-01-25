@@ -22,18 +22,18 @@ class MovieLibrary extends React.Component {
 
   onSearchTextChange(event) {
     const { movies } = this.state;
-    this.setState(() => ({
+    this.setState({
       searchText: event.target.value,
       movies: movies.filter((movie) => movie.title.includes(event.target.value
         || movie.subtitle.includes(event.target.value))),
-    }));
+    });
   }
 
   onBookmarkedChange(target) {
     const { movies } = this.state;
-    this.setState(() => ({
+    this.setState({
       bookmarkedOnly: target.checked,
-      movies: movies.filter((movie) => movie.bookmarked === target.checked) }));
+      movies: movies.filter((movie) => movie.bookmarked === target.checked) });
   }
 
   onSelectedGenreChange(event) {
