@@ -137,7 +137,7 @@ class AddMovie extends React.Component {
           this.enviar(onClick);
         } }
       >
-      Adicionar filme
+        Adicionar filme
       </button>
     );
   }
