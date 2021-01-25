@@ -51,11 +51,11 @@ class MovieLibrary extends Component {
         <h2> My awesome movie library </h2>
         <SearchBar
           searchText={ searchText }
-          searchTextChange={ this.searchChange }
+          onSearchTextChange={ this.searchChange }
           bookmarkedOnly={ bookmarkedOnly }
-          bookmarkedChange={ this.searchChange }
+          onBookmarkedChange={ this.searchChange }
           selectedGenre={ selectedGenre }
-          selectedGenreChange={ this.searchChange }
+          onSelectedGenreChange={ this.searchChange }
         />
         <MovieList movies={ movies } />
         <AddMovie onClick={ this.movieAdd } />
