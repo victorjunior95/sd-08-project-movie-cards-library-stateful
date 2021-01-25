@@ -11,7 +11,7 @@ class AddMovie extends React.Component {
       imagePath: '',
       storyline: '',
       rating: 0,
-      // genre: 'action',
+      genre: 'action',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,7 +39,7 @@ class AddMovie extends React.Component {
       imagePath: '',
       storyline: '',
       rating: 0,
-      // genre: 'action',
+      genre: 'action',
     });
   }
 
@@ -94,7 +94,7 @@ class AddMovie extends React.Component {
         >
           Imagem
           <input
-            name="imagePath."
+            name="imagePath"
             id="image-input"
             type="text"
             value={ imagePath }
@@ -176,6 +176,7 @@ class AddMovie extends React.Component {
         {this.ImageInput(imagePath)}
         {this.StorylineInput(storyline)}
         {this.RatingInput(rating)}
+        {this.GenreSelect(genre)}
         <button
           type="submit"
           data-testid="send-button"
