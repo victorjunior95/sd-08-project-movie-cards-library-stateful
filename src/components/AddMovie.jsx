@@ -93,6 +93,7 @@ class AddMovie extends Component {
       >
         Sinopse
         <textarea
+          name="storyline"
           value={ storyline }
           onChange={ this.handleChange }
           data-testid="storyline-input"
@@ -127,7 +128,7 @@ class AddMovie extends Component {
         htmlFor="genre-input"
         data-testid="genre-input-label"
       >
-        <select data-testid="genre-input" value={ genre } onChange={ this.handleChange }>
+        <select name="genre" data-testid="genre-input" value={ genre } onChange={ this.handleChange }>
           <option value="">Todos</option>
           <option value="action">Ação</option>
           <option value="comedy">Comédia</option>
