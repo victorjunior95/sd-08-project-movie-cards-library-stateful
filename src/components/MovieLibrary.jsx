@@ -5,17 +5,12 @@ import SearchBar from './SearchBar';
 // import MovieList from './MovieList';
 
 class MovieLibrary extends Component {
-
   render() {
     // const { bookmarkedOnly, selectedGenre, searchText } = this.state;
     return (
       <div>
         <AddMovie />
-        <SearchBar
-          // searchText={ searchText }
-          // selectedGenre={ selectedGenre }
-          // bookmarkedOnly={ bookmarkedOnly }
-        />
+        <SearchBar />
         {/* <MovieList movies={ movies } /> */}
       </div>
     );
