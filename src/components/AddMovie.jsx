@@ -43,29 +43,6 @@ class AddMovie extends React.Component {
     });
   }
 
-  // textInput()
-  // textInput(title, onClick, Title, variavel) {
-  //   return (
-  //     <div>
-
-  //       <label data-testid={ `${variavel}-input-label` }>
-  //         {Title}
-  //         <input type="text" value={ title } data-testid={ `${variavel}-input` } onChange={ onClick } />
-  //       </label>
-  //     </div>
-  //   );
-  // }
-
-  // numberInput(title, onClick, Title, variavel) {
-  //   return (
-  //     <div>
-  //       <label data-testid={ `${variavel}-input-label` }>
-  //         {Title}
-  //         <input type="number" value={ title } data-testid={ `${variavel}-input` } onChange={ onClick } />
-  //       </label>
-  //     </div>
-  //   );
-  // }
   TitleInput(title) {
     return (
       <div>
@@ -117,7 +94,7 @@ class AddMovie extends React.Component {
         >
           Imagem
           <input
-            name="imagePath"
+            name="imagePath."
             id="image-input"
             type="text"
             value={ imagePath }
@@ -168,6 +145,25 @@ class AddMovie extends React.Component {
           />
         </label>
       </div>
+    );
+  }
+
+  GenreSelect(genre) {
+    return (
+      <label htmlFor="genre-select" data-testid="genre-input-label">
+        Gênero
+        <select
+          id="genre-input"
+          name="genre"
+          value={ genre }
+          onChange={ this.handleChange }
+          data-testid="genre-input"
+        >
+          <option data-testid="genre-option" value="action">Ação</option>
+          <option data-testid="genre-option" value="comedy">Comédia</option>
+          <option data-testid="genre-option" value="thriller">Suspense</option>
+        </select>
+      </label>
     );
   }
 
