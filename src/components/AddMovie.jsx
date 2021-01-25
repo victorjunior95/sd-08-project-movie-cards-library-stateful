@@ -13,7 +13,7 @@ class AddMovie extends React.Component {
       imagePath: '',
       storyline: '',
       rating: 0,
-      genre: action,
+      genre: 'action',
     };
     this.baseState = this.state;
   }
@@ -25,7 +25,7 @@ class AddMovie extends React.Component {
     });
   }
 
-  imputTitle() {
+  inputTitle() {
     const { title } = this.state;
     return (
       <label data-testid="title-input-label" htmlFor="text-input">
@@ -41,7 +41,7 @@ class AddMovie extends React.Component {
     );
   }
 
-  imputSubtitle() {
+  inputSubtitle() {
     const { subtitle } = this.state;
     return (
       <label data-testid="subtitle-input-label" htmlFor="text-input">
@@ -57,7 +57,7 @@ class AddMovie extends React.Component {
     );
   }
 
-  imputImagePath() {
+  inputImagePath() {
     const { imagePath } = this.state;
     return (
       <label data-testid="image-input-label" htmlFor="text-input">
@@ -73,7 +73,7 @@ class AddMovie extends React.Component {
     );
   }
 
-  imputStoryline() {
+  inputStoryline() {
     const { storyline } = this.state;
     return (
       <label data-testid="storyline-input-label" htmlFor="text-input">
@@ -88,7 +88,7 @@ class AddMovie extends React.Component {
     );
   }
 
-  imputRating() {
+  inputRating() {
     const { rating } = this.state;
     return (
       <label data-testid="rating-input-label" htmlFor="text-input">
@@ -104,7 +104,7 @@ class AddMovie extends React.Component {
     );
   }
 
-  imputGerne() {
+  inputGerne() {
     const { genre } = this.state;
     return (
       <label data-testid="genre-input-label" htmlFor="text-input">
@@ -129,15 +129,27 @@ class AddMovie extends React.Component {
     this.setState(this.baseState);
   }
 
+  imputButton() {
+    return (
+      <button
+        data-testid="send-button"
+        onClick={ this.clickSendButton }
+        type="button"
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
   render() {
     return (
       <form data-testid="add-movie-form">
-        {this.title()}
-        {this.subtitle()}
-        {this.imputImagePath()}
-        {this.iimputStoryline()}
-        {this.imputRating()}
-        {this.imputGerne()}
+        {this.inputTitle()}
+        {this.inputSubtitle()}
+        {this.inputImagePath()}
+        {this.inputStoryline()}
+        {this.inputRating()}
+        {this.inputGerne()}
       </form>
 
     );
