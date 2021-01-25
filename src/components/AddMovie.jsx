@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovie extends Component {
   constructor() {
@@ -18,6 +19,7 @@ class AddMovie extends Component {
     this.renderTextarea = this.renderTextarea.bind(this);
     this.renderNumberInput = this.renderNumberInput.bind(this);
     this.renderSelect = this.renderSelect.bind(this);
+    this.renderButton = this.renderButton.bind(this);
     this.renderButton = this.renderButton.bind(this);
   }
 
@@ -142,11 +144,12 @@ class AddMovie extends Component {
   }
 
   renderButton() {
+    const { onClick } = this.props;
     return (
       <button
         type="submit"
         data-testid="send-button"
-        onClick={ null }
+        onClick={ onClick }
       >
         Adicionar filme
       </button>
@@ -163,9 +166,14 @@ class AddMovie extends Component {
         {this.renderNumberInput()}
         {this.renderSelect()}
         {this.renderButton()}
+        {this.renderButton()}
       </form>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
