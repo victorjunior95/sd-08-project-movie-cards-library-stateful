@@ -12,12 +12,14 @@ class MovieLibrary extends React.PureComponent {
 
     this.state = {
       searchText: '',
-      /*  bookmarkedOnly: false,
-      selectedGenre: '',  */
+      bookmarkedOnly: false,
+      selectedGenre: '',
       movies: props.movies,
     };
 
     this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
   }
 
   onSearchTextChange(event) {
@@ -25,16 +27,44 @@ class MovieLibrary extends React.PureComponent {
     this.setState({
       searchText: event.target.value,
       movies: movies
-        .filter((movie) => [movie.title, movie.subtitle]
+        .filter((movie) => [movie.title, movie.subtitle, movie.storyline]
           .some((item) => item.includes(event.target.value))),
     });
   }
 
+  onBookmarkedChange(event) {
+    // const { bookmarkedOnly } = this.state;
+    const { movies } = this.state;
+    this.setState({
+      bookmarkedOnly: event.target.checked,
+      movies: movies.filter((movie) => movie.bookmarked === event.target.checked),
+    });
+  }
+
+  onSelectedGenreChange(event) {
+    const { movies } = this.state;
+    this.setState({
+      selectedGenre: event.target.value,
+      movies: movies
+        .filter((movie) => movie.genre === event.target.value),
+    });
+  }
+
   render() {
-    const { searchText, movies } = this.state;
+    // const { movies } = this.props;
+    const {
+      searchText, movies, bookmarkedOnly, selectedGenre,
+    } = this.state;
     return (
       <div>
-        <SearchBar searchText={searchText} onSearchTextChange={this.onSearchTextChange} />
+        <SearchBar
+          searchText={searchText}
+          bookmarkedOnly={bookmarkedOnly}
+          selectedGenre={selectedGenre}
+          onSearchTextChange={this.onSearchTextChange}
+          onBookmarkedChange={this.onBookmarkedChange}
+          onSelectedGenreChange={this.onSelectedGenreChange}
+        />
         <MovieList
           movies={movies}
         />
