@@ -28,6 +28,20 @@ class AddMovie extends Component {
     );
   }
 
+  formSubmit(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    onClick(this.state);
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+  }
+
   renderTitleInput() {
     const { title } = this.state;
     return (
@@ -143,12 +157,11 @@ class AddMovie extends Component {
   }
 
   renderButton() {
-    const { onClick } = this.props;
     return (
       <button
         type="submit"
         data-testid="send-button"
-        onClick={ onClick }
+        onClick={ this.formSubmit }
       >
         Adicionar filme
       </button>
