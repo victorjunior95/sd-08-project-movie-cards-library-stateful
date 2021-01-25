@@ -17,24 +17,16 @@ class MovieLibray extends React.Component {
       movies,
     };
 
-    this.onSearchTextChange = this.onSearchTextChange.bind(this);
-    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
-    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
     this.addNewMovie = this.addNewMovie.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  onSearchTextChange(text) {
-    const { movies } = this.state;
-    const moviesFiltered = movies.filter((movie) => movie.title === text);
-    console.log(moviesFiltered);
-  }
-
-  onBookmarkedChange() {
-    console.log('leo');
-  }
-
-  onSelectedGenreChange() {
-    console.log('sardinha');
+  handleChange({ target }) {
+    const { name } = target;
+    console.log(name);
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({ [name]: value });
+    console.log(value);
   }
 
   addNewMovie() {
@@ -49,11 +41,11 @@ class MovieLibray extends React.Component {
         <SearchBar
           movies={ movies }
           searchText={ searchText }
-          onSearchTextChange={ this.onSearchTextChange }
+          onSearchTextChange={ this.handleChange }
           bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.onBookmarkedChange }
+          onBookmarkedChange={ this.handleChange }
           selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ this.onSelectedGenreChange }
+          onSelectedGenreChange={ this.handleChange }
         />
         <MovieList movies={ movies } />
         <AddMovie onClick={ this.addNewMovie } />
