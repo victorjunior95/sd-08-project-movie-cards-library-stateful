@@ -15,45 +15,57 @@ class MovieLibrary extends Component {
       movies,
     };
 
-    this.onSearchTextChange = this.onSearchTextChange.bind(this);
-    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
-    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
-    this.newMovieAdd = this.newMovieAdd.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleNewMovieAdd = this.handleNewMovieAdd.bind(this);
   }
 
-  onSearchTextChange(event) {
-    this.setState({ searchText: event.target.value,
+  handleChange({ target }) {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    this.setState({
+      [name]: value,
     });
   }
 
-  onBookmarkedChange() {
-    this.setState({ bookmarkedOnly: !bookmarkedOnly,
-    });
+  handleFilterFilms() {
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const allMovies = [...movies];
+    if (searchText) {
+      return allMovies.filter(({ title, subtitle, storyline }) => (
+        title.includes(searchText)
+        || subtitle.includes(searchText)
+        || storyline.includes(searchText)
+      ));
+    }
+    if (bookmarkedOnly) {
+      return allMovies.filter((value) => value.bookmarked === true);
+    }
+    if (selectedGenre !== '') {
+      return allMovies.filter(({ genre }) => genre === selectedGenre);
+    }
+    return allMovies;
   }
 
-  onSelectedGenreChange(event) {
-    this.setState({ selectedGenre: event.target.value,
+  handleNewMovieAdd(newMovie) {
+    const { movies } = this.state;
+    this.setState({ movies: [...movies, newMovie],
     });
-  }
-
-  newMovieAdd(newMovie) {
-    this.setState({ movies: [...movies, newMovie] });
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
       <div>
         <SearchBar
           searchText={ searchText }
-          onSearchTextChange={ this.onSearchTextChange }
-          onBookmarkedChange={ this.onBookmarkedChange }
+          onSearchTextChange={ this.handleChange }
+          onBookmarkedChange={ this.handleChange }
           bookmarkedOnly={ bookmarkedOnly }
-          onSelectedGenreChange={ this.onSelectedGenreChange }
+          onSelectedGenreChange={ this.handleChange }
           selectedGenre={ selectedGenre }
         />
-        <MovieList movies={ movies } />
-        <AddMovie onClick={ this.newMovieAdd } />
+        <MovieList movies={ this.handleFilterFilms() } />
+        <AddMovie onClick={ this.handleNewMovieAdd } />
       </div>
     );
   }
@@ -62,4 +74,5 @@ class MovieLibrary extends Component {
 MovieLibrary.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
 export default MovieLibrary;
