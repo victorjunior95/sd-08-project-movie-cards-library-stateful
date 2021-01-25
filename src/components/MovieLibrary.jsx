@@ -23,22 +23,22 @@ class MovieLibrary extends React.Component {
   // falta filtrar os filmes!!!!
   onSearchTextChange(event) {
     const { movies } = this.state;
-    this.setState(() => (() => ({
-      searchText: event.target.value,
-      movies: movies.filter((movie) => movie.bookmarked === checked),
-    })));
+     return null;
   }
-  // falta mudar checked!!!
 
   onBookmarkedChange() {
+    const { movies } = this.state;
     this.setState(() => ({ movies: movies.filter((movie) => movie.bokmarked === true) }));
   }
 
   // falta mudar selectedGenre!!!
-  onSelectedGenreChange(event) {
+  onSelectedGenreChange(target) {
+    const { movies } = this.state;
     return (
-      this.setState({ movies: movies
-        .filter((movie) => movie.genre === event.target.option.selected) }));
+      this.setState({
+        selectedGenre: target.value,
+        movies: movies
+          .filter((movie) => movie.genre === event.target.option.selected) }));
   }
 
   render() {
