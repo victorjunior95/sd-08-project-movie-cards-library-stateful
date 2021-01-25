@@ -5,7 +5,6 @@ import SearchBar from './SearchBar';
 // import MovieList from './MovieList';
 
 class MovieLibrary extends Component {
-
   render() {
     // const { bookmarkedOnly, selectedGenre, searchText } = this.state;
     return (
