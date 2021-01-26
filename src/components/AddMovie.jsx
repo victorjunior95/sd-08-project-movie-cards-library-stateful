@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class AddMovie extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.initialState = this.initialState.bind(this);
+    this.resetButton = this.resetButton.bind(this);
+
     this.state = {
-      subtitle: '',
       title: '',
+      subtitle: '',
       imagePath: '',
       storyline: '',
       rating: 0,
@@ -18,29 +19,9 @@ class AddMovie extends Component {
   }
 
   handleChange({ target }) {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState((beforeState) => ({
-      ...beforeState,
-      [name]: value,
-    }));
-  }
-
-  handleClick(event) {
-    const { onClick } = this.props;
-    event.preventDefault();
-    onClick(this.state);
-    this.initialState();
-  }
-
-  initialState() {
+    const { name, value } = target;
     this.setState({
-      title: '',
-      subtitle: '',
-      imagePath: '',
-      storyline: '',
-      rating: 0,
-      genre: 'action',
+      [name]: value,
     });
   }
 
@@ -98,14 +79,14 @@ class AddMovie extends Component {
   createInputStoryline() {
     const { storyline } = this.state;
     return (
-      <label htmlFor="storyline-input" data-testid="storyline-input-label">
+      <label data-testid="storyline-input-label" htmlFor="storyline">
         Sinopse
         <textarea
-          id="storyline-input"
-          data-testid="storyline-input"
-          name="storyline"
           value={ storyline }
+          data-testid="storyline-input"
           onChange={ this.handleChange }
+          id="storyline"
+          name="storyline"
         />
       </label>
     );
@@ -167,7 +148,7 @@ class AddMovie extends Component {
       <button
         type="submit"
         data-testid="send-button"
-        onClick={ this.handleClick }
+        onClick={ this.resetButton }
       >
         Adicionar filme
       </button>
