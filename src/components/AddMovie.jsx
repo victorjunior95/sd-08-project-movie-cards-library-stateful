@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class AddMovie extends Component {
   constructor() {
     super();
-    // this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       // subtitle: '',
@@ -15,12 +15,26 @@ class AddMovie extends Component {
     };
   }
 
-  // handleChange({ target }) {
-  //   const { name, value } = target;
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // }
+  handleChange({ target }) {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  inputTitle(title) {
+    return (
+      <label data-testid="title-input-label" htmlFor="title-input">
+        Título
+        <input
+          data-testid="title-input"
+          type="text"
+          value={ title }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
 
   render() {
     // const { subtitle, title, imagePath, storyline,
@@ -28,15 +42,7 @@ class AddMovie extends Component {
     const { title } = this.state;
     return (
       <form data-testid="add-movie-form">
-        <label data-testid="title-input-label" htmlFor="title-input">
-          Título
-          <input
-            data-testid="title-input"
-            type="text"
-            value={ title }
-            onChange={ (e) => this.setState({ title: e.target.value }) }
-          />
-        </label>
+        {this.inputTitle(title)}
       </form>
     );
   }
