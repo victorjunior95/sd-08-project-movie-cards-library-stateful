@@ -52,7 +52,7 @@ class AddMovie extends React.Component {
 
     return this.setState({ [name]: value });
   }
-  
+
   render() {
     const { subtitle, title, imagePath, storyline, rating, genre } = this.state;
     const { handleSendButton, handleChange } = this;
@@ -63,9 +63,9 @@ class AddMovie extends React.Component {
           subtitle={ subtitle }
           handleChange={ handleChange }
         />
-        <AddMovieTextInputImage
-          imagePath={ imagePath }
-          handleChange={ handleChange }/>
+        <AddMovieTextInputImage imagePath={ imagePath }
+          handleChange={ handleChange } 
+        />
         <AddMovieTextArea storyline={ storyline } handleChange={ handleChange } />
         <AddMovieInputRating rating={ rating } handleChange={ handleChange } />
         <AddMovieSelect genre={ genre } handleChange={ handleChange } />
