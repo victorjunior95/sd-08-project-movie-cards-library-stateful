@@ -18,13 +18,13 @@ class SearchBar extends React.Component {
   ImputFavoriteCheck(bookmarkedOnly, onBookmarkedChange) {
     return (
       <label htmlFor="checkbox-input" data-testid="checkbox-input-label">
-        Mostrar somente favoritos
         <input
           type="checkbox"
           checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
         />
+        Mostrar somente favoritos
       </label>
     );
   }
@@ -52,7 +52,7 @@ class SearchBar extends React.Component {
       onBookmarkedChange, selectedGenre, onSelectedGenreChange } = this.props;
     return (
       <section>
-        <form action="" data-testid="search-bar-form">
+        <form action="" data-testid="search-bar-form" className="form-text">
           {this.ImputSearchText(searchText, onSearchTextChange)}
           {this.ImputFavoriteCheck(bookmarkedOnly, onBookmarkedChange)}
           {this.ImputSelectOption(selectedGenre, onSelectedGenreChange)}
