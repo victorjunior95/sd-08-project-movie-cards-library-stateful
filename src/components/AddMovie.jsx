@@ -27,7 +27,6 @@ class AddMovie extends React.Component {
 
   handleSubmit() {
     // event.preventDefault();
-
     const { onClick } = this.props;
     onClick(this.state);
     this.clearDataMovie();
