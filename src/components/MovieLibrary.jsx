@@ -9,6 +9,7 @@ class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
     const { movies } = props;
+
     this.state = {
       searchText: '',
       bookmarkedOnly: false,
@@ -49,14 +50,6 @@ class MovieLibrary extends React.Component {
     }
     return filter;
   }
-
-  handleAddMovie(object) {
-    const { movies } = this.state;
-    this.setState({
-      movies: [...movies, object],
-    });
-  }
-
   render() {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (

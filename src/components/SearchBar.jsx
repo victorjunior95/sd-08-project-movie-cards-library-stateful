@@ -5,64 +5,33 @@ class SearchBar extends React.Component {
   addTextInput() {
     const { searchText, onSearchTextChange } = this.props;
     return (
-      <label data-testid="text-input-label" htmlFor="addText">
-        Inclui o texto
-        <input
-          type="text"
-          value={ searchText }
-          onChange={ onSearchTextChange }
-          data-testid="text-input"
-          id="addText"
-          name="searchText"
-        />
-      </label>
-    );
-  }
-
-  showFavoredInput() {
-    const { onBookmarkedChange, bookmarkedOnly } = this.props;
-    return (
-      <label data-testid="checkbox-input-label" htmlFor="favored">
-        Mostrar somente favoritos
-        <input
-          type="checkbox"
-          checked={ bookmarkedOnly }
-          onChange={ onBookmarkedChange }
-          data-testid="checkbox-input"
-          id="favored"
-          name="bookmarkedOnly"
-        />
-      </label>
-    );
-  }
-
-  filteredInput() {
-    const { selectedGenre, onSelectedGenreChange } = this.props;
-    return (
-      <label data-testid="select-input-label" htmlFor="filtered">
-        Filtrar por gênero
-        <select
-          value={ selectedGenre }
-          onChange={ onSelectedGenreChange }
-          data-testid="select-input"
-          id="filtered"
-          name="selectedGenre"
-        >
-          <option value="" data-testid="select-option">Todos</option>
-          <option value="action" data-testid="select-option">Ação</option>
-          <option value="comedy" data-testid="select-option">Comédia</option>
-          <option value="thriller" data-testid="select-option">Suspense</option>
-        </select>
-      </label>
-    );
-  }
-
-  render() {
-    return (
       <form data-testid="search-bar-form">
-        { this.addTextInput() }
-        { this.showFavoredInput() }
-        { this.filteredInput() }
+        <label
+            htmlFor="search-input"
+            data-testid="text-input-label">Inclui o texto</label>
+          <input
+            data-testid="text-input"
+            onChange={ onSearchTextChange }
+            value={ searchText }
+            id="search-input"
+            type="text"/>
+          <label data-testid="checkbox-input-label">Mostrar somente favoritos</label>
+          <input
+            data-testid="checkbox-input"
+            onChange={ onBookmarkedChange }
+            checked={ bookmarkedOnly }
+            type="checkbox"/>
+          <label data-testid="select-input-label">Filtrar por gênero</label>
+          <select
+            data-testid="select-input"
+            onChange={ onSelectedGenreChange }
+            value={ selectedGenre }
+            checked={ bookmarkedOnly }>
+            <option data-testid="select-option" value="">Todos</option>
+            <option data-testid="select-option" value="action">Ação</option>
+            <option data-testid="select-option" value="comedy">Comédia</option>
+            <option data-testid="select-option" value="thriller">Suspense</option>
+          </select>
       </form>
     );
   }

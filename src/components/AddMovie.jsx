@@ -1,38 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@Demistocles 
-tryber
-/
-sd-08-project-movie-cards-library-stateful
-generated from betrybe/sd-0x-project-movie-cards-library-stateful
-14
-0
-0
-Code
-Issues
-Pull requests
-113
-Actions
-Projects
-Wiki
-Security
-Insights
-sd-08-project-movie-cards-library-stateful/src/components/AddMovie.jsx
-@MarcelaSouza1995
-MarcelaSouza1995 Requisito ate o 13
-Latest commit 337ee92 4 hours ago
- History
- 2 contributors
-@MarcelaSouza1995@jeanpsv
- 177 lines (162 sloc)  3.93 KB
- 
-// implement AddMovie component here
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
