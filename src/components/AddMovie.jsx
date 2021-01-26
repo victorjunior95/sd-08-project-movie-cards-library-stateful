@@ -6,95 +6,121 @@ class AddMovie extends React.Component {
     super(props);
 
     this.state = {
-      title: '',
       subtitle: '',
-      storyline: '',
+      title: '',
       imagePath: '',
+      storyline: '',
       rating: 0,
       genre: 'action',
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.renderButton = this.renderButton.bind(this);
   }
 
-  handleChange({ target }) {
-    const { name } = target;
-    let { value } = target;
-    if (name === 'rating') value = parseFloat(value);
-    this.setState({
-      [name]: value,
-    });
-  }
-
-  handleClick(callback) {
+  handleSubmit(callback) {
     callback(this.state);
     this.setState({
-      title: '',
       subtitle: '',
-      storyline: '',
+      title: '',
       imagePath: '',
+      storyline: '',
       rating: 0,
       genre: 'action',
     });
   }
 
-  renderInput(text, name, value, handleChange) {
-    const testName = name === 'imagePath' ? 'image' : name;
-    const type = name === 'rating' ? 'number' : 'text';
+  onChangeHandler(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  titleInput(title, onChange) {
     return (
-      <label htmlFor={ name } data-testid={ `${testName}-input-label` } className="label">
-        {text}
+      <label htmlFor="title" data-testid="title-input-label">
+        Título
         <input
-          type={ type }
-          name={ name }
-          value={ value }
-          onChange={ handleChange }
-          data-testid={ `${testName}-input` }
-          step={ 0.1 }
-          max={ 5 }
-          min={ 0 }
-          className="input"
+          name="title"
+          value={ title }
+          onChange={ onChange }
+          data-testid="title-input"
         />
       </label>
     );
   }
 
-  renderTextarea(value, handleChange) {
-    const maxLength = 190;
-    const error = value.length >= maxLength ? 'Sinopse maior que 190 caracteres!' : '';
+  subtitleInput(subtitle, onChange) {
     return (
-      <label htmlFor="storyline" data-testid="storyline-input-label" className="label">
+      <label htmlFor="subtitle" data-testid="subtitle-input-label">
+        Subtítulo
+        <input
+          name="subtitle"
+          value={ subtitle }
+          onChange={ onChange }
+          data-testid="subtitle-input"
+        />
+      </label>
+    );
+  }
+
+  imageInput(imagePath, onChange) {
+    return (
+      <label htmlFor="imagePath" data-testid="image-input-label">
+        Imagem
+        <input
+          name="imagePath"
+          value={ imagePath }
+          onChange={ onChange }
+          data-testid="image-input"
+        />
+      </label>
+    );
+  }
+
+  storylineInput(storyline, onChange) {
+    return (
+      <label htmlFor="storyline" data-testid="storyline-input-label">
         Sinopse
         <textarea
           name="storyline"
-          id="storyline"
-          value={ value }
-          onChange={ handleChange }
+          value={ storyline }
+          onChange={ onChange }
           data-testid="storyline-input"
-          maxLength={ 190 }
-          className="textarea"
         />
-        <span style={ { color: 'red' } }>{error}</span>
       </label>
     );
   }
 
-  renderSelect(name, handleChange) {
+  ratingInput(rating, onChange) {
     return (
-      <label htmlFor="genre" data-testid="genre-input-label" className="label">
+      <label htmlFor="rating" data-testid="rating-input-label">
+        Avaliação
+        <input
+          type="number"
+          name="rating"
+          value={ rating }
+          onChange={ onChange }
+          data-testid="rating-input"
+        />
+      </label>
+    );
+  }
+
+  genreInput(genre, onChange) {
+    return (
+      <label htmlFor="genre" data-testid="genre-input-label">
         Gênero
         <select
           name="genre"
-          id="genre"
-          value={ name }
-          onChange={ handleChange }
+          value={ genre }
+          onChange={ onChange }
           data-testid="genre-input"
-          className="input"
         >
-          <option data-testid="genre-option" value="action">Ação</option>
-          <option data-testid="genre-option" value="comedy">Comédia</option>
-          <option data-testid="genre-option" value="thriller">Suspense</option>
+          <option value="action" data-testid="genre-option">Ação</option>
+          <option value="comedy" data-testid="genre-option">Comédia</option>
+          <option value="thriller" data-testid="genre-option">Suspense</option>
         </select>
       </label>
     );
@@ -103,10 +129,9 @@ class AddMovie extends React.Component {
   renderButton(onClick) {
     return (
       <button
-        type="button"
-        onClick={ () => this.handleClick(onClick) }
+        type="submit"
         data-testid="send-button"
-        className="button"
+        onClick={ (event) => { event.preventDefault(); this.handleSubmit(onClick); } }
       >
         Adicionar filme
       </button>
@@ -114,16 +139,16 @@ class AddMovie extends React.Component {
   }
 
   render() {
+    const { genre, imagePath, rating, storyline, subtitle, title } = this.state;
     const { onClick } = this.props;
-    const { title, subtitle, storyline, imagePath, rating, genre } = this.state;
     return (
-      <form data-testid="add-movie-form" className="form">
-        {this.renderInput('Título', 'title', title, this.handleChange)}
-        {this.renderInput('Subtítulo', 'subtitle', subtitle, this.handleChange)}
-        {this.renderInput('Imagem', 'imagePath', imagePath, this.handleChange)}
-        {this.renderTextarea(storyline, this.handleChange)}
-        {this.renderInput('Avaliação', 'rating', rating, this.handleChange)}
-        {this.renderSelect(genre, this.handleChange)}
+      <form data-testid="add-movie-form">
+        {this.titleInput(title, this.onChangeHandler)}
+        {this.subtitleInput(subtitle, this.onChangeHandler)}
+        {this.imageInput(imagePath, this.onChangeHandler)}
+        {this.storylineInput(storyline, this.onChangeHandler)}
+        {this.ratingInput(rating, this.onChangeHandler)}
+        {this.genreInput(genre, this.onChangeHandler)}
         {this.renderButton(onClick)}
       </form>
     );
