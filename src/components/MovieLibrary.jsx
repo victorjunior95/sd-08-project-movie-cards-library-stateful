@@ -19,6 +19,7 @@ class MovieLibray extends React.Component {
 
     this.addNewMovie = this.addNewMovie.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.filterMovies = this.filterMovies.bind(this);
   }
 
   handleChange({ target }) {
@@ -29,13 +30,21 @@ class MovieLibray extends React.Component {
     console.log(value);
   }
 
-  addNewMovie() {
-    console.log('addnewmovie');
+  filterMovies() {
+    const { movies } = this.state;
+    const resultado = movies.filter((parametro) => parametro.bookmarked === true);
+    return resultado;
+  }
+
+  addNewMovie(objectOfMovies) {
+    this.setState(({ movies }) => ({
+      movies: [...movies, objectOfMovies],
+    }));
   }
 
   render() {
     const { movies, searchText, bookmarkedOnly, selectedGenre } = this.state;
-    console.log(movies);
+    console.log('renderizou');
     return (
       <div>
         <SearchBar

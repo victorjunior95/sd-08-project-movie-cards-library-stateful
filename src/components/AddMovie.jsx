@@ -21,7 +21,7 @@ class AddMovie extends React.Component {
   handleChange({ target }) {
     const { name } = target;
     console.log(name);
-    console.log(this.state);
+    // console.log(this.state);
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
   }
@@ -149,7 +149,6 @@ class AddMovie extends React.Component {
   }
 
   render() {
-    const { onClick } = this.props;
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
@@ -159,7 +158,7 @@ class AddMovie extends React.Component {
         {this.fillTextareaHmlt(storyline, this.handleChange)}
         {this.fillNumberHmlt(rating, this.handleChange)}
         {this.fillSelectHtml(genre, this.handleChange)}
-        {this.renderButton(onClick)}
+        {this.renderButton()}
       </form>
     );
   }
