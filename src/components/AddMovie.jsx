@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 class AddMovie extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.Handler = this.Handler.bind(this);
     this.clickSendButton = this.clickSendButton.bind(this);
@@ -33,6 +33,7 @@ class AddMovie extends React.Component {
       <label data-testid="title-input-label" htmlFor="text-input">
         Título
         <input
+          id="title-input"
           data-testid="text-input"
           type="text"
           name="title"
@@ -49,6 +50,7 @@ class AddMovie extends React.Component {
       <label data-testid="subtitle-input-label" htmlFor="text-input">
         Subtítulo
         <input
+          id="subtitle-input"
           data-testid="subtitle-input"
           type="text"
           name="subtitle"
@@ -65,6 +67,7 @@ class AddMovie extends React.Component {
       <label data-testid="image-input-label" htmlFor="text-input">
         Imagem
         <input
+          id="image-input"
           data-testid="image-input"
           type="text"
           name="imagePath"
@@ -81,6 +84,7 @@ class AddMovie extends React.Component {
       <label data-testid="storyline-input-label" htmlFor="text-input">
         Sinopse
         <textarea
+          id="storyline-input"
           data-testid="storyline-input"
           name="storyline"
           value={ storyline }
@@ -96,6 +100,7 @@ class AddMovie extends React.Component {
       <label data-testid="rating-input-label" htmlFor="text-input">
         Avaliação
         <input
+          id="rating-input"
           data-testid="rating-input"
           type="number"
           name="rating"
@@ -112,13 +117,14 @@ class AddMovie extends React.Component {
       <label data-testid="genre-input-label" htmlFor="text-input">
         Gênero
         <select
+          id="genre-input"
           data-testid="genre-input"
           name="genre"
           value={ genre }
           onChange={ this.Handler }
         >
           <option data-testid="genre-option" value="action">Ação</option>
-          <option data-testid="genre-option" selected value="comedy">Comédia</option>
+          <option data-testid="genre-option" value="comedy">Comédia</option>
           <option data-testid="genre-option" value="thriller">Suspense</option>
         </select>
       </label>
@@ -134,9 +140,9 @@ class AddMovie extends React.Component {
   imputButton() {
     return (
       <button
+        type="button"
         data-testid="send-button"
         onClick={ this.clickSendButton }
-        type="button"
       >
         Adicionar filme
       </button>
@@ -152,6 +158,7 @@ class AddMovie extends React.Component {
         {this.inputStoryline()}
         {this.inputRating()}
         {this.inputGerne()}
+        {this.sendButton()}
       </form>
 
     );
