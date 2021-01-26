@@ -64,7 +64,7 @@ class AddMovie extends React.Component {
           handleChange={ handleChange }
         />
         <AddMovieTextInputImage imagePath={ imagePath }
-          handleChange={ handleChange } 
+          handleChange={ handleChange }
         />
         <AddMovieTextArea storyline={ storyline } handleChange={ handleChange } />
         <AddMovieInputRating rating={ rating } handleChange={ handleChange } />
