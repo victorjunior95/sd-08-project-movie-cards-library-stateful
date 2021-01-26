@@ -42,9 +42,11 @@ class MovieLibrary extends React.Component {
       : movies;
     moviesToRender = moviesToRender
       .filter((movie) => movie.genre.includes(selectedGenre))
-      .filter((movie) => movie.title.toLowerCase().includes(searchText)
+      .filter(
+        (movie) => movie.title.toLowerCase().includes(searchText)
         || movie.subtitle.toLowerCase().includes(searchText)
-        || movie.storyline.toLowerCase().includes(searchText));
+        || movie.storyline.toLowerCase().includes(searchText),
+      );
 
     return moviesToRender;
   }
