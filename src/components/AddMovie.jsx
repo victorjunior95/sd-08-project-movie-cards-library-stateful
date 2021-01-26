@@ -20,9 +20,7 @@ export default class AddMovie extends React.Component {
 
   handleChange(event) {
     if (event.target.name === 'rating') {
-      this.setState({
-        [event.target.name]: parseFloat(event.target.value),
-      });
+      this.setState({ [event.target.name]: parseFloat(event.target.value) });
     } else {
       this.setState({
         [event.target.name]: event.target.value,
@@ -34,7 +32,7 @@ export default class AddMovie extends React.Component {
     event.preventDefault();
     const { title, subtitle, storyline } = this.state;
     if (title !== '' && subtitle !== '' && storyline !== '') {
-      console.log('ok');
+      console.log('22222');
       const { onClick } = this.props;
       onClick(this.state);
 
@@ -133,7 +131,7 @@ export default class AddMovie extends React.Component {
           min="0"
           max="5"
           step="0.1"
-          value={ String({ rating }) }
+          value={ rating }
           data-testid="rating-input"
           onChange={ this.handleChange }
         />
