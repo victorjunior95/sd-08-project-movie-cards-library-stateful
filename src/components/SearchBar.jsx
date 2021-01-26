@@ -1,49 +1,49 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class SearchBar extends Component {
-  InputText(searchText, onSearchTextChange) {
+class SearchBar extends React.Component {
+  createTextInput() {
+    const { searchText, onSearchTextChange } = this.props;
     return (
-      <div>
-        <label htmlFor="searchText" data-testid="text-input-label">
-          Inclui o texto:
-          <input
-            type="text"
-            name="searchText"
-            value={ searchText }
-            onChange={ onSearchTextChange }
-            data-testid="text-input"
-          />
-        </label>
-      </div>
-    );
-  }
-
-  InputCheckbox(bookmarkedOnly, onBookmarkedChange) {
-    return (
-      <label htmlFor="bookmarkedOnly" data-testid="checkbox-input-label">
-        Mostrar somente favoritos
+      <label data-testid="text-input-label" htmlFor="textInput">
+        Inclui o texto
         <input
-          type="checkbox"
-          name="bookmarkedOnly"
-          data-testid="checkbox-input"
-          checked={ bookmarkedOnly }
-          onChange={ onBookmarkedChange }
+          type="text"
+          value={ searchText }
+          onChange={ onSearchTextChange }
+          data-testid="text-input"
+          id="textInput"
         />
       </label>
     );
   }
 
-  InputSelect(selectedGenre, onSelectedGenreChange) {
+  createCheckInput() {
+    const { bookmarkedOnly, onBookmarkedChange } = this.props;
     return (
-      <label htmlFor="selectedGenre" data-testid="select-input-label">
+      <label data-testid="checkbox-input-label" htmlFor="checkInput">
+        Mostrar somente favoritos
+        <input
+          type="checkbox"
+          checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
+          data-testid="checkbox-input"
+          id="checkInput"
+        />
+      </label>
+    );
+  }
+
+  createSelectInput() {
+    const { selectedGenre, onSelectedGenreChange } = this.props;
+    return (
+      <label data-testid="select-input-label" htmlFor="selectInput">
         Filtrar por gênero
         <select
-          name="selectedGenre"
-          id="selectedGenre"
           value={ selectedGenre }
           onChange={ onSelectedGenreChange }
           data-testid="select-input"
+          id="selectInput"
         >
           <option data-testid="select-option" value="">Todos</option>
           <option data-testid="select-option" value="action">Ação</option>
@@ -55,16 +55,12 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { searchText, onSearchTextChange, bookmarkedOnly, onBookmarkedChange,
-      selectedGenre, onSelectedGenreChange } = this.props;
     return (
-      <div>
-        <form data-testid="search-bar-form">
-          { this.InputText(searchText, onSearchTextChange) }
-          { this.InputCheckbox(bookmarkedOnly, onBookmarkedChange) }
-          { this.InputSelect(selectedGenre, onSelectedGenreChange) }
-        </form>
-      </div>
+      <form data-testid="search-bar-form">
+        { this.createTextInput() }
+        { this.createCheckInput() }
+        { this.createSelectInput() }
+      </form>
     );
   }
 }
