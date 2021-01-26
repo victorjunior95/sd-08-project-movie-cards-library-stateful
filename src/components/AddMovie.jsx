@@ -82,8 +82,7 @@ class AddMovie extends Component {
     return (
       <label data-testid="storyline-input-label" htmlFor="storyline">
         Sinopse
-        <input
-          type="textarea"
+        <textarea
           value={ storyline }
           data-testid="storyline-input"
           onChange={ this.handleChange }
