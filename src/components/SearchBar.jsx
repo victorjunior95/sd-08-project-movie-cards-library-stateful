@@ -20,18 +20,16 @@ class SearchBar extends Component {
 
   InputCheckbox(bookmarkedOnly, onBookmarkedChange) {
     return (
-      <div>
-        <label htmlFor="bookmarkedOnly" data-testid="checkbox-input-label">
-          Mostrar somente favoritos
-          <input
-            type="checkbox"
-            name="bookmarkedOnly"
-            data-testid="checkbox-input"
-            checked={ bookmarkedOnly }
-            onChange={ onBookmarkedChange }
-          />
-        </label>
-      </div>
+      <label htmlFor="bookmarkedOnly" data-testid="checkbox-input-label">
+        Mostrar somente favoritos
+        <input
+          type="checkbox"
+          name="bookmarkedOnly"
+          data-testid="checkbox-input"
+          checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
+        />
+      </label>
     );
   }
 
