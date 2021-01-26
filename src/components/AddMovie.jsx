@@ -34,7 +34,7 @@ class AddMovie extends React.Component {
         Título
         <input
           id="title-input"
-          data-testid="text-input"
+          data-testid="title-input"
           type="text"
           name="title"
           value={ title }
@@ -67,7 +67,6 @@ class AddMovie extends React.Component {
       <label data-testid="image-input-label" htmlFor="text-input">
         Imagem
         <input
-          id="image-input"
           data-testid="image-input"
           type="text"
           name="imagePath"
@@ -137,7 +136,7 @@ class AddMovie extends React.Component {
     this.setState(this.baseState);
   }
 
-  imputButton() {
+  sendButton() {
     return (
       <button
         type="button"
