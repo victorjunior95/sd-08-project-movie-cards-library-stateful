@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-  // const { bookmarkedOnly } = this.props;
 
   addTextInput() {
     const { searchText, onSearchTextChange } = this.props;
@@ -22,13 +21,13 @@ class SearchBar extends React.Component {
   }
 
   showFavoredInput() {
-    const { onBookmarkedChange } = this.props;
+    const { onBookmarkedChange, bookmarkedOnly } = this.props;
     return (
       <label data-testid="checkbox-input-label" htmlFor="favored">
         Mostrar somente favoritos
         <input
           type="checkbox"
-          checked="bookmarkedOnly"
+          checked={ bookmarkedOnly }
           onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
           id="favored"
@@ -71,7 +70,7 @@ class SearchBar extends React.Component {
 SearchBar.propTypes = {
   searchText: PropTypes.string.isRequired,
   onSearchTextChange: PropTypes.func.isRequired,
-  // bookmarkedOnly: PropTypes.bool.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
   selectedGenre: PropTypes.string.isRequired,
   onSelectedGenreChange: PropTypes.func.isRequired,
