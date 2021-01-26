@@ -2,10 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
-    render() {
-        
+    inputText(searchText, onSearchTextChange) {
         return (
-            <form data-testid="seach-bar-form" ></form>
+          <label htmlFor="" data-testid="text-input-label">
+            Inclui o texto:  
+            <input 
+            type="text"
+            value={ searchText }
+            onChange={ onSearchTextChange }
+            data-testid="text-input"
+            />
+          </label>
+        );
+    }
+
+    render() {
+        const {
+            searchText,
+            onSearchTextChange,
+        } = this.props;
+
+        return (
+            <form data-testid="seach-bar-form" >
+                {this.inputText(searchText, onSearchTextChange)}
+            </form>
         );
     }
 }
