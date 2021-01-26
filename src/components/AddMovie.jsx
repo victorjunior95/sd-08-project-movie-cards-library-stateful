@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovie extends Component {
   constructor() {
@@ -127,7 +128,9 @@ class AddMovie extends Component {
     );
   }
 
-  reset() {
+  reset(e) {
+    e.preventDefault();
+    const { onClick } = this.props;
     this.setState({
       subtitle: '',
       title: '',
@@ -136,6 +139,7 @@ class AddMovie extends Component {
       rating: 0,
       genre: 'action',
     });
+    onClick(this.state);
   }
 
   render() {
@@ -154,5 +158,9 @@ class AddMovie extends Component {
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
