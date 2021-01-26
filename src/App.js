@@ -12,7 +12,7 @@ function App() {
       <Header />
       <SearchBar />
       <MovieList movies={ movies } />
-      <AddMovie/>
+      <AddMovie />
     </div>
   );
 }
