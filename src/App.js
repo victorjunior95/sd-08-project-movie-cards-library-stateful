@@ -12,5 +12,6 @@ function App() {
     </div>
   );
 }
-
+// consultei o repositorio de uma colega para a refatoração dos renders mencionado no ultimo commit.
+// https://github.com/tryber/sd-08-project-movie-cards-library-stateful/blob/4f3d6d2173cad8164cd948a87d53cd55c2cf74ee/src/components/AddMovie.jsx
 export default App;
