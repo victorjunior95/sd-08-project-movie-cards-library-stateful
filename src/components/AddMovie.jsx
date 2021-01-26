@@ -4,6 +4,7 @@ class AddMovie extends Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
+    this.reset = this.reset.bind(this);
 
     this.state = {
       subtitle: '',
@@ -55,11 +56,11 @@ class AddMovie extends Component {
   inputImagePath(imagePath) {
     return (
       <label data-testid="image-input-label" htmlFor="image-input">
-        imagem
+        Imagem
         <input
           data-testid="image-input"
-          name="image"
-          type="text"
+          name="image-input"
+          // type="text"
           value={ imagePath }
           onChange={ this.handleChange }
         />
@@ -99,7 +100,7 @@ class AddMovie extends Component {
   inputGenre(genre) {
     return (
       <label data-testid="genre-input-label" htmlFor="genre-input">
-        Avaliação
+        Gênero
         <select
           data-testid="genre-input"
           name="genre"
@@ -114,6 +115,29 @@ class AddMovie extends Component {
     );
   }
 
+  sendButton() {
+    return (
+      <button
+        data-testid="send-button"
+        Type="button"
+        onClick={ this.reset }
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
+  reset() {
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+  }
+
   render() {
     const { subtitle, title, imagePath, storyline,
       rating, genre } = this.state;
@@ -125,6 +149,7 @@ class AddMovie extends Component {
         {this.inputStoryline(storyline)}
         {this.inputRating(rating)}
         {this.inputGenre(genre)}
+        {this.sendButton()}
       </form>
     );
   }
