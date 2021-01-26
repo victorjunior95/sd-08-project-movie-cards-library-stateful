@@ -5,7 +5,7 @@ class AddMovieSendButton extends React.Component {
   render() {
     const { handleSendButton } = this.props;
     return (
-      <button data-testid="send-button" onClick={ handleSendButton }>
+      <button type="submit" data-testid="send-button" onClick={handleSendButton}>
         Adicionar filme
       </button>
     );
