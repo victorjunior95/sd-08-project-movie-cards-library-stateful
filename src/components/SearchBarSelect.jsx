@@ -11,8 +11,8 @@ class SearchBarSelect extends React.Component {
         </label>
         <select
           name="select-input"
-          value={selectedGenre}
-          onChange={onSelectedGenreChange}
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
           data-testid="select-input"
           id="select-input"
         >

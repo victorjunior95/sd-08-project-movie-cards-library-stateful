@@ -16,8 +16,8 @@ class AddMovieTextArea extends React.Component {
           cols="30"
           rows="10"
           id="storyline-input"
-          value={storyline}
-          onChange={handleChange}
+          value={ storyline }
+          onChange={ handleChange }
         />
       </fieldset>
     );

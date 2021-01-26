@@ -11,8 +11,8 @@ class AddMovieSelect extends React.Component {
         </label>
         <select
           name="genre"
-          value={genre}
-          onChange={handleChange}
+          value={ genre }
+          onChange={ handleChange }
           data-testid="genre-input"
           id="genre-input"
         >

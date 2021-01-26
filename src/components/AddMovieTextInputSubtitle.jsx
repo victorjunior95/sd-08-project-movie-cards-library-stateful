@@ -14,8 +14,8 @@ class AddMovieTextInputSubtitle extends React.Component {
           name="subtitle"
           data-testid="subtitle-input"
           id="subtitle-input"
-          value={subtitle}
-          onChange={handleChange}
+          value={ subtitle }
+          onChange={ handleChange }
         />
       </fieldset>
     );

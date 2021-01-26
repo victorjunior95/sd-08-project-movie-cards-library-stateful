@@ -13,8 +13,8 @@ class SearchBarCheckbox extends React.Component {
           type="checkbox"
           name="checkbox-input"
           id="checkbox-input"
-          checked={bookmarkedOnly}
-          onChange={onBookmarkedChange}
+          checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
           data-testid="checkbox-input"
         />
       </fieldset>

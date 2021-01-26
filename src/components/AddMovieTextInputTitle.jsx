@@ -14,8 +14,8 @@ class AddMovieTextInputTitle extends React.Component {
           name="title"
           data-testid="title-input"
           id="title-input"
-          value={title}
-          onChange={handleChange}
+          value={ title }
+          onChange={ handleChange }
         />
       </fieldset>
     );

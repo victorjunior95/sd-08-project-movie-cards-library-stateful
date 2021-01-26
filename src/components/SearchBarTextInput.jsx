@@ -13,8 +13,8 @@ class SearchBarTextInput extends React.Component {
         <input
           type="text"
           name="text-input"
-          value={searchText}
-          onChange={onSearchTextChange}
+          value={ searchText }
+          onChange={ onSearchTextChange }
           data-testid="text-input"
           id="text-input"
         />

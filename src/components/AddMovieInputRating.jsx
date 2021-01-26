@@ -14,8 +14,8 @@ class AddMovieInputRating extends React.Component {
           name="rating"
           data-testid="rating-input"
           id="rating-input"
-          onChange={handleChange}
-          value={rating}
+          onChange={ handleChange }
+          value={ rating }
           min="0"
           max="5"
           step="any"
