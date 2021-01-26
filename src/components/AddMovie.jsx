@@ -143,7 +143,7 @@ class AddMovie extends React.Component {
         { this.titulo(title, this.handleChange) }
         { this.subtitulo(subtitle, this.handleChange) }
         { this.imagem(imagePath, this.handleChange) }
-        { this.TextAreaStoryLine(storyLine, this.handleChange) }
+        { this.historia(storyLine, this.handleChange) }
         { this.nota(rating, this.handleChange) }
         { this.genero(genre, this.handleChange) }
         <button
