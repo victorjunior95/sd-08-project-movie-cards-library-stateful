@@ -1,20 +1,17 @@
 // implement AddMovie component here
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovie extends Component {
   constructor() {
     super();
 
-    this.valueTitle = this.valueTitle.bind(this);
-    this.valueSubTitle = this.valueSubTitle.bind(this);
-    this.valueImagePath = this.valueImagePath.bind(this);
-    this.valueStoryline = this.valueStoryline.bind(this);
-    this.valueRating = this.valueRating.bind(this);
-    this.valueGenre = this.valueGenre.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.resetButton = this.resetButton.bind(this);
 
     this.state = {
-      subtitle: '',
       title: '',
+      subtitle: '',
       imagePath: '',
       storyline: '',
       rating: 0,
@@ -22,45 +19,12 @@ class AddMovie extends Component {
     };
   }
 
-  valueTitle(event) {
+  handleChange({ target }) {
+    const { name, value } = target;
     this.setState({
-      title: event.target.value,
+      [name]: value,
     });
   }
-
-  valueSubTitle(event) {
-    this.setState({
-      subtitle: event.target.value,
-    });
-  }
-
-  valueImagePath(event) {
-    this.setState({
-      imagePath: event.target.value,
-    });
-  }
-
-  valueStoryline(event) {
-    this.setState({
-      storyline: event.target.value,
-    });
-  }
-
-  valueRating(event) {
-    this.setState({
-      rating: event.target.value,
-    });
-  }
-
-  valueGenre(event) {
-    this.setState({
-      genre: event.target.value,
-    });
-  }
-
-  /*  addMovie(event) {
-    // parei no requisito 14
-  } */
 
   createInputTitle() {
     const { title } = this.state;
@@ -71,8 +35,9 @@ class AddMovie extends Component {
           type="text"
           value={ title }
           data-testid="title-input"
-          onChange={ this.valueTitle }
+          onChange={ this.handleChange }
           id="titleInput"
+          name="title"
         />
       </label>
     );
@@ -87,8 +52,9 @@ class AddMovie extends Component {
           type="text"
           value={ subtitle }
           data-testid="subtitle-input"
-          onChange={ this.valueSubTitle }
+          onChange={ this.handleChange }
           id="subtitleInput"
+          name="subtitle"
         />
       </label>
     );
@@ -103,8 +69,9 @@ class AddMovie extends Component {
           type="text"
           value={ imagePath }
           data-testid="image-input"
-          onChange={ this.valueImagePath }
+          onChange={ this.handleChange }
           id="imageInput"
+          name="imagePath"
         />
       </label>
     );
@@ -119,8 +86,9 @@ class AddMovie extends Component {
           type="textarea"
           value={ storyline }
           data-testid="storyline-input"
-          onChange={ this.valueStoryline }
+          onChange={ this.handleChange }
           id="storyline"
+          name="storyline"
         />
       </label>
     );
@@ -134,9 +102,10 @@ class AddMovie extends Component {
         <input
           type="number"
           value={ rating }
-          data-testid="rating-input-label"
-          onChange={ this.valueRating }
+          data-testid="rating-input"
+          onChange={ this.handleChange }
           id="rating"
+          name="rating"
         />
       </label>
     );
@@ -150,8 +119,9 @@ class AddMovie extends Component {
         <select
           value={ genre }
           data-testid="genre-input"
-          onChange={ this.valueGenre }
+          onChange={ this.handleChange }
           id="genre"
+          name="genre"
         >
           <option value="action" data-testid="genre-option">Ação</option>
           <option value="comedy" data-testid="genre-option">Comédia</option>
@@ -161,12 +131,26 @@ class AddMovie extends Component {
     );
   }
 
+  resetButton(event) {
+    event.preventDefault();
+    const { onClick } = this.props;
+    this.setState({
+      title: '',
+      subtitle: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+    onClick(this.state);
+  }
+
   createButton() {
     return (
       <button
         type="submit"
         data-testid="send-button"
-        onClick={ this.addMovie }
+        onClick={ this.resetButton }
       >
         Adicionar filme
       </button>
@@ -183,10 +167,11 @@ class AddMovie extends Component {
         { this.createInputRating() }
         { this.createSelect() }
         { this.createButton() }
-
       </form>
     );
   }
 }
+
+AddMovie.propTypes = { onClick: PropTypes.func.isRequired };
 
 export default AddMovie;
