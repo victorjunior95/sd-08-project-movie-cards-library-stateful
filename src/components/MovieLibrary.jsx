@@ -27,14 +27,27 @@ class MovieLibray extends React.Component {
     console.log(name);
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
-    console.log(value);
+    this.filterMovies();
   }
 
   filterMovies() {
-    const { movies } = this.state;
+    const { movies, bookmarkedOnly } = this.state;
     const resultado = movies.filter((parametro) => parametro.bookmarked === true);
-    return resultado;
+    console.log(resultado);
+    if (bookmarkedOnly === true) {
+      this.setState({
+        movies: resultado,
+      });
+    }
   }
+
+  // filterMoviess() {
+  //   const {movies, bookmarkedOnly} = this.state;
+  //   if(bookmarkedOnly === true) {
+  //     return movies.filter((movie)=>movie.bookmarked===true);
+  //   }
+  //     return movies;
+  // }
 
   addNewMovie(objectOfMovies) {
     this.setState(({ movies }) => ({
