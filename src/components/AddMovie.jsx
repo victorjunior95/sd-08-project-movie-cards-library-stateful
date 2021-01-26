@@ -52,20 +52,66 @@ class AddMovie extends Component {
     );
   }
 
-  // inputSubtitle(subtitle) {
-  //   return (
-  //     <label data-testid="title-input-label" htmlFor="title-input">
-  //       Título
-  //       <input
-  //         data-testid="title-input"
-  //         type="text"
-  //         value={ title }
-  //         onChange={ this.handleChange }
-  //       />
-  //     </label>
-  //   );
-  // }
+  inputImagePath(imagePath) {
+    return (
+      <label data-testid="image-input-label" htmlFor="image-input">
+        imagem
+        <input
+          data-testid="image-input"
+          name="image"
+          type="text"
+          value={ imagePath }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
 
+  inputStoryline(storyline) {
+    return (
+      <label data-testid="storyline-input-label" htmlFor="storyline-input">
+        Sinopse
+        <textarea
+          data-testid="storyline-input"
+          name="storyline"
+          value={ storyline }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
+  inputRating(rating) {
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating-input">
+        Avaliação
+        <input
+          data-testid="rating-input"
+          name="rating"
+          type="number"
+          value={ rating }
+          onChange={ this.handleChange }
+        />
+      </label>
+    );
+  }
+
+  inputGenre(genre) {
+    return (
+      <label data-testid="genre-input-label" htmlFor="genre-input">
+        Avaliação
+        <select
+          data-testid="genre-input"
+          name="genre"
+          value={ genre }
+          onChange={ this.handleChange } >
+          <option data-testid="genre-option" value="action">Ação</option>
+          <option data-testid="genre-option" value="comedy">Comédia</option>
+          <option data-testid="genre-option" value="thriller">Suspense</option>
+        </select>
+      </label>
+    );
+  }
 
   render() {
     const { subtitle, title, imagePath, storyline,
@@ -74,10 +120,10 @@ class AddMovie extends Component {
       <form data-testid="add-movie-form">
         {this.inputTitle(title)}
         {this.inputSubtitle(subtitle)}
-        {/* {this.inputTitle(imagePath)}
-        {this.inputTitle(storyline)}
-        {this.inputTitle(rating)}
-        {this.inputTitle(genre)} */}
+        {this.inputImagePath(imagePath)}
+        {this.inputStoryline(storyline)}
+        {this.inputRating(rating)}
+        {this.inputGenre(genre)}
       </form>
     );
   }
