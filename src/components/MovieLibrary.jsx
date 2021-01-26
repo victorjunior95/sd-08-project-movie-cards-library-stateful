@@ -1,31 +1,77 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MovieList from './MovieList';
 import SearchBar from './SearchBar';
+import MovieList from './MovieList';
 import AddMovie from './AddMovie';
 
 class MovieLibrary extends React.Component {
-/*  constructor () {
-    super ();
-    
+  constructor(props) {
+    super(props);
+    const { movies } = props;
     this.state = {
-      searchText:'',
+      searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      movies:[{ movies }],
-    }
+      movies,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleAddMovie = this.handleAddMovie.bind(this);
   }
-  */
+
+  handleChange({ target }) {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleFilterFilms() {
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    let filter = [...movies];
+
+    if (searchText) {
+      filter = filter.filter(({ title, subtitle, storyline }) => (
+        title.includes(searchText)
+        || subtitle.includes(searchText)
+        || storyline.includes(searchText)
+      ));
+    }
+    if (bookmarkedOnly) {
+      filter = filter.filter(({ bookmarked }) => bookmarked);
+    }
+
+    if (selectedGenre) {
+      filter = filter.filter(({ genre }) => genre.includes(selectedGenre));
+    }
+    return filter;
+  }
+
+  handleAddMovie(object) {
+    const { movies } = this.state;
+    this.setState({
+      movies: [...movies, object],
+    });
+  }
+
   render() {
-    const { movies } = this.props;
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
-      <div>
-        <h2> My awesome movie library </h2>
-        <SearchBar />
-        <MovieList movies={ movies } />
-        <AddMovie />
-      </div>
+      <section>
+        <SearchBar
+          searchText={ searchText }
+          bookmarkedOnly={ bookmarkedOnly }
+          selectedGenre={ selectedGenre }
+          onSearchTextChange={ this.handleChange }
+          onBookmarkedChange={ this.handleChange }
+          onSelectedGenreChange={ this.handleChange }
+        />
+        <MovieList movies={ this.handleFilterFilms() } />
+        <AddMovie onClick={ this.handleAddMovie } />
+      </section>
     );
   }
 }
