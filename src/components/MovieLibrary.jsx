@@ -51,7 +51,7 @@ class MovieLibrary extends React.Component {
           .indexOf(this.state.searchText.toLowerCase()) >= 0 ||
         name.storyline
           .toLowerCase()
-          .indexOf(this.state.searchText.toLowerCase()) >= 0
+          .indexOf(this.state.searchText.toLowerCase()) >= 0,
     );
 
     return textInput;
@@ -62,19 +62,19 @@ class MovieLibrary extends React.Component {
 
     if (bookmarkedOnly && selectedGenre) {
       return this.filterByText(movies).filter(
-        (name) => name.bookmarked === true && name.genre === selectedGenre
+        (name) => name.bookmarked === true && name.genre === selectedGenre,
       );
     }
 
     if (bookmarkedOnly) {
       return this.filterByText(movies).filter(
-        (name) => name.bookmarked === true
+        (name) => name.bookmarked === true,
       );
     }
 
     if (selectedGenre) {
       return this.filterByText(movies).filter(
-        (name) => name.genre === selectedGenre
+        (name) => name.genre === selectedGenre,
       );
     }
 
@@ -94,12 +94,12 @@ class MovieLibrary extends React.Component {
     return (
       <div>
         <SearchBar
-          searchText={ searchText }
-          bookmarkedOnly={ bookmarkedOnly }
-          selectedGenre={ selectedGenre }
-          onSearchTextChange={ onSearchTextChange }
-          onBookmarkedChange={ onBookmarkedChange }
-          onSelectedGenreChange={ onSelectedGenreChange }
+          searchText= { searchText } 
+          bookmarkedOnly= { bookmarkedOnly } 
+          selectedGenre= { selectedGenre } 
+          onSearchTextChange= { onSearchTextChange } 
+          onBookmarkedChange= { onBookmarkedChange } 
+          onSelectedGenreChange= { onSelectedGenreChange } 
         />
         <MovieList movies={ filters() } />
         <AddMovie onClick={ onClick } />
