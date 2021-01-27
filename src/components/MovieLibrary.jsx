@@ -44,12 +44,12 @@ class MovieLibrary extends React.Component {
   filterByText(movies) {
     const { searchText } = this.state;
     const textInput = movies.filter(
-      (name) =>
-        name.title.toLowerCase().indexOf(searchText.toLowerCase())
-        >= 0 ||
+      (name) => name.title.toLowerCase().indexOf(searchText.toLowerCase()) >= 0 
+      ||
         name.subtitle
           .toLowerCase()
-          .indexOf(searchText.toLowerCase()) >= 0 ||
+          .indexOf(searchText.toLowerCase()) >= 0 
+        ||
         name.storyline
           .toLowerCase()
           .indexOf(searchText.toLowerCase()) >= 0,
