@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import AddMovie from './AddMovie';
 import SearchBar from './SearchBar';
@@ -8,22 +8,22 @@ import SearchBar from './SearchBar';
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
-    // this.addMovie = this.addMovie.bind(this);
-    // const { movies } = this.props;
+    this.addMovie = this.addMovie.bind(this);
+    const { movies } = this.props;
     this.state = {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      // movies,
+      movies,
     };
   }
 
-  // addMovie(movie) {
-  //   const { movies } = this.state;
-  //   this.setState({
-  //     movies: [...movies, movie],
-  //   });
-  // }
+  addMovie(newMovie) {
+    const { movies } = this.state;
+    this.setState({
+      movies: [...movies, newMovie],
+    });
+  }
 
   render() {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
@@ -34,17 +34,15 @@ class MovieLibrary extends Component {
           bookmarkedOnly={ bookmarkedOnly }
           selectedGenre={ selectedGenre }
         />
-        {/* <MovieList movies={ movies } /> */}
-        <AddMovie />
-
-        {/* <AddMovie onClick={ this.addMovie } /> */}
+        {/* <MovieList /> */}
+        <AddMovie onClick={ this.addMovie } />
       </div>
     );
   }
 }
 
-// MovieLibrary.propTypes = {
-//   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };
+MovieLibrary.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default MovieLibrary;
