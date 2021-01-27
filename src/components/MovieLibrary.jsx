@@ -27,7 +27,6 @@ class MovieLibray extends React.Component {
     console.log(name);
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
-    this.filterMovies();
   }
 
   // filterMovies() {
