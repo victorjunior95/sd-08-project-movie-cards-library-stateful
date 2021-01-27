@@ -29,7 +29,7 @@ class AddMovie extends React.Component {
   handleSendButton(event) {
     const { onClick } = this.props;
     event.preventDefault();
-    const { state  } = this;
+    const { state } = this;
     onClick(state);
     this.setState({
       subtitle: '',
@@ -42,7 +42,7 @@ class AddMovie extends React.Component {
   }
 
   handleChange(event) {
-    const { target }  = event;
+    const { target } = event;
     const { value, name } = target;
 
     if (name === 'rating') {
@@ -58,14 +58,8 @@ class AddMovie extends React.Component {
     return (
       <form action="" data-testid="add-movie-form">
         <AddMovieTextInputTitle title={ title } handleChange={ handleChange } />
-        <AddMovieTextInputSubtitle
-          subtitle={ subtitle }
-          handleChange={ handleChange }
-        />
-        <AddMovieTextInputImage
-          imagePath={ imagePath }
-          handleChange={ handleChange }
-        />
+        <AddMovieTextInputSubtitle subtitle={ subtitle } handleChange={ handleChange } />
+        <AddMovieTextInputImage imagePath={ imagePath } handleChange={ handleChange } />
         <AddMovieTextArea storyline={ storyline } handleChange={ handleChange } />
         <AddMovieInputRating rating={ rating } handleChange={ handleChange } />
         <AddMovieSelect genre={ genre } handleChange={ handleChange } />
