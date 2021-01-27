@@ -19,7 +19,7 @@ class MovieLibray extends React.Component {
 
     this.addNewMovie = this.addNewMovie.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.filterMovies = this.filterMovies.bind(this);
+    // this.filterMovies = this.filterMovies.bind(this);
   }
 
   handleChange({ target }) {
@@ -30,16 +30,16 @@ class MovieLibray extends React.Component {
     this.filterMovies();
   }
 
-  filterMovies() {
-    const { movies, bookmarkedOnly } = this.state;
-    const resultado = movies.filter((parametro) => parametro.bookmarked === true);
-    console.log(resultado);
-    if (bookmarkedOnly === true) {
-      this.setState({
-        movies: resultado,
-      });
-    }
-  }
+  // filterMovies() {
+  //   const { movies, bookmarkedOnly } = this.state;
+  //   const resultado = movies.filter((parametro) => parametro.bookmarked === true);
+  //   console.log(resultado);
+  //   if (bookmarkedOnly === true) {
+  //     this.setState({
+  //       movies: resultado,
+  //     });
+  //   }
+  // }
 
   // filterMoviess() {
   //   const {movies, bookmarkedOnly} = this.state;
@@ -49,13 +49,28 @@ class MovieLibray extends React.Component {
   //     return movies;
   // }
 
+  getFilteredMovies() {
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    let result = movies.filter(({ title, subtitle, storyline, genre }) => (
+      (title.includes(searchText)
+        || subtitle.includes(searchText)
+        || storyline.includes(searchText))
+        && (selectedGenre === '' || genre === selectedGenre)
+    ));
+    if (bookmarkedOnly) result = result.filter((movie) => movie.bookmarked);
+    return result;
+  }
+
   addNewMovie(objectOfMovies) {
     this.setState(({ movies }) => ({
       movies: [...movies, objectOfMovies],
     }));
   }
 
+  // GetFiltered Movies foi feito com a ajuda do Paulo Simões em um plantão em grupo
+
   render() {
+    const filteredMovies = this.getFilteredMovies();
     const { movies, searchText, bookmarkedOnly, selectedGenre } = this.state;
     console.log('renderizou');
     return (
@@ -69,7 +84,7 @@ class MovieLibray extends React.Component {
           selectedGenre={ selectedGenre }
           onSelectedGenreChange={ this.handleChange }
         />
-        <MovieList movies={ movies } />
+        <MovieList movies={ filteredMovies } />
         <AddMovie onClick={ this.addNewMovie } />
       </div>
     );
