@@ -8,36 +8,43 @@ import SearchBar from './SearchBar';
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
-    this.addMovie = this.addMovie.bind(this);
-    const { movies } = this.props;
+    // this.addMovie = this.addMovie.bind(this);
+    // const { movies } = this.props;
     this.state = {
-      // searchText: '',
-      // bookmarkedOnly: false,
-      // selectedGenre: '',
-      movies,
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: '',
+      // movies,
     };
   }
 
-  addMovie(movie) {
-    const { movies } = this.state;
-    this.setState({
-      movies: [...movies, movie],
-    });
-  }
+  // addMovie(movie) {
+  //   const { movies } = this.state;
+  //   this.setState({
+  //     movies: [...movies, movie],
+  //   });
+  // }
 
   render() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
       <div>
+        <SearchBar
+          searchText={ searchText }
+          bookmarkedOnly={ bookmarkedOnly }
+          selectedGenre={ selectedGenre }
+        />
+        {/* <MovieList movies={ movies } /> */}
         <AddMovie />
-        <SearchBar />
-        <AddMovie onClick={ this.addMovie } />
+
+        {/* <AddMovie onClick={ this.addMovie } /> */}
       </div>
     );
   }
 }
 
-MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+// MovieLibrary.propTypes = {
+//   movies: PropTypes.arrayOf(PropTypes.object).isRequired,
+// };
 
 export default MovieLibrary;
