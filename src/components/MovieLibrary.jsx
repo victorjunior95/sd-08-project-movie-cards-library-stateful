@@ -9,15 +9,28 @@ class MovieLibrary extends React.Component {
   constructor(props) {
     super();
 
-    this.handleChange= this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.onClick = this.onClick.bind(this);
-
     this.state = {
-        movies: props.movies,
-        'text-input': '',
-        'check-box': false,
-        'select-input': '',
+      movies: props.movies,
+      'text-input': '',
+      'check-box': false,
+      'select-input': '',
     };
+  }
+
+  handleChange({ target }) {
+    const { name, type, value, checked } = target;
+    const newValue = type === 'checkbox' ? checked : value;
+    this.setState({ [name]: newValue });
+  }
+
+  onClick(movie) {
+    const { movies } = this.state;
+
+    this.setState({
+      movies: [...movies, movie],
+    });
   }
 
   getFilteredMovies() {
@@ -41,37 +54,25 @@ class MovieLibrary extends React.Component {
     return result;
   }
 
-  handleChange({ target }) {
-    const { name, type, value, checked } = target;
-    const newValue = type === 'checkbox' ? checked : value;
-    this.setState({ [name]: newValue });
-  }
-
-  onClick(movie) {
-    const { movies } = this.state;
-
-    this.setState({
-      movies: [...movies, movie],
-    });
+  renderSearchBar() {
+    const { 'text-input': textInput,
+      'check-box': checkBox,
+      'select-input': selectInput } = this.state;
+    return (<SearchBar
+      searchText={ textInput }
+      onSearchTextChange={ this.handleChange }
+      bookmarkedOnly={ checkBox }
+      onBookmarkedChange={ this.handleChange }
+      selectedGenre={ selectInput }
+      onSelectedGenreChange={ this.handleChange }
+    />);
   }
 
   render() {
-    const {
-        'text-input': textInput,
-        'check-box': checkBox,
-        'select-input': selectInput,
-      } = this.state;
     return (
       <div>
         <h2> My awesome movie library </h2>
-        <SearchBar
-          searchText={ textInput }
-          onSearchTextChange={ this.handleChange }
-          bookmarkedOnly={ checkBox }
-          onBookmarkedChange={ this.handleChange }
-          selectedGenre={ selectInput }
-          onSelectedGenreChange={ this.handleChange }
-        />
+        {this.renderSearchBar()}
         <MovieList movies={ this.getFilteredMovies() } />
         <AddMovie onClick={ this.onClick } />
       </div>
