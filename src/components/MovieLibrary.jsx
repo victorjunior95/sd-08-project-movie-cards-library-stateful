@@ -9,7 +9,7 @@ class MovieLibrary extends React.Component {
   constructor(props) {
     super(props);
 
-    const movies = this.props.movies;
+    const { movies } = this.props;
 
     this.state = {
       searchText: '',
