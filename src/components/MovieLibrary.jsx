@@ -18,6 +18,9 @@ class MovieLibrary extends Component {
   }
 
   // A callback para atualizar o estado de <MovieLibrary /> em searchText precisa ser passada para <SearchBar />;
+  onSearchTextChange() {
+
+  }
 
   // A callback para atualizar o estado de <MovieLibrary /> em bookmarkedOnly precisa ser passada para <SearchBar />;
 
