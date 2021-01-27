@@ -9,42 +9,42 @@ class MovieLibrary extends React.Component {
   constructor(props) {
     super();
 
-    this.onSearchTextChange = this.onSearchTextChange.bind(this);
-    this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
-    this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+    this.handleChange= this.handleChange.bind(this);
     this.onClick = this.onClick.bind(this);
 
     this.state = {
-      searchText: '',
-      bookmarkedOnly: false,
-      selectedGenre: '',
-      movies: props.movies,
+        movies: props.movies,
+        'text-input': '',
+        'check-box': false,
+        'select-input': '',
     };
   }
 
-  onSearchTextChange({ target: { value } }) {
+  getFilteredMovies() {
     const { movies } = this.state;
-    this.setState({
-      searchText: value,
-      movies: movies.filter((movie) => [movie.title, movie.subtitle, movie.storyline]
-        .some((content) => content.includes(value))),
-    });
+    const { 'text-input': textInput, 'check-box': checkBox,
+      'select-input': selectInput } = this.state;
+    let result = [...movies];
+    if (textInput) {
+      result = result.filter((movie) => (
+        movie.title.includes(textInput)
+        || movie.subtitle.includes(textInput)
+        || movie.storyline.includes(textInput)
+      ));
+    }
+    if (selectInput) {
+      result = result.filter((movie) => movie.genre.includes(selectInput));
+    }
+    if (checkBox) {
+      result = result.filter((movie) => movie.bookmarked);
+    }
+    return result;
   }
 
-  onBookmarkedChange({ target: { checked } }) {
-    const { movies } = this.state;
-    this.setState({
-      bookmarkedOnly: checked,
-      movies: movies.filter((movie) => movie.bookmarked === checked),
-    });
-  }
-
-  onSelectedGenreChange({ target: { value } }) {
-    const { movies } = this.state;
-    this.setState({
-      selectedGenre: value,
-      movies: movies.filter((movie) => movie.genre === value),
-    });
+  handleChange({ target }) {
+    const { name, type, value, checked } = target;
+    const newValue = type === 'checkbox' ? checked : value;
+    this.setState({ [name]: newValue });
   }
 
   onClick(movie) {
@@ -56,19 +56,23 @@ class MovieLibrary extends React.Component {
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const {
+        'text-input': textInput,
+        'check-box': checkBox,
+        'select-input': selectInput,
+      } = this.state;
     return (
       <div>
         <h2> My awesome movie library </h2>
         <SearchBar
-          searchText={ searchText }
-          onSearchTextChange={ this.onSearchTextChange }
-          bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.onBookmarkedChange }
-          selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ this.onSelectedGenreChange }
+          searchText={ textInput }
+          onSearchTextChange={ this.handleChange }
+          bookmarkedOnly={ checkBox }
+          onBookmarkedChange={ this.handleChange }
+          selectedGenre={ selectInput }
+          onSelectedGenreChange={ this.handleChange }
         />
-        <MovieList movies={ movies } />
+        <MovieList movies={ this.getFilteredMovies() } />
         <AddMovie onClick={ this.onClick } />
       </div>
     );
