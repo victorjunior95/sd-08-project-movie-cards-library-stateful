@@ -123,7 +123,7 @@ class AddMovie extends React.Component {
   selectGenre() {
     const { genre } = this.state;
     return (
-      <label htmlFor="genre" ddata-testid="genre-input-label">
+      <label htmlFor="genre" data-testid="genre-input-label">
         Gênero
         <select
           id="genre"
@@ -152,6 +152,7 @@ class AddMovie extends React.Component {
         <button
           type="button"
           onClick={ () => { this.handleClick(onClick); } }
+          data-testid="send-button"
         >
           Adicionar filme
         </button>
