@@ -29,7 +29,7 @@ class AddMovie extends React.Component {
   handleSendButton(event) {
     const { onClick } = this.props;
     event.preventDefault();
-    const state = this.state;
+    const { state  } = this;
     onClick(state);
     this.setState({
       subtitle: '',
@@ -63,7 +63,8 @@ class AddMovie extends React.Component {
           subtitle={ subtitle }
           handleChange={ handleChange }
         />
-        <AddMovieTextInputImage imagePath={ imagePath }
+        <AddMovieTextInputImage
+          imagePath={ imagePath }
           handleChange={ handleChange }
         />
         <AddMovieTextArea storyline={ storyline } handleChange={ handleChange } />
