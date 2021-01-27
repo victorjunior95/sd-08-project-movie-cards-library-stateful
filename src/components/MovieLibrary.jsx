@@ -28,15 +28,20 @@ class MovieLibrary extends Component {
     });
   }
 
-  handleChange({ target: { name, value } }) {
-    this.setState({ [name]: value });
+  handleChange({ target: { name, value, type, checked } }) {
+    this.setState({ [name]: type === 'checkbox' ? checked : value });
   }
 
   getFilteredMovies() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
-    return movies.filter(({ title }) => (
-      title.includes(searchText)
+    let result = movies.filter(({ title, subtitle, storyline, genre }) => (
+      (title.includes(searchText)
+        || subtitle.includes(searchText)
+        || storyline.includes(searchText))
+        && (selectedGenre === '' || genre === selectedGenre)
     ));
+    if (bookmarkedOnly) result = result.filter((movie) => movie.bookmarked);
+    return result;
   }
 
   render() {
