@@ -51,6 +51,7 @@ class MovieLibrary extends Component {
   }
 
   addMovie(newMovie) {
+    console.log(newMovie);
     const { movies } = this.state;
     this.setState({
       movies: [...movies, newMovie],
@@ -58,8 +59,8 @@ class MovieLibrary extends Component {
   }
 
   render() {
-    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-    const { movies } = this.props;
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    // const { movies } = this.props;
     return (
       <div>
         <SearchBar

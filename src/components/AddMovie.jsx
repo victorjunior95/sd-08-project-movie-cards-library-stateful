@@ -116,21 +116,22 @@ class AddMovie extends Component {
     );
   }
 
-  sendButton() {
+  sendButton(reset) {
     return (
       <button
         data-testid="send-button"
-        Type="button"
-        onClick={ this.reset }
+        type="button"
+        onClick={ reset }
       >
         Adicionar filme
       </button>
     );
   }
 
-  reset(e) {
-    e.preventDefault();
+  reset() {
+    // e.preventDefault();
     const { onClick } = this.props;
+    onClick(this.state);
     this.setState({
       subtitle: '',
       title: '',
@@ -139,7 +140,6 @@ class AddMovie extends Component {
       rating: 0,
       genre: 'action',
     });
-    onClick(this.state);
   }
 
   render() {
@@ -153,7 +153,7 @@ class AddMovie extends Component {
         {this.inputStoryline(storyline)}
         {this.inputRating(rating)}
         {this.inputGenre(genre)}
-        {this.sendButton()}
+        {this.sendButton(() => this.reset())}
       </form>
     );
   }
