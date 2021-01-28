@@ -8,7 +8,6 @@ import MovieList from './MovieList';
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
-    this.addMovie = this.addMovie.bind(this);
     const { movies } = this.props;
     this.state = {
       searchText: '',
@@ -16,6 +15,23 @@ class MovieLibrary extends Component {
       selectedGenre: '',
       movies,
     };
+    this.addMovie = this.addMovie.bind(this);
+    this.onSearchTextChange = this.onSearchTextChange.bind(this);
+    // this.onBookmarkedChange = this.onBookmarkedChange.bind(this);
+    // this.onSelectedGenreChange = this.onSelectedGenreChange.bind(this);
+  }
+
+  onSearchTextChange({ target }) {
+    const { value } = target;
+    const { movies, searchText } = this.state;
+    this.setState({
+      searchText: value,
+    });
+    return movies.filter((el) => {
+      return el.title.includes(searchText)
+      || el.subtitle.includes(value)
+      || el.storyline.includes(value);
+    });
   }
 
   addMovie(newMovie) {
@@ -34,6 +50,9 @@ class MovieLibrary extends Component {
           searchText={ searchText }
           bookmarkedOnly={ bookmarkedOnly }
           selectedGenre={ selectedGenre }
+          onSearchTextChange={ this.onSearchTextChange }
+          // onBookmarkedChange={ this.onBookmarkedChange }
+          // onSelectedGenreChange={ this.onSelectedGenreChange }
         />
         <MovieList movies={ movies } />
         <AddMovie onClick={ this.addMovie } />
