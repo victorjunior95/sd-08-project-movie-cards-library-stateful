@@ -56,11 +56,11 @@ class AddMovie extends Component {
 
   inputImagePath(imagePath) {
     return (
-      <label data-testid="image-input-label" htmlFor="image-input">
+      <label data-testid="image-input-label" htmlFor="imagePath">
         Imagem
         <input
           data-testid="image-input"
-          name="image-input"
+          name="imagePath"
           type="text"
           value={ imagePath }
           onChange={ this.handleChange }
