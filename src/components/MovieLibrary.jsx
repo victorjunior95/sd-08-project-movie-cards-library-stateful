@@ -23,15 +23,15 @@ class MovieLibrary extends Component {
 
   onSearchTextChange({ target }) {
     const { value } = target;
-    const { movies, searchText } = this.state;
+    // const { movies, searchText } = this.state;
     this.setState({
       searchText: value,
     });
-    return movies.filter((el) => {
-      return el.title.includes(searchText)
-      || el.subtitle.includes(value)
-      || el.storyline.includes(value);
-    });
+    // return movies.filter((el) => {
+    //   return el.title.includes(searchText)
+    //   || el.subtitle.includes(value)
+    //   || el.storyline.includes(value);
+    // });
   }
 
   addMovie(newMovie) {
