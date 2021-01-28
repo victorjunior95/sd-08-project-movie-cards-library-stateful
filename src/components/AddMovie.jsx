@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 class AddMovie extends Component {
   constructor() {
     super();
-    this.handleChange = this.handleChange.bind(this);
-    this.reset = this.reset.bind(this);
-
     this.state = {
       subtitle: '',
       title: '',
@@ -15,6 +12,9 @@ class AddMovie extends Component {
       rating: 0,
       genre: 'action',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.sendButton = this.sendButton.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   handleChange({ target }) {
@@ -61,7 +61,7 @@ class AddMovie extends Component {
         <input
           data-testid="image-input"
           name="image-input"
-          // type="text"
+          type="text"
           value={ imagePath }
           onChange={ this.handleChange }
         />
