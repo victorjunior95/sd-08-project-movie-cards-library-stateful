@@ -1,7 +1,7 @@
 // implement SearchBar component here
 import React from 'react';
 import PropTypes from 'prop-types';
-
+// Aguardando pull
 import IncluiTexto from './IncluiTexto';
 import MostrarFavoritos from './MostrarFavoritos';
 import FiltrarGenero from './FiltrarGenero';
