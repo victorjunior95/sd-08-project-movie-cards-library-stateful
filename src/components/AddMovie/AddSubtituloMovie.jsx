@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 class AddSubtituloMovie extends React.Component {
   render() {
     const {
-      subtitle,
-      update,
+      value,
+      handleChange,
     } = this.props;
     return (
       <label htmlFor="text-input" data-testid="subtitle-input-label">
@@ -13,8 +13,8 @@ class AddSubtituloMovie extends React.Component {
         <input
           data-testid="subtitle-input"
           type="text"
-          value={ subtitle }
-          onChange={ update }
+          value={ value }
+          onChange={ handleChange }
         />
       </label>
     );
@@ -22,8 +22,8 @@ class AddSubtituloMovie extends React.Component {
 }
 
 AddSubtituloMovie.propTypes = {
-  subtitle: PropTypes.string.isRequired,
-  update: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default AddSubtituloMovie;

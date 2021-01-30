@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 class AddAvaliacaoMovie extends React.Component {
   render() {
     const {
-      rating,
-      updateRating,
+      value,
+      handleChange,
     } = this.props;
     return (
       <label htmlFor="input-number" data-testid="rating-input-label">
@@ -13,8 +13,8 @@ class AddAvaliacaoMovie extends React.Component {
         <input
           data-testid="rating-input"
           type="number"
-          value={ rating }
-          onChange={ updateRating }
+          value={ value }
+          onChange={ handleChange }
         />
       </label>
     );
@@ -22,8 +22,8 @@ class AddAvaliacaoMovie extends React.Component {
 }
 
 AddAvaliacaoMovie.propTypes = {
-  rating: PropTypes.number.isRequired,
-  updateRating: PropTypes.func.isRequired,
+  value: PropTypes.number.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default AddAvaliacaoMovie;

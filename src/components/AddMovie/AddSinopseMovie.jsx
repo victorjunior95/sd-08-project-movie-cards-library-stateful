@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 class AddSinopseMovie extends React.Component {
   render() {
     const {
-      story,
-      updateStore,
+      value,
+      handleChange,
     } = this.props;
     return (
       <label htmlFor="input-text" data-testid="storyline-input-label">
         Sinopse
         <textarea
           data-testid="storyline-input"
-          value={ story }
-          onChange={ updateStore }
+          value={ value }
+          onChange={ handleChange }
         />
       </label>
     );
@@ -21,8 +21,8 @@ class AddSinopseMovie extends React.Component {
 }
 
 AddSinopseMovie.propTypes = {
-  story: PropTypes.string.isRequired,
-  updateStore: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default AddSinopseMovie;

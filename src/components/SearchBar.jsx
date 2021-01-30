@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import IncluiTexto from './IncluiTexto';
-import MostrarFavoritos from './MostrarFavoritos';
-import FiltrarGenero from './FiltrarGenero';
+import IncluiTexto from './SearchBar/IncluiTexto';
+import MostrarFavoritos from './SearchBar/MostrarFavoritos';
+import FiltrarGenero from './SearchBar/FiltrarGenero';
 
 class SearchBar extends React.Component {
   render() {
@@ -19,9 +19,9 @@ class SearchBar extends React.Component {
     return (
       <div>
         <form data-testid="search-bar-form">
-          <IncluiTexto search={ searchText } textChange={ onSearchTextChange } />
-          <MostrarFavoritos marked={ bookmarkedOnly } change={ onBookmarkedChange } />
-          <FiltrarGenero genre={ selectedGenre } genreChange={ onSelectedGenreChange } />
+          <IncluiTexto value={ searchText } onChange={ onSearchTextChange } />
+          <MostrarFavoritos checked={ bookmarkedOnly } onChange={ onBookmarkedChange } />
+          <FiltrarGenero value={ selectedGenre } onChange={ onSelectedGenreChange } />
         </form>
       </div>
     );

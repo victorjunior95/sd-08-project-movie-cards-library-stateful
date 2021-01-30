@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 class IncluiTexto extends React.Component {
   render() {
-    const { search, textChange } = this.props;
+    const { value, onChange } = this.props;
     return (
       <label htmlFor="text-input" data-testid="text-input-label">
         Inclui o texto:
         <input
           data-testid="text-input"
           type="text"
-          value={ search }
-          onChange={ textChange }
+          value={ value }
+          onChange={ onChange }
         />
       </label>
     );
@@ -19,8 +19,8 @@ class IncluiTexto extends React.Component {
 }
 
 IncluiTexto.propTypes = {
-  search: PropTypes.string.isRequired,
-  textChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default IncluiTexto;

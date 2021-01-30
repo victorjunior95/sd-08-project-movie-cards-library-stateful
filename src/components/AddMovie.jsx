@@ -2,18 +2,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AddTituloMovie from './AddTituloMovie';
-import AddSubtituloMovie from './AddSubtituloMovie';
-import AddImageMovie from './AddImageMovie';
-import AddSinopseMovie from './AddSinopseMovie';
-import AddAvaliacaoMovie from './AddAvaliacaoMovie';
-import AddGeneroMovie from './AddGeneroMovie';
-import ButtonAddMovie from './ButtonAddMovie';
+import AddTituloMovie from './AddMovie/AddTituloMovie';
+import AddSubtituloMovie from './AddMovie/AddSubtituloMovie';
+import AddImageMovie from './AddMovie/AddImageMovie';
+import AddSinopseMovie from './AddMovie/AddSinopseMovie';
+import AddAvaliacaoMovie from './AddMovie/AddAvaliacaoMovie';
+import AddGeneroMovie from './AddMovie/AddGeneroMovie';
+import ButtonAddMovie from './AddMovie/ButtonAddMovie';
 
 class AddMovie extends React.Component {
   constructor() {
     super();
-
     this.state = {
       subtitle: '',
       title: '',
@@ -23,62 +22,43 @@ class AddMovie extends React.Component {
       genre: 'action',
     };
 
-    this.updateTitle = this.updateTitle.bind(this);
-    this.updateSubtitule = this.updateSubtitule.bind(this);
-    this.updateImgPath = this.updateImgPath.bind(this);
-    this.updateStore = this.updateStore.bind(this);
-    this.updateRating = this.updateRating.bind(this);
-    this.updateGenre = this.updateGenre.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
-  updateTitle(event) {
+  handleChange(event) {
     this.setState({
-      title: event.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
-  updateSubtitule(event) {
-    this.setState({
-      subtitle: event.target.value,
-    });
-  }
+  handleReset(event) {
+    event.preventDefault();
 
-  updateImgPath(event) {
     this.setState({
-      imagePath: event.target.value,
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
     });
-  }
 
-  updateStore(event) {
-    this.setState({
-      storyline: event.target.value,
-    });
-  }
-
-  updateRating(event) {
-    this.setState({
-      rating: event.target.value,
-    });
-  }
-
-  updateGenre(event) {
-    this.setState({
-      genre: event.target.value,
-    });
+    const { onClick } = this.props;
+    onClick(this.state);
   }
 
   render() {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
-    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
-        <AddTituloMovie title={ title } updateTitle={ this.updateTitle } />
-        <AddSubtituloMovie subtitle={ subtitle } update={ this.updateSubtitule } />
-        <AddImageMovie imgPath={ imagePath } changeImg={ this.updateImgPath } />
-        <AddSinopseMovie story={ storyline } updateStore={ this.updateStore } />
-        <AddAvaliacaoMovie rating={ rating } updateRating={ this.updateRating } />
-        <AddGeneroMovie genre={ genre } updateGenre={ this.updateGenre } />
-        <ButtonAddMovie onClick={ onClick } />
+        <AddTituloMovie value={ title } handleChange={ this.handleChange } />
+        <AddSubtituloMovie value={ subtitle } handleChange={ this.handleChange } />
+        <AddImageMovie value={ imagePath } handleChange={ this.handleChange } />
+        <AddSinopseMovie value={ storyline } handleChange={ this.handleChange } />
+        <AddAvaliacaoMovie value={ rating } handleChange={ this.handleChange } />
+        <AddGeneroMovie value={ genre } handleChange={ this.handleChange } />
+        <ButtonAddMovie handleReset={ this.handleReset } />
       </form>
     );
   }

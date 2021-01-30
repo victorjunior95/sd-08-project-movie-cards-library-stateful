@@ -3,18 +3,15 @@ import PropTypes from 'prop-types';
 
 class AddImageMovie extends React.Component {
   render() {
-    const {
-      imgPath,
-      changeImg,
-    } = this.props;
+    const { value, handleChange } = this.props;
     return (
-      <label htmlFor="text-input" data-testid="image-input-label">
+      <label htmlFor="image" data-testid="image-input-label">
         Imagem
         <input
           data-testid="image-input"
           type="text"
-          value={ imgPath }
-          onChange={ changeImg }
+          value={ value }
+          onChange={ handleChange }
         />
       </label>
     );
@@ -22,8 +19,8 @@ class AddImageMovie extends React.Component {
 }
 
 AddImageMovie.propTypes = {
-  imgPath: PropTypes.string.isRequired,
-  changeImg: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default AddImageMovie;
