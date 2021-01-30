@@ -22,13 +22,48 @@ class AddMovie extends React.Component {
       genre: 'action',
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeTitle = this.handleChangeTitle.bind(this);
+    this.handleChangeSub = this.handleChangeSub.bind(this);
+    this.handleChangeImage = this.handleChangeImage.bind(this);
+    this.handleChangeSinopse = this.handleChangeSinopse.bind(this);
+    this.handleChangeAvaliacao = this.handleChangeAvaliacao.bind(this);
+    this.handleChangeGenre = this.handleChangeGenre.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
-  handleChange(event) {
+  handleChangeTitle(event) {
     this.setState({
-      [event.target.name]: event.target.value,
+      title: event.target.value,
+    });
+  }
+
+  handleChangeSub(event) {
+    this.setState({
+      subtitle: event.target.value,
+    });
+  }
+
+  handleChangeImage(event) {
+    this.setState({
+      imagePath: event.target.value,
+    });
+  }
+
+  handleChangeSinopse(event) {
+    this.setState({
+      storyline: event.target.value,
+    });
+  }
+
+  handleChangeAvaliacao(event) {
+    this.setState({
+      rating: event.target.value,
+    });
+  }
+
+  handleChangeGenre(event) {
+    this.setState({
+      genre: event.target.value,
     });
   }
 
@@ -52,12 +87,12 @@ class AddMovie extends React.Component {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
-        <AddTituloMovie value={ title } handleChange={ this.handleChange } />
-        <AddSubtituloMovie value={ subtitle } handleChange={ this.handleChange } />
-        <AddImageMovie value={ imagePath } handleChange={ this.handleChange } />
-        <AddSinopseMovie value={ storyline } handleChange={ this.handleChange } />
-        <AddAvaliacaoMovie value={ rating } handleChange={ this.handleChange } />
-        <AddGeneroMovie value={ genre } handleChange={ this.handleChange } />
+        <AddTituloMovie value={ title } handleChange={ this.handleChangeTitle } />
+        <AddSubtituloMovie value={ subtitle } handleChange={ this.handleChangeSub } />
+        <AddImageMovie value={ imagePath } handleChange={ this.handleChangeImage } />
+        <AddSinopseMovie value={ storyline } handleChange={ this.handleChangeSinopse } />
+        <AddAvaliacaoMovie value={ rating } handleChange={ this.handleChangeAvaliacao } />
+        <AddGeneroMovie value={ genre } handleChange={ this.handleChangeGenre } />
         <ButtonAddMovie handleReset={ this.handleReset } />
       </form>
     );
