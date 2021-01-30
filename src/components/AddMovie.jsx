@@ -68,10 +68,8 @@ class AddMovie extends React.Component {
   }
 
   render() {
-    const {
-      onClick,
-    } = this.props;
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
+    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         <AddTituloMovie title={ title } updateTitle={ this.updateTitle } />
@@ -80,7 +78,7 @@ class AddMovie extends React.Component {
         <AddSinopseMovie story={ storyline } updateStore={ this.updateStore } />
         <AddAvaliacaoMovie rating={ rating } updateRating={ this.updateRating } />
         <AddGeneroMovie genre={ genre } updateGenre={ this.updateGenre } />
-        <ButtonAddMovie teste={ onClick } />
+        <ButtonAddMovie onClick={ onClick } />
       </form>
     );
   }
