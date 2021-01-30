@@ -80,7 +80,7 @@ class AddMovie extends React.Component {
         <AddSinopseMovie story={ storyline } updateStore={ this.updateStore } />
         <AddAvaliacaoMovie rating={ rating } updateRating={ this.updateRating } />
         <AddGeneroMovie genre={ genre } updateGenre={ this.updateGenre } />
-        <ButtonAddMovie onClick={ onClick } />
+        <ButtonAddMovie teste={ onClick } />
       </form>
     );
   }
