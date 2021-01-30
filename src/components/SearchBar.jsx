@@ -7,9 +7,8 @@ import TextSearch from './TextSearch';
 
 class SearchBar extends React.Component {
   render() {
-    const { searchText, onSearchTextChange,
-      bookmarkedOnly, selectedGenre, onBookmarkedChange,
-      onSelectedGenreChange } = this.props;
+    const { searchText, onSearchTextChange, bookmarkedOnly, selectedGenre,
+      onBookmarkedChange, onSelectedGenreChange } = this.props;
     return (
       <form data-testid="search-bar-form">
         <TextSearch
@@ -29,18 +28,12 @@ class SearchBar extends React.Component {
 }
 
 SearchBar.propTypes = {
-  searchText: PropTypes.string,
+  searchText: PropTypes.string.isRequired,
   onSearchTextChange: PropTypes.func.isRequired,
-  bookmarkedOnly: PropTypes.bool,
-  selectedGenre: PropTypes.string,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
   onSelectedGenreChange: PropTypes.func.isRequired,
-};
-
-SearchBar.defaultProps = {
-  searchText: '',
-  bookmarkedOnly: false,
-  selectedGenre: '',
 };
 
 export default SearchBar;
