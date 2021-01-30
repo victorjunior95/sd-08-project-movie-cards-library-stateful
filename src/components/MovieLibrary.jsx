@@ -22,6 +22,7 @@ class MovieLibrary extends React.Component {
 
     this.updateSearchText = this.updateSearchText.bind(this);
     this.updateBookmarkedOnly = this.updateBookmarkedOnly.bind(this);
+    this.updateSelectedGenre = this.updateSelectedGenre.bind(this);
   }
 
   updateSearchText(event) {
@@ -37,7 +38,7 @@ class MovieLibrary extends React.Component {
   }
 
   updateSelectedGenre(event) {
-    this.states({
+    this.setState({
       selectedGenre: event.target.value,
     });
   }

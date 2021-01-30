@@ -1,51 +1,82 @@
 // implement AddMovie component here
 import React from 'react';
 
+import AddTituloMovie from './AddTituloMovie';
+import AddSubtituloMovie from './AddSubtituloMovie';
+import AddImageMovie from './AddImageMovie';
+import AddSinopseMovie from './AddSinopseMovie';
+import AddAvaliacaoMovie from './AddAvaliacaoMovie';
+import AddGeneroMovie from './AddGeneroMovie';
+import ButtonAddMovie from './ButtonAddMovie';
+
 class AddMovie extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      subtitle:'',
-      title:'',
-      imagePath:'',
-      storyline:'',
-      rating:'',
-      genre:'action',
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
     };
+
+    this.updateTitle = this.updateTitle.bind(this);
+    this.updateSubtitule = this.updateSubtitule.bind(this);
+    this.updateImgPath = this.updateImgPath.bind(this);
+    this.updateStore = this.updateStore.bind(this);
+    this.updateRating = this.updateRating.bind(this);
+    this.updateGenre = this.updateGenre.bind(this);
   }
+
+  updateTitle(event) {
+    this.setState({
+      title: event.target.value,
+    });
+  }
+
+  updateSubtitule(event) {
+    this.setState({
+      subtitle: event.target.value,
+    });
+  }
+
+  updateImgPath(event) {
+    this.setState({
+      imagePath: event.target.value,
+    });
+  }
+
+  updateStore(event) {
+    this.setState({
+      storyline: event.target.value,
+    });
+  }
+
+  updateRating(event) {
+    this.setState({
+      rating: event.target.value,
+    });
+  }
+
+  updateGenre(event) {
+    this.setState({
+      genre: event.target.value,
+    });
+  }
+
   render() {
+    const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
-        <label data-testid="title-input-label">
-          Título
-          <input data-testid="title-input" type="text" />
-        </label>
-        <label data-testid="subtitle-input-label">
-          Subtítulo
-          <input data-testid="subtitle-input" type="text" />
-        </label>
-        <label data-testid="image-input-label">
-          Imagem
-          <input data-testid="image-input" type="text" />
-        </label>
-        <label data-testid="storyline-input-label">
-          Sinopse
-          <textarea data-testid="storyline-input" />
-        </label>
-        <label data-testid="rating-input-label">
-          Avaliação
-          <input data-testid="rating-input" type="number" />
-        </label>
-        <label data-testid="genre-input-label">
-          Gênero
-          <select data-testid="genre-input">
-            <option data-testid="genre-option" value="action">Ação</option>
-            <option data-testid="genre-option" value="comedy">Comédia</option>
-            <option data-testid="genre-option" value="thriller">Suspense</option>
-          </select>
-        </label>
-        <button data-testid="send-button">Adicionar filme</button>
+        <AddTituloMovie title={ title } updateTitle={ this.updateTitle } />
+        <AddSubtituloMovie subtitle={ subtitle } update={ this.updateSubtitule } />
+        <AddImageMovie imgPath={ imagePath } changeImg={ this.updateImgPath } />
+        <AddSinopseMovie story={ storyline } updateStore={ this.updateStore } />
+        <AddAvaliacaoMovie rating={ rating } updateRating={ this.updateRating } />
+        <AddGeneroMovie genre={ genre } updateGenre={ this.updateGenre } />
+        <ButtonAddMovie />
       </form>
     );
   }
