@@ -13,7 +13,7 @@ class MovieLibrary extends Component {
     const movies = this.props;
     return (
       <div>
-        <h2> My awesome movie library </h2>
+        <h2> My  movie library </h2>
         {/* <SearchBar />
         <MovieList movies={ movies } />
         <AddMovie /> */}
