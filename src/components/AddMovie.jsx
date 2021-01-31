@@ -16,6 +16,7 @@ export default class AddMovie extends Component {
 
   render() {
     const { genre, rating, storyline, imagePath, title, subtitle } = this.state;
+    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form" />
     );
