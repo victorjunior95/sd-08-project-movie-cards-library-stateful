@@ -6,6 +6,7 @@ class AddMovie extends Component {
     super();
 
     this.handleChange = this.handleChange.bind(this);
+    this.resetState = this.resetState.bind(this);
 
     this.state = {
       subtitle: '',
@@ -22,6 +23,19 @@ class AddMovie extends Component {
     const newValue = type === 'number' ? +value : value;
     this.setState({
       [name]: newValue,
+    });
+  }
+
+  resetState(event) {
+    const { onClick } = this.props;
+    onClick(event);
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
     });
   }
 
@@ -131,11 +145,10 @@ class AddMovie extends Component {
   }
 
   buttonMovieAdd() {
-    const { onClick } = this.props;
     return (
       <button
-        type="button"
-        onClick={ onClick }
+        type="submit"
+        onClick={ (event) => { event.preventDefault(); this.resetState(); } }
         data-testid="send-button"
       >
         Adicionar filme
