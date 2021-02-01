@@ -26,9 +26,9 @@ class AddMovie extends Component {
     });
   }
 
-  resetState(event) {
+  resetState() {
     const { onClick } = this.props;
-    onClick(event);
+    onClick(this.state);
     this.setState({
       subtitle: '',
       title: '',
