@@ -8,18 +8,18 @@ class AddMovieInputRating extends React.Component {
       <fieldset>
         <label htmlFor="rating-input" data-testid="rating-input-label">
           Avaliação
+          <input
+            type="number"
+            name="rating"
+            data-testid="rating-input"
+            id="rating-input"
+            onChange={ handleChange }
+            value={ rating }
+            min="0"
+            max="5"
+            step="any"
+          />
         </label>
-        <input
-          type="number"
-          name="rating"
-          data-testid="rating-input"
-          id="rating-input"
-          onChange={ handleChange }
-          value={ rating }
-          min="0"
-          max="5"
-          step="any"
-        />
       </fieldset>
     );
   }
