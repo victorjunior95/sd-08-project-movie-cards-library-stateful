@@ -22,8 +22,13 @@ class AddMovieInputTitle extends React.Component {
 }
 
 AddMovieInputTitle.propTypes = {
-  onChangeForm: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
+  onChangeForm: PropTypes.func,
 };
 
+AddMovieInputTitle.defaultProps = {
+  onChangeForm: () => {
+    console.log('problema ao passar onChangeForm');
+  },
+};
 export default AddMovieInputTitle;
