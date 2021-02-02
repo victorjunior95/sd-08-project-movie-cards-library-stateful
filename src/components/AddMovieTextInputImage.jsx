@@ -8,15 +8,15 @@ class AddMovieTextInputImage extends React.Component {
       <fieldset>
         <label htmlFor="image-input" data-testid="image-input-label">
           Imagem
+          <input
+            type="text"
+            name="imagePath"
+            data-testid="image-input"
+            id="image-input"
+            value={ imagePath }
+            onChange={ handleChange }
+          />
         </label>
-        <input
-          type="text"
-          name="imagePath"
-          data-testid="image-input"
-          id="image-input"
-          value={ imagePath }
-          onChange={ handleChange }
-        />
       </fieldset>
     );
   }

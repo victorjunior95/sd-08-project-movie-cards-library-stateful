@@ -9,15 +9,15 @@ class SearchBarTextInput extends React.Component {
       <fieldset>
         <label htmlFor="text-input" data-testid="text-input-label">
           Inclui o texto:
+          <input
+            type="text"
+            name="text-input"
+            value={ searchText }
+            onChange={ onSearchTextChange }
+            data-testid="text-input"
+            id="text-input"
+          />
         </label>
-        <input
-          type="text"
-          name="text-input"
-          value={ searchText }
-          onChange={ onSearchTextChange }
-          data-testid="text-input"
-          id="text-input"
-        />
       </fieldset>
     );
   }

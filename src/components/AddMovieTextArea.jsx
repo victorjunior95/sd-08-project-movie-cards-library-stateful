@@ -8,17 +8,17 @@ class AddMovieTextArea extends React.Component {
       <fieldset>
         <label htmlFor="storyline-input" data-testid="storyline-input-label">
           Sinopse
+          <textarea
+            type="text"
+            name="storyline"
+            data-testid="storyline-input"
+            cols="30"
+            rows="10"
+            id="storyline-input"
+            value={ storyline }
+            onChange={ handleChange }
+          />
         </label>
-        <textarea
-          type="text"
-          name="storyline"
-          data-testid="storyline-input"
-          cols="30"
-          rows="10"
-          id="storyline-input"
-          value={ storyline }
-          onChange={ handleChange }
-        />
       </fieldset>
     );
   }

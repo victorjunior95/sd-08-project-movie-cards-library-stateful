@@ -8,15 +8,15 @@ class SearchBarCheckbox extends React.Component {
       <fieldset>
         <label htmlFor="checkbox-input" data-testid="checkbox-input-label">
           Mostrar somente favoritos
+          <input
+            type="checkbox"
+            name="checkbox-input"
+            id="checkbox-input"
+            checked={ bookmarkedOnly }
+            onChange={ onBookmarkedChange }
+            data-testid="checkbox-input"
+          />
         </label>
-        <input
-          type="checkbox"
-          name="checkbox-input"
-          id="checkbox-input"
-          checked={ bookmarkedOnly }
-          onChange={ onBookmarkedChange }
-          data-testid="checkbox-input"
-        />
       </fieldset>
     );
   }

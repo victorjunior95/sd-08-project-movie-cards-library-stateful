@@ -8,24 +8,24 @@ class AddMovieSelect extends React.Component {
       <fieldset>
         <label htmlFor="genre-input" data-testid="genre-input-label">
           Gênero
+          <select
+            name="genre"
+            value={ genre }
+            onChange={ handleChange }
+            data-testid="genre-input"
+            id="genre-input"
+          >
+            <option value="action" data-testid="genre-option">
+              Ação
+            </option>
+            <option value="comedy" data-testid="genre-option">
+              Comédia
+            </option>
+            <option value="thriller" data-testid="genre-option">
+              Suspense
+            </option>
+          </select>
         </label>
-        <select
-          name="genre"
-          value={ genre }
-          onChange={ handleChange }
-          data-testid="genre-input"
-          id="genre-input"
-        >
-          <option value="action" data-testid="genre-option">
-            Ação
-          </option>
-          <option value="comedy" data-testid="genre-option">
-            Comédia
-          </option>
-          <option value="thriller" data-testid="genre-option">
-            Suspense
-          </option>
-        </select>
       </fieldset>
     );
   }
