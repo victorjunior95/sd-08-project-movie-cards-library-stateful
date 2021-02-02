@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   constructor() {
     super();
     this.state = {
-      
+
     };
 
     this.movieNameInput = this.movieNameInput.bind(this);
@@ -64,8 +64,8 @@ class AddMovie extends React.Component {
   }
 }
 
-AddMovie.propTypes = {
-  onClick: PropTypes.func.isRequired,
-};
+// AddMovie.propTypes = {
+//   onClick: PropTypes.func.isRequired,
+// };
 
 export default AddMovie;
