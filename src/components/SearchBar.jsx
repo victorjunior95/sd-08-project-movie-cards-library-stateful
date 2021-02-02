@@ -6,16 +6,7 @@ import SearchBarCheckbox from './SearchBarCheckbox';
 import SearchBarSelect from './SearchBarSelect';
 
 class SearchBar extends React.Component {
-  render() {
-    const {
-      searchText,
-      onSearchTextChange,
-      bookmarkedOnly,
-      onBookmarkedChange,
-      selectedGenre,
-      onSelectedGenreChange,
-    } = this.props;
-
+  formSearchBar(searchText, onSearchTextChange, bookmarkedOnly, onBookmarkedChange, selectedGenre, onSelectedGenreChange) {
     return (
       <form action="" data-testid="search-bar-form">
         <SearchBarTextInput
@@ -31,6 +22,24 @@ class SearchBar extends React.Component {
           onSelectedGenreChange={ onSelectedGenreChange }
         />
       </form>
+    );
+  }
+
+  render() {
+    const {
+      searchText,
+      onSearchTextChange,
+      bookmarkedOnly,
+      onBookmarkedChange,
+      selectedGenre,
+      onSelectedGenreChange,
+    } = this.props;
+    const { formSearchBar } = this;
+
+    return (
+      <>
+        {formSearchBar(searchText, onSearchTextChange, bookmarkedOnly, onBookmarkedChange, selectedGenre, onSelectedGenreChange)}
+      </>
     );
   }
 }

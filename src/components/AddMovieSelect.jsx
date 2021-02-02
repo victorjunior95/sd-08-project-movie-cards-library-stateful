@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddMovieSelectOptions from './AddMovieSelectOptions';
 
 class AddMovieSelect extends React.Component {
   render() {
@@ -15,15 +16,7 @@ class AddMovieSelect extends React.Component {
             data-testid="genre-input"
             id="genre-input"
           >
-            <option value="action" data-testid="genre-option">
-              Ação
-            </option>
-            <option value="comedy" data-testid="genre-option">
-              Comédia
-            </option>
-            <option value="thriller" data-testid="genre-option">
-              Suspense
-            </option>
+            <AddMovieSelectOptions />
           </select>
         </label>
       </fieldset>
