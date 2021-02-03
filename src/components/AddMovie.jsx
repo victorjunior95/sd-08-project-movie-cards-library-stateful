@@ -1,21 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: '',
       subtitle: '',
+      title: '',
       imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
     };
 
     this.handleChange = this.handleChange.bind(this);
-
-    this.movieNameInput = this.movieNameInput.bind(this);
-    this.subtitleInput = this.subtitleInput.bind(this);
-    this.imageInput = this.imageInput.bind(this);
-    this.textInput = this.textInput.bind(this);
-    this.ratingInput = this.ratingInput.bind(this);
+    this.onClickButton = this.onClickButton.bind(this);
+    this.inputText = this.inputText.bind(this);
+    this.inputSubtitle = this.inputSubtitle.bind(this);
+    this.inputImage = this.inputImage.bind(this);
+    this.inputTextArea = this.inputTextArea.bind(this);
+    this.inputNumber = this.inputNumber.bind(this);
+    this.selectForm = this.selectForm.bind(this);
   }
 
   handleChange(event) {
@@ -24,99 +29,155 @@ class AddMovie extends React.Component {
     });
   }
 
-  movieNameInput(callback) {
+  onClickButton(event) {
+    event.preventDefault();
+    const { genre, imagePath, rating, storyline, subtitle, title } = this.state;
+    const { onClick } = this.props;
+    const newMovie = { genre,
+      imagePath,
+      rating,
+      storyline,
+      subtitle,
+      title,
+    };
+    onClick(newMovie);
+    this.setState({ subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+  }
+
+  inputText(callback) {
     const { title } = this.state;
     return (
-      <label data-testid="title-input-label" htmlFor="inputTitle">
-        Título:
+      <label data-testid="title-input-label" htmlFor="title-input">
+        Título
         <input
           type="text"
           name="title"
           value={ title }
           onChange={ callback }
           data-testid="title-input"
+          id="title-input"
         />
       </label>
     );
   }
 
-  subtitleInput(callback) {
+  inputSubtitle(callback) {
     const { subtitle } = this.state;
     return (
-      <label data-testid="subtitle-input-label" htmlFor="inputSubtitle">
-        Subtítulo:
+      <label data-testid="subtitle-input-label" htmlFor="subtitle-input">
+        Subtítulo
         <input
           type="text"
           name="subtitle"
           value={ subtitle }
           onChange={ callback }
           data-testid="subtitle-input"
+          id="subtitle-input"
         />
       </label>
     );
   }
 
-  imageInput(callback) {
+  inputImage(callback) {
     const { imagePath } = this.state;
     return (
-      <label data-testid="image-input-label" htmlFor="inputImage">
-        Imagem:
+      <label data-testid="image-input-label" htmlFor="image-input">
+        Imagem
         <input
           type="text"
           name="imagePath"
           value={ imagePath }
-          data-testid="image-input"
           onChange={ callback }
+          data-testid="image-input"
+          id="image-input"
         />
       </label>
     );
   }
 
-  textInput(callback) {
+  inputTextArea(callback) {
     const { storyline } = this.state;
     return (
-      <label data-testid="storyline-input-label" htmlFor="inputText">
-        Sinopse:
-        <input
+      <label data-testid="storyline-input-label" htmlFor="storyline-input">
+        Sinopse
+        <textarea
           type="text"
           name="storyline"
           value={ storyline }
-          data-testid="storyline-input"
           onChange={ callback }
+          data-testid="storyline-input"
+          id="storyline-input"
         />
       </label>
     );
   }
 
-  ratingInput(callback) {
+  inputNumber(callback) {
     const { rating } = this.state;
     return (
-      <label data-testid="rating-input-label" htmlFor="inputRating">
-        Avaliação:
+      <label data-testid="rating-input-label" htmlFor="rating-input">
+        Avaliação
         <input
           type="number"
           name="rating"
           value={ rating }
-          data-testid="rating-input"
           onChange={ callback }
+          data-testid="rating-input"
+          id="rating-input"
         />
+      </label>
+    );
+  }
+
+  selectForm(callback) {
+    const { genre } = this.state;
+    return (
+      <label data-testid="genre-input-label" htmlFor="genre-input">
+        Gênero
+        <select
+          name="genre"
+          value={ genre }
+          data-testid="genre-input"
+          onChange={ callback }
+          id="genre-input"
+        >
+          <option value="action" data-testid="genre-option">Ação</option>
+          <option value="comedy" data-testid="genre-option">Comédia</option>
+          <option value="thriller" data-testid="genre-option">Suspense</option>
+        </select>
       </label>
     );
   }
 
   render() {
     return (
-      <label htmlFor="inputMovie">
-        <form data-testid="add-movie-form">
-          { this.movieNameInput(this.handleChange) }
-          { this.subtitleInput(this.handleChange) }
-          { this.imageInput(this.handleChange)}
-          { this.textInput(this.handleChange)}
-          { this.ratingInput(this.handleChange)}
-        </form>
-      </label>
+      <form data-testid="add-movie-form" onSubmit={ this.onClickButton }>
+        { this.inputText(this.handleChange) }
+        { this.inputSubtitle(this.handleChange) }
+        { this.inputImage(this.handleChange) }
+        { this.inputTextArea(this.handleChange) }
+        { this.inputNumber(this.handleChange) }
+        { this.selectForm(this.handleChange) }
+        <button
+          type="submit"
+          data-testid="send-button"
+          onClick={ this.onClickButton }
+        >
+          Adicionar filme
+        </button>
+      </form>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
