@@ -6,6 +6,7 @@ class SearchBar extends React.Component {
     return (
       <div>
         <p>Hello!</p>
+        <form data-testid="search-bar-form" method="post" />
       </div>
     );
   }
