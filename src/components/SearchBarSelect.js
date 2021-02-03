@@ -9,7 +9,7 @@ class SearchBarSelect extends React.Component {
       <label htmlFor="select-input" data-testid="select-input-label">
         Filtrar por gênero
         <select
-          name="select-input"
+          name="selectedGenre"
           id="select-input"
           data-testid="select-input"
           value={ selectedGenre }

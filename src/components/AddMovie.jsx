@@ -33,9 +33,9 @@ class AddMovie extends React.Component {
   }
 
   onClick() {
-    const { onClick } = this.props;
+    const { onClick: onClickMovieLibrary } = this.props;
     this.setState((state) => {
-      onClick(state);
+      onClickMovieLibrary(state);
       return {
         title: '',
         subtitle: '',
