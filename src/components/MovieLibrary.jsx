@@ -81,7 +81,7 @@ class MovieLibrary extends React.Component {
   }
 
   onClick(state) {
-    let { movies: moviesStates } = this.state;
+    const { movies: moviesStates } = this.state;
     const newMovie = { ...state };
     const newState = moviesStates.slice();
     newState.push(newMovie);
