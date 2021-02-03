@@ -64,19 +64,16 @@ class MovieLibrary extends React.Component {
         (name) => name.bookmarked === true && name.genre === selectedGenre,
       );
     }
-
     if (bookmarkedOnly) {
       return this.filterByText(movies).filter(
         (name) => name.bookmarked === true,
       );
     }
-
     if (selectedGenre) {
       return this.filterByText(movies).filter(
         (name) => name.genre === selectedGenre,
       );
     }
-
     return this.filterByText(movies);
   }
 
