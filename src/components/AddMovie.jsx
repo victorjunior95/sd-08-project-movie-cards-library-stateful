@@ -1,21 +1,23 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   constructor() {
     super();
     this.state = {
-
+      title: '',
+      subtitle: '',
     };
 
     this.movieNameInput = this.movieNameInput.bind(this);
     this.subtitleInput = this.subtitleInput.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  //   handleChange(event) {
-  //       this.setState({title: event.target.title});
-  //   }
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
 
   movieNameInput(callback) {
     const { title } = this.state;
@@ -51,21 +53,20 @@ class AddMovie extends React.Component {
     );
   }
 
+  //   imageInput(callback) {
+
+  //   }
+
   render() {
     return (
       <label htmlFor="inputMovie">
         <form data-testid="add-movie-form">
-          { this.movieNameInput(this) }
-          { this.subtitleInput(this) }
-          {/* { this.movieNameInput(this.handleChange) } */}
+          { this.movieNameInput(this.handleChange) }
+          { this.subtitleInput(this.handleChange) }
         </form>
       </label>
     );
   }
 }
-
-// AddMovie.propTypes = {
-//   onClick: PropTypes.func.isRequired,
-// };
 
 export default AddMovie;
