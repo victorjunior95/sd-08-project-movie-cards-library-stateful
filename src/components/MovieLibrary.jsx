@@ -25,13 +25,39 @@ class MovieLibrary extends React.Component {
 
   onSearchTextChange({ target }) {
     const { name, value } = target;
+    let { movies: moviesProps } = this.props;
+    const { movies: moviesStates } = this.state;
+    let selectedMovies = [];
+    if (value !== '') {
+      selectedMovies = moviesStates.filter((movie) => {
+        const verifyString = movie.title.includes(value)
+        || movie.subtitle.includes(value)
+        || movie.storyline.includes(value);
+        return verifyString;
+      });
+    } else selectedMovies = moviesProps;
+    moviesProps = selectedMovies;
     this.setState({
       [name]: value,
+      movies: selectedMovies,
     });
   }
 
   onBookmarkedChange({ target }) {
+    const { movies: moviesStates } = this.state;
     const { name, checked } = target;
+    let { movies: moviesProps } = this.props;
+    let selectedMovies = [];
+    if (checked) {
+      selectedMovies = moviesStates.filter((movie) => movie.bookmarked === true);
+    } else {
+      selectedMovies = moviesProps;
+    }
+    moviesProps = selectedMovies;
+    this.setState({
+      [name]: checked,
+      movies: selectedMovies,
+    });
     this.setState({
       [name]: checked,
     });
@@ -39,8 +65,15 @@ class MovieLibrary extends React.Component {
 
   onSelectedGenreChange({ target }) {
     const { name, value } = target;
-    const { movies } = this.state;
-    const selectedMovies = movies.map((movie) => movie.genre === value);
+    const { movies: moviesStates } = this.state;
+    let { movies: moviesProps } = this.props;
+    let selectedMovies = [];
+    if (value !== '') {
+      selectedMovies = moviesStates.filter((movie) => movie.genre === value);
+    } else {
+      selectedMovies = moviesProps;
+    }
+    moviesProps = selectedMovies;
     this.setState({
       [name]: value,
       movies: selectedMovies,
@@ -48,7 +81,13 @@ class MovieLibrary extends React.Component {
   }
 
   onClick(state) {
-    console.log(state);
+    let { movies: moviesStates } = this.state;
+    const newMovie = { ...state };
+    const newState = moviesStates.slice();
+    newState.push(newMovie);
+    this.setState({
+      movies: newState,
+    });
   }
 
   setInitialMovieState() {
@@ -83,7 +122,10 @@ MovieLibrary.propTypes = {
       title: PropTypes.string.isRequired,
       subtitle: PropTypes.string.isRequired,
       storyline: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
+      rating: PropTypes.oneOfType([
+        PropTypes.number.isRequired,
+        PropTypes.string.isRequired,
+      ]),
       imagePath: PropTypes.string.isRequired,
       bookmarked: PropTypes.bool.isRequired,
       genre: PropTypes.string.isRequired,
