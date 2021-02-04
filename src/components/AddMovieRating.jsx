@@ -25,5 +25,8 @@ export default AddMovieRating;
 
 AddMovieRating.propTypes = {
   changeState: PropTypes.func.isRequired,
-  rating: PropTypes.number.isRequired,
+  rating: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]).isRequired,
 };

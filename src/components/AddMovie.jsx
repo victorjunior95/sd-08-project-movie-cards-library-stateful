@@ -25,17 +25,19 @@ class AddMovie extends React.Component {
     this.otherOnClick = this.otherOnClick.bind(this);
   }
 
-  otherOnClick() {
-    const { onClick } = this.props;
-    this.setState({
-      subtitle: '',
-      title: '',
-      imagePath: '',
-      storyline: '',
-      rating: 0,
-      genre: 'action',
-    });
-    onClick();
+  otherOnClick(onClick) {
+    return () => {
+      const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
+      onClick({ title, subtitle, imagePath, storyline, rating, genre });
+      this.setState({
+        subtitle: '',
+        title: '',
+        imagePath: '',
+        storyline: '',
+        rating: 0,
+        genre: 'action',
+      });
+    };
   }
 
   changeState(newState) {
@@ -44,6 +46,7 @@ class AddMovie extends React.Component {
 
   render() {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
+    const { onClick } = this.props;
     return (
       <form data-testid="add-movie-form">
         <AddMovieTitle title={ title } changeState={ this.changeState } />
@@ -53,9 +56,7 @@ class AddMovie extends React.Component {
         <AddMovieRating rating={ rating } changeState={ this.changeState } />
         <AddMovieGenre genre={ genre } changeState={ this.changeState } />
         <AddMovieSubmit
-          onClick={ () => {
-            this.otherOnClick();
-          } }
+          onClick={ this.otherOnClick(onClick) }
         />
       </form>
     );
