@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <SearchBar searchText="Texto mui legal" onSearchTextChang="another" />
+      <SearchBar searchText="Texto mui legal" onSearchTextChange="another" />
       <AddMovie />
     </div>
   );

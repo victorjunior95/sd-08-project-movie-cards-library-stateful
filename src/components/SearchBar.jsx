@@ -2,6 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
+  searchTextComponent(searchText, onSearchTextChange) {
+    return (
+      <label data-testid="text-input-label" htmlFor="text-input">
+        Inclui o texto
+        <input
+          value={ searchText }
+          onChange={ onSearchTextChange }
+          data-testid="text-input"
+        />
+      </label>
+    );
+  }
+
   render() {
     const { searchText, onSearchTextChange } = this.props;
     console.log(searchText);
@@ -9,12 +22,11 @@ class SearchBar extends React.Component {
       <div>
         <p>Hello!</p>
         <form data-testid="search-bar-form" method="get" />
-        <label data-testid="text-input-label" htmlFor="text-input">
-          Inclui o texto
+        { this.searchTextComponent(searchText, onSearchTextChange) }
+        <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
           <input
-            value={ searchText }
-            onChange={ onSearchTextChange }
-            data-testid="text-input"
+            data-testid="checkbox-input"
+            type="checkbox"
           />
         </label>
       </div>
