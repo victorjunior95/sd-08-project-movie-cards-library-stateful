@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import InputImage from './InputImage';
-import InputRating from './InputRating';
-import InputSelect from './InputSelect';
-import InputTextArea from './InputTextArea';
-import TextInputSubtitle from './TextInputSubtitle';
-import TextInputTitle from './TextInputTitle';
+import RenderAll from './RenderAll';
 
 export default class AddMovie extends Component {
   render() {
@@ -18,12 +13,7 @@ export default class AddMovie extends Component {
     };
     return (
       <form data-testid="add-movie-form">
-        <TextInputTitle />
-        <TextInputSubtitle />
-        <InputImage />
-        <InputTextArea />
-        <InputRating />
-        <InputSelect />
+        <RenderAll />
       </form>
     );
   }
