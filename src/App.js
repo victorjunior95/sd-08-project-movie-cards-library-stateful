@@ -15,7 +15,9 @@ function App() {
         bookmarkedOnly="mrkonly"
         onBookmarkedChange="obchange"
       />
-      <AddMovie />
+      <AddMovie
+        onSearchTextChange="another"
+      />
     </div>
   );
 }
