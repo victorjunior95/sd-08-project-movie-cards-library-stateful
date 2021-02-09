@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   render() {
@@ -19,5 +19,9 @@ class AddMovie extends React.Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  onSearchTextChange: PropTypes.func.isRequired,
+};
 
 export default AddMovie;
