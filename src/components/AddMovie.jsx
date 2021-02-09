@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 class AddMovie extends React.Component {
   render() {
-    // eslint-disable-next-line react/prop-types
     const { onSearchTextChange } = this.props;
     return (
       <div>
@@ -20,7 +19,7 @@ class AddMovie extends React.Component {
   }
 }
 
-SearchBar.propTypes = {
+AddMovie.propTypes = {
   onSearchTextChange: PropTypes.func.isRequired,
 };
 
