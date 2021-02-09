@@ -24,13 +24,13 @@ class SearchBar extends React.Component {
         <form data-testid="search-bar-form" method="get" />
         { this.searchTextComponent(searchText, onSearchTextChange) }
         <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
-          Mostrar somente favoritos
           <input
             data-testid="checkbox-input"
             type="checkbox"
             checked={ bookmarkedOnly }
             onChange={ onBookmarkedChange }
           />
+          Mostrar somente favoritos
         </label>
       </div>
     );
