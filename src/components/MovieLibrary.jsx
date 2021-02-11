@@ -80,6 +80,21 @@ class MovieLibrary extends React.Component {
   }
 }
 
-MovieLibrary.propTypes = { movies: PropTypes.arrayOf(PropTypes.object).isRequired };
+MovieLibrary.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      subtitle: PropTypes.string.isRequired,
+      storyline: PropTypes.string.isRequired,
+      rating: PropTypes.oneOfType([
+        PropTypes.number.isRequired,
+        PropTypes.string.isRequired,
+      ]),
+      imagePath: PropTypes.string.isRequired,
+      bookmarked: PropTypes.bool.isRequired,
+      genre: PropTypes.string.isRequired,
+    }).isRequired,
+  ).isRequired,
+};
 
 export default MovieLibrary;
