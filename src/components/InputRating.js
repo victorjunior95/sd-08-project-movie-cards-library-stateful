@@ -1,24 +1,8 @@
 import React, { Component } from 'react';
 
 export default class InputRating extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      rating: 0,
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
   render() {
-    const { rating } = this.state;
+    const { func, rating } = this.props;
     return (
       <label
         data-testid="rating-input-label"
@@ -28,10 +12,10 @@ export default class InputRating extends Component {
         <input
           type="number"
           id="inputRating"
-          value={ (rating) }
+          value={ rating }
           name="rating"
           data-testid="rating-input"
-          onChange={ this.handleChange }
+          onChange={ func }
         />
       </label>
     );

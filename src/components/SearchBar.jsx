@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import TextInput from './TextInput';
 import FavMovie from './FavMovie';
 import FilterGender from './FilterGender';
-import InputTextTitle from './TextInputTitle';
 
 export default class SearchBar extends Component {
   render() {
@@ -20,7 +20,6 @@ export default class SearchBar extends Component {
         <TextInput value={ searchText } onChange={ onSearchTextChange } />
         <FavMovie checked={ bookmarkedOnly } onChange={ onBookmarkedChange } />
         <FilterGender value={ selectedGenre } onChange={ onSelectedGenreChange } />
-        <InputTextTitle />
       </form>
     );
   }

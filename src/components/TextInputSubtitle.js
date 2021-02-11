@@ -1,24 +1,8 @@
 import React, { Component } from 'react';
 
 export default class TextInputSubtitle extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      subtitle: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
   render() {
-    const { subtitle } = this.state;
+    const { func, subtitle } = this.props;
     return (
       <label data-testid="subtitle-input-label" htmlFor="textSubtitle">
         Subtítulo
@@ -27,7 +11,7 @@ export default class TextInputSubtitle extends Component {
           name="subtitle"
           value={ subtitle }
           data-testid="subtitle-input"
-          onChange={ this.handleChange }
+          onChange={ func }
         />
       </label>
     );

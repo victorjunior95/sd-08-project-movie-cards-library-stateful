@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import Button from './Button';
 import RenderAll from './RenderAll';
 
 export default class AddMovie extends Component {
-  render() {
+  constructor() {
+    super();
     this.state = {
       subtitle: '',
       title: '',
@@ -11,10 +15,56 @@ export default class AddMovie extends Component {
       rating: 0,
       genre: 'action',
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleGenre = this.handleGenre.bind(this);
+    this.clearState = this.clearState.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  handleGenre(event) {
+    this.setState({
+      genre: event.target.value,
+    });
+  }
+
+  clearState() {
+    const { onClick } = this.props;
+    onClick();
+    this.setState({
+      subtitle: '',
+      title: '',
+      imagePath: '',
+      storyline: '',
+      rating: 0,
+      genre: 'action',
+    });
+  }
+
+  render() {
+    const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
-        <RenderAll />
+        <RenderAll
+          func={ this.handleChange }
+          funcGenre={ this.handleGenre }
+          title={ title }
+          sub={ subtitle }
+          image={ imagePath }
+          storyline={ storyline }
+          rating={ rating }
+          genre={ genre }
+        />
+        <Button onClick={ this.clearState } />
       </form>
     );
   }
 }
+
+AddMovie.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

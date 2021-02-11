@@ -1,24 +1,8 @@
 import React, { Component } from 'react';
 
 export default class InputTextTitle extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      title: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
   render() {
-    const { title } = this.state;
+    const { func, title } = this.props;
     return (
       <label htmlFor="textInput" data-testid="title-input-label">
         Título
@@ -28,7 +12,7 @@ export default class InputTextTitle extends Component {
           type="text"
           data-testid="title-input"
           value={ title }
-          onChange={ this.handleChange }
+          onChange={ func }
         />
       </label>
     );
