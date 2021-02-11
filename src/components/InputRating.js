@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class InputRating extends Component {
   render() {
@@ -21,3 +22,8 @@ export default class InputRating extends Component {
     );
   }
 }
+
+InputRating.propTypes = {
+  func: PropTypes.func.isRequired,
+  rating: PropTypes.string.isRequired,
+};

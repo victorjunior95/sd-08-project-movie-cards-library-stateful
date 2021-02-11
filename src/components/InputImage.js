@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class InputImage extends Component {
   render() {
@@ -18,3 +19,8 @@ export default class InputImage extends Component {
     );
   }
 }
+
+InputImage.propTypes = {
+  func: PropTypes.func,
+  imagePath: PropTypes.string,
+}.required;
