@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import Button from './Button';
-import AddForm from './AddForm';
+import RenderAll from './RenderAll';
 
 export default class AddMovie extends Component {
   constructor() {
@@ -48,7 +49,7 @@ export default class AddMovie extends Component {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
       <form data-testid="add-movie-form">
-        <AddForm
+        <RenderAll
           func={ this.handleChange }
           funcGenre={ this.handleGenre }
           title={ title }
@@ -65,5 +66,5 @@ export default class AddMovie extends Component {
 }
 
 AddMovie.propTypes = {
-  onClick: PropTypes.func,
-}.isRequired;
+  onClick: PropTypes.func.isRequired,
+};
