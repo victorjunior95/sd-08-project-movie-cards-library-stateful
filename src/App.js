@@ -16,7 +16,7 @@ class App extends Component {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-    }
+    };
   }
 
   onSearchTextChange({ target }) {
@@ -24,15 +24,15 @@ class App extends Component {
 
     this.setState({
       searchText: value,
-    })
+    });
   }
 
   onBookmarkedChange({ target }) {
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { checked } = target;
 
     this.setState({
-      bookmarkedOnly: value,
-    })
+      bookmarkedOnly: checked,
+    });
   }
 
   onSelectedGenreChange({ target }) {
@@ -40,14 +40,20 @@ class App extends Component {
 
     this.setState({
       selectedGenre: value,
-    })
+    });
   }
 
   render() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+
     return (
       <div className="App">
         <Header />
-        <SearchBar value={ this.state.name } onChange={ this.onSearchTextChange, this.onBookmarkedChange, this.onSelectedGenreChange } />
+        <SearchBar
+          value={ (searchText, bookmarkedOnly, selectedGenre) }
+          onChange={ (this.onSearchTextChange, this.onBookmarkedChange,
+          this.onSelectedGenreChange) }
+        />
       </div>
     );
   }
