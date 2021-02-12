@@ -46,11 +46,9 @@ export default class MovieLibrary extends Component {
     const { movies } = this.props;
     let favMovies = movies;
     let key = false;
-    const result = movies.filter((movie) => {
-      return movie.title.includes(searchText)
+    const result = movies.filter((movie) => movie.title.includes(searchText)
       || movie.subtitle.includes(searchText)
-      || movie.storyline.includes(searchText);
-    });
+      || movie.storyline.includes(searchText));
     if (bookmarkedOnly) {
       favMovies = result.filter((movie) => movie.bookmarked === true);
       key = true;
