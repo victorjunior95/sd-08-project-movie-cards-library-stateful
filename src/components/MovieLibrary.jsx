@@ -16,7 +16,7 @@ export default class MovieLibrary extends Component {
     this.handleFavMovie = this.handleFavMovie.bind(this);
     this.handleGenre = this.handleGenre.bind(this);
     this.onClick = this.onClick.bind(this);
-    /* this.filterMovie = this.filterMovie.bind(this); */
+    this.filterMovie = this.filterMovie.bind(this);
   }
 
   handleInput({ target }) {
@@ -41,19 +41,30 @@ export default class MovieLibrary extends Component {
     return ('oi');
   }
 
-  /* filterMovie() {
-    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
-    const filters = movies.filter((movie) => {
-      if (bookmarkedOnly) return movie;
-      movie.title.includes(searchText)
+  filterMovie() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    const { movies } = this.props;
+    let favMovies = movies;
+    let key = false;
+    const result = movies.filter((movie) => {
+      return movie.title.includes(searchText)
       || movie.subtitle.includes(searchText)
       || movie.storyline.includes(searchText);
     });
-  } */
+    if (bookmarkedOnly) {
+      favMovies = result.filter((movie) => movie.bookmarked === true);
+      key = true;
+    }
+    if (selectedGenre.length > 0) {
+      return favMovies.filter((movie) => movie.genre === selectedGenre);
+    }
+    if (key === true) return favMovies;
+    return result;
+  }
 
   render() {
     const { searchText, bookmarkedOnly, selectedGenre } = this.state;
-    const { movies } = this.props;
+    const result = this.filterMovie();
     return (
       <div>
         <SearchBar
@@ -65,7 +76,7 @@ export default class MovieLibrary extends Component {
           selectedGenre={ selectedGenre }
         />
         <AddMovie onClick={ this.onClick } />
-        <MovieList movies={ movies } />
+        <MovieList movies={ result } />
       </div>
     );
   }
