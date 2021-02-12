@@ -31,19 +31,29 @@ class MovieLibrary extends Component {
       searchText: value,
       movies: movieFilter,
     });
+    // console.log(value);
+    // console.log(movieFilter);
+    // console.log(movies);
   }
 
   onBookmarkedChange({ target }) {
     const { checked } = target;
+    const { movies } = this.state;
+    const movieFilter = movies.filter((el) => el.bookmarked === checked);
     this.setState({
       bookmarkedOnly: checked,
+      movies: movieFilter,
     });
+    console.log(movieFilter);
   }
 
   onSelectedGenreChange({ target }) {
     const { value } = target;
+    const { movies } = this.state;
+    const movieFilter = movies.filter((el) => el.genre === value);
     this.setState({
       selectedGenre: value,
+      movies: movieFilter,
     });
   }
 
