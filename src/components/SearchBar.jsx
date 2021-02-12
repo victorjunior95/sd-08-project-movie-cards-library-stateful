@@ -64,21 +64,12 @@ class SearchBar extends Component {
 // Usei a dica do Paulo Simões de dividir o render, por ser uma solução mais simples do que criar novos componentes. https://forum.betrybe.com/t/projeto-movie-cards-library-stateful-metodo-render-com-muitas-linhas/468/3
 
 SearchBar.propTypes = {
-  searchText: PropTypes.string,
-  onSearchTextChange: PropTypes.func,
-  bookmarkedOnly: PropTypes.bool,
-  onBookmarkedChange: PropTypes.func,
-  selectedGenre: PropTypes.string,
-  onSelectedGenreChange: PropTypes.func,
-};
-
-SearchBar.defaultProps = {
-  searchText: '',
-  onSearchTextChange: PropTypes.func,
-  bookmarkedOnly: false,
-  onBookmarkedChange: PropTypes.func,
-  selectedGenre: '',
-  onSelectedGenreChange: PropTypes.func,
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  bookmarkedOnly: PropTypes.bool.isRequired,
+  onBookmarkedChange: PropTypes.func.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.func.isRequired,
 };
 
 export default SearchBar;
