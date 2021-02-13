@@ -8,19 +8,31 @@ const initialState = {
   storyLine: '',
   rating: 0,
   genre: 'action',
-}
+};
 
 class AddMovie extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       ...initialState,
-    }
-    
+    };
+
     this.handleChange = this.handleChange.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
-  handleChange({target}) {
-    const {type, name, value} = target;
+
+  handleChange({ target }) {
+    const { type, name, value } = target;
+    const newValue = type === 'number' ? +value : value;
+    this.setState({ [name]: newValue });
+  }
+
+  handleClear(event) {
+    const { onClick } = this.props;
+    onClick(event);
+    this.setstate({
+      ...initialState,
+    });
   }
 
   renderTitleInput() {
@@ -68,7 +80,7 @@ class AddMovie extends Component {
           data-testid="image-input"
           value={ imagePath }
           onChange={ this.handleChange }
-          />
+        />
       </label>
     );
   }
@@ -85,7 +97,7 @@ class AddMovie extends Component {
           data-testid="storyline-input"
           value={ storyLine }
           onChange={ this.handleChange }
-          />
+        />
       </label>
     );
   }
@@ -129,15 +141,14 @@ class AddMovie extends Component {
   }
 
   renderButtom() {
-    const { onClick } = this.props;
     return (
       <button
         type="button"
-        onClick{ onClick }
-        data-testid="send-buttom"
-        >
+        onClick={ this.handleClear }
+        data-testid="send-button"
+      >
         Adicionar filme
-        </button>;
+      </button>
     );
   }
 
@@ -161,6 +172,6 @@ class AddMovie extends Component {
 
 AddMovie.prototypes = {
   onClick: PropTypes.func.isRequired,
-}
+};
 
 export default AddMovie;
