@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import SearchBar from './SearchBar';
 import MovieList from './MovieList';
-import movies from '../data';
 import AddMovie from './AddMovie';
 
 export default class MovieLibrary extends Component {
@@ -15,6 +14,7 @@ export default class MovieLibrary extends Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleBookmarkedChange = this.handleBookmarkedChange.bind(this);
     this.handleSelectedGenreChange = this.handleSelectedGenreChange.bind(this);
+    this.moviesFilter = this.moviesFilter.bind(this);
 
     this.state = {
       searchText: '',
