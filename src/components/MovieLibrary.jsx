@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import SearchBar from './SearchBar';
 import MovieList from './MovieList';
+import movies from '../data';
+import AddMovie from './AddMovie';
 
 export default class MovieLibrary extends Component {
   constructor(props) {
@@ -43,8 +45,31 @@ export default class MovieLibrary extends Component {
     });
   }
 
-  render() {
+  moviesFilter() {
     const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    let filteredMovies = movies;
+    if (selectedGenre) {
+      filteredMovies = movies.filter((movie) => movie.genre === selectedGenre);
+    } if (bookmarkedOnly) {
+      filteredMovies = movies.filter((movie) => movie.bookmarked === true);
+    } if (searchText) {
+      filteredMovies = movies.filter((movie) => (movie.title.includes(searchText)
+      || movie.subtitle.includes(searchText) || movie.storyline.includes(searchText)));
+    }
+    return filteredMovies;
+  }
+
+  addMovie(newMovie) {
+    const { movies } = this.state;
+    const updatedMovieList = [...movies, newMovie];
+
+    this.setState({
+      movies: updatedMovieList,
+    });
+  }
+
+  render() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
     return (
       <section>
         <SearchBar
@@ -55,7 +80,8 @@ export default class MovieLibrary extends Component {
           selectedGenre={ selectedGenre }
           onSelectedGenreChange={ this.handleSelectedGenreChange }
         />
-        <MovieList movies={ movies } />
+        <MovieList movies={ this.moviesFilter() } />
+        <AddMovie onClick={ this.addMovie } />
       </section>
     );
   }
