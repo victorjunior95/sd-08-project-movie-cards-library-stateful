@@ -2,46 +2,65 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import SearchBar from './SearchBar';
-import AddMovie from './AddMovie';
+import MovieList from './MovieList';
 
 export default class MovieLibrary extends Component {
   constructor(props) {
     super(props);
 
-    const { movies } = props;
+    const { movies } = this.props;
 
-    console.log('moviesArray');
+    this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleBookmarkedChange = this.handleBookmarkedChange.bind(this);
+    this.handleSelectedGenreChange = this.handleSelectedGenreChange.bind(this);
 
     this.state = {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      [movies]: movies,
+      movies,
     };
   }
 
+  handleTextChange({ target }) {
+    const { value } = target;
+    this.setState({
+      searchText: value,
+    });
+  }
+
+  handleBookmarkedChange({ target }) {
+    const { checked } = target;
+    this.setState({
+      bookmarkedOnly: checked,
+    });
+  }
+
+  handleSelectedGenreChange({ target }) {
+    const { value } = target;
+    this.setState({
+      selectedGenre: value,
+    });
+  }
+
   render() {
-    const { movies } = this.props;
-    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
     return (
       <section>
         <SearchBar
           searchText={ searchText }
-          onSearchTextChange={ () => 'oi' }
+          onSearchTextChange={ this.handleTextChange }
           bookmarkedOnly={ bookmarkedOnly }
-          onBookMarkedChange={ () => 'oi' }
+          onBookmarkedChange={ this.handleBookmarkedChange }
           selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ () => 'oi' }
+          onSelectedGenreChange={ this.handleSelectedGenreChange }
         />
-        <AddMovie onClick={ () => console.log('foi') } />
-        <span>
-          { movies }
-        </span>
+        <MovieList movies={ movies } />
       </section>
     );
   }
 }
 
 MovieLibrary.propTypes = {
-  movies: PropTypes.arrayOf().isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

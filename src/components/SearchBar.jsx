@@ -13,7 +13,7 @@ export default class SearchBar extends Component {
   searchBarInput(searchText, onSearchTextChange) {
     return (
       <label htmlFor="search-bar-input" data-testid="text-input-label">
-        Search
+        Inclui o texto:
         <input
           name="search-bar-input"
           data-testid="text-input"
