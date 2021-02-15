@@ -15,6 +15,7 @@ export default class MovieLibrary extends Component {
     this.handleBookmarkedChange = this.handleBookmarkedChange.bind(this);
     this.handleSelectedGenreChange = this.handleSelectedGenreChange.bind(this);
     this.moviesFilter = this.moviesFilter.bind(this);
+    this.addMovie = this.addMovie.bind(this);
 
     this.state = {
       searchText: '',
