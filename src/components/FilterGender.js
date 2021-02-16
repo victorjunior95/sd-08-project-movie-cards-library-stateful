@@ -24,6 +24,6 @@ export default class FilterGender extends Component {
 }
 
 FilterGender.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+}.isRequired;

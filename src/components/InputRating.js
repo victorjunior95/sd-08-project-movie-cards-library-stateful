@@ -24,6 +24,6 @@ export default class InputRating extends Component {
 }
 
 InputRating.propTypes = {
-  func: PropTypes.func.isRequired,
-  rating: PropTypes.string.isRequired,
-};
+  func: PropTypes.func,
+  rating: PropTypes.string,
+}.isRequired;

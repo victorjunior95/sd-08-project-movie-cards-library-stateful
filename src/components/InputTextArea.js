@@ -24,6 +24,6 @@ export default class InputTextArea extends Component {
 }
 
 InputTextArea.propTypes = {
-  func: PropTypes.func.isRequired,
-  storyline: PropTypes.string.isRequired,
-};
+  func: PropTypes.func,
+  storyline: PropTypes.string,
+}.isRequired;

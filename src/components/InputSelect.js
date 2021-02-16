@@ -25,6 +25,6 @@ export default class InputSelect extends Component {
 }
 
 InputSelect.propTypes = {
-  func: PropTypes.func.isRequired,
-  genre: PropTypes.string.isRequired,
-};
+  func: PropTypes.func,
+  genre: PropTypes.string,
+}.isRequired;

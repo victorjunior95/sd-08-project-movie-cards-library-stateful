@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import InputImage from './InputImage';
 import InputRating from './InputRating';
 import InputSelect from './InputSelect';
@@ -25,12 +24,12 @@ export default class RenderAll extends Component {
 }
 
 RenderAll.propTypes = {
-  func: PropTypes.func.isRequired,
-  funcGenre: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  sub: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  storyline: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  genre: PropTypes.string.isRequired,
-};
+  func: PropTypes.func,
+  funcGenre: PropTypes.func,
+  title: PropTypes.string,
+  sub: PropTypes.string,
+  image: PropTypes.string,
+  storyline: PropTypes.string,
+  rating: PropTypes.number,
+  genre: PropTypes.string,
+}.isRequired;

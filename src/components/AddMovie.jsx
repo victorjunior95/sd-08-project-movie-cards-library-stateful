@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import Button from './Button';
 import RenderAll from './RenderAll';
 
@@ -20,15 +19,15 @@ export default class AddMovie extends Component {
     this.clearState = this.clearState.bind(this);
   }
 
-  handleChange(event) {
+  handleChange({ target }) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [target.name]: target.value,
     });
   }
 
-  handleGenre(event) {
+  handleGenre({ target }) {
     this.setState({
-      genre: event.target.value,
+      genre: target.value,
     });
   }
 

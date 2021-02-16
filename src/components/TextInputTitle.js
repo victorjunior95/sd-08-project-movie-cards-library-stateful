@@ -21,6 +21,6 @@ export default class InputTextTitle extends Component {
 }
 
 InputTextTitle.propTypes = {
-  func: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-};
+  func: PropTypes.func,
+  title: PropTypes.string,
+}.isRequired;

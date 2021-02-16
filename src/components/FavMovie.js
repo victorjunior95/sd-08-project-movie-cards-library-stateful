@@ -20,6 +20,6 @@ export default class FavMovie extends Component {
 }
 
 FavMovie.propTypes = {
-  checked: PropTypes.bool.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+  checked: PropTypes.bool,
+  onChange: PropTypes.func,
+}.isRequired;
