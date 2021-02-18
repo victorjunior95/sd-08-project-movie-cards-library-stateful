@@ -140,7 +140,7 @@ class AddMovie extends Component {
     );
   }
 
-  renderButtom() {
+  renderButton() {
     return (
       <button
         type="button"
@@ -163,14 +163,14 @@ class AddMovie extends Component {
           { this.renderStoryLine()}
           { this.renderRatingInput()}
           { this.renderGenreInput() }
-          { this.renderButtom() }
+          { this.renderButton() }
         </form>
       </div>
     );
   }
 }
 
-AddMovie.prototypes = {
+AddMovie.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
