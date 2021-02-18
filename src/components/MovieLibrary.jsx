@@ -6,6 +6,23 @@ import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
 
 class MovieLibrary extends Component {
+  constructor(props) {
+    super(props);
+    const { movies } = this.props;
+    this.state = {
+      movies,
+    };
+
+    this.handleAddMovie = this.handleAddMovie.bind(this);
+  }
+
+  handleAddMovie(newMovie) {
+    const { movies } = this.state;
+    this.setState({
+      movies: [...movies, newMovie],
+    });
+  }
+
   render() {
     const { movies } = this.props;
     return (
@@ -13,13 +30,13 @@ class MovieLibrary extends Component {
         <h2> My awesome movie library </h2>
         <SearchBar />
         <MovieList movies={ movies } />
-        <AddMovie />
+        <AddMovie onClick={ this.handleAddMovie } />
       </div>
     );
   }
 }
 MovieLibrary.propTypes = {
-  movies: PropTypes.instanceOf(Array).isRequired,
+  movies: PropTypes.instanceOf(PropTypes.object).isRequired,
 };
 
 export default MovieLibrary;
