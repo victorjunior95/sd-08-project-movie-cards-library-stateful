@@ -158,7 +158,7 @@ class AddMovie extends Component {
         <p>Add Movie</p>
         <form data-testid="add-movie-form">
           { this.renderTitleInput()}
-          { this.render.renderSubtitleInput()}
+          { this.renderSubtitleInput()}
           { this.renderImageInput()}
           { this.renderStoryLine()}
           { this.renderRatingInput()}
