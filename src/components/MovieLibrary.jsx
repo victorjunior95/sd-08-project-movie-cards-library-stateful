@@ -4,13 +4,19 @@ import PropTypes from 'prop-types';
 import MovieList from './MovieList';
 import SearchBar from './SearchBar';
 import AddMovie from './AddMovie';
+import movies from '../data';
 
 class MovieLibrary extends Component {
   constructor(props) {
     super(props);
+
     const { movies } = this.props;
+
     this.state = {
       movies,
+      searchText: '',
+      bookmarkedOnly: false,
+      selectedGenre: '',
     };
 
     this.handleAddMovie = this.handleAddMovie.bind(this);
@@ -23,8 +29,14 @@ class MovieLibrary extends Component {
     });
   }
 
+  getFilteredMovies() {
+    const { searchText, bookmarkedOnly, selectedGenre } = this.state;
+    return movies.filter(({ title }) => title.includes(searchText));
+  }
+
   render() {
-    const { movies } = this.props;
+    const { movies } = this.state;
+    const filteredMovies = this.getFilteredMovies();
     return (
       <div>
         <h2> My awesome movie library </h2>
