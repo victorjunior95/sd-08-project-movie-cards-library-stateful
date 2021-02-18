@@ -15,6 +15,30 @@ class SearchBar extends React.Component {
     );
   }
 
+  checkBoxComponent(bookmarkedOnly, onBookmarkedChange) {
+    return (
+      <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
+        <input
+          data-testid="checkbox-input"
+          type="checkbox"
+          checked={ bookmarkedOnly }
+          onChange={ onBookmarkedChange }
+        />
+        Mostrar somente favoritos
+      </label>
+    );
+  }
+
+  selectComponent() {
+    return (
+      <label>
+        <select>
+          <div>Teste select</div>
+        </select>
+      </label>
+    );
+  }
+
   render() {
     const { bookmarkedOnly, onBookmarkedChange } = this.props;
     const { searchText, onSearchTextChange } = this.props;
@@ -23,15 +47,8 @@ class SearchBar extends React.Component {
         <p>Hello!</p>
         <form data-testid="search-bar-form" method="get" />
         { this.searchTextComponent(searchText, onSearchTextChange) }
-        <label data-testid="checkbox-input-label" htmlFor="checkbox-input">
-          <input
-            data-testid="checkbox-input"
-            type="checkbox"
-            checked={ bookmarkedOnly }
-            onChange={ onBookmarkedChange }
-          />
-          Mostrar somente favoritos
-        </label>
+        { this.checkBoxComponent(bookmarkedOnly, onBookmarkedChange)}
+        { this.selectComponent()}
       </div>
     );
   }
