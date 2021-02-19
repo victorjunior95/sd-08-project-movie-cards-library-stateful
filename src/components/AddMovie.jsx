@@ -11,6 +11,7 @@ class AddMovie extends React.Component {
           <input
             onChange={ onSearchTextChange }
             data-testid="title-input"
+            type="number"
           />
           Título do filme
         </label>
