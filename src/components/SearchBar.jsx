@@ -29,26 +29,31 @@ class SearchBar extends React.Component {
     );
   }
 
-  selectComponent() {
+  selectComponent(selectedGenre, onSelectedGenreChange) {
     return (
-      <label>
-        <select>
-          <div>Teste select</div>
-        </select>
+      <label data-testid="select-input-label" htmlFor="select-input">
+        <input type="text" onChange={ selectedGenre } placeholder="Filtrar por gênero" />
+        <select
+          data-testid="select-input"
+          value={ selectedGenre }
+          onChange={ onSelectedGenreChange }
+          control={ selectedGenre }
+          label="select-input"
+        />
       </label>
     );
   }
 
   render() {
-    const { bookmarkedOnly, onBookmarkedChange } = this.props;
-    const { searchText, onSearchTextChange } = this.props;
+    const { bookmarkedOnly, onBookmarkedChange, onSelectedGenreChange } = this.props;
+    const { searchText, onSearchTextChange, selectedGenre } = this.props;
     return (
       <div>
         <p>Hello!</p>
         <form data-testid="search-bar-form" method="get" />
         { this.searchTextComponent(searchText, onSearchTextChange) }
         { this.checkBoxComponent(bookmarkedOnly, onBookmarkedChange)}
-        { this.selectComponent()}
+        { this.selectComponent(selectedGenre, onSelectedGenreChange)}
       </div>
     );
   }
@@ -59,8 +64,8 @@ SearchBar.propTypes = {
   onSearchTextChange: PropTypes.func.isRequired,
   bookmarkedOnly: PropTypes.bool.isRequired,
   onBookmarkedChange: PropTypes.func.isRequired,
-  // selectedGenre: PropTypes.string.isRequired,
-  // onSelectedGenreChange: PropTypes.string.isRequired,
+  selectedGenre: PropTypes.string.isRequired,
+  onSelectedGenreChange: PropTypes.string.isRequired,
 };
 
 export default SearchBar;
