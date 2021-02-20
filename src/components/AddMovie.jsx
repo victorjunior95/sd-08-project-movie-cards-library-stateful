@@ -1,14 +1,14 @@
 // implement AddMovie component here
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const firstState = {
-  subtitle: "",
-  title: "",
-  imagePath: "",
-  storyline: "",
+  subtitle: '',
+  title: '',
+  imagePath: '',
+  storyline: '',
   rating: 0,
-  genre: "action",
+  genre: 'action',
 };
 
 class AddMovie extends React.Component {
@@ -28,7 +28,7 @@ class AddMovie extends React.Component {
 
   handleChange(event, name) {
     const { value } = event.target;
-    if (name === "rating") {
+    if (name === 'rating') {
       this.setState({ [name]: Number(value) });
     } else {
       this.setState({ [name]: value });
@@ -40,111 +40,103 @@ class AddMovie extends React.Component {
   }
 
   passMovie() {
-    this.props.onClick(this.state);
+    const { onClick } = this.props;
+    onClick(this.state);
     this.resetState();
   }
 
-  creatLabelTitle(name, value, text, type = "text") {
+  creatLabelTitle(name, value, text, type = 'text') {
     return (
-      <label htmlFor={name} data-testid="title-input-label">
-        { text} 
+      <label htmlFor={ name } data-testid="title-input-label">
+        { text }
         <input
           type={ type }
           name={ name }
           data-testid="title-input"
-          value={value}
-          onChange={(elem) => this.handleChange(elem, name)}
+          value={ value }
+          onChange={ (elem) => this.handleChange(elem, name) }
         />
       </label>
     );
   }
 
-  creatLabelSubtitle(name, value, text, type = "text") {
+  creatLabelSubtitle(name, value, text, type = 'text') {
     return (
-      <label htmlFor={name} data-testid="subtitle-input-label">
-        {text}
+      <label htmlFor={ name } data-testid="subtitle-input-label">
+        { text }
         <input
-          type={type}
-          name={name}
+          type={ type }
+          name={ name }
           data-testid="subtitle-input"
-          value={value}
-          onChange={(elem) => this.handleChange(elem, name)}
+          value={ value }
+          onChange={ (elem) => this.handleChange(elem, name) }
         />
       </label>
     );
   }
 
-  creatLabelImage(name, value, text, type = "text") {
+  creatLabelImage(name, value, text, type = 'text') {
     return (
-      <label
-        htmlFor={name}
-        data-testid="image-input-label"
-        htmlFor="imageInput"
-      >
-        {text}
+      <label htmlFor={ name } data-testid="image-input-label">
+        { text }
         <input
-          type={type}
-          name={name}
+          type={ type }
+          name={ name }
           data-testid="image-input"
-          value={value}
-          onChange={(elem) => this.handleChange(elem, name)}
-        />
-      </label>
-    );
-  }
-  creatLabelStory(name, value, text, type = "text") {
-    return (
-      <label htmlFor={name} data-testid="storyline-input-label">
-        {text}
-        <textarea
-          type={type}
-          name={name}
-          data-testid="storyline-input"
-          value={value}
-          onChange={(elem) => this.handleChange(elem, name)}
+          value={ value }
+          onChange={ (elem) => this.handleChange(elem, name) }
         />
       </label>
     );
   }
 
-  creatLabelRating(name, value, text, type = "number") {
+  creatLabelStory(name, value, text, type = 'text') {
     return (
-      <label htmlFor={name} data-testid="rating-input-label" htmlFor="rating">
-        {text}
+      <label htmlFor={ name } data-testid="storyline-input-label">
+        { text }
+        <textarea
+          type={ type }
+          name={ name }
+          data-testid="storyline-input"
+          value={ value }
+          onChange={ (elem) => this.handleChange(elem, name) }
+        />
+      </label>
+    );
+  }
+
+  creatLabelRating(name, value, text, type = 'number') {
+    return (
+      <label data-testid="rating-input-label" htmlFor="rating">
+        { text }
         <input
-          type={type}
-          name={name}
+          type={ type }
+          name={ name }
           data-testid="rating-input"
-          value={value}
+          value={ value }
           max="5"
           min="0"
           step="0.1"
-          onChange={(elem) => this.handleChange(elem, name)}
+          onChange={ (elem) => this.handleChange(elem, name) }
         />
       </label>
     );
   }
 
-  creatLabelGenre(name, value, text, type = "text") {
+  creatLabelGenre(name, value, text, type = 'text') {
     return (
-      <label htmlFor={name} data-testid="genre-input-label">
-        {text}
+      <label htmlFor={ name } data-testid="genre-input-label">
+        { text }
         <select
-          type={type}
-          name={name}
+          type={ type }
+          name={ name }
           data-testid="genre-input"
-          value={value}
-          onChange={(elem) => this.handleChange(elem, name)}
+          value={ value }
+          onChange={ (elem) => this.handleChange(elem, name) }
         >
-          <option value="action" data-testid="genre-option">
-            Ação
-          </option>
-          <option value="comedy" data-testid="genre-option">
-            Comédia
-          </option>
-          <option value="thriller" data-testid="genre-option">
-            Suspense
-          </option>
+          <option value="action" data-testid="genre-option">Ação</option>
+          <option value="comedy" data-testid="genre-option">Comédia</option>
+          <option value="thriller" data-testid="genre-option">Suspense</option>
         </select>
       </label>
     );
@@ -153,24 +145,21 @@ class AddMovie extends React.Component {
   render() {
     const { title, subtitle, imagePath, storyline, rating, genre } = this.state;
     return (
-      <div>
-        <form data-testid="add-movie-form">
-          {this.creatLabelTitle("title", title, "Título")}
-          {this.creatLabelSubtitle("subtitle", subtitle, "Subtítulo")}
-          {this.creatLabelImage("imagePath", imagePath, "Imagem")}
-          {this.creatLabelStory("storyline", storyline, "Sinopse")}
-          {this.creatLabelRating("rating", rating, "Avaliação")}
-          {this.creatLabelGenre("genre", genre, "Gênero")}
-          <button
-            type="submit"
-            data-testid="send-button"
-            name="button"
-            onClick={this.passMovie}
-          >
-            Adicionar filme
-          </button>
-        </form>
-      </div>
+      <form data-testid="add-movie-form">
+        {this.creatLabelTitle('title', title, 'Título')}
+        {this.creatLabelSubtitle('subtitle', subtitle, 'Subtítulo')}
+        {this.creatLabelImage('imagePath', imagePath, 'Imagem')}
+        {this.creatLabelStory('storyline', storyline, 'Sinopse')}
+        {this.creatLabelRating('rating', rating, 'Avaliação')}
+        {this.creatLabelGenre('genre', genre, 'Gênero')}
+        <button
+          type="submit"
+          data-testid="send-button"
+          onClick={ this.passMovie }
+        >
+          Adicionar filme
+        </button>
+      </form>
     );
   }
 }

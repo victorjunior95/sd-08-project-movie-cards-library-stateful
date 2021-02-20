@@ -14,7 +14,7 @@ class MovieLibrary extends React.Component {
     };
     this.implementMovie = this.implementMovie.bind(this);
     this.bookmarkedChange = this.bookmarkedChange.bind(this);
-    this.textOrGenreChange = this.textOrGenreChange.bind(this);
+    this.genreChange = this.genreChange.bind(this);
     this.checkBookmarked = this.checkBookmarked.bind(this);
     this.checkGenre = this.checkGenre.bind(this);
   }
@@ -24,7 +24,7 @@ class MovieLibrary extends React.Component {
     this.setState({ bookmarkedOnly: !bookmarkedOnly });
   }
 
-  textOrGenreChange(event, name) {
+  genreChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value });
   }
@@ -52,12 +52,11 @@ class MovieLibrary extends React.Component {
   findMovies(movies) {
     const { searchText } = this.state;
     return movies.filter(
-      (elem) =>
-        (elem.title.includes(searchText) ||
-          elem.storyline.includes(searchText) ||
-          elem.subtitle.includes(searchText)) &&
-        this.checkBookmarked(elem) &&
-        this.checkGenre(elem),
+      (elem) => (elem.title.includes(searchText)
+        || elem.storyline.includes(searchText)
+        || elem.subtitle.includes(searchText))
+        && this.checkBookmarked(elem)
+        && this.checkGenre(elem),
     );
   }
 
@@ -66,19 +65,15 @@ class MovieLibrary extends React.Component {
     return (
       <div>
         <SearchBar
-          bookmarkedOnly={bookmarkedOnly}
-          onBookmarkedChange={this.bookmarkedChange}
-          searchText={searchText}
-          onSearchTextChange={(elem) =>
-            this.textOrGenreChange(elem, 'searchText')
-          }
-          selectedGenre={selectedGenre}
-          onSelectedGenreChange={(elem) =>
-            this.textOrGenreChange(elem, 'selectedGenre')
-          }
+          bookmarkedOnly={ bookmarkedOnly }
+          onBookmarkedChange={ this.bookmarkedChange }
+          searchText={ searchText }
+          onSearchTextChange={ (elem) => this.genreChange(elem, 'searchText') }
+          selectedGenre={ selectedGenre }
+          onSelectedGenreChange={ (elem) => this.genreChange(elem, 'selectedGenre') }
         />
-        <MovieList movies={this.findMovies(movies)} />
-        <AddMovie onClick={this.implementMovie} />
+        <MovieList movies={ this.findMovies(movies) } />
+        <AddMovie onClick={ this.implementMovie } />
       </div>
     );
   }
