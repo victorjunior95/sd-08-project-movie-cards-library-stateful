@@ -37,9 +37,9 @@ class AddMovie extends Component {
   // value é uma string, necessário q qdo ela seja numero, seja transformado
   // newValue, verifica se o tipo é number e por ternário transforma em number.
 
-  handleClear(event) {
+  handleClear() {
     const { onClick } = this.props;
-    onClick(event);
+    onClick(this.state);
     this.setState({
       ...initialState,
     });
@@ -47,7 +47,8 @@ class AddMovie extends Component {
 
   // pegar o estado e reiniciar ele para o inicial.
   // this.setState => reset p initialState
-  // pega o onclick que vem por props do button, chamo ele como evento - task14.
+  // pega o onclick que vem por props do button, chamo ele com o state e não mais com o event
+  // task14 e task 19
   // e faço a ação de setar o state on click, no event do click. - dica PS. Plantão
 
   renderTitles() {
