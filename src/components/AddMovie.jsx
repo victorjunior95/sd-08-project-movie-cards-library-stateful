@@ -15,12 +15,27 @@ class AddMovie extends React.Component {
     );
   }
 
+  getNewSubTitle(onSearchTextChange) {
+    return (
+      <label data-testid="subtitle-input-label" htmlFor="text-input">
+        Subtítulo
+        <input
+          onChange={ onSearchTextChange }
+          data-testid="subtitle-input"
+          subtitle=""
+        />
+      </label>
+    );
+  }
+
   render() {
     const { onSearchTextChange } = this.props;
     return (
       <div>
-        <form data-testid="add-movie-form" method="get" />
-        { this.getNewTitle(onSearchTextChange) }
+        <form data-testid="add-movie-form" method="get">
+          { this.getNewTitle(onSearchTextChange) }
+          { this.getNewSubTitle(onSearchTextChange) }
+        </form>
       </div>
     );
   }
