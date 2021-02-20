@@ -4,7 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import AddMovie from './components/AddMovie';
-import MovieLibrary from './components/MovieLibrary';
+// import MovieLibrary from './components/MovieLibrary';
 
 function App() {
   return (
@@ -20,9 +20,6 @@ function App() {
       <AddMovie
         onSearchTextChange={ 0 }
         selectedGenre="action"
-      />
-      <MovieLibrary
-        movies="go movies"
       />
     </div>
   );
