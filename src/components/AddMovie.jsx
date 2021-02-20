@@ -69,6 +69,24 @@ class AddMovie extends React.Component {
     );
   }
 
+  getNewMovieGenre(onSearchTextChange) {
+    return (
+      <label data-testid="genre-input-label" htmlFor="select-input">
+        Gênero
+        <select
+          onChange={ onSearchTextChange }
+          data-testid="genre-input"
+          defaultValue="Ação"
+        >
+          <option value="action" data-testid="select-option">Ação</option>
+          <option value="comedy" data-testid="select-option">Comédia</option>
+          <option value="thriller" data-testid="select-option">Suspense</option>
+
+        </select>
+      </label>
+    );
+  }
+
   render() {
     const { onSearchTextChange } = this.props;
     return (
@@ -76,9 +94,10 @@ class AddMovie extends React.Component {
         <form data-testid="add-movie-form" method="get">
           { this.getNewTitle(onSearchTextChange) }
           { this.getNewSubTitle(onSearchTextChange) }
-          { this.getNewMovieImage(onSearchTextChange)}
-          { this.getNewMovieStoryline(onSearchTextChange)}
-          { this.getNewMovieRating(onSearchTextChange)}
+          { this.getNewMovieImage(onSearchTextChange) }
+          { this.getNewMovieStoryline(onSearchTextChange) }
+          { this.getNewMovieRating(onSearchTextChange) }
+          { this.getNewMovieGenre(onSearchTextChange) }
         </form>
       </div>
     );
