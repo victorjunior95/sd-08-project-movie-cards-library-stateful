@@ -53,6 +53,21 @@ class AddMovie extends React.Component {
     );
   }
 
+  getNewMovieRating(onSearchTextChange) {
+    return (
+      <label data-testid="rating-input-label" htmlFor="text-input">
+        Avaliação
+        <input
+          type="number"
+          onChange={ onSearchTextChange }
+          data-testid="rating-input"
+          rating=""
+          defaultValue={ 0 }
+        />
+      </label>
+    );
+  }
+
   render() {
     const { onSearchTextChange } = this.props;
     return (
@@ -62,6 +77,7 @@ class AddMovie extends React.Component {
           { this.getNewSubTitle(onSearchTextChange) }
           { this.getNewMovieImage(onSearchTextChange)}
           { this.getNewMovieStoryline(onSearchTextChange)}
+          { this.getNewMovieRating(onSearchTextChange)}
         </form>
       </div>
     );

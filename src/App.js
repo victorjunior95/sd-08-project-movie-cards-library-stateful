@@ -18,7 +18,7 @@ function App() {
         selectedGenre="action"
       />
       <AddMovie
-        onSearchTextChange="another"
+        onSearchTextChange={ 0 }
       />
       <MovieLibrary
         movies="go movies"
