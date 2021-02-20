@@ -78,5 +78,15 @@ class MovieLibrary extends React.Component {
     );
   }
 }
+MovieLibrary.propTypes = {
+  movies: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string.isRequired,
+    storyline: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    imagePath: PropTypes.string.isRequired,
+    map: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default MovieLibrary;
