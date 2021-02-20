@@ -87,6 +87,18 @@ class AddMovie extends React.Component {
     );
   }
 
+  addNewMovieButton(onSearchTextChange) {
+    return (
+      <button
+        type="submit"
+        data-testid="send-button"
+        onClick={ onSearchTextChange }
+      >
+        Adicionar filme
+      </button>
+    );
+  }
+
   render() {
     const { onSearchTextChange } = this.props;
     return (
@@ -98,6 +110,7 @@ class AddMovie extends React.Component {
           { this.getNewMovieStoryline(onSearchTextChange) }
           { this.getNewMovieRating(onSearchTextChange) }
           { this.getNewMovieGenre(onSearchTextChange) }
+          { this.addNewMovieButton(onSearchTextChange) }
         </form>
       </div>
     );
