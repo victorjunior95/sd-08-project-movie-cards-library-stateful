@@ -28,6 +28,19 @@ class AddMovie extends React.Component {
     );
   }
 
+  getNewMovieImage(onSearchTextChange) {
+    return (
+      <label data-testid="image-input-label" htmlFor="text-input">
+        Imagem
+        <input
+          onChange={ onSearchTextChange }
+          data-testid="image-input"
+          imagePath=""
+        />
+      </label>
+    );
+  }
+
   render() {
     const { onSearchTextChange } = this.props;
     return (
@@ -35,6 +48,7 @@ class AddMovie extends React.Component {
         <form data-testid="add-movie-form" method="get">
           { this.getNewTitle(onSearchTextChange) }
           { this.getNewSubTitle(onSearchTextChange) }
+          { this.getNewMovieImage(onSearchTextChange)}
         </form>
       </div>
     );
