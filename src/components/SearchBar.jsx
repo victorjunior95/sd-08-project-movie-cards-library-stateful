@@ -55,10 +55,11 @@ class SearchBar extends React.Component {
     return (
       <div>
         <p>Hello!</p>
-        <form data-testid="search-bar-form" method="get" />
-        { this.searchTextComponent(searchText, onSearchTextChange) }
-        { this.checkBoxComponent(bookmarkedOnly, onBookmarkedChange)}
-        { this.selectComponent(selectedGenre, onSelectedGenreChange)}
+        <form data-testid="search-bar-form" method="get">
+          { this.searchTextComponent(searchText, onSearchTextChange) }
+          { this.checkBoxComponent(bookmarkedOnly, onBookmarkedChange)}
+          { this.selectComponent(selectedGenre, onSelectedGenreChange)}
+        </form>
       </div>
     );
   }

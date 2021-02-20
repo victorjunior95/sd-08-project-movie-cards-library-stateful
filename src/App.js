@@ -15,7 +15,7 @@ function App() {
         onSearchTextChange="another"
         bookmarkedOnly="mrkonly"
         onBookmarkedChange="obchange"
-        selectedGenre="Escolha Gênero"
+        selectedGenre="action"
       />
       <AddMovie
         onSearchTextChange="another"
