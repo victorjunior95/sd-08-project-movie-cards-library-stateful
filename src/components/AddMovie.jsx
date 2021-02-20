@@ -41,6 +41,18 @@ class AddMovie extends React.Component {
     );
   }
 
+  getNewMovieStoryline(onSearchTextChange) {
+    return (
+      <label data-testid="storyline-input-label" htmlFor="text-input">
+        <textarea
+          onChange={ onSearchTextChange }
+          data-testid="storyline-input"
+          storyline=""
+        />
+      </label>
+    );
+  }
+
   render() {
     const { onSearchTextChange } = this.props;
     return (
@@ -49,6 +61,7 @@ class AddMovie extends React.Component {
           { this.getNewTitle(onSearchTextChange) }
           { this.getNewSubTitle(onSearchTextChange) }
           { this.getNewMovieImage(onSearchTextChange)}
+          { this.getNewMovieStoryline(onSearchTextChange)}
         </form>
       </div>
     );
