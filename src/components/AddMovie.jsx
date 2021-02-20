@@ -44,6 +44,7 @@ class AddMovie extends React.Component {
   getNewMovieStoryline(onSearchTextChange) {
     return (
       <label data-testid="storyline-input-label" htmlFor="text-input">
+        Sinopse
         <textarea
           onChange={ onSearchTextChange }
           data-testid="storyline-input"
