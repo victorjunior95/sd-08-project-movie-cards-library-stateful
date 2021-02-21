@@ -20,7 +20,7 @@ class MovieLibrary extends React.Component {
       searchText: '',
       bookmarkedOnly: false,
       selectedGenre: '',
-      objectMovies: movies,
+      movies,
     };
   }
 
@@ -42,8 +42,8 @@ class MovieLibrary extends React.Component {
   }
 
   filterObjectMovies() {
-    const { searchText, bookmarkedOnly, selectedGenre, objectMovies } = this.state;
-    const filterMovies = objectMovies.filter((movie) => movie.title.toUpperCase()
+    const { searchText, bookmarkedOnly, selectedGenre, movies } = this.state;
+    const filterMovies = movies.filter((movie) => movie.title.toUpperCase()
       .includes(searchText.toUpperCase())
       || movie.subtitle.toUpperCase().includes(searchText.toUpperCase())
       || movie.storyline.toUpperCase().includes(searchText.toUpperCase()));
