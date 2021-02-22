@@ -38,15 +38,20 @@ class SearchBar extends Component {
   renderSelectedInput() {
     const { selectedGenre, onSelectGenreChange } = this.props;
     return (
-      <label htmlFor="selected-input" data-testid="selected-input-label">
+      <label htmlFor="select-input" data-testid="select-input-label">
         Filtrar por gênero
-        <input
+        <select
           name="selectedGenre"
-          id="selected-input"
-          data-testid="selected-input"
+          id="select-input"
+          data-testid="select-input"
           value={ selectedGenre }
           onChange={ onSelectGenreChange }
-        />
+        >
+          <option value="" data-testid="select-option">Todos</option>
+          <option value="action" data-testid="select-option">Ação</option>
+          <option value="comedy" data-testid="select-option">Comédia</option>
+          <option value="thriller" data-testid="select-option">Suspense</option>
+        </select>
       </label>
     );
   }
@@ -58,8 +63,10 @@ class SearchBar extends Component {
         <form data-testid="search-bar-form">
           { this.renderTextInput() }
           { this.renderCheckboxInput() }
+          { this.renderSelectedInput() }
         </form>
       </div>
+
     );
   }
 }
