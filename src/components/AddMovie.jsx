@@ -160,7 +160,7 @@ class AddMovie extends Component {
           { this.renderTitleInput() }
           { this.renderSubtitle() }
           { this.renderImageInput() }
-          { this.renderStorylineInput() }
+          { this.renderStoryline() }
           { this.renderRatingInput() }
           { this.renderGenreInput() }
           { this.renderButton() }
