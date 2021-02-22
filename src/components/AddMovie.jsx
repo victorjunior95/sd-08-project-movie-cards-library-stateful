@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const estadoInicial = {
+const initialState = {
   title: '',
   subtitle: '',
   imagePath: '',
@@ -13,7 +13,7 @@ class AddMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...estadoInicial,
+      ...initialState,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,8 +22,8 @@ class AddMovie extends Component {
 
   handleChange({ target }) {
     const { name, value, type } = target;
-    const novoValor = type === 'number' ? +value : value;
-    this.setState({ [name]: novoValor });
+    const newValue = type === 'number' ? +value : value;
+    this.setState({ [name]: newValue });
   }
 
   handleClear() {
