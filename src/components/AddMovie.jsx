@@ -9,7 +9,6 @@ const estadoInicial = {
   rating: 0,
   genre: 'action',
 };
-
 class AddMovie extends Component {
   constructor(props) {
     super(props);
