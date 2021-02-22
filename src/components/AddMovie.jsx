@@ -85,7 +85,7 @@ class AddMovie extends Component {
     );
   }
 
-  renderStorylineInput() {
+  renderStoryline() {
     const { storyline } = this.state;
     return (
       <label htmlFor="storyline-input" data-testid="image-input-label">
@@ -158,7 +158,7 @@ class AddMovie extends Component {
         <p>Add Movie</p>
         <form data-testid="add-movie-form">
           { this.renderTitleInput() }
-          { this.renderSubtitleInput() }
+          { this.renderSubtitle() }
           { this.renderImageInput() }
           { this.renderStorylineInput() }
           { this.renderRatingInput() }
