@@ -27,7 +27,7 @@ jobs:
         uses: betrybe/react-scripts-evaluator-action@v4
         with:
           repository-test-name: 'betrybe/sd-0x-project-movie-cards-library-stateful-tests'
-          repository-test-branch: 'master'
+          repository-test-branch: 'turma8'
       - name: Store evaluation step
         uses: betrybe/store-evaluation-action@v2
         with:
