@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const estadoInicial = {
-  subtitle: '',
   title: '',
+  subtitle: '',
   imagePath: '',
   storyline: '',
   rating: 0,
