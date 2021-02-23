@@ -8,6 +8,7 @@ class IncluiTexto extends React.Component {
       <label htmlFor="text-input" data-testid="text-input-label">
         Inclui o texto:
         <input
+          name="searchText"
           data-testid="text-input"
           type="text"
           value={ value }

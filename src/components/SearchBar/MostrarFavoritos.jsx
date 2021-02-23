@@ -8,6 +8,7 @@ class MostrarFavoritos extends React.Component {
       <label htmlFor="checkbox-input" data-testid="checkbox-input-label">
         Mostrar somente favoritos
         <input
+          name="bookmarkedOnly"
           type="checkbox"
           data-testid="checkbox-input"
           checked={ checked }

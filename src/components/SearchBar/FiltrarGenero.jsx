@@ -8,6 +8,7 @@ class FiltrarGenero extends React.Component {
       <label htmlFor="select-input" data-testid="select-input-label">
         Filtrar por gênero
         <select
+          name="selectedGenre"
           data-testid="select-input"
           value={ value }
           onChange={ onChange }

@@ -16,27 +16,15 @@ class MovieLibrary extends React.Component {
       movies,
     };
 
-    this.handleChangeInputText = this.handleChangeInputText.bind(this);
-    this.handleChangeMarked = this.handleChangeMarked.bind(this);
-    this.handleChangeGenre = this.handleChangeGenre.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleAddMovie = this.handleAddMovie.bind(this);
   }
 
-  handleChangeInputText(event) {
+  handleChange({ target }) {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
-      searchText: event.target.value,
-    });
-  }
-
-  handleChangeMarked(event) {
-    this.setState({
-      bookmarkedOnly: event.target.checked,
-    });
-  }
-
-  handleChangeGenre(event) {
-    this.setState({
-      selectedGenre: event.target.value,
+      [name]: value,
     });
   }
 
@@ -73,11 +61,11 @@ class MovieLibrary extends React.Component {
       <div>
         <SearchBar
           searchText={ searchText }
-          onSearchTextChange={ this.handleChangeInputText }
+          onSearchTextChange={ this.handleChange }
           bookmarkedOnly={ bookmarkedOnly }
-          onBookmarkedChange={ this.handleChangeMarked }
+          onBookmarkedChange={ this.handleChange }
           selectedGenre={ selectedGenre }
-          onSelectedGenreChange={ this.handleChangeGenre }
+          onSelectedGenreChange={ this.handleChange }
         />
         <MovieList movies={ this.FilterMovies() } />
         <AddMovie onClick={ this.handleAddMovie } />
