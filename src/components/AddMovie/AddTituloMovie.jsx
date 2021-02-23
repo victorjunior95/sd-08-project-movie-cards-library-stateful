@@ -11,6 +11,7 @@ class AddTituloMovie extends React.Component {
       <label htmlFor="text-input" data-testid="title-input-label">
         Título
         <input
+          name="title"
           data-testid="title-input"
           type="text"
           value={ value }

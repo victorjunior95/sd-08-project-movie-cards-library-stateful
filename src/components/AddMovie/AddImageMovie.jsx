@@ -8,6 +8,7 @@ class AddImageMovie extends React.Component {
       <label htmlFor="image" data-testid="image-input-label">
         Imagem
         <input
+          name="imagePath"
           data-testid="image-input"
           type="text"
           value={ value }

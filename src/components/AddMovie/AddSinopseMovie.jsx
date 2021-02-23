@@ -11,6 +11,7 @@ class AddSinopseMovie extends React.Component {
       <label htmlFor="input-text" data-testid="storyline-input-label">
         Sinopse
         <textarea
+          name="storyline"
           data-testid="storyline-input"
           value={ value }
           onChange={ handleChange }
