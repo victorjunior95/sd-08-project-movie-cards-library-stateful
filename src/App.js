@@ -1,23 +1,15 @@
 import React from 'react';
 import Header from './components/Header';
-import SearchBar from './components/SearchBar';
-import AddMovie from './components/AddMovie';
+import MovieLibrary from './components/MovieLibrary';
 import './App.css';
 
 class App extends React.Component {
   render() {
+    const movies = [];
     return (
       <div className="App">
         <Header />
-        <SearchBar
-          searchText=""
-          onSearchTextChange={ () => 'ok' }
-          bookmarkedOnly={ false }
-          onBookmarkedChange={ () => 'ok' }
-          selectedGenre=""
-          onSelectedGenreChange={ () => 'ok' }
-        />
-        <AddMovie onClick={ () => 'ok' } />
+        <MovieLibrary movies={ movies } />
       </div>
     );
   }
