@@ -10,7 +10,7 @@ class InputSelect extends React.Component {
         <select
           data-testid="select-input"
           id="select-input"
-          name="select-input"
+          name="selectedGenre"
           onChange={ onSelected }
           value={ selected }
         >

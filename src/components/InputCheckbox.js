@@ -14,7 +14,7 @@ class InputCheckbox extends React.Component {
           checked={ book }
           data-testid="checkbox-input"
           id="checkbox-input"
-          name="checkbox-input"
+          name="bookmarkedOnly"
           onChange={ onBook }
           type="checkbox"
         />
