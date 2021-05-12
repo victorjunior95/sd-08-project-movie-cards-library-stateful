@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import App from './App';
 
-describe.skip('<App /> component', () => {
+describe('<App /> component', () => {
   it('renders a `Header` component', () => {
     const wrapper = shallow(<App />);
 
